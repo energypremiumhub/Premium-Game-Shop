@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ Premium Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+        :root{--bg-primary:#0a0e1a;--bg-secondary:#111927;--bg-card:#141c2b;--bg-input:#1a2438;--text-primary:#ffffff;--text-secondary:#8899bb;--border-color:rgba(255,255,255,0.06);--shadow:rgba(0,0,0,0.5);--gold:#f5c842;--gold-glow:rgba(245,200,66,0.3);--cyan:#00d4ff;--cyan-glow:rgba(0,212,255,0.2);--orange:#f97316;--orange-glow:rgba(249,115,22,0.2);--red:#ef4444;--warning:#f59e0b}
+        body{background:var(--bg-primary);color:var(--text-primary);min-height:100vh;padding:16px;padding-bottom:90px;background-image:radial-gradient(ellipse at 20% 50%,rgba(245,200,66,0.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(0,212,255,0.04) 0%,transparent 50%)}
+        ::-webkit-scrollbar{width:4px}
+        ::-webkit-scrollbar-track{background:var(--bg-primary)}
+        ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
+        .container{max-width:500px;margin:0 auto}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0 14px;flex-wrap:wrap;gap:6px}
+        .header .left{display:flex;flex-direction:column;gap:6px}
+        .header .left .logo{font-size:1rem;font-weight:800;color:var(--gold);text-shadow:0 0 20px var(--gold-glow);letter-spacing:0.5px}
+        .header .left .logo i{color:var(--cyan);margin-right:6px;text-shadow:0 0 20px var(--cyan-glow)}
+        .header .left .profile-icon{background:transparent;border:1px solid var(--border-color);color:var(--text-secondary);padding:4px 14px;border-radius:8px;font-size:0.6rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;text-decoration:none;display:inline-flex;align-items:center;gap:6px;height:36px;width:fit-content}
+        .header .left .profile-icon:active{transform:scale(0.85)}
+        .header .left .profile-icon:hover{border-color:var(--gold);color:var(--gold)}
+        .header .left .profile-icon.logged-in{background:linear-gradient(135deg,var(--gold),var(--orange));color:#0a0e1a;border-color:var(--gold);box-shadow:0 0 25px var(--gold-glow);padding:4px 14px}
+        .header .left .profile-icon.logged-in:active{transform:scale(0.85)}
+        .header .left .profile-icon.logged-in img{width:22px;height:22px;border-radius:50%;object-fit:cover;margin-right:4px}
+        .header .right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+        .header .right .top{display:flex;gap:8px;align-items:center}
+        .header .right .top .lang-switcher{display:flex;gap:2px;background:var(--bg-card);padding:3px;border-radius:8px;border:1px solid var(--border-color)}
+        .header .right .top .lang-switcher .lang-btn{background:transparent;border:none;color:var(--text-secondary);padding:3px 10px;border-radius:6px;font-size:0.5rem;font-weight:700;cursor:pointer;transition:all 0.2s ease;text-transform:uppercase}
+        .header .right .top .lang-switcher .lang-btn.active{background:var(--gold);color:#0a0e1a;box-shadow:0 0 20px var(--gold-glow)}
+        .header .right .top .lang-switcher .lang-btn:active{transform:scale(0.85)}
+        .header .right .top .noti-btn{background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;font-size:1rem;color:var(--text-secondary);position:relative;text-decoration:none}
+        .header .right .top .noti-btn:active{transform:scale(0.85)}
+        .header .right .top .noti-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:0.4rem;font-weight:700;padding:1px 6px;border-radius:50%;display:none}
+        .page-header{margin-bottom:16px;animation:slideUp 0.6s ease}
+        .page-header h1{font-size:1.3rem;font-weight:800;color:var(--text-primary)}
+        .page-header h1 span{background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 40px var(--gold-glow)}
+        .page-header h1 i{color:var(--cyan);-webkit-text-fill-color:initial;margin-right:6px}
+        .page-header p{color:var(--text-secondary);font-size:0.7rem;margin-top:2px}
+        .double-box{background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(249,115,22,0.04));border:1px solid rgba(245,200,66,0.12);border-radius:14px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;cursor:pointer;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);animation:slideUp 0.7s ease;position:relative;overflow:hidden}
+        .double-box:active{transform:scale(0.96)}
+        .double-box:hover{border-color:rgba(245,200,66,0.3);box-shadow:0 0 40px var(--gold-glow)}
+        .double-box .left{display:flex;align-items:center;gap:12px}
+        .double-box .left .icon{font-size:1.8rem;color:var(--gold)}
+        .double-box .left .text{font-size:0.8rem;font-weight:600;color:var(--text-primary)}
+        .double-box .left .sub{font-size:0.55rem;color:var(--text-secondary);margin-top:2px}
+        .double-box .arrow{color:var(--gold);font-size:1.2rem;transition:all 0.3s ease}
+        .double-box:hover .arrow{transform:translateX(4px)}
+        .section-title{font-size:0.65rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+        .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-color),transparent)}
+        .section-title i{color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow)}
+        .package-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+        .package-item{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border:2px solid var(--border-color);border-radius:12px;padding:12px 14px;transition:all 0.2s cubic-bezier(0.34,1.2,0.64,1);cursor:pointer;box-shadow:0 4px 20px var(--shadow);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+        .package-item:active{transform:scale(0.97);transition:transform 0.1s ease}
+        .package-item.selected{border-color:var(--gold);background:rgba(245,200,66,0.04);box-shadow:0 0 50px var(--gold-glow),inset 0 0 40px rgba(245,200,66,0.03)}
+        .package-item.selected::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(245,200,66,0.05),transparent,rgba(0,212,255,0.05),transparent);animation:spinGlow 6s linear infinite;pointer-events:none}
+        .package-item.selected .price{color:var(--gold);text-shadow:0 0 30px var(--gold-glow)}
+        .package-item.selected .glow-pulse{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:12px;background:radial-gradient(circle at center,rgba(245,200,66,0.05) 0%,transparent 70%);animation:pulseGlow 1.5s ease-in-out infinite;pointer-events:none}
+        @keyframes spinGlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes pulseGlow{0%,100%{opacity:0.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+        .package-item .dia-icon{display:inline-block;transition:all 0.3s ease}
+        .package-item .dia-icon.bounce{animation:bounceIcon 0.5s cubic-bezier(0.34,1.2,0.64,1)}
+        @keyframes bounceIcon{0%,100%{transform:translateY(0)}40%{transform:translateY(-10px)}70%{transform:translateY(-4px)}}
+        .package-item .info{display:flex;flex-direction:column;gap:2px;flex:1;position:relative;z-index:1}
+        .package-item .info .name{font-size:0.75rem;font-weight:600;color:var(--text-primary)}
+        .package-item .info .name .dia-icon{color:var(--text-secondary);margin-right:4px;transition:all 0.3s ease}
+        .package-item .info .double-badge{display:inline-block;font-size:0.4rem;color:var(--warning);background:rgba(245,158,11,0.12);padding:1px 8px;border-radius:10px;border:1px solid rgba(245,158,11,0.1);font-weight:600}
+        .package-item .right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px;position:relative;z-index:1}
+        .package-item .right .price{font-size:0.85rem;font-weight:700;color:var(--text-secondary);transition:all 0.4s ease}
+        .package-item .right .btn{background:var(--bg-input);color:var(--text-secondary);border:none;padding:5px 16px;border-radius:20px;font-weight:700;font-size:0.6rem;cursor:pointer;transition:all 0.2s cubic-bezier(0.34,1.2,0.64,1);border:1px solid var(--border-color);-webkit-tap-highlight-color:transparent;user-select:none}
+        .package-item .right .btn:active{transform:scale(0.88);transition:transform 0.1s ease}
+        .package-item .right .btn.select-mode{background:var(--bg-input);color:var(--text-secondary);box-shadow:none;border:1px solid var(--border-color)}
+        .package-item .right .btn.select-mode:hover{border-color:var(--gold);color:var(--gold)}
+        .package-item .right .btn.buy-mode{background:linear-gradient(135deg,var(--gold),var(--orange));color:#0a0e1a;box-shadow:0 0 30px var(--gold-glow);border-color:var(--gold);animation:btnPulse 1.5s ease-in-out infinite}
+        @keyframes btnPulse{0%,100%{box-shadow:0 0 15px var(--gold-glow)}50%{box-shadow:0 0 40px var(--gold-glow)}}
+        .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg-secondary);border-top:1px solid var(--border-color);display:flex;justify-content:space-around;padding:6px 0 10px;max-width:500px;margin:0 auto;z-index:100;border-radius:16px 16px 0 0;box-shadow:0 -8px 40px var(--shadow)}
+        .bottom-nav .nav-item{text-align:center;cursor:pointer;text-decoration:none;color:var(--text-secondary);transition:all 0.2s cubic-bezier(0.34,1.2,0.64,1);padding:4px 8px;border-radius:8px;position:relative;border:2px solid transparent;min-width:50px;-webkit-tap-highlight-color:transparent}
+        .bottom-nav .nav-item:active{transform:scale(0.85);transition:transform 0.1s ease}
+        .bottom-nav .nav-item .icon{font-size:1.2rem;display:block;transition:all 0.2s cubic-bezier(0.34,1.2,0.64,1)}
+        .bottom-nav .nav-item .label{font-size:0.4rem;margin-top:1px;font-weight:700;letter-spacing:0.5px;transition:all 0.2s ease}
+        .bottom-nav .nav-item.active{color:var(--gold);border-color:var(--gold);background:rgba(245,200,66,0.05);box-shadow:0 0 30px rgba(245,200,66,0.05)}
+        .bottom-nav .nav-item.active .icon{transform:translateY(-6px) scale(1.15);text-shadow:0 0 30px var(--gold-glow)}
+        .bottom-nav .nav-item.active .label{color:var(--gold)}
+        .bottom-nav .nav-item.active::before{content:'';position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:24px;height:2.5px;background:linear-gradient(90deg,var(--gold),var(--orange));border-radius:10px;box-shadow:0 0 20px var(--gold-glow)}
+        .footer{text-align:center;margin-top:10px;padding:10px;border-top:1px solid var(--border-color);color:var(--text-secondary);font-size:0.45rem;opacity:0.3;letter-spacing:1px}
+        .toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:var(--bg-card);padding:10px 20px;border-radius:12px;border:1px solid rgba(245,200,66,0.15);color:var(--gold);font-weight:600;font-size:0.75rem;display:none;z-index:200;text-align:center;max-width:90%;box-shadow:0 8px 40px var(--shadow);animation:toastPop 0.3s cubic-bezier(0.34,1.2,0.64,1)}
+        .toast.show{display:block}
+        @keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(30px) scale(0.9)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+        @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="left">
+            <div class="logo" id="appName"><i class="fas fa-gamepad"></i> Premium Shop</div>
+            <div class="profile-icon" id="profileIcon" onclick="goToProfile()">👤 Profile</div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="my" onclick="setLang('my')">မြန်မာ</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                </div>
+                <a href="notifications.html" class="noti-btn" id="notiBtn">🔔<span class="badge" id="notiBadge">0</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="page-header">
+        <h1 id="shopTitle"><i class="fas fa-gem"></i> စိန်ပက်ကေ့ချ် <span>များ</span></h1>
+        <p id="shopSub">ပက်ကေ့ချ်တစ်ခုရွေးပြီး ဝယ်ယူရန် နှိပ်ပါ</p>
+    </div>
+    <div class="double-box" onclick="scrollToDouble()">
+        <div class="left">
+            <span class="icon">⭐</span>
+            <div>
+                <div class="text" id="doubleBoxTitle">နှစ်ဆစိန်များ</div>
+                <div class="sub" id="doubleBoxSub">နှစ်ဆစိန်ပက်ကေ့ချ်များကိုကြည့်ရန် နှိပ်ပါ</div>
+            </div>
+        </div>
+        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+    </div>
+    <div class="section-title" id="bundlesTitle"><i class="fas fa-gift"></i> ပက်ကေ့ချ်များ</div>
+    <div class="package-list" id="bundlesList"></div>
+    <div class="section-title" id="diamondsTitle"><i class="fas fa-diamond"></i> စိန်များ</div>
+    <div class="package-list" id="diamondsList"></div>
+    <div class="section-title" id="doubleTitle"><i class="fas fa-star"></i> နှစ်ဆဖြည့်မှု</div>
+    <div class="package-list" id="doubleList"></div>
+    <div class="footer">&copy; 2026 Premium Shop</div>
+</div>
+<div class="bottom-nav">
+    <a href="index.html" class="nav-item"><span class="icon">🏠</span><span class="label" id="navHome">ပင်မ</span></a>
+    <a href="shop.html" class="nav-item active"><span class="icon">🛒</span><span class="label" id="navShop">ဆိုင်</span></a>
+    <a href="payment.html" class="nav-item"><span class="icon">💳</span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
+    <a href="profile.html" class="nav-item"><span class="icon">👤</span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+    const LANG_DATA = {
+        my: {
+            appName: 'Premium Shop',
+            shopTitle: 'စိန်ပက်ကေ့ချ်များ',
+            shopSub: 'ပက်ကေ့ချ်တစ်ခုရွေးပြီး ဝယ်ယူရန် နှိပ်ပါ',
+            bundlesTitle: 'ပက်ကေ့ချ်များ',
+            diamondsTitle: 'စိန်များ',
+            doubleTitle: 'နှစ်ဆဖြည့်မှု',
+            doubleBoxTitle: 'နှစ်ဆစိန်များ',
+            doubleBoxSub: 'နှစ်ဆစိန်ပက်ကေ့ချ်များကိုကြည့်ရန် နှိပ်ပါ',
+            select: 'ရွေးရန်',
+            buy: 'ဝယ်ယူရန်',
+            selectFirst: 'ကျေးဇူးပြု၍ ပက်ကေ့ချ်တစ်ခုကို ဦးစွာရွေးပါ!',
+            home: 'ပင်မ', shop: 'ဆိုင်', payment: 'ငွေပေးချေ', profile: 'ပရိုဖိုင်',
+            currency: 'ကျပ်'
+        },
+        en: {
+            appName: 'Premium Shop',
+            shopTitle: 'Diamond Packages',
+            shopSub: 'Select a package and tap Buy',
+            bundlesTitle: 'Packages',
+            diamondsTitle: 'Diamonds',
+            doubleTitle: 'Double Top Up',
+            doubleBoxTitle: 'Double Diamonds',
+            doubleBoxSub: 'Tap to view double diamond packages',
+            select: 'Select',
+            buy: 'Buy',
+            selectFirst: 'Please select a package first!',
+            home: 'Home', shop: 'Shop', payment: 'Payment', profile: 'Profile',
+            currency: 'Ks'
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'my';
+    let selectedPackage = null;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    function getText(key){ return LANG_DATA[currentLang][key] || key; }
+
+    function setLang(lang){
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        updateLanguage();
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+
+    function updateLanguage(){
+        const d = LANG_DATA[currentLang];
+        document.getElementById('appName').innerHTML = '<i class="fas fa-gamepad"></i> ' + d.appName;
+        document.getElementById('shopTitle').innerHTML = '<i class="fas fa-gem"></i> ' + d.shopTitle;
+        document.getElementById('shopSub').textContent = d.shopSub;
+        document.getElementById('bundlesTitle').innerHTML = '<i class="fas fa-gift"></i> ' + d.bundlesTitle;
+        document.getElementById('diamondsTitle').innerHTML = '<i class="fas fa-diamond"></i> ' + d.diamondsTitle;
+        document.getElementById('doubleTitle').innerHTML = '<i class="fas fa-star"></i> ' + d.doubleTitle;
+        document.getElementById('doubleBoxTitle').textContent = d.doubleBoxTitle;
+        document.getElementById('doubleBoxSub').textContent = d.doubleBoxSub;
+        document.getElementById('navHome').textContent = d.home;
+        document.getElementById('navShop').textContent = d.shop;
+        document.getElementById('navPayment').textContent = d.payment;
+        document.getElementById('navProfile').textContent = d.profile;
+        updateAuthUI();
+        renderPackages();
+    }
+
+    function showToast(msg){
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    function updateAuthUI(){
+        const p = document.getElementById('profileIcon');
+        if(currentUser){
+            const avatar = localStorage.getItem('userAvatar_' + currentUser.username);
+            p.innerHTML = avatar ? '<img src="'+avatar+'" alt="avatar"> '+currentUser.username : '👤 '+currentUser.username;
+            p.className = 'profile-icon logged-in';
+        } else {
+            p.innerHTML = '👤 Profile';
+            p.className = 'profile-icon';
+        }
+    }
+
+    function goToProfile(){ window.location.href = 'profile.html'; }
+
+    const PACKAGES = {
+        bundles: [
+            { id: 'b1', name: 'Monthly Epic Bundle', price: 17200 },
+            { id: 'b2', name: 'Weekly Elite Bundle', price: 3350 },
+            { id: 'b3', name: 'Weekly Pass', price: 6500 }
+        ],
+        diamonds: [
+            { id: 'd1', name: '11', price: 1000 }, { id: 'd2', name: '22', price: 1750 },
+            { id: 'd3', name: '33', price: 2500 }, { id: 'd4', name: '44', price: 3300 },
+            { id: 'd5', name: '56', price: 4000 }, { id: 'd6', name: '86', price: 5500 },
+            { id: 'd7', name: '112', price: 7800 }, { id: 'd8', name: '172', price: 10700 },
+            { id: 'd9', name: '257', price: 15900 }, { id: 'd10', name: '343', price: 21100 },
+            { id: 'd11', name: '429', price: 26600 }, { id: 'd12', name: '514', price: 31200 },
+            { id: 'd13', name: '600', price: 36700 }, { id: 'd14', name: '706', price: 42800 },
+            { id: 'd15', name: '878', price: 53100 }, { id: 'd16', name: '963', price: 58500 },
+            { id: 'd17', name: '1,049', price: 63800 }, { id: 'd18', name: '1,135', price: 69300 },
+            { id: 'd19', name: '1,412', price: 84900 }, { id: 'd20', name: '2,195', price: 126000 },
+            { id: 'd21', name: '2,901', price: 166300 }, { id: 'd22', name: '3,688', price: 207500 },
+            { id: 'd23', name: '5,532', price: 312000 }, { id: 'd24', name: '9,288', price: 522000 }
+        ],
+        double: [
+            { id: 'x1', name: '50 + 50 (Double)', price: 3800, badge: '⭐ 2x Bonus' },
+            { id: 'x2', name: '150 + 150 (Double)', price: 10300, badge: '⭐ 2x Bonus' },
+            { id: 'x3', name: '250 + 250 (Double)', price: 16000, badge: '⭐ 2x Bonus' },
+            { id: 'x4', name: '500 + 500 (Double)', price: 32400, badge: '⭐ 2x Bonus' }
+        ]
+    };
+
+    function formatPrice(price){ return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' ' + getText('currency'); }
+
+    // ==========================================
+    // အဓိက ပြင်ဆင်ထားတဲ့နေရာ - onclick ကို .package-item မှာ ထည့်ထား
+    // ==========================================
+    function renderPackages(){
+        const selectText = getText('select');
+        const buyText = getText('buy');
+        const renderItems = (items, type) => items.map(pkg => {
+            const isSelected = selectedPackage && selectedPackage.id === pkg.id;
+            const btnText = isSelected ? buyText : selectText;
+            const btnClass = isSelected ? 'buy-mode' : 'select-mode';
+            const badgeHtml = type === 'double' && pkg.badge ? `<span class="double-badge">${pkg.badge}</span>` : '';
+            return `
+                <!-- onclick ကို .package-item မှာ ထည့်ထားတယ် -->
+                <div class="package-item ${isSelected ? 'selected' : ''}" data-id="${pkg.id}" onclick="handlePackageClick('${pkg.id}','${pkg.name}',${pkg.price},'${type}')">
+                    <div class="glow-pulse"></div>
+                    <div class="info">
+                        <div class="name"><span class="dia-icon">💎</span> ${pkg.name}</div>
+                        ${badgeHtml}
+                    </div>
+                    <div class="right">
+                        <div class="price">${formatPrice(pkg.price)}</div>
+                        <button class="btn ${btnClass}" onclick="event.stopPropagation(); handleBuyClick('${pkg.id}','${pkg.name}',${pkg.price},'${type}')">${btnText}</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        document.getElementById('bundlesList').innerHTML = renderItems(PACKAGES.bundles, 'bundle');
+        document.getElementById('diamondsList').innerHTML = renderItems(PACKAGES.diamonds, 'diamond');
+        document.getElementById('doubleList').innerHTML = renderItems(PACKAGES.double, 'double');
+    }
+
+    function bounceIcon(id){
+        const icon = document.querySelector(`.package-item[data-id="${id}"] .dia-icon`);
+        if(icon){ icon.classList.remove('bounce'); void icon.offsetWidth; icon.classList.add('bounce'); }
+    }
+
+    // Package box ကိုနှိပ်ရင် Select/Deselect ပဲလုပ်
+    function handlePackageClick(id, name, price, type){
+        bounceIcon(id);
+        
+        if(selectedPackage && selectedPackage.id === id){
+            selectedPackage = null;
+            renderPackages();
+            return;
+        }
+        
+        selectedPackage = { id, name, price, type };
+        renderPackages();
+    }
+
+    // Buy button ကိုနှိပ်ရင် Checkout သွား
+    function handleBuyClick(id, name, price, type){
+        bounceIcon(id);
+        
+        if(selectedPackage && selectedPackage.id === id){
+            selectedPackage = null;
+            renderPackages();
+            return;
+        }
+        
+        selectedPackage = { id, name, price, type };
+        
+        const data = encodeURIComponent(JSON.stringify({
+            name: name,
+            price: price,
+            priceFormatted: formatPrice(price),
+            id: id,
+            type: type
+        }));
+        window.location.href = 'checkout.html?package=' + data;
+    }
+
+    function scrollToDouble(){
+        document.getElementById('doubleList').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            const el = document.getElementById('doubleList');
+            el.style.border = '2px solid var(--gold)';
+            el.style.borderRadius = '12px';
+            el.style.padding = '4px';
+            setTimeout(() => { el.style.border = 'none'; el.style.padding = '0'; }, 1000);
+        }, 500);
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+        setLang(localStorage.getItem('lang') || 'my');
+        renderPackages();
+        updateAuthUI();
+        const noti = JSON.parse(localStorage.getItem('newOrderNotification') || '{"show":false}');
+        const badge = document.getElementById('notiBadge');
+        if(noti.show){ badge.style.display = 'block'; badge.textContent = '1'; setTimeout(() => { badge.style.display = 'none'; localStorage.setItem('newOrderNotification', JSON.stringify({show:false})); }, 5000); }
+    });
+</script>
+</body>
+</html>
