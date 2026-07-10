@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>👤 Profile - Premium Game Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="left">
+            <div class="logo-wrap">
+                <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo">
+                <div class="text-group"><span class="premium" id="appName">Premium</span><span class="shop" id="appSub">Game Shop</span></div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="my">မြန်မာ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button class="night-toggle" id="nightToggle"><i class="fas fa-moon"></i></button>
+                <a href="notifications.html" class="noti-btn" id="notiBtn"><i class="fas fa-bell"></i><span class="badge" id="notiBadge">0</span></a>
+                <div class="auth-btn-profile" id="authBtn"><i class="fas fa-key"></i> Login</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h1><i class="fas fa-user-circle"></i> <span id="pageTitleProfile">ပရိုဖိုင်</span></h1>
+        <p id="pageSubProfile">သင့်အကောင့်အချက်အလက်များ</p>
+    </div>
+
+    <div class="profile-section" id="profileSection">
+        <div class="avatar-wrap">
+            <div class="avatar" id="avatarDisplay">👤</div>
+            <label class="camera-icon"><i class="fas fa-camera"></i><input type="file" id="avatarInput" accept="image/*"></label>
+        </div>
+        <div class="info">
+            <div class="name" id="displayName">Guest</div>
+            <div class="username" id="displayUsername"><i class="fas fa-user"></i> @guest</div>
+            <div class="email" id="displayEmail"><i class="fas fa-envelope"></i> No email</div>
+            <div class="phone" id="displayPhone"><i class="fas fa-phone"></i> No phone</div>
+        </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-list"></i> <span id="orderHistoryLabel">အော်ဒါမှတ်တမ်း</span></div>
+    <div class="glass-box" style="padding:14px;margin-bottom:12px;">
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="filter-btn" data-filter="cancelled">Cancelled</button>
+        </div>
+        <div class="search-bar"><input type="text" id="orderSearch" placeholder="🔍 Search Order ID..."></div>
+        <div id="orderHistoryContainer"></div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-cog"></i> <span id="settingsLabel">အကောင့်ဆက်တင်များ</span></div>
+    <div class="glass-box" style="padding:14px 16px;">
+        <div class="menu-item" onclick="openSettingsModal('name')"><span class="icon"><i class="fas fa-user-edit"></i></span><span class="text" id="changeNameText">နာမည်ပြောင်းရန်</span><span class="arrow">›</span></div>
+        <div class="menu-item" onclick="openSettingsModal('username')"><span class="icon"><i class="fas fa-at"></i></span><span class="text" id="changeUsernameText">အသုံးပြုသူအမည်ပြောင်းရန်</span><span class="arrow">›</span></div>
+        <div class="menu-item" onclick="openSettingsModal('email')"><span class="icon"><i class="fas fa-envelope"></i></span><span class="text" id="changeEmailText">အီးမေးလ်ပြောင်းရန်</span><span class="arrow">›</span></div>
+        <div class="menu-item" onclick="openSettingsModal('phone')"><span class="icon"><i class="fas fa-phone"></i></span><span class="text" id="changePhoneText">ဖုန်းနံပါတ်ပြောင်းရန်</span><span class="arrow">›</span></div>
+        <div class="menu-item" onclick="openSettingsModal('password')"><span class="icon"><i class="fas fa-key"></i></span><span class="text" id="changePasswordText">စကားဝှက်ပြောင်းရန်</span><span class="arrow">›</span></div>
+        <div class="menu-item logout" onclick="logout()"><span class="icon"><i class="fas fa-sign-out-alt"></i></span><span class="text" id="logoutText">ထွက်မည်</span><span class="arrow">›</span></div>
+    </div>
+    <div class="footer-text">&copy; 2026 Premium Game Shop</div>
+</div>
+
+<div class="bottom-nav">
+    <a href="index.html" class="nav-item"><span class="icon"><i class="fas fa-home"></i></span><span class="label" id="navHome">ပင်မ</span></a>
+    <a href="shop.html" class="nav-item"><span class="icon"><i class="fas fa-shopping-bag"></i></span><span class="label" id="navShop">ဆိုင်</span></a>
+    <a href="payment.html" class="nav-item"><span class="icon"><i class="fas fa-credit-card"></i></span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
+    <a href="profile.html" class="nav-item active"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
+</div>
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="authModal"><div class="modal"><button class="close-btn" onclick="closeAuthModal()"><i class="fas fa-times"></i></button><h2 id="authModalTitle">ဝင်ရန်</h2><p class="sub" id="authModalSub">ပြန်လည်ကြိုဆိုပါတယ်!</p><div class="error-text" id="authError" style="display:none;"></div><div id="loginForm"><div class="form-group"><label id="authEmailLabel">အီးမေးလ် / အသုံးပြုသူအမည် / ဖုန်းနံပါတ်</label><input type="text" id="authLoginInput" placeholder="ထည့်ပါ"></div><div class="form-group"><label id="authPassLabel">စကားဝှက်</label><input type="password" id="authLoginPassword" placeholder="ထည့်ပါ"></div><span class="forgot-link" id="forgotLink" onclick="openForgotPasswordModal()">စကားဝှက်မေ့နေပါသလား?</span><button class="btn-primary" id="authLoginBtn">ဝင်ရန်</button><span class="switch-link" id="authSwitchToRegister">အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်ရန်</span></div><div id="registerForm" style="display:none;"><div class="form-group"><label>အသုံးပြုသူအမည် <span style="color:var(--red);">*</span></label><input type="text" id="authRegUsername" placeholder="ရွေးပါ"></div><div class="form-group"><label>အီးမေးလ်</label><input type="email" id="authRegEmail" placeholder="ထည့်ပါ"></div><div class="form-group"><label>ဖုန်းနံပါတ်</label><input type="tel" id="authRegPhone" placeholder="ထည့်ပါ"></div><div class="form-group"><label>စကားဝှက် <span style="color:var(--red);">*</span></label><input type="password" id="authRegPassword" placeholder="အနည်းဆုံး ၄ လုံး"></div><div class="form-group"><label>စကားဝှက်အတည်ပြုရန် <span style="color:var(--red);">*</span></label><input type="password" id="authRegConfirmPassword" placeholder="ပြန်ထည့်ပါ"></div><button class="btn-primary" id="authRegisterBtn">မှတ်ပုံတင်ရန်</button><span class="switch-link" id="authSwitchToLogin">အကောင့်ရှိပြီးသား? ဝင်ရန်</span></div></div></div>
+<div class="modal-overlay" id="forgotPasswordModal"><div class="modal"><button class="close-btn" onclick="closeForgotPasswordModal()"><i class="fas fa-times"></i></button><h2 id="forgotTitle">စကားဝှက်မေ့နေပါသလား?</h2><p class="sub" id="forgotSub">အောက်ပါအချက်အလက်များ ဖြည့်ပါ</p><div class="error-msg" id="forgotError"></div><div class="success-msg" id="forgotSuccess"></div><div id="forgotStep1"><div class="form-group"><label id="forgotIdentifyLabel">အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်</label><input type="text" id="forgotIdentify" placeholder="ရှာဖွေရန် ထည့်ပါ"></div><button class="btn-primary enabled" id="forgotFindBtn" onclick="findAccount()">🔍 အကောင့်ရှာမည်</button><span class="switch-link" onclick="closeForgotPasswordModal(); openAuthModal('login');">← လော့အင်ဝင်ရန် ပြန်သွားမည်</span></div><div id="forgotStep2" style="display:none;"><div class="form-group" id="otpSentMsg" style="text-align:center;color:var(--cyan);font-size:0.7rem;margin-bottom:8px;"></div><div class="form-group"><label id="otpLabel">OTP ကုဒ် (၆ လုံး)</label><div style="display:flex;gap:8px;"><input type="text" id="otpInput" placeholder="123456" inputmode="numeric" maxlength="6" style="flex:1;"><button class="copy-btn" id="resendOtpBtn" onclick="resendOTP()">📩 ပြန်ပို့မည်</button></div><div id="otpTimer" style="font-size:0.5rem;color:var(--text-secondary);margin-top:4px;"></div></div><button class="btn-primary enabled" id="verifyOtpBtn" onclick="verifyOTP()">✅ အတည်ပြုမည်</button></div><div id="forgotStep3" style="display:none;"><div class="form-group"><label id="newPassLabel">စကားဝှက်အသစ်</label><input type="password" id="newPassword" placeholder="အနည်းဆုံး ၄ လုံး"></div><div class="form-group"><label id="confirmNewPassLabel">စကားဝှက်အတည်ပြုရန်</label><input type="password" id="confirmNewPassword" placeholder="ပြန်ထည့်ပါ"></div><button class="btn-primary enabled" id="resetPasswordBtn" onclick="resetPassword()">🔑 စကားဝှက်ပြောင်းမည်</button></div></div></div>
+<div class="modal-overlay" id="settingsModal"><div class="modal"><button class="close-btn" onclick="closeSettingsModal()"><i class="fas fa-times"></i></button><h2 id="settingsModalTitle">🔑 ပြောင်းရန်</h2><p class="sub" id="settingsModalSub">အချက်အလက်အသစ်ထည့်ပါ</p><div id="settingsModalBody"><div class="form-group"><label id="settingsFieldLabel">အသစ်</label><input type="text" id="settingsInput" placeholder=""><div class="error-text" id="settingsError">ကျေးဇူးပြု၍ ထည့်ပါ</div></div><div class="form-group" id="settingsConfirmGroup" style="display:none;"><label>အတည်ပြုရန်</label><input type="text" id="settingsConfirmInput" placeholder=""></div><button class="btn-primary" id="settingsSaveBtn">💾 သိမ်းမည်</button></div></div></div>
+<div class="logout-overlay" id="logoutOverlay"><div class="card"><div class="icon"><i class="fas fa-sign-out-alt"></i></div><div class="title">⚠️ ထွက်မှာသေချာလား?</div><div class="desc">သင့်အကောင့်မှ ထွက်မှာဖြစ်ပါတယ်။</div><div class="btn-group"><button class="btn-confirm" id="logoutConfirmBtn">🚪 ထွက်မည်</button><button class="btn-cancel" id="logoutCancelBtn">❌ မထွက်တော့ပါ</button></div></div></div>
+<script src="js/main.js"></script>
+</body>
+</html>
