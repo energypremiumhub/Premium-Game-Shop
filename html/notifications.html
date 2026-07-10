@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🔔 Notifications - Premium Game Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="left">
+            <div class="logo-wrap">
+                <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo">
+                <div class="text-group"><span class="premium" id="appName">Premium</span><span class="shop" id="appSub">Game Shop</span></div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="my">မြန်မာ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button class="night-toggle" id="nightToggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header"><h1><i class="fas fa-bell"></i> <span id="pageTitleNotiLabel">သတိပေးချက်များ</span></h1></div>
+    <div class="clear-all-btn"><button onclick="clearAllNotifications()"><i class="fas fa-trash-alt"></i> <span id="clearAllText">အကုန်ဖျက်မည်</span></button></div>
+    <div id="notiContainer"><div class="empty" id="emptyText">သတိပေးချက် မရှိသေးပါ</div></div>
+    <div class="footer-text">&copy; 2026 Premium Game Shop</div>
+</div>
+
+<div class="bottom-nav">
+    <a href="index.html" class="nav-item"><span class="icon"><i class="fas fa-home"></i></span><span class="label" id="navHome">ပင်မ</span></a>
+    <a href="shop.html" class="nav-item"><span class="icon"><i class="fas fa-shopping-bag"></i></span><span class="label" id="navShop">ဆိုင်</span></a>
+    <a href="payment.html" class="nav-item"><span class="icon"><i class="fas fa-credit-card"></i></span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
+    <a href="profile.html" class="nav-item"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
+</div>
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
