@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>⚡ MLBB Packages - Premium Game Shop</title>
+    <title>⚡ MCGG Packages - Premium Game Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,24 +30,11 @@
 
     <a href="shop.html" class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> ← ဆိုင်သို့ ပြန်သွားရန်</a>
 
-    <div class="page-header"><h1><i class="fas fa-gamepad"></i> <span id="pageTitle">MLBB Global Packages</span></h1></div>
+    <div class="page-header"><h1><i class="fas fa-gem"></i> <span id="pageTitleMCGG">MCGG Packages</span></h1><p id="pageSubMCGG">ပက်ကေ့ချ်တစ်ခုရွေးပြီး ဝယ်ယူပါ</p></div>
 
-    <div class="search-bar"><span><i class="fas fa-search"></i></span><input type="text" id="itemSearch" placeholder="🔍 ပက်ကေ့ချ်ရှာပါ..."></div>
-
-    <div class="server-selector">
-        <span class="label"><i class="fas fa-server"></i> Server</span>
-        <div class="options">
-            <span class="opt active" data-server="global" onclick="switchServer('global')">🌍 Global</span>
-            <span class="opt" data-server="indo" onclick="switchServer('indo')">🇮🇩 Indo</span>
-            <span class="opt" data-server="russia" onclick="switchServer('russia')">🇷🇺 Russia</span>
-            <span class="opt" data-server="ban" onclick="switchServer('ban')">🇲🇾🇸🇬🇵🇭 Ban</span>
-        </div>
-    </div>
-
-    <div id="globalSection"><div class="section-title"><i class="fas fa-gift"></i> ပက်ကေ့ချ်များ</div><div class="package-grid" id="globalBundles"></div><div class="section-title"><i class="fas fa-star"></i> နှစ်ဆဖြည့်မှု</div><div class="package-grid" id="globalDouble"></div><div class="section-title"><i class="fas fa-diamond"></i> စိန်များ</div><div class="package-grid" id="globalDiamonds"></div></div>
-    <div id="banSection" style="display:none"><div class="section-title"><i class="fas fa-gift"></i> ပက်ကေ့ချ်များ</div><div class="package-grid" id="banBundles"></div><div class="section-title"><i class="fas fa-star"></i> နှစ်ဆဖြည့်မှု</div><div class="package-grid" id="banDouble"></div><div class="section-title"><i class="fas fa-diamond"></i> စိန်များ</div><div class="package-grid" id="banDiamonds"></div></div>
-    <div id="indoSektion" style="display:none"><div class="section-title"><i class="fas fa-gift"></i> ပက်ကေ့ချ်များ</div><div class="package-grid" id="indoBundles"></div><div class="section-title"><i class="fas fa-diamond"></i> စိန်များ</div><div class="package-grid" id="indoDiamonds"></div></div>
-    <div id="russiaSection" style="display:none"><div class="section-title"><i class="fas fa-gift"></i> ပက်ကေ့ချ်များ</div><div class="package-grid" id="russiaBundles"></div><div class="section-title"><i class="fas fa-diamond"></i> စိန်များ</div><div class="package-grid" id="russiaDiamonds"></div></div>
+    <div class="section-title"><i class="fas fa-gift"></i> <span id="bundlesTitle">ပက်ကေ့ချ်များ</span></div><div class="package-grid" id="bundlesList"></div>
+    <div class="section-title"><i class="fas fa-star"></i> <span id="doubleTitle">နှစ်ဆဖြည့်မှု</span></div><div class="package-grid" id="doubleList"></div>
+    <div class="section-title"><i class="fas fa-diamond"></i> <span id="diamondsTitle">စိန်များ</span></div><div class="package-grid" id="diamondsList"></div>
     <div class="footer-text">&copy; 2026 Premium Game Shop</div>
 </div>
 
@@ -58,9 +45,7 @@
     <a href="profile.html" class="nav-item"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
 </div>
 
-<div class="modal-overlay" id="checkoutModal"><div class="modal"><button class="close-btn" onclick="closeCheckout()"><i class="fas fa-times"></i></button><h2>🛒 အော်ဒါတင်ရန်</h2><p class="sub">အချက်အလက်များ ဖြည့်သွင်းပါ</p><div class="selected-row"><span id="modalPackage">-</span><span id="modalPrice" style="color:var(--gold);font-weight:700">-</span></div><div class="form-group"><label>Game ID</label><input type="text" id="gameId" placeholder="Game ID ထည့်ပါ" inputmode="numeric"></div><div class="form-group"><label>Server ID</label><input type="text" id="serverId" placeholder="Server ID ထည့်ပါ" inputmode="numeric"></div><div class="form-group"><label>မှာစာ</label><textarea id="orderMessage" rows="2" placeholder="မှာစာရေးပါ..."></textarea></div><div class="form-group"><label>ငွေပေးချေရန်</label><div class="payment-options"><div class="payment-option" data-payment="wave" onclick="selectPayment('wave')"><div class="icon-box"><img src="https://i.ibb.co/GvstPZx4/x.jpg" alt="Wave"></div><span class="name">Wave Pay</span></div><div class="payment-option" data-payment="kpay" onclick="selectPayment('kpay')"><div class="icon-box"><img src="https://i.ibb.co/fdWfXwVC/x.jpg" alt="KBZ"></div><span class="name">KBZ Pay</span></div></div></div><div class="account-info" id="waveInfo">📞 09682506493 <button onclick="copyTextValue('09682506493')" style="margin-left:8px;padding:2px 8px;border-radius:6px;background:var(--cyan);color:#fff;border:none;font-size:0.5rem;cursor:pointer">ကူးယူ</button></div><div class="account-info" id="kpayInfo">📞 09682506493 <button onclick="copyTextValue('09682506493')" style="margin-left:8px;padding:2px 8px;border-radius:6px;background:var(--cyan);color:#fff;border:none;font-size:0.5rem;cursor:pointer">ကူးယူ</button></div><div class="form-group"><label>ပြေစာ</label><div class="file-upload" id="fileUploadBox"><span>📁 Screenshot ပို့ပါ</span><input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect()"></div></div><button class="btn-primary" id="submitBtn" disabled onclick="submitOrder()">✅ အော်ဒါတင်မည်</button></div></div>
-
-<div class="success-modal-overlay" id="successModal"><div class="success-modal"><div class="icon">✅</div><h2>အော်ဒါတင်ခြင်းအောင်မြင်ပါသည်!</h2><p class="sub">သင့်အော်ဒါကို အတည်ပြုပြီးပါပြီ</p><div class="order-details" id="successDetails"></div><button class="btn-close-success" onclick="goProfileFromSuccess()">✅ အိုကေပါပြီ</button></div></div>
+<div class="modal-overlay" id="checkoutModal"><div class="modal"><button class="close-btn" onclick="closeCheckoutModal()"><i class="fas fa-times"></i></button><h2 id="modalTitle">🛒 အော်ဒါတင်ရန်</h2><p class="sub" id="modalSub">အချက်အလက်များကို မှန်ကန်စွာဖြည့်သွင်းပါ</p><div class="selected-row"><span class="pkg" id="modalPackage">Loading...</span><span class="price" id="modalPrice">0 Ks</span></div><div class="form-group"><label><i class="fas fa-gamepad"></i> <span id="gameIdLabel">ဂိမ်းအိုင်ဒီ</span></label><input type="text" id="gameId" placeholder="နံပါတ်ထည့်ပါ" inputmode="numeric"><div class="input-hint" id="gameIdHint">နံပါတ်သာ ထည့်ပါ</div></div><div class="form-group"><label><i class="fas fa-server"></i> <span id="serverIdLabel">ဆာဗာအိုင်ဒီ</span></label><input type="text" id="serverId" placeholder="နံပါတ်ထည့်ပါ" inputmode="numeric"><div class="input-hint" id="serverIdHint">နံပါတ်သာ ထည့်ပါ</div></div><div class="form-group"><label><i class="fas fa-money-bill-wave"></i> <span id="paymentLabel">ငွေပေးချေရန်</span></label><div class="payment-options"><div class="payment-option" data-payment="wave"><div class="icon-box"><img src="https://i.ibb.co/GvstPZx4/x.jpg" alt="Wave Pay"></div><span class="name" id="waveLabel">Wave Pay</span></div><div class="payment-option" data-payment="kpay"><div class="icon-box"><img src="https://i.ibb.co/fdWfXwVC/x.jpg" alt="KBZ Pay"></div><span class="name" id="kpayLabel">KBZ Pay</span></div></div></div><div class="account-info" id="waveInfo"><div class="acc-name">🏦 Wave Pay</div><div class="acc-number">📞 09682506493 <button class="copy-btn" onclick="copyNumber('09682506493', this)">ကူးယူမည်</button></div></div><div class="account-info" id="kpayInfo"><div class="acc-name">🏦 KBZ Pay</div><div class="acc-number">📞 09682506493 <button class="copy-btn" onclick="copyNumber('09682506493', this)">ကူးယူမည်</button></div></div><div class="form-group"><label><i class="fas fa-image"></i> <span id="uploadLabel">ပြေစာတင်ပို့ရန်</span></label><div class="file-upload" id="fileUpload"><span class="icon">📁</span><span class="text" id="uploadText">Screenshot ပို့ပေးပါ</span><span class="file-name" id="fileName"></span><input type="file" id="fileInput" accept="image/*"></div></div><button class="btn-primary" id="submitBtn" disabled>✅ အော်ဒါတင်မည်</button></div></div>
 <div class="toast" id="toast"></div>
 <script src="js/main.js"></script>
 </body>
