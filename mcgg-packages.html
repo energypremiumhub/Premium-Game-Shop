@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ MCGG Packages - Premium Game Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="left">
+            <div class="logo-wrap">
+                <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo">
+                <div class="text-group"><span class="premium" id="appName">Premium</span><span class="shop" id="appSub">Game Shop</span></div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="my">မြန်မာ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button class="night-toggle" id="nightToggle"><i class="fas fa-moon"></i></button>
+                <a href="notifications.html" class="noti-btn" id="notiBtn"><i class="fas fa-bell"></i><span class="badge" id="notiBadge">0</span></a>
+            </div>
+        </div>
+    </div>
+
+    <a href="shop.html" class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> ← ဆိုင်သို့ ပြန်သွားရန်</a>
+
+    <div class="page-header"><h1><i class="fas fa-gem"></i> <span id="pageTitleMCGG">MCGG Packages</span></h1><p id="pageSubMCGG">ပက်ကေ့ချ်တစ်ခုရွေးပြီး ဝယ်ယူပါ</p></div>
+
+    <div class="section-title"><i class="fas fa-gift"></i> <span id="bundlesTitle">ပက်ကေ့ချ်များ</span></div><div class="package-grid" id="bundlesList"></div>
+    <div class="section-title"><i class="fas fa-star"></i> <span id="doubleTitle">နှစ်ဆဖြည့်မှု</span></div><div class="package-grid" id="doubleList"></div>
+    <div class="section-title"><i class="fas fa-diamond"></i> <span id="diamondsTitle">စိန်များ</span></div><div class="package-grid" id="diamondsList"></div>
+    <div class="footer-text">&copy; 2026 Premium Game Shop</div>
+</div>
+
+<div class="bottom-nav">
+    <a href="index.html" class="nav-item"><span class="icon"><i class="fas fa-home"></i></span><span class="label" id="navHome">ပင်မ</span></a>
+    <a href="shop.html" class="nav-item"><span class="icon"><i class="fas fa-shopping-bag"></i></span><span class="label" id="navShop">ဆိုင်</span></a>
+    <a href="payment.html" class="nav-item"><span class="icon"><i class="fas fa-credit-card"></i></span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
+    <a href="profile.html" class="nav-item"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
+</div>
+
+<div class="modal-overlay" id="checkoutModal"><div class="modal"><button class="close-btn" onclick="closeCheckoutModal()"><i class="fas fa-times"></i></button><h2 id="modalTitle">🛒 အော်ဒါတင်ရန်</h2><p class="sub" id="modalSub">အချက်အလက်များကို မှန်ကန်စွာဖြည့်သွင်းပါ</p><div class="selected-row"><span class="pkg" id="modalPackage">Loading...</span><span class="price" id="modalPrice">0 Ks</span></div><div class="form-group"><label><i class="fas fa-gamepad"></i> <span id="gameIdLabel">ဂိမ်းအိုင်ဒီ</span></label><input type="text" id="gameId" placeholder="နံပါတ်ထည့်ပါ" inputmode="numeric"><div class="input-hint" id="gameIdHint">နံပါတ်သာ ထည့်ပါ</div></div><div class="form-group"><label><i class="fas fa-server"></i> <span id="serverIdLabel">ဆာဗာအိုင်ဒီ</span></label><input type="text" id="serverId" placeholder="နံပါတ်ထည့်ပါ" inputmode="numeric"><div class="input-hint" id="serverIdHint">နံပါတ်သာ ထည့်ပါ</div></div><div class="form-group"><label><i class="fas fa-money-bill-wave"></i> <span id="paymentLabel">ငွေပေးချေရန်</span></label><div class="payment-options"><div class="payment-option" data-payment="wave"><div class="icon-box"><img src="https://i.ibb.co/GvstPZx4/x.jpg" alt="Wave Pay"></div><span class="name" id="waveLabel">Wave Pay</span></div><div class="payment-option" data-payment="kpay"><div class="icon-box"><img src="https://i.ibb.co/fdWfXwVC/x.jpg" alt="KBZ Pay"></div><span class="name" id="kpayLabel">KBZ Pay</span></div></div></div><div class="account-info" id="waveInfo"><div class="acc-name">🏦 Wave Pay</div><div class="acc-number">📞 09682506493 <button class="copy-btn" onclick="copyNumber('09682506493', this)">ကူးယူမည်</button></div></div><div class="account-info" id="kpayInfo"><div class="acc-name">🏦 KBZ Pay</div><div class="acc-number">📞 09682506493 <button class="copy-btn" onclick="copyNumber('09682506493', this)">ကူးယူမည်</button></div></div><div class="form-group"><label><i class="fas fa-image"></i> <span id="uploadLabel">ပြေစာတင်ပို့ရန်</span></label><div class="file-upload" id="fileUpload"><span class="icon">📁</span><span class="text" id="uploadText">Screenshot ပို့ပေးပါ</span><span class="file-name" id="fileName"></span><input type="file" id="fileInput" accept="image/*"></div></div><button class="btn-primary" id="submitBtn" disabled>✅ အော်ဒါတင်မည်</button></div></div>
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
