@@ -69,7 +69,6 @@
         @keyframes successPop { 0% { transform: scale(0.8); opacity: 0; } 50% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
         @keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.6); } }
         @keyframes pulseDotRed { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.2; transform: scale(0.5); } }
-        @keyframes bounceSoft { 0% { transform: scale(1); } 35% { transform: scale(0.94); } 70% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
         .glass-box { background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius); }
 
@@ -93,13 +92,18 @@
         .auth-btn, .auth-btn-profile { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 6px 16px; border-radius: var(--radius-sm); font-size: 0.6rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; height: 32px; width: fit-content; box-shadow: 0 2px 10px var(--shadow); transition: var(--transition); backdrop-filter: blur(20px); }
         .auth-btn:active, .auth-btn-profile:active { transform: scale(0.92) !important; }
         .auth-btn.logged-in, .auth-btn-profile.logged-in { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border-color: var(--cyan); box-shadow: 0 4px 20px var(--cyan-glow); }
+        .auth-btn .avatar-small, .auth-btn-profile .avatar-small { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--cyan), var(--purple)); flex-shrink: 0; text-transform: uppercase; }
+        .auth-btn img, .auth-btn-profile img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 
-        .bottom-nav { position: fixed; bottom: 16px; left: 16px; right: 16px; width: auto; max-width: 480px; margin: 0 auto; background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border-color); border-radius: 18px; display: flex; justify-content: space-around; padding: 8px 4px; z-index: 100; box-shadow: 0 4px 30px var(--shadow); animation: navSlideUp 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-        .bottom-nav .nav-item { text-align: center; cursor: pointer; text-decoration: none; color: var(--text-secondary); transition: var(--transition); padding: 6px 12px; border-radius: 12px; min-width: 48px; border: 1px solid transparent; display: flex; flex-direction: column; align-items: center; gap: 1px; }
-        .bottom-nav .nav-item:active { transform: scale(0.88) !important; }
+        .bottom-nav { position: fixed; bottom: 16px; left: 16px; right: 16px; width: auto; max-width: 480px; margin: 0 auto; background: var(--bg-card); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border-color); border-radius: 18px; display: flex; justify-content: space-around; padding: 8px 4px; z-index: 100; box-shadow: 0 4px 30px var(--shadow); animation: navSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .bottom-nav .nav-item { text-align: center; cursor: pointer; text-decoration: none; color: var(--text-secondary); transition: var(--transition); padding: 6px 12px; border-radius: 12px; min-width: 48px; border: 1px solid transparent; display: flex; flex-direction: column; align-items: center; gap: 1px; animation: floatIcon 3s ease-in-out infinite; }
+        .bottom-nav .nav-item:nth-child(2) { animation-delay: 0.2s; }
+        .bottom-nav .nav-item:nth-child(3) { animation-delay: 0.4s; }
+        .bottom-nav .nav-item:nth-child(4) { animation-delay: 0.6s; }
+        .bottom-nav .nav-item:active { transform: scale(0.88) !important; animation: none; }
         .bottom-nav .nav-item .icon { font-size: 1.2rem; display: block; }
         .bottom-nav .nav-item .label { font-size: 0.4rem; opacity: 0.5; }
-        .bottom-nav .nav-item.active { background: rgba(0,180,216,0.08); border: 1px solid rgba(0,180,216,0.12); box-shadow: 0 0 30px rgba(0,180,216,0.05); }
+        .bottom-nav .nav-item.active { background: rgba(0, 180, 216, 0.08); border: 1px solid rgba(0, 180, 216, 0.12); box-shadow: 0 0 30px rgba(0, 180, 216, 0.05); }
         .bottom-nav .nav-item.active .icon { transform: translateY(-2px) scale(1.1); background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .bottom-nav .nav-item.active .label { background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 1; font-weight: 600; }
 
@@ -112,19 +116,20 @@
         .footer-text { text-align: center; color: var(--text-secondary); font-size: 0.45rem; margin-top: 10px; opacity: 0.3; }
 
         .toast { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: var(--bg-secondary); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border-color); color: var(--cyan); font-weight: 600; font-size: 0.75rem; display: none; z-index: 200; text-align: center; max-width: 90%; box-shadow: 0 4px 20px var(--shadow); }
-        .toast.show { display: block; animation: toastPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+        .toast.show { display: block; animation: toastPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
         .welcome { margin-bottom: 16px; animation: slideUp 0.6s ease; }
         .welcome .greeting { font-size: 0.65rem; color: var(--text-secondary); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.6; }
         .welcome .greeting i { color: var(--pink); margin-right: 4px; }
         .welcome h2 { font-size: 1.5rem; margin-top: 2px; font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 300% 300%; animation: gradientMove 2s ease-in-out infinite; }
+        .welcome h2 i { color: var(--cyan); -webkit-text-fill-color: initial; margin-right: 6px; }
         .welcome p { color: var(--text-secondary); font-size: 0.75rem; margin-top: 2px; opacity: 0.6; }
 
         .shop-status-banner { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px 20px; margin-bottom: 16px; cursor: pointer; box-shadow: 0 4px 20px var(--shadow); transition: var(--transition); }
         .shop-status-banner .banner-content { display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .shop-status-banner .banner-status { font-size: 1.2rem; font-weight: 900; padding: 6px 28px; border-radius: 30px; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
-        .shop-status-banner .banner-status.open { background: rgba(0,200,83,0.1); color: var(--green); border: 1px solid rgba(0,200,83,0.2); box-shadow: 0 0 40px rgba(0,200,83,0.15); }
-        .shop-status-banner .banner-status.closed { background: rgba(255,0,68,0.1); color: var(--red); border: 1px solid rgba(255,0,68,0.2); box-shadow: 0 0 40px rgba(255,0,68,0.15); }
+        .shop-status-banner .banner-status.open { background: rgba(0, 200, 83, 0.1); color: var(--green); border: 1px solid rgba(0, 200, 83, 0.2); box-shadow: 0 0 40px rgba(0, 200, 83, 0.15); }
+        .shop-status-banner .banner-status.closed { background: rgba(255, 0, 68, 0.1); color: var(--red); border: 1px solid rgba(255, 0, 68, 0.2); box-shadow: 0 0 40px rgba(255, 0, 68, 0.15); }
         .shop-status-banner .banner-status .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
         .shop-status-banner .banner-status.open .status-dot { background: var(--green); animation: pulseDot 1s ease-in-out infinite; }
         .shop-status-banner .banner-status.closed .status-dot { background: var(--red); animation: pulseDotRed 1s ease-in-out infinite; }
@@ -159,7 +164,6 @@
         .search-box input { background: transparent; border: none; color: var(--text-primary); font-size: 0.85rem; flex: 1; outline: none; padding: 4px 0; }
         .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
         .game-item { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 12px 14px; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 20px var(--shadow); display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; min-height: 72px; }
-        .game-item:active { transform: scale(0.96) !important; }
         .game-item .game-img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-color); }
         .game-item .info .name { display: flex; flex-direction: column; line-height: 1.2; }
         .game-item .info .name .line1 { font-size: 0.85rem; font-weight: 800; background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 300% 300%; animation: gradientMove 1.5s ease-in-out infinite; }
@@ -168,13 +172,12 @@
 
         .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
         .package-item { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 12px 8px; text-align: center; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 20px var(--shadow); display: flex; flex-direction: column; align-items: center; }
-        .package-item:active { transform: scale(0.96) !important; }
         .package-item .pkg-img { width: 100%; height: auto; display: block; border-radius: 8px; margin-bottom: 4px; animation: floatIcon 3s ease-in-out infinite; }
         .package-item .info .name { font-size: 0.65rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
         .package-item .price-text { font-size: 0.65rem; font-weight: 700; color: var(--text-secondary); margin: 4px 0; }
         .package-item.selected { border: 1px solid var(--cyan); box-shadow: 0 0 20px var(--cyan-glow); }
         .package-item.selected .price-text { color: var(--cyan); }
-        .package-item .server-name .buy-btn { display: none; background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; padding: 6px 20px; border-radius: var(--radius-sm); font-size: 0.55rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(0,180,216,0.3); }
+        .package-item .server-name .buy-btn { display: none; background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; padding: 6px 20px; border-radius: var(--radius-sm); font-size: 0.55rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3); }
         .package-item.selected .server-name .buy-btn { display: block; }
 
         .search-bar { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 8px 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; box-shadow: 0 2px 10px var(--shadow); }
@@ -183,10 +186,9 @@
         .server-selector .label { font-size: 0.55rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; }
         .server-selector .options { display: flex; gap: 6px; flex-wrap: wrap; }
         .server-selector .options .opt { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 4px 14px; border-radius: 8px; font-size: 0.55rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
-        .server-selector .options .opt.active { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0,180,216,0.3); }
+        .server-selector .options .opt.active { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3); }
 
         .payment-account { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 20px var(--shadow); }
-        .payment-account:active { transform: scale(0.96) !important; }
         .payment-account .icon-box { width: 40px; height: 40px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
         .payment-account .icon-box img { width: 100%; height: 100%; object-fit: cover; }
         .payment-account .info .name { font-size: 0.8rem; font-weight: 700; background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -204,12 +206,11 @@
         .filter-btn.active { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; }
 
         .order-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; }
-        .order-item .status.pending { background: rgba(245,166,35,0.1); color: var(--gold); }
-        .order-item .status.completed { background: rgba(0,200,83,0.1); color: var(--green); }
-        .order-item .status.cancelled { background: rgba(255,0,68,0.1); color: var(--red); }
+        .order-item .status.pending { background: rgba(245, 166, 35, 0.1); color: var(--gold); }
+        .order-item .status.completed { background: rgba(0, 200, 83, 0.1); color: var(--green); }
+        .order-item .status.cancelled { background: rgba(255, 0, 68, 0.1); color: var(--red); }
 
         .menu-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border-color); cursor: pointer; }
-        .menu-item:active { transform: scale(0.97) !important; }
         .menu-item.logout .icon, .menu-item.logout .text { color: var(--red); }
 
         .noti-card { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; box-shadow: 0 4px 20px var(--shadow); animation: slideUp 0.6s ease; }
@@ -218,7 +219,7 @@
         .noti-card.completed .noti-icon { background: linear-gradient(135deg, #00c853, #00e676); }
         .noti-card.failed .noti-icon { background: linear-gradient(135deg, #ff0044, #ff6b6b); }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); display: none; z-index: 300; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); display: none; z-index: 300; align-items: center; justify-content: center; padding: 20px; }
         .modal-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
         .modal, .modal-box { background: var(--bg-secondary); backdrop-filter: blur(24px); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px 20px; max-width: 420px; width: 100%; box-shadow: 0 4px 30px var(--shadow); position: relative; }
         .modal .close-btn, .modal-box .close-btn { position: absolute; top: 10px; right: 14px; background: none; border: none; color: var(--text-secondary); font-size: 1.1rem; cursor: pointer; }
@@ -226,16 +227,16 @@
         .modal .form-group label, .modal-box .form-group label { display: block; color: var(--text-secondary); font-size: 0.55rem; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
         .modal .form-group input, .modal-box .form-group input { width: 100%; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-primary); font-size: 0.8rem; outline: none; }
         .btn-primary { width: 100%; padding: 11px; background: var(--bg-input); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; cursor: not-allowed; margin-top: 6px; opacity: 0.4; transition: var(--transition); }
-        .btn-primary.enabled { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0,180,216,0.3); cursor: pointer; opacity: 1; }
+        .btn-primary.enabled { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3); cursor: pointer; opacity: 1; }
         .switch-link { color: var(--cyan); cursor: pointer; font-weight: 600; text-align: center; display: block; margin-top: 12px; font-size: 0.7rem; }
         .forgot-link { color: var(--text-secondary); cursor: pointer; font-size: 0.55rem; text-align: right; display: block; margin-top: 4px; }
 
-        .success-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); display: none; z-index: 400; align-items: center; justify-content: center; padding: 20px; }
+        .success-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); display: none; z-index: 400; align-items: center; justify-content: center; padding: 20px; }
         .success-modal-overlay.show { display: flex; }
-        .success-modal { background: var(--bg-secondary); border: 2px solid var(--cyan); border-radius: 20px; padding: 24px 20px; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 0 40px var(--cyan-glow); animation: successPop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+        .success-modal { background: var(--bg-secondary); border: 2px solid var(--cyan); border-radius: 20px; padding: 24px 20px; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 0 40px var(--cyan-glow); animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .success-modal .btn-close-success { background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet)); color: #fff; border: none; padding: 10px 30px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; cursor: pointer; }
 
-        .logout-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(20px); display: none; z-index: 500; align-items: center; justify-content: center; }
+        .logout-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(20px); display: none; z-index: 500; align-items: center; justify-content: center; }
         .logout-overlay.show { display: flex; }
         .logout-overlay .card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 24px; padding: 30px 24px; max-width: 360px; width: 100%; text-align: center; }
         .logout-overlay .btn-confirm { background: linear-gradient(135deg, var(--red), #dc2626); color: #fff; border: none; padding: 10px 24px; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; }
@@ -270,7 +271,7 @@
 
     <div class="welcome">
         <div class="greeting"><i class="fas fa-fire"></i> <span id="greeting">ဟေ့ကောင်လေး!</span></div>
-        <h2><i class="fas fa-arrow-right"></i> <span id="welcomeTitle">ဂိမ်းကို မြှင့်တင်လိုက်ပါ!</span></h2>
+        <h2><i class="fas fa-gamepad"></i> <span id="welcomeTitle">ဂိမ်းကို မြှင့်တင်လိုက်ပါ!</span></h2>
         <p id="subtitle">စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ</p>
     </div>
 
@@ -358,40 +359,6 @@ const LANG_DATA = {
         loginSuccess: '✅ ကြိုဆိုပါတယ်!', registerSuccess: '✅ အကောင့်ဖွင့်ခြင်းအောင်မြင်ပါပြီ!',
         invalidCredentials: '❌ အီးမေးလ်/အသုံးပြုသူအမည်/ဖုန်းနံပါတ် သို့မဟုတ် စကားဝှက် မှားနေပါသည်',
         saveSuccess: '✅ အောင်မြင်ပါသည်!', logoutSuccess: '✅ ထွက်ပြီးပါပြီ!',
-        pageTitleNotiLabel: 'သတိပေးချက်များ', emptyText: 'သတိပေးချက် မရှိသေးပါ', clearAllText: 'အကုန်ဖျက်မည်',
-        paymentTitle: 'ငွေပေးချေရန်', paymentSub: 'အောက်ပါအကောင့်များထဲမှ တစ်ခုခုသို့ ငွေပို့ပါ',
-        accountsTitle: 'ငွေလက်ခံမည့်အကောင့်များ', waveName: 'Wave Pay', kpayName: 'KBZ Pay',
-        howToTitle: 'ငွေပေးချေနည်း',
-        step1: '<strong>Wave Pay</strong> သို့မဟုတ် <strong>KBZ Pay</strong> ရွေးပါ',
-        step2: 'အပေါ်က <strong>ဖုန်းနံပါတ်</strong> ကိုကူးယူပါ',
-        step3: 'အတိအကျငွေပို့ပြီး <strong>Screenshot</strong> ရိုက်ပါ',
-        step4: '<strong>ဆိုင်</strong> သို့သွားပြီး အော်ဒါအပြီးသတ်ပါ',
-        supportTitle: 'အကူအညီ', supportLabel: 'Telegram မှ ဆက်သွယ်ပါ',
-        supportDesc: '@Energypremiumhub • ၂၄/၇ ဝန်ဆောင်မှု', copy: 'ကူးယူမည်', copied: '✅ ကူးပြီး',
-        pageTitleShop: 'Game Shop', pageSubShop: 'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',
-        gamesTitle: 'ဂိမ်းများ', comingSoon: 'Coming Soon', comingSoonSub: '⏳ အသစ်ထွက်ရှိမည်',
-        searchPlaceholder: '🔍 ဂိမ်းနာမည်ရှာပါ...', noGames: '❌ ဂိမ်းမတွေ့ပါ',
-        selectGame: 'ရွေးချယ်လိုက်ပါ', comingSoonMsg: '🎮 ဤဂိမ်းကို မကြာမီ ထည့်သွင်းပေးပါမည်။',
-        mlbbSub: 'စိန်ဖြည့်မှု', mcggSub: 'စိန်ဖြည့်မှု',
-        mlbbGlobalPackages: 'MLBB Global Packages', mlbbBanPackages: 'MLBB Ban Packages',
-        mlbbIndoPackages: 'MLBB Indo Packages', mlbbRussiaPackages: 'MLBB Russia Packages',
-        banServerLabel: 'Ban Server: (Malay, Sin, Php)',
-        pageTitleProfile: 'ပရိုဖိုင်', pageSubProfile: 'သင့်အကောင့်အချက်အလက်များ',
-        orderHistoryLabel: 'အော်ဒါမှတ်တမ်း', settingsLabel: 'အကောင့်ဆက်တင်များ',
-        changeNameText: 'နာမည်ပြောင်းရန်', changeUsernameText: 'အသုံးပြုသူအမည်ပြောင်းရန်',
-        changeEmailText: 'အီးမေးလ်ပြောင်းရန်', changePhoneText: 'ဖုန်းနံပါတ်ပြောင်းရန်',
-        changePasswordText: 'စကားဝှက်ပြောင်းရန်', logoutText: 'ထွက်မည်',
-        noOrders: 'အော်ဒါမရှိသေးပါ', showMore: 'အကုန်ကြည့်မည် →', showLess: 'ပြန်ဖျောက်မည်',
-        orderStatusPending: 'ဆောင်ရွက်နေဆဲ', orderStatusCompleted: 'ပြီးပြီ', orderStatusCancelled: 'ပယ်ဖျက်ထား',
-        pageTitleMCGG: 'MCGG Packages', pageSubMCGG: 'ပက်ကေ့ချ်တစ်ခုရွေးပြီး ဝယ်ယူပါ',
-        bundlesTitle: 'ပက်ကေ့ချ်များ', diamondsTitle: 'စိန်များ', doubleTitle: 'နှစ်ဆဖြည့်မှု',
-        buy: 'ဝယ်ယူရန်', selectLabel: 'ရွေးရန်', currency: 'Ks', doubleBadge: '⭐ 2x Bonus',
-        modalTitle: '🛒 အော်ဒါတင်ရန်', modalSub: 'အချက်အလက်များကို မှန်ကန်စွာဖြည့်သွင်းပါ',
-        gameId: 'ဂိမ်းအိုင်ဒီ', serverId: 'ဆာဗာအိုင်ဒီ',
-        gameIdHint: 'နံပါတ်သာ ထည့်ပါ', serverIdHint: 'နံပါတ်သာ ထည့်ပါ',
-        paymentLabel: 'ငွေပေးချေရန်', uploadLabel: 'ပြေစာတင်ပို့ရန်', uploadText: 'Screenshot ပို့ပေးပါ',
-        submit: 'အော်ဒါတင်မည်', submitting: '⏳ အော်ဒါတင်နေသည်...',
-        backToShop: '← ဆိုင်သို့ ပြန်သွားရန်',
         forgotTitle: 'စကားဝှက်မေ့နေပါသလား?', forgotSub: 'အောက်ပါအချက်အလက်များ ဖြည့်ပါ',
         forgotIdentifyLabel: 'အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်',
         forgotFindBtn: '🔍 အကောင့်ရှာမည်', forgotBackToLogin: '← လော့အင်ဝင်ရန် ပြန်သွားမည်',
@@ -427,40 +394,6 @@ const LANG_DATA = {
         loginSuccess: '✅ Welcome back!', registerSuccess: '✅ Account created!',
         invalidCredentials: '❌ Invalid email/username/phone or password',
         saveSuccess: '✅ Success!', logoutSuccess: '✅ Logged out!',
-        pageTitleNotiLabel: 'Notifications', emptyText: 'No notifications yet', clearAllText: 'Clear All',
-        paymentTitle: 'Payment', paymentSub: 'Send payment to one of the following accounts',
-        accountsTitle: 'Payment Accounts', waveName: 'Wave Pay', kpayName: 'KBZ Pay',
-        howToTitle: 'How to Pay',
-        step1: 'Choose <strong>Wave Pay</strong> or <strong>KBZ Pay</strong>',
-        step2: 'Copy the <strong>phone number</strong> above',
-        step3: 'Send the exact amount and <strong>take a screenshot</strong>',
-        step4: 'Go to <strong>Shop</strong> and complete your order',
-        supportTitle: 'Support', supportLabel: 'Contact us on Telegram',
-        supportDesc: '@Energypremiumhub • 24/7 Support', copy: 'Copy', copied: '✅ Copied!',
-        pageTitleShop: 'Game Shop', pageSubShop: 'Choose a game and purchase packages',
-        gamesTitle: 'Games', comingSoon: 'Coming Soon', comingSoonSub: '⏳ Coming Soon',
-        searchPlaceholder: '🔍 Search game name...', noGames: '❌ No games found',
-        selectGame: 'Selected', comingSoonMsg: '🎮 This game will be added soon.',
-        mlbbSub: 'Diamond Top Up', mcggSub: 'Diamond Top Up',
-        mlbbGlobalPackages: 'MLBB Global Packages', mlbbBanPackages: 'MLBB Ban Packages',
-        mlbbIndoPackages: 'MLBB Indo Packages', mlbbRussiaPackages: 'MLBB Russia Packages',
-        banServerLabel: 'Ban Server: (Malay, Sin, Php)',
-        pageTitleProfile: 'Profile', pageSubProfile: 'Your account information',
-        orderHistoryLabel: 'Order History', settingsLabel: 'Account Settings',
-        changeNameText: 'Change Name', changeUsernameText: 'Change Username',
-        changeEmailText: 'Change Email', changePhoneText: 'Change Phone',
-        changePasswordText: 'Change Password', logoutText: 'Logout',
-        noOrders: 'No orders yet', showMore: 'Show More →', showLess: 'Show Less',
-        orderStatusPending: 'Pending', orderStatusCompleted: 'Completed', orderStatusCancelled: 'Cancelled',
-        pageTitleMCGG: 'MCGG Packages', pageSubMCGG: 'Select a package and buy',
-        bundlesTitle: 'Packages', diamondsTitle: 'Diamonds', doubleTitle: 'Double Top Up',
-        buy: 'Buy', selectLabel: 'Select', currency: 'Ks', doubleBadge: '⭐ 2x Bonus',
-        modalTitle: '🛒 Submit Order', modalSub: 'Fill in your details correctly',
-        gameId: 'Game ID', serverId: 'Server ID',
-        gameIdHint: 'Numbers only', serverIdHint: 'Numbers only',
-        paymentLabel: 'Payment Method', uploadLabel: 'Upload Payment Slip', uploadText: 'Send Screenshot',
-        submit: 'Submit Order', submitting: '⏳ Submitting...',
-        backToShop: '← Back to Shop',
         forgotTitle: 'Forgot Password?', forgotSub: 'Fill in your details below',
         forgotIdentifyLabel: 'Username / Email / Phone',
         forgotFindBtn: '🔍 Find Account', forgotBackToLogin: '← Back to Login',
@@ -500,16 +433,6 @@ function updateBadge() {
     if (badge) { badge.style.display = count > 0 ? 'block' : 'none'; if (count > 0) badge.textContent = count; }
 }
 
-// ========== COPY ==========
-function copyTextValue(v) { navigator.clipboard.writeText(v); showToast('✅ ကူးယူပြီး', 'success'); }
-function copyNumber(number, btn) {
-    const d = LANG_DATA[currentLang] || {};
-    navigator.clipboard.writeText(number).then(() => {
-        btn.textContent = d.copied || '✅ Copied!'; btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = d.copy || 'Copy'; btn.classList.remove('copied'); }, 2500);
-    });
-}
-
 // ========== LANGUAGE SWITCHER ==========
 function setLang(lang) {
     currentLang = lang; localStorage.setItem('lang', lang);
@@ -527,9 +450,13 @@ function isShopOpen() {
 // ========== UPDATE LANGUAGE ==========
 function updateLanguage() {
     const d = LANG_DATA[currentLang]; if (!d) return;
-    const ids = ['appName','appSub','greeting','welcomeTitle','subtitle','goToShop','shopSubText','servicesTitle','s1','s2','s3','s4','s5','s6','telegramTitle','telegramDesc','contactLabel','contactUsername','navHome','navShop','navPayment','navProfile','pageTitleShop','pageSubShop','gamesTitle','mlbbSub','mcggSub','cs1','cs2','cs1sub','cs2sub','paymentTitle','paymentSub','accountsTitle','waveName','kpayName','howToTitle','supportTitle','supportLabel','supportDesc','pageTitleProfile','pageSubProfile','orderHistoryLabel','settingsLabel','changeNameText','changeUsernameText','changeEmailText','changePhoneText','changePasswordText','logoutText','pageTitleMCGG','pageSubMCGG','bundlesTitle','diamondsTitle','doubleTitle','pageTitleNotiLabel','emptyText','clearAllText','modalTitle','modalSub','gameIdLabel','serverIdLabel','gameIdHint','serverIdHint','paymentLabel','uploadLabel','uploadText','waveLabel','kpayLabel','forgotLink','forgotTitle','forgotSub','forgotIdentifyLabel','forgotFindBtn','forgotBackToLogin','otpLabel','resendOtpBtn','verifyOtpBtn','newPassLabel','confirmNewPassLabel','resetPasswordBtn','modalLogin','modalRegister','modalLoginSub','modalRegisterSub','emailLabel','passLabel','loginBtn','registerBtn','switchToRegister','switchToLogin'];
+    const ids = ['appName','appSub','greeting','subtitle','goToShop','shopSubText','servicesTitle','s1','s2','s3','s4','s5','s6','telegramTitle','telegramDesc','contactLabel','contactUsername','navHome','navShop','navPayment','navProfile'];
     ids.forEach(id => { const el = document.getElementById(id); if (el && d[id]) el.textContent = d[id]; });
-    ['step1','step2','step3','step4'].forEach(id => { const el = document.getElementById(id); if (el && d[id]) el.innerHTML = d[id]; });
+    
+    // Welcome Title (with HTML)
+    const welcomeTitle = document.getElementById('welcomeTitle');
+    if (welcomeTitle && d.welcomeTitle) welcomeTitle.innerHTML = d.welcomeTitle;
+    
     const isOpen = isShopOpen();
     const sb = document.getElementById('statusBadge'); if (sb) { sb.innerHTML = isOpen ? '<span class="status-dot"></span> '+d.shopOpen : '<span class="status-dot"></span> '+d.shopClosedStatus; sb.className = 'banner-status '+(isOpen?'open':'closed'); }
     const st = document.getElementById('statusText'); if (st) st.textContent = isOpen ? d.shopOpenText : d.shopClosedText;
