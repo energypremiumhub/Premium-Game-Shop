@@ -67,15 +67,16 @@
         .welcome h2{font-size:1.5rem;margin-top:2px;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
         .welcome h2 i{color:var(--cyan);-webkit-text-fill-color:initial;margin-right:6px}
         .welcome p{color:var(--text-secondary);font-size:0.75rem;margin-top:2px;opacity:0.6}
-        .shop-status-banner{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:16px 20px;margin-bottom:16px;cursor:pointer;box-shadow:0 4px 20px var(--shadow);transition:var(--transition)}
-        .shop-status-banner .banner-content{display:flex;flex-direction:column;align-items:center;gap:4px}
+        /* ===== SHOP STATUS BANNER (FIXED) ===== */
+        .shop-status-banner{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:16px 20px;margin-bottom:16px;box-shadow:0 4px 20px var(--shadow);transition:var(--transition);overflow:hidden;position:relative}
+        .shop-status-banner .banner-content{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;z-index:1}
         .shop-status-banner .banner-status{font-size:1.2rem;font-weight:900;padding:6px 28px;border-radius:30px;text-transform:uppercase;letter-spacing:2px;text-align:center}
         .shop-status-banner .banner-status.open{background:rgba(0,200,83,0.1);color:var(--green);border:1px solid rgba(0,200,83,0.2);box-shadow:0 0 40px rgba(0,200,83,0.15)}
         .shop-status-banner .banner-status.closed{background:rgba(255,0,68,0.1);color:var(--red);border:1px solid rgba(255,0,68,0.2);box-shadow:0 0 40px rgba(255,0,68,0.15)}
         .shop-status-banner .banner-status .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}
         .shop-status-banner .banner-status.open .status-dot{background:var(--green);animation:pulseDot 1s ease-in-out infinite}
         .shop-status-banner .banner-status.closed .status-dot{background:var(--red);animation:pulseDotRed 1s ease-in-out infinite}
-        .shop-status-text{font-size:0.6rem;color:var(--text-secondary);text-align:center;opacity:0.6}
+        .shop-status-text{font-size:0.6rem;color:var(--text-secondary);text-align:center;opacity:0.6;position:relative;z-index:1}
         .shop-card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:var(--transition);margin-bottom:16px;box-shadow:0 4px 20px var(--shadow);text-decoration:none;display:block}
         .shop-card .icon{font-size:2.2rem;display:block;margin-bottom:4px}
         .shop-card .icon i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -83,6 +84,7 @@
         .shop-card .sub{font-size:0.6rem;color:var(--text-secondary);margin-top:2px;opacity:0.5}
         .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
         .services-grid .service{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:18px 10px 12px;text-align:center;cursor:pointer;transition:var(--transition);box-shadow:0 4px 20px var(--shadow);min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        .services-grid .service:active{transform:scale(0.96)!important;transition:transform 0.12s ease!important}
         .services-grid .service .icon{font-size:2rem;display:block;margin-bottom:6px;animation:floatIcon 3s ease-in-out infinite}
         .services-grid .service .icon i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         .services-grid .service .label{font-size:0.55rem;color:var(--text-secondary);font-weight:600;line-height:1.3}
@@ -136,9 +138,9 @@
         <p id="subtitle">စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ</p>
     </div>
 
-    <a href="shop.html" class="shop-status-banner" id="shopStatusBanner">
+    <div class="shop-status-banner" id="shopStatusBanner">
         <div class="banner-content"><div class="banner-status open" id="statusBadge"><span class="status-dot"></span> OPEN</div><div class="shop-status-text" id="statusText">မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည်</div></div>
-    </a>
+    </div>
 
     <a href="shop.html" class="shop-card open" id="shopCard">
         <span class="icon"><i class="fas fa-store-alt"></i></span><div class="label" id="goToShop">⚡ GO TO SHOP</div><div class="sub" id="shopSubText">ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ</div>
@@ -192,7 +194,7 @@ function toggleNightMode(){document.body.classList.toggle('night-mode');const i=
 function updateBadge(){const n=JSON.parse(localStorage.getItem('notifications')||'[]');const c=n.filter(x=>x.status==='pending').length;const b=document.getElementById('notiBadge');if(b){b.style.display=c>0?'block':'none';if(c>0)b.textContent=c}}
 function setLang(l){currentLang=l;localStorage.setItem('lang',l);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));updateLanguage()}
 function isShopOpen(){const n=new Date();const m=new Date(n.getTime()+(6.5*60*60*1000));return(m.getUTCHours()*60+m.getUTCMinutes())>=570&&(m.getUTCHours()*60+m.getUTCMinutes())<1290}
-function updateLanguage(){const d=LANG_DATA[currentLang];if(!d)return;['appName','appSub','greeting','subtitle','goToShop','shopSubText','servicesTitle','s1','s2','s3','s4','s5','s6','telegramTitle','telegramDesc','contactLabel','contactUsername','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});const wt=document.getElementById('welcomeTitle');if(wt&&d.welcomeTitle)wt.innerHTML=d.welcomeTitle;const io=isShopOpen();const sb=document.getElementById('statusBadge');if(sb){sb.innerHTML=io?'<span class="status-dot"></span> '+d.shopOpen:'<span class="status-dot"></span> '+d.shopClosedStatus;sb.className='banner-status '+(io?'open':'closed')}const st=document.getElementById('statusText');if(st)st.textContent=io?d.shopOpenText:d.shopClosedText;const sc=document.getElementById('shopCard');if(sc){sc.className='shop-card '+(io?'open':'closed');document.getElementById('goToShop').textContent=io?d.goToShop:d.shopClosed;document.getElementById('shopSubText').textContent=io?d.shopSubText:d.shopClosedText}updateAuthUI();updateBadge()}
+function openForgotPasswordModNG_DATA[currentLang];if(!d)return;['appName','appSub','greeting','subtitle','goToShop','shopSubText','servicesTitle','s1','s2','s3','s4','s5','s6','telegramTitle','telegramDesc','contactLabel','contactUsername','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});const wt=document.getElementById('welcomeTitle');if(wt&&d.welcomeTitle)wt.innerHTML=d.welcomeTitle;const io=isShopOpen();const sb=document.getElementById('statusBadge');if(sb){sb.innerHTML=io?'<span class="status-dot"></span> '+d.shopOpen:'<span class="status-dot"></span> '+d.shopClosedStatus;sb.className='banner-status '+(io?'open':'closed')}const st=document.getElementById('statusText');if(st)st.textContent=io?d.shopOpenText:d.shopClosedText;const sc=document.getElementById('shopCard');if(sc){sc.className='shop-card '+(io?'open':'closed');document.getElementById('goToShop').textContent=io?d.goToShop:d.shopClosed;document.getElementById('shopSubText').textContent=io?d.shopSubText:d.shopClosedText}updateAuthUI();updateBadge()}
 function updateAuthUI(){const btn=document.getElementById('authBtn');if(!btn)return;if(currentUser){const fc=(currentUser.displayName||currentUser.username||'U').charAt(0).toUpperCase();btn.innerHTML='<span class="avatar-small">'+fc+'</span> '+(currentUser.displayName||currentUser.username);btn.className=(btn.classList.contains('auth-btn-profile')?'auth-btn-profile':'auth-btn')+' logged-in'}else{btn.innerHTML='<i class="fas fa-key"></i> Login';btn.className=btn.classList.contains('auth-btn-profile')?'auth-btn-profile':'auth-btn'}}
 function openAuthModal(mode){const m=document.getElementById('authModal');if(!m)return;m.classList.add('show');document.getElementById('loginForm').style.display=mode==='register'?'none':'block';document.getElementById('registerForm').style.display=mode==='register'?'block':'none';const err=document.getElementById('loginError');if(err){err.style.display='none';err.textContent=''}updateAuthModalTexts();checkLoginForm();checkRegisterForm()}
 function closeAuthModal(){document.getElementById('authModal').classList.remove('show')}
