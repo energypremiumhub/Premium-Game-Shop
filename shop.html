@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🛍️ Shop - Premium Game Shop</title>
+    <title>💳 Payment - Premium Game Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
@@ -19,8 +19,6 @@
         @keyframes iconGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
         @keyframes navSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
         @keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(30px) scale(0.85)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
-        @keyframes bounceSoft{0%{transform:scale(1)}35%{transform:scale(0.94)}70%{transform:scale(1.02)}100%{transform:scale(1)}}
-        .glass-box{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius)}
         .header{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0 14px;flex-wrap:wrap;gap:6px}
         .header .left{display:flex;flex-direction:column;gap:8px}
         .header .left .logo-wrap{display:flex;align-items:center;gap:10px}
@@ -45,18 +43,20 @@
         .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-color),transparent)}
         .section-title i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:iconGradient 1.5s ease-in-out infinite;font-size:0.8rem}
         .footer-text{text-align:center;color:var(--text-secondary);font-size:0.45rem;margin-top:10px;opacity:0.3}
-        .search-box{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:10px 16px;display:flex;align-items:center;gap:12px;margin-bottom:20px;transition:var(--transition)}
-        .search-box input{background:transparent;border:none;color:var(--text-primary);font-size:0.85rem;flex:1;outline:none;padding:4px 0}
-        .search-box .clear-btn{color:var(--text-secondary);font-size:0.8rem;cursor:pointer;padding:4px;display:none}
-        .search-box .clear-btn.show{display:block}
-        .game-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-        .game-item{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:12px 14px;cursor:pointer;transition:var(--transition);box-shadow:0 4px 20px var(--shadow);display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;min-height:72px}
-        .game-item:active{transform:scale(0.96)!important}
-        .game-item .game-img{width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:2px solid var(--border-color)}
-        .game-item .info .name{display:flex;flex-direction:column;line-height:1.2}
-        .game-item .info .name .line1{font-size:0.85rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 1.5s ease-in-out infinite}
-        .game-item .info .name .line2{font-size:0.6rem;font-weight:600;color:var(--text-secondary);opacity:0.7;margin-top:-1px}
-        .game-item .info .sub{font-size:0.5rem;color:var(--text-secondary);margin-top:3px;opacity:0.6;font-weight:500}
+        .payment-account{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:12px;cursor:pointer;transition:var(--transition);box-shadow:0 4px 20px var(--shadow)}
+        .payment-account:active{transform:scale(0.96)!important}
+        .payment-account .icon-box{width:40px;height:40px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0}
+        .payment-account .icon-box img{width:100%;height:100%;object-fit:cover}
+        .payment-account .info .name{font-size:0.8rem;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .payment-account .info .number{font-size:0.7rem;color:var(--text-secondary);margin-top:2px}
+        .copy-btn{background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-secondary);padding:4px 14px;border-radius:var(--radius-sm);font-size:0.55rem;cursor:pointer;transition:var(--transition);font-weight:600}
+        .copy-btn.copied{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#fff}
+        .instruction-item{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px var(--shadow);margin-bottom:8px}
+        .instruction-item .step{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;flex-shrink:0}
+        .instruction-item .text{font-size:0.65rem;color:var(--text-secondary)}
+        .support-card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:12px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:var(--transition);box-shadow:0 4px 20px var(--shadow)}
+        .support-card:active{transform:scale(0.96)!important}
+        .support-card .icon{font-size:1.6rem;color:#0088cc}
         .bottom-nav{position:fixed;bottom:16px;left:16px;right:16px;width:auto;max-width:480px;margin:0 auto;background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-color);border-radius:18px;display:flex;justify-content:space-around;padding:8px 4px;z-index:100;box-shadow:0 4px 30px var(--shadow);animation:navSlideUp 0.5s cubic-bezier(0.34,1.56,0.64,1)}
         .bottom-nav .nav-item{text-align:center;cursor:pointer;text-decoration:none;color:var(--text-secondary);transition:var(--transition);padding:6px 12px;border-radius:12px;min-width:48px;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;gap:1px}
         .bottom-nav .nav-item:active{transform:scale(0.88)!important}
@@ -75,10 +75,7 @@
         <div class="left">
             <div class="logo-wrap">
                 <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo">
-                <div class="text-group">
-                    <span class="premium" id="appName">Premium</span>
-                    <span class="shop" id="appSub">Game Shop</span>
-                </div>
+                <div class="text-group"><span class="premium" id="appName">Premium</span><span class="shop" id="appSub">Game Shop</span></div>
             </div>
         </div>
         <div class="right">
@@ -94,62 +91,61 @@
     </div>
 
     <div class="page-header">
-        <h1><i class="fas fa-store"></i> <span id="pageTitleShop">Game Shop</span></h1>
-        <p id="pageSubShop">ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ</p>
+        <h1><i class="fas fa-credit-card"></i> <span id="paymentTitle">ငွေပေးချေရန်</span></h1>
+        <p id="paymentSub">အောက်ပါအကောင့်များထဲမှ တစ်ခုခုသို့ ငွေပို့ပါ</p>
     </div>
 
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 ဂိမ်းနာမည်ရှာပါ...">
-        <span class="clear-btn" id="clearBtn"><i class="fas fa-times-circle"></i></span>
+    <div class="section-title"><i class="fas fa-university"></i> <span id="accountsTitle">ငွေလက်ခံမည့်အကောင့်များ</span></div>
+    <div class="payment-account" onclick="copyNumber('09682506493',document.getElementById('copyBtn1'))">
+        <div class="icon-box"><img src="https://i.ibb.co/GvstPZx4/x.jpg" alt="Wave Pay"></div>
+        <div class="info"><div class="name" id="waveName">Wave Pay</div><div class="number"><i class="fas fa-phone"></i> 09682506493</div></div>
+        <button class="copy-btn" id="copyBtn1" onclick="event.stopPropagation();copyNumber('09682506493',this)">ကူးယူမည်</button>
+    </div>
+    <div class="payment-account" onclick="copyNumber('09682506493',document.getElementById('copyBtn2'))">
+        <div class="icon-box"><img src="https://i.ibb.co/fdWfXwVC/x.jpg" alt="KBZ Pay"></div>
+        <div class="info"><div class="name" id="kpayName">KBZ Pay</div><div class="number"><i class="fas fa-phone"></i> 09682506493</div></div>
+        <button class="copy-btn" id="copyBtn2" onclick="event.stopPropagation();copyNumber('09682506493',this)">ကူးယူမည်</button>
     </div>
 
-    <div class="section-title"><i class="fas fa-gamepad"></i> <span id="gamesTitle">ဂိမ်းများ</span></div>
-    <div class="game-grid" id="gameGrid">
-        <div class="game-item glass-box" data-name="mobile legends bang bang mlbb">
-            <img src="https://i.ibb.co/cKsDX2Nt/x.jpg" alt="MLBB" class="game-img" onerror="this.style.display='none'">
-            <div class="info"><div class="name"><span class="line1">Mobile Legends</span><span class="line2">Bang Bang</span></div><div class="sub" id="mlbbSub">စိန်ဖြည့်မှု</div></div>
-        </div>
-        <div class="game-item glass-box" data-name="magic chess go go mcgg">
-            <img src="https://files.catbox.moe/8lxv1s.jpg" alt="MCGG" class="game-img" onerror="this.style.display='none'">
-            <div class="info"><div class="name"><span class="line1">Magic Chess</span><span class="line2">Go Go</span></div><div class="sub" id="mcggSub">စိန်ဖြည့်မှု</div></div>
-        </div>
-        <div class="game-item glass-box" data-name="coming soon">
-            <span class="game-img-placeholder" style="font-size:1.8rem;">🎮</span>
-            <div class="info"><div class="name"><span class="line1" id="cs1">Coming Soon</span></div><div class="sub" id="cs1sub">⏳ အသစ်ထွက်ရှိမည်</div></div>
-        </div>
-        <div class="game-item glass-box" data-name="coming soon">
-            <span class="game-img-placeholder" style="font-size:1.8rem;">🎯</span>
-            <div class="info"><div class="name"><span class="line1" id="cs2">Coming Soon</span></div><div class="sub" id="cs2sub">⏳ အသစ်ထွက်ရှိမည်</div></div>
-        </div>
+    <div class="section-title"><i class="fas fa-list"></i> <span id="howToTitle">ငွေပေးချေနည်း</span></div>
+    <div class="instruction-list">
+        <div class="instruction-item"><span class="step">၁</span><span class="text" id="step1"><strong>Wave Pay</strong> သို့မဟုတ် <strong>KBZ Pay</strong> ရွေးပါ</span></div>
+        <div class="instruction-item"><span class="step">၂</span><span class="text" id="step2">အပေါ်က <strong>ဖုန်းနံပါတ်</strong> ကိုကူးယူပါ</span></div>
+        <div class="instruction-item"><span class="step">၃</span><span class="text" id="step3">အတိအကျငွေပို့ပြီး <strong>Screenshot</strong> ရိုက်ပါ</span></div>
+        <div class="instruction-item"><span class="step">၄</span><span class="text" id="step4"><strong>ဆိုင်</strong> သို့သွားပြီး အော်ဒါအပြီးသတ်ပါ</span></div>
+    </div>
+
+    <div class="section-title" style="margin-top:18px;"><i class="fas fa-headset"></i> <span id="supportTitle">အကူအညီ</span></div>
+    <div class="support-card" onclick="window.open('https://t.me/Energypremiumhub','_blank')">
+        <span class="icon"><i class="fab fa-telegram-plane"></i></span>
+        <div class="info"><div class="title" id="supportLabel">Telegram မှ ဆက်သွယ်ပါ</div><div class="desc" id="supportDesc">@Energypremiumhub • ၂၄/၇ ဝန်ဆောင်မှု</div></div>
+        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
     </div>
     <div class="footer-text">&copy; 2026 Premium Game Shop</div>
 </div>
 
 <div class="bottom-nav">
     <a href="index.html" class="nav-item"><span class="icon"><i class="fas fa-home"></i></span><span class="label" id="navHome">ပင်မ</span></a>
-    <a href="shop.html" class="nav-item active"><span class="icon"><i class="fas fa-shopping-bag"></i></span><span class="label" id="navShop">ဆိုင်</span></a>
-    <a href="payment.html" class="nav-item"><span class="icon"><i class="fas fa-credit-card"></i></span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
+    <a href="shop.html" class="nav-item"><span class="icon"><i class="fas fa-shopping-bag"></i></span><span class="label" id="navShop">ဆိုင်</span></a>
+    <a href="payment.html" class="nav-item active"><span class="icon"><i class="fas fa-credit-card"></i></span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
     <a href="profile.html" class="nav-item"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
 const LANG_DATA = {
-    my: { appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',pageTitleShop:'Game Shop',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',comingSoonSub:'⏳ အသစ်ထွက်ရှိမည်',searchPlaceholder:'🔍 ဂိမ်းနာမည်ရှာပါ...',noGames:'❌ ဂိမ်းမတွေ့ပါ',selectGame:'ရွေးချယ်လိုက်ပါ',comingSoonMsg:'🎮 ဤဂိမ်းကို မကြာမီ ထည့်သွင်းပေးပါမည်။',mlbbSub:'စိန်ဖြည့်မှု',mcggSub:'စိန်ဖြည့်မှု' },
-    en: { appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',pageTitleShop:'Game Shop',pageSubShop:'Choose a game and purchase packages',gamesTitle:'Games',comingSoon:'Coming Soon',comingSoonSub:'⏳ Coming Soon',searchPlaceholder:'🔍 Search game name...',noGames:'❌ No games found',selectGame:'Selected',comingSoonMsg:'🎮 This game will be added soon.',mlbbSub:'Diamond Top Up',mcggSub:'Diamond Top Up' }
+    my: { appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',paymentTitle:'ငွေပေးချေရန်',paymentSub:'အောက်ပါအကောင့်များထဲမှ တစ်ခုခုသို့ ငွေပို့ပါ',accountsTitle:'ငွေလက်ခံမည့်အကောင့်များ',waveName:'Wave Pay',kpayName:'KBZ Pay',howToTitle:'ငွေပေးချေနည်း',step1:'<strong>Wave Pay</strong> သို့မဟုတ် <strong>KBZ Pay</strong> ရွေးပါ',step2:'အပေါ်က <strong>ဖုန်းနံပါတ်</strong> ကိုကူးယူပါ',step3:'အတိအကျငွေပို့ပြီး <strong>Screenshot</strong> ရိုက်ပါ',step4:'<strong>ဆိုင်</strong> သို့သွားပြီး အော်ဒါအပြီးသတ်ပါ',supportTitle:'အကူအညီ',supportLabel:'Telegram မှ ဆက်သွယ်ပါ',supportDesc:'@Energypremiumhub • ၂၄/၇ ဝန်ဆောင်မှု',copy:'ကူးယူမည်',copied:'✅ ကူးပြီး' },
+    en: { appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',paymentTitle:'Payment',paymentSub:'Send payment to one of the following accounts',accountsTitle:'Payment Accounts',waveName:'Wave Pay',kpayName:'KBZ Pay',howToTitle:'How to Pay',step1:'Choose <strong>Wave Pay</strong> or <strong>KBZ Pay</strong>',step2:'Copy the <strong>phone number</strong> above',step3:'Send the exact amount and <strong>take a screenshot</strong>',step4:'Go to <strong>Shop</strong> and complete your order',supportTitle:'Support',supportLabel:'Contact us on Telegram',supportDesc:'@Energypremiumhub • 24/7 Support',copy:'Copy',copied:'✅ Copied!' }
 };
 let currentLang = localStorage.getItem('lang')||'my';
 function getText(k){return LANG_DATA[currentLang]?.[k]||k}
 function setLang(l){currentLang=l;localStorage.setItem('lang',l);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));updateLanguage()}
-function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','pageTitleShop','pageSubShop','gamesTitle','cs1','cs2','cs1sub','cs2sub','mlbbSub','mcggSub','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});document.getElementById('searchInput').placeholder=d.searchPlaceholder}
+function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','paymentTitle','paymentSub','accountsTitle','waveName','kpayName','howToTitle','supportTitle','supportLabel','supportDesc','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});['step1','step2','step3','step4'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.innerHTML=d[id]});document.getElementById('copyBtn1').textContent=d.copy;document.getElementById('copyBtn2').textContent=d.copy}
 function toggleNightMode(){document.body.classList.toggle('night-mode');const i=document.querySelector('.night-toggle i');i.className=document.body.classList.contains('night-mode')?'fas fa-sun':'fas fa-moon';localStorage.setItem('nightMode',document.body.classList.contains('night-mode')?'true':'false')}
 function updateBadge(){const n=JSON.parse(localStorage.getItem('notifications')||'[]');const c=n.filter(x=>x.status==='pending').length;const b=document.getElementById('notiBadge');if(b){b.style.display=c>0?'block':'none';if(c>0)b.textContent=c}}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.className='toast show';clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000)}
-function searchGames(q){const ql=q.toLowerCase().trim();document.querySelectorAll('.game-item').forEach(item=>{const n=item.dataset.name||'';item.classList.toggle('hidden',ql!==''&&!n.includes(ql))});document.getElementById('clearBtn').classList.toggle('show',ql.length>0)}
-function clearSearch(){document.getElementById('searchInput').value='';searchGames('');document.getElementById('clearBtn').classList.remove('show')}
-function selectGame(gn,gi,ev){ev.currentTarget.classList.add('bounce-click');setTimeout(()=>ev.currentTarget.classList.remove('bounce-click'),350);localStorage.setItem('selectedGame',JSON.stringify({name:gn,id:gi}));setTimeout(()=>{window.location.href=gi==='mlbb'?'mlbb-packages.html':'mcgg-packages.html'},500)}
-function showComingSoon(){showToast(getText('comingSoonMsg'))}
-document.addEventListener('DOMContentLoaded',()=>{currentLang=localStorage.getItem('lang')||'my';document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));if(localStorage.getItem('nightMode')==='true'){document.body.classList.add('night-mode');document.querySelector('.night-toggle i').className='fas fa-sun'}updateLanguage();updateBadge();document.getElementById('nightToggle').addEventListener('click',toggleNightMode);document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang)}));document.getElementById('searchInput').addEventListener('input',function(){searchGames(this.value)});document.querySelectorAll('.game-item').forEach(item=>{item.addEventListener('click',function(){const gn=this.querySelector('.line1')?.textContent+' '+this.querySelector('.line2')?.textContent;const gi=this.dataset.name.includes('mlbb')?'mlbb':this.dataset.name.includes('mcgg')?'mcgg':null;if(gi)selectGame(gn.trim(),gi,event);else showComingSoon()})})});
+function copyNumber(num,btn){navigator.clipboard.writeText(num).then(()=>{btn.textContent=getText('copied');btn.classList.add('copied');setTimeout(()=>{btn.textContent=getText('copy');btn.classList.remove('copied')},2500)})}
+document.addEventListener('DOMContentLoaded',()=>{currentLang=localStorage.getItem('lang')||'my';document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));if(localStorage.getItem('nightMode')==='true'){document.body.classList.add('night-mode');document.querySelector('.night-toggle i').className='fas fa-sun'}updateLanguage();updateBadge();document.getElementById('nightToggle').addEventListener('click',toggleNightMode);document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang)}))});
 </script>
 </body>
 </html>
