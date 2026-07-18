@@ -5,7 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🛍️ Shop - Premium Game Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+        :root{--bg-primary:#f0f2f5;--bg-secondary:#ffffff;--bg-card:rgba(255,255,255,0.6);--bg-input:rgba(255,255,255,0.7);--text-primary:#1a1a2e;--text-secondary:#6b7280;--border-color:rgba(0,0,0,0.06);--shadow:rgba(0,0,0,0.06);--cyan:#00b4d8;--cyan-glow:rgba(0,180,216,0.2);--purple:#7c3aed;--violet:#8b5cf6;--pink:#ec4899;--gold:#f5a623;--red:#ff0044;--green:#00c853;--radius:14px;--radius-sm:10px;--transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+        .night-mode{--bg-primary:#0d0d1a;--bg-secondary:#1a1a2e;--bg-card:rgba(30,30,60,0.5);--bg-input:rgba(40,40,80,0.5);--text-primary:#e8eaf0;--text-secondary:#a8a8c8;--border-color:rgba(255,255,255,0.06);--shadow:rgba(0,0,0,0.3);--gold:#ffd700}
+        body{background:var(--bg-primary);color:var(--text-primary);min-height:100vh;padding:16px;padding-bottom:90px;transition:all 0.4s ease;-webkit-tap-highlight-color:transparent}
+        .container{max-width:480px;margin:0 auto}
+        @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        @keyframes colorShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        @keyframes floatIcon{0%,100%{transform:translateY(0px)}50%{transform:translateY(-6px)}}
+        @keyframes iconGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        @keyframes navSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(30px) scale(0.85)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+        @keyframes bounceSoft{0%{transform:scale(1)}35%{transform:scale(0.94)}70%{transform:scale(1.02)}100%{transform:scale(1)}}
+        .glass-box{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius)}
+        .header{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0 14px;flex-wrap:wrap;gap:6px}
+        .header .left{display:flex;flex-direction:column;gap:8px}
+        .header .left .logo-wrap{display:flex;align-items:center;gap:10px}
+        .header .left .logo-wrap img{height:38px;width:auto;border-radius:var(--radius-sm)}
+        .header .left .logo-wrap .text-group{display:flex;flex-direction:column;line-height:1.1}
+        .header .left .logo-wrap .text-group .premium{font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:colorShift 2s ease-in-out infinite}
+        .header .left .logo-wrap .text-group .shop{font-size:0.55rem;font-weight:600;color:var(--text-secondary);opacity:0.6;margin-top:-2px}
+        .header .right .top{display:flex;gap:6px;align-items:center}
+        .lang-switcher{display:flex;gap:2px;background:var(--bg-card);padding:3px;border-radius:var(--radius-sm);border:1px solid var(--border-color);backdrop-filter:blur(20px)}
+        .lang-btn{background:transparent;border:none;color:var(--text-secondary);padding:3px 10px;border-radius:6px;font-size:0.5rem;font-weight:700;cursor:pointer;text-transform:uppercase;transition:var(--transition)}
+        .lang-btn:active{transform:scale(0.92)!important}
+        .lang-btn.active{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));color:#fff;box-shadow:0 4px 15px rgba(0,180,216,0.3)}
+        .night-toggle,.noti-btn{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-sm);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;color:var(--text-secondary);backdrop-filter:blur(20px);transition:var(--transition);text-decoration:none;position:relative}
+        .night-toggle:active,.noti-btn:active{transform:scale(0.92)!important}
+        .night-mode .night-toggle .fa-sun{color:#ffd700}
+        .noti-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:0.4rem;font-weight:700;padding:1px 6px;border-radius:50%;display:none}
+        .page-header{margin-bottom:16px;animation:slideUp 0.6s ease}
+        .page-header h1{font-size:1.3rem;font-weight:800;color:var(--text-primary)}
+        .page-header h1 span{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
+        .page-header p{color:var(--text-secondary);font-size:0.7rem;margin-top:2px}
+        .section-title{font-size:.65rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:10px;opacity:.5}
+        .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-color),transparent)}
+        .section-title i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:iconGradient 1.5s ease-in-out infinite;font-size:0.8rem}
+        .footer-text{text-align:center;color:var(--text-secondary);font-size:0.45rem;margin-top:10px;opacity:0.3}
+        .search-box{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:10px 16px;display:flex;align-items:center;gap:12px;margin-bottom:20px;transition:var(--transition)}
+        .search-box input{background:transparent;border:none;color:var(--text-primary);font-size:0.85rem;flex:1;outline:none;padding:4px 0}
+        .search-box .clear-btn{color:var(--text-secondary);font-size:0.8rem;cursor:pointer;padding:4px;display:none}
+        .search-box .clear-btn.show{display:block}
+        .game-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+        .game-item{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:12px 14px;cursor:pointer;transition:var(--transition);box-shadow:0 4px 20px var(--shadow);display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;min-height:72px}
+        .game-item:active{transform:scale(0.96)!important}
+        .game-item .game-img{width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:2px solid var(--border-color)}
+        .game-item .info .name{display:flex;flex-direction:column;line-height:1.2}
+        .game-item .info .name .line1{font-size:0.85rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 1.5s ease-in-out infinite}
+        .game-item .info .name .line2{font-size:0.6rem;font-weight:600;color:var(--text-secondary);opacity:0.7;margin-top:-1px}
+        .game-item .info .sub{font-size:0.5rem;color:var(--text-secondary);margin-top:3px;opacity:0.6;font-weight:500}
+        .bottom-nav{position:fixed;bottom:16px;left:16px;right:16px;width:auto;max-width:480px;margin:0 auto;background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-color);border-radius:18px;display:flex;justify-content:space-around;padding:8px 4px;z-index:100;box-shadow:0 4px 30px var(--shadow);animation:navSlideUp 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+        .bottom-nav .nav-item{text-align:center;cursor:pointer;text-decoration:none;color:var(--text-secondary);transition:var(--transition);padding:6px 12px;border-radius:12px;min-width:48px;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;gap:1px}
+        .bottom-nav .nav-item:active{transform:scale(0.88)!important}
+        .bottom-nav .nav-item .icon{font-size:1.2rem;display:block}
+        .bottom-nav .nav-item .label{font-size:0.4rem;opacity:0.5}
+        .bottom-nav .nav-item.active{background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.12);box-shadow:0 0 30px rgba(0,180,216,0.05)}
+        .bottom-nav .nav-item.active .icon{transform:translateY(-2px) scale(1.1);background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .bottom-nav .nav-item.active .label{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:1;font-weight:600}
+        .toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:var(--bg-secondary);padding:10px 20px;border-radius:12px;border:1px solid var(--border-color);color:var(--cyan);font-weight:600;font-size:0.75rem;display:none;z-index:200;text-align:center;max-width:90%;box-shadow:0 4px 20px var(--shadow)}
+        .toast.show{display:block;animation:toastPop 0.4s cubic-bezier(0.34,1.56,0.64,1)}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -44,23 +106,19 @@
     <div class="section-title"><i class="fas fa-gamepad"></i> <span id="gamesTitle">ဂိမ်းများ</span></div>
     <div class="game-grid" id="gameGrid">
         <div class="game-item glass-box" data-name="mobile legends bang bang mlbb">
-            <span class="glow"></span>
-            <img src="https://i.ibb.co/cKsDX2Nt/x.jpg" alt="MLBB" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="game-img-placeholder" style="display:none;">⚔️</span>
+            <img src="https://i.ibb.co/cKsDX2Nt/x.jpg" alt="MLBB" class="game-img" onerror="this.style.display='none'">
             <div class="info"><div class="name"><span class="line1">Mobile Legends</span><span class="line2">Bang Bang</span></div><div class="sub" id="mlbbSub">စိန်ဖြည့်မှု</div></div>
         </div>
         <div class="game-item glass-box" data-name="magic chess go go mcgg">
-            <span class="glow"></span>
-            <img src="https://files.catbox.moe/8lxv1s.jpg" alt="MCGG" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="game-img-placeholder" style="display:none;">♟️</span>
+            <img src="https://files.catbox.moe/8lxv1s.jpg" alt="MCGG" class="game-img" onerror="this.style.display='none'">
             <div class="info"><div class="name"><span class="line1">Magic Chess</span><span class="line2">Go Go</span></div><div class="sub" id="mcggSub">စိန်ဖြည့်မှု</div></div>
         </div>
         <div class="game-item glass-box" data-name="coming soon">
-            <span class="glow"></span><span class="game-img-placeholder">🎮</span>
+            <span class="game-img-placeholder" style="font-size:1.8rem;">🎮</span>
             <div class="info"><div class="name"><span class="line1" id="cs1">Coming Soon</span></div><div class="sub" id="cs1sub">⏳ အသစ်ထွက်ရှိမည်</div></div>
         </div>
         <div class="game-item glass-box" data-name="coming soon">
-            <span class="glow"></span><span class="game-img-placeholder">🎯</span>
+            <span class="game-img-placeholder" style="font-size:1.8rem;">🎯</span>
             <div class="info"><div class="name"><span class="line1" id="cs2">Coming Soon</span></div><div class="sub" id="cs2sub">⏳ အသစ်ထွက်ရှိမည်</div></div>
         </div>
     </div>
@@ -74,6 +132,24 @@
     <a href="profile.html" class="nav-item"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
 </div>
 <div class="toast" id="toast"></div>
-<script src="js/main.js"></script>
+
+<script>
+const LANG_DATA = {
+    my: { appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',pageTitleShop:'Game Shop',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',comingSoonSub:'⏳ အသစ်ထွက်ရှိမည်',searchPlaceholder:'🔍 ဂိမ်းနာမည်ရှာပါ...',noGames:'❌ ဂိမ်းမတွေ့ပါ',selectGame:'ရွေးချယ်လိုက်ပါ',comingSoonMsg:'🎮 ဤဂိမ်းကို မကြာမီ ထည့်သွင်းပေးပါမည်။',mlbbSub:'စိန်ဖြည့်မှု',mcggSub:'စိန်ဖြည့်မှု' },
+    en: { appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',pageTitleShop:'Game Shop',pageSubShop:'Choose a game and purchase packages',gamesTitle:'Games',comingSoon:'Coming Soon',comingSoonSub:'⏳ Coming Soon',searchPlaceholder:'🔍 Search game name...',noGames:'❌ No games found',selectGame:'Selected',comingSoonMsg:'🎮 This game will be added soon.',mlbbSub:'Diamond Top Up',mcggSub:'Diamond Top Up' }
+};
+let currentLang = localStorage.getItem('lang')||'my';
+function getText(k){return LANG_DATA[currentLang]?.[k]||k}
+function setLang(l){currentLang=l;localStorage.setItem('lang',l);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));updateLanguage()}
+function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','pageTitleShop','pageSubShop','gamesTitle','cs1','cs2','cs1sub','cs2sub','mlbbSub','mcggSub','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});document.getElementById('searchInput').placeholder=d.searchPlaceholder}
+function toggleNightMode(){document.body.classList.toggle('night-mode');const i=document.querySelector('.night-toggle i');i.className=document.body.classList.contains('night-mode')?'fas fa-sun':'fas fa-moon';localStorage.setItem('nightMode',document.body.classList.contains('night-mode')?'true':'false')}
+function updateBadge(){const n=JSON.parse(localStorage.getItem('notifications')||'[]');const c=n.filter(x=>x.status==='pending').length;const b=document.getElementById('notiBadge');if(b){b.style.display=c>0?'block':'none';if(c>0)b.textContent=c}}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.className='toast show';clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000)}
+function searchGames(q){const ql=q.toLowerCase().trim();document.querySelectorAll('.game-item').forEach(item=>{const n=item.dataset.name||'';item.classList.toggle('hidden',ql!==''&&!n.includes(ql))});document.getElementById('clearBtn').classList.toggle('show',ql.length>0)}
+function clearSearch(){document.getElementById('searchInput').value='';searchGames('');document.getElementById('clearBtn').classList.remove('show')}
+function selectGame(gn,gi,ev){ev.currentTarget.classList.add('bounce-click');setTimeout(()=>ev.currentTarget.classList.remove('bounce-click'),350);localStorage.setItem('selectedGame',JSON.stringify({name:gn,id:gi}));setTimeout(()=>{window.location.href=gi==='mlbb'?'mlbb-packages.html':'mcgg-packages.html'},500)}
+function showComingSoon(){showToast(getText('comingSoonMsg'))}
+document.addEventListener('DOMContentLoaded',()=>{currentLang=localStorage.getItem('lang')||'my';document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));if(localStorage.getItem('nightMode')==='true'){document.body.classList.add('night-mode');document.querySelector('.night-toggle i').className='fas fa-sun'}updateLanguage();updateBadge();document.getElementById('nightToggle').addEventListener('click',toggleNightMode);document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang)}));document.getElementById('searchInput').addEventListener('input',function(){searchGames(this.value)});document.querySelectorAll('.game-item').forEach(item=>{item.addEventListener('click',function(){const gn=this.querySelector('.line1')?.textContent+' '+this.querySelector('.line2')?.textContent;const gi=this.dataset.name.includes('mlbb')?'mlbb':this.dataset.name.includes('mcgg')?'mcgg':null;if(gi)selectGame(gn.trim(),gi,event);else showComingSoon()})})});
+</script>
 </body>
 </html>
