@@ -15,11 +15,9 @@
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
         @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
         @keyframes colorShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-        @keyframes floatIcon{0%,100%{transform:translateY(0px)}50%{transform:translateY(-6px)}}
+        @keyframes floatIcon{0%,100%{transform:translateY(0px)}50%{transform:translateY(-4px)}}
         @keyframes iconGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-        @keyframes navSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
         @keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(30px) scale(0.85)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
-        @keyframes successPop{0%{transform:scale(0.8);opacity:0}50%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
         @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.6)}}
         @keyframes pulseDotRed{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.2;transform:scale(0.5)}}
         .glass-box{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius)}
@@ -44,14 +42,17 @@
         .auth-btn.logged-in,.auth-btn-profile.logged-in{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));color:#fff;border-color:transparent;box-shadow:0 4px 20px var(--cyan-glow)}
         .auth-btn .avatar-small,.auth-btn-profile .avatar-small{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--cyan),var(--purple));flex-shrink:0;text-transform:uppercase}
         .auth-btn img,.auth-btn-profile img{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0}
-        .bottom-nav{position:fixed;bottom:16px;left:16px;right:16px;width:auto;max-width:480px;margin:0 auto;background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-color);border-radius:18px;display:flex;justify-content:space-around;padding:8px 4px;z-index:100;box-shadow:0 4px 30px var(--shadow)}
-        .bottom-nav .nav-item{text-align:center;cursor:pointer;text-decoration:none;color:var(--text-secondary);transition:var(--transition);padding:6px 12px;border-radius:12px;min-width:48px;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;gap:1px}
+        
+        /* ===== NAV BAR (SLIM + ACTIVE ICON ONLY) ===== */
+        .bottom-nav{position:fixed;bottom:16px;left:16px;right:16px;width:auto;max-width:480px;margin:0 auto;background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-color);border-radius:18px;display:flex;justify-content:space-around;padding:6px 4px;z-index:100;box-shadow:0 4px 30px var(--shadow)}
+        .bottom-nav .nav-item{text-align:center;cursor:pointer;text-decoration:none;color:var(--text-secondary);transition:var(--transition);padding:6px 10px;border-radius:12px;min-width:44px;border:none;display:flex;flex-direction:column;align-items:center;gap:2px}
         .bottom-nav .nav-item:active{transform:scale(0.88)!important}
-        .bottom-nav .nav-item .icon{font-size:1.2rem;display:block}
+        .bottom-nav .nav-item .icon{font-size:1.3rem;display:block}
         .bottom-nav .nav-item .label{font-size:0.4rem;opacity:0.5}
-        .bottom-nav .nav-item.active{background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.12);box-shadow:0 0 30px rgba(0,180,216,0.05)}
-        .bottom-nav .nav-item.active .icon{transform:translateY(-2px) scale(1.1);background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .bottom-nav .nav-item.active{background:transparent;border:none;box-shadow:none}
+        .bottom-nav .nav-item.active .icon{transform:translateY(-2px) scale(1.1);background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:floatIcon 2s ease-in-out infinite}
         .bottom-nav .nav-item.active .label{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:1;font-weight:600}
+
         .page-header{margin-bottom:16px;animation:slideUp 0.6s ease}
         .page-header h1{font-size:1.3rem;font-weight:800;color:var(--text-primary)}
         .page-header h1 span{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
@@ -67,7 +68,10 @@
         .welcome h2{font-size:1.5rem;margin-top:2px;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
         .welcome h2 i{color:var(--cyan);-webkit-text-fill-color:initial;margin-right:6px}
         .welcome p{color:var(--text-secondary);font-size:0.75rem;margin-top:2px;opacity:0.6}
-        .shop-status-banner{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:16px 20px;margin-bottom:16px;box-shadow:0 4px 20px var(--shadow);transition:var(--transition);overflow:hidden;position:relative}
+        
+        /* ===== SHOP STATUS BANNER (CLICKABLE + PRESS EFFECT) ===== */
+        .shop-status-banner{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:16px 20px;margin-bottom:16px;cursor:pointer;box-shadow:0 4px 20px var(--shadow);transition:var(--transition);overflow:hidden;position:relative}
+        .shop-status-banner:active{transform:scale(0.96)!important;transition:transform 0.12s ease!important}
         .shop-status-banner .banner-content{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;z-index:1}
         .shop-status-banner .banner-status{font-size:1.2rem;font-weight:900;padding:6px 28px;border-radius:30px;text-transform:uppercase;letter-spacing:2px;text-align:center}
         .shop-status-banner .banner-status.open{background:rgba(0,200,83,0.1);color:var(--green);border:1px solid rgba(0,200,83,0.2);box-shadow:0 0 40px rgba(0,200,83,0.15)}
@@ -76,17 +80,22 @@
         .shop-status-banner .banner-status.open .status-dot{background:var(--green);animation:pulseDot 1s ease-in-out infinite}
         .shop-status-banner .banner-status.closed .status-dot{background:var(--red);animation:pulseDotRed 1s ease-in-out infinite}
         .shop-status-text{font-size:0.6rem;color:var(--text-secondary);text-align:center;opacity:0.6;position:relative;z-index:1}
+        
+        /* ===== SHOP CARD (PRESS EFFECT + FLOATING ICON) ===== */
         .shop-card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:var(--transition);margin-bottom:16px;box-shadow:0 4px 20px var(--shadow);text-decoration:none;display:block}
-        .shop-card .icon{font-size:2.2rem;display:block;margin-bottom:4px}
+        .shop-card:active{transform:scale(0.96)!important;transition:transform 0.12s ease!important}
+        .shop-card .icon{font-size:2.2rem;display:block;margin-bottom:4px;animation:floatIcon 2s ease-in-out infinite}
         .shop-card .icon i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         .shop-card .label{font-weight:900;font-size:1.3rem;letter-spacing:1.5px;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
         .shop-card .sub{font-size:0.6rem;color:var(--text-secondary);margin-top:2px;opacity:0.5}
+        
         .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
         .services-grid .service{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:18px 10px 12px;text-align:center;cursor:pointer;transition:var(--transition);box-shadow:0 4px 20px var(--shadow);min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
         .services-grid .service:active{transform:scale(0.96)!important;transition:transform 0.12s ease!important}
         .services-grid .service .icon{font-size:2rem;display:block;margin-bottom:6px;animation:floatIcon 3s ease-in-out infinite}
         .services-grid .service .icon i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         .services-grid .service .label{font-size:0.55rem;color:var(--text-secondary);font-weight:600;line-height:1.3}
+        
         .telegram-card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:10px;cursor:pointer;box-shadow:0 4px 20px var(--shadow);transition:var(--transition)}
         .telegram-card .icon{font-size:1.6rem;color:#0088cc;flex-shrink:0}
         .telegram-card .info{flex:1}
@@ -99,6 +108,7 @@
         .telegram-contact .info .label{font-size:0.55rem;color:var(--text-secondary);font-weight:500;opacity:0.6}
         .telegram-contact .info .username{font-size:0.7rem;font-weight:600;color:var(--cyan)}
         .telegram-contact .arrow{color:var(--text-secondary);font-size:0.9rem;transition:var(--transition)}
+        
         .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);display:none;z-index:300;align-items:center;justify-content:center;padding:20px}
         .modal-overlay.show{display:flex;animation:fadeIn 0.3s ease}
         .modal,.modal-box{background:var(--bg-secondary);backdrop-filter:blur(24px);border:1px solid var(--border-color);border-radius:16px;padding:24px 20px;max-width:420px;width:100%;box-shadow:0 4px 30px var(--shadow);position:relative}
@@ -166,6 +176,7 @@
     <div class="footer-text">&copy; 2026 Premium Game Shop</div>
 </div>
 
+<!-- SLIM NAV BAR -->
 <div class="bottom-nav">
     <a href="index.html" class="nav-item active"><span class="icon"><i class="fas fa-home"></i></span><span class="label" id="navHome">ပင်မ</span></a>
     <a href="shop.html" class="nav-item"><span class="icon"><i class="fas fa-shopping-bag"></i></span><span class="label" id="navShop">ဆိုင်</span></a>
