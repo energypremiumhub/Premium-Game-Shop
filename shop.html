@@ -17,7 +17,6 @@
         @keyframes colorShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
         @keyframes floatIcon{0%,100%{transform:translateY(0px)}50%{transform:translateY(-3px)}}
         @keyframes iconGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-        @keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(30px) scale(0.85)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
         @keyframes bounceSoft{0%{transform:scale(1)}35%{transform:scale(0.94)}70%{transform:scale(1.02)}100%{transform:scale(1)}}
         .glass-box{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius)}
         .header{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0 14px;flex-wrap:wrap;gap:6px}
@@ -72,8 +71,6 @@
         .bottom-nav .nav-item.active{background:transparent;border:none;box-shadow:none}
         .bottom-nav .nav-item.active .icon{transform:translateY(-1px) scale(1.05);background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:floatIcon 3s ease-in-out infinite}
         .bottom-nav .nav-item.active .label{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:1;font-weight:600}
-        .toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:var(--bg-secondary);padding:10px 20px;border-radius:12px;border:1px solid var(--border-color);color:var(--cyan);font-weight:600;font-size:0.75rem;display:none;z-index:200;text-align:center;max-width:90%;box-shadow:0 4px 20px var(--shadow)}
-        .toast.show{display:block;animation:toastPop 0.4s cubic-bezier(0.34,1.56,0.64,1)}
     </style>
 </head>
 <body>
@@ -101,7 +98,7 @@
     </div>
 
     <div class="page-header">
-        <h1><i class="fas fa-store"></i> <span id="pageTitleShop">ဂိမ်းဆိုင်</span></h1>
+        <h1><i class="fas fa-store"></i> <span>Game Shop</span></h1>
         <p id="pageSubShop">ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ</p>
     </div>
 
@@ -143,25 +140,22 @@
     <a href="payment.html" class="nav-item"><span class="icon"><i class="fas fa-credit-card"></i></span><span class="label" id="navPayment">ငွေပေးချေ</span></a>
     <a href="profile.html" class="nav-item"><span class="icon"><i class="fas fa-user"></i></span><span class="label" id="navProfile">ပရိုဖိုင်</span></a>
 </div>
-<div class="toast" id="toast"></div>
 
 <script>
 const LANG_DATA={
-    my:{appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',pageTitleShop:'ဂိမ်းဆိုင်',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',searchPlaceholder:'ဂိမ်းနာမည်ရှာပါ...',selectGame:'ရွေးချယ်လိုက်ပါ',comingSoonMsg:'🎮 ဤဂိမ်းကို မကြာမီ ထည့်သွင်းပေးပါမည်။'},
-    en:{appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',pageTitleShop:'Game Shop',pageSubShop:'Choose a game and purchase packages',gamesTitle:'Games',comingSoon:'Coming Soon',searchPlaceholder:'Search game name...',selectGame:'Selected',comingSoonMsg:'🎮 This game will be added soon.'}
+    my:{appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',searchPlaceholder:'ဂိမ်းနာမည်ရှာပါ...',selectGame:'ရွေးချယ်လိုက်ပါ'},
+    en:{appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',pageSubShop:'Choose a game and purchase packages',gamesTitle:'Games',comingSoon:'Coming Soon',searchPlaceholder:'Search game name...',selectGame:'Selected'}
 };
 let currentLang=localStorage.getItem('lang')||'my';
 function getText(k){return LANG_DATA[currentLang]?.[k]||k}
 function setLang(l){currentLang=l;localStorage.setItem('lang',l);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));updateLanguage()}
-function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','pageTitleShop','pageSubShop','gamesTitle','cs1','cs2','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});document.getElementById('searchInput').placeholder=d.searchPlaceholder}
+function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','pageSubShop','gamesTitle','cs1','cs2','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});document.getElementById('searchInput').placeholder=d.searchPlaceholder}
 function toggleNightMode(){document.body.classList.toggle('night-mode');const i=document.querySelector('.night-toggle i');i.className=document.body.classList.contains('night-mode')?'fas fa-sun':'fas fa-moon';localStorage.setItem('nightMode',document.body.classList.contains('night-mode')?'true':'false')}
 function updateBadge(){const n=JSON.parse(localStorage.getItem('notifications')||'[]');const c=n.filter(x=>x.status==='pending').length;const b=document.getElementById('notiBadge');if(b){b.style.display=c>0?'block':'none';if(c>0)b.textContent=c}}
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.className='toast show';clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000)}
 function searchGames(q){const ql=q.toLowerCase().trim();document.querySelectorAll('.game-item').forEach(item=>{const n=item.dataset.name||'';item.classList.toggle('hidden',ql!==''&&!n.includes(ql))});document.getElementById('clearBtn').classList.toggle('show',ql.length>0)}
 function clearSearch(){document.getElementById('searchInput').value='';searchGames('');document.getElementById('clearBtn').classList.remove('show')}
 function selectGame(gn,gi,ev){ev.currentTarget.classList.add('bounce-click');setTimeout(()=>ev.currentTarget.classList.remove('bounce-click'),350);localStorage.setItem('selectedGame',JSON.stringify({name:gn,id:gi}));setTimeout(()=>{window.location.href=gi==='mlbb'?'mlbb-packages.html':'mcgg-packages.html'},500)}
-function showComingSoon(){showToast(getText('comingSoonMsg'))}
-document.addEventListener('DOMContentLoaded',()=>{currentLang=localStorage.getItem('lang')||'my';document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));if(localStorage.getItem('nightMode')==='true'){document.body.classList.add('night-mode');document.querySelector('.night-toggle i').className='fas fa-sun'}updateLanguage();updateBadge();document.getElementById('nightToggle').addEventListener('click',toggleNightMode);document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang)}));document.getElementById('searchInput').addEventListener('input',function(){searchGames(this.value)});document.querySelectorAll('.game-item').forEach(item=>{item.addEventListener('click',function(){const gn=this.querySelector('.line1')?.textContent+' '+this.querySelector('.line2')?.textContent;const gi=this.dataset.name.includes('mlbb')?'mlbb':this.dataset.name.includes('mcgg')?'mcgg':null;if(gi)selectGame(gn.trim(),gi,event);else showComingSoon()})})});
+document.addEventListener('DOMContentLoaded',()=>{currentLang=localStorage.getItem('lang')||'my';document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));if(localStorage.getItem('nightMode')==='true'){document.body.classList.add('night-mode');document.querySelector('.night-toggle i').className='fas fa-sun'}updateLanguage();updateBadge();document.getElementById('nightToggle').addEventListener('click',toggleNightMode);document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang)}));document.getElementById('searchInput').addEventListener('input',function(){searchGames(this.value)});document.querySelectorAll('.game-item').forEach(item=>{item.addEventListener('click',function(){const gn=this.querySelector('.line1')?.textContent+' '+this.querySelector('.line2')?.textContent;const gi=this.dataset.name.includes('mlbb')?'mlbb':this.dataset.name.includes('mcgg')?'mcgg':null;if(gi)selectGame(gn.trim(),gi,event)})})});
 </script>
 </body>
 </html>
