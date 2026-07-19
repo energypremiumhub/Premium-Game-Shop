@@ -36,23 +36,24 @@
         .noti-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:0.4rem;font-weight:700;padding:1px 6px;border-radius:50%;display:none}
         .page-header{margin-bottom:16px;animation:slideUp 0.6s ease}
         .page-header h1{font-size:1.3rem;font-weight:800;color:var(--text-primary)}
+        .page-header h1 span{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
         .page-header h1 i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-right:6px}
         .page-header p{color:var(--text-secondary);font-size:0.7rem;margin-top:2px}
         .section-title{font-size:.65rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:10px;opacity:.5}
         .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-color),transparent)}
         .section-title i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:iconGradient 1.5s ease-in-out infinite;font-size:0.8rem}
         .footer-text{text-align:center;color:var(--text-secondary);font-size:0.45rem;margin-top:10px;opacity:0.3}
-        .payment-account{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:12px;cursor:pointer;transition:var(--transition);box-shadow:0 4px 15px rgba(0,0,0,0.1)}
-        .payment-account:active{transform:scale(0.96)!important}
+        /* ===== PAYMENT ACCOUNTS (STATIC - NO PRESS) ===== */
+        .payment-account{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
         .payment-account .icon-box{width:40px;height:40px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0}
         .payment-account .icon-box img{width:100%;height:100%;object-fit:cover}
         .payment-account .info{flex:1}
         .payment-account .info .name{font-size:0.8rem;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         .payment-account .info .number{font-size:0.7rem;color:var(--text-secondary);margin-top:2px}
         .payment-account .info .number i{margin-right:4px;color:var(--green)}
-        .copy-btn{background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-secondary);padding:4px 14px;border-radius:var(--radius-sm);font-size:0.55rem;cursor:pointer;transition:var(--transition);font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+        /* ===== COPY BUTTON ===== */
+        .copy-btn{background:var(--bg-card);border:1px solid var(--border-color);color:var(--text-secondary);padding:4px 14px;border-radius:var(--radius-sm);font-size:0.55rem;cursor:pointer;transition:var(--transition);font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,0.1);min-width:70px;text-align:center}
         .copy-btn:active{transform:scale(0.88)!important}
-        .copy-btn.copied{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#fff}
         .instruction-item{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);margin-bottom:8px}
         .instruction-item .step{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;flex-shrink:0}
         .instruction-item .text{font-size:0.65rem;color:var(--text-secondary)}
@@ -100,15 +101,16 @@
     </div>
 
     <div class="section-title"><i class="fas fa-university"></i> <span id="accountsTitle">ငွေလက်ခံမည့်အကောင့်များ</span></div>
-    <div class="payment-account" onclick="copyNumber('09682506493',document.getElementById('copyBtn1'))">
+    
+    <div class="payment-account">
         <div class="icon-box"><img src="https://i.ibb.co/GvstPZx4/x.jpg" alt="Wave Pay"></div>
         <div class="info"><div class="name" id="waveName">Wave Pay</div><div class="number"><i class="fas fa-phone"></i> 09682506493</div></div>
-        <button class="copy-btn" id="copyBtn1" onclick="event.stopPropagation();copyNumber('09682506493',this)">ကူးယူမည်</button>
+        <button class="copy-btn" id="copyBtn1" onclick="copyNumber('09682506493',this)">ကူးယူမည်</button>
     </div>
-    <div class="payment-account" onclick="copyNumber('09682506493',document.getElementById('copyBtn2'))">
+    <div class="payment-account">
         <div class="icon-box"><img src="https://i.ibb.co/fdWfXwVC/x.jpg" alt="KBZ Pay"></div>
         <div class="info"><div class="name" id="kpayName">KBZ Pay</div><div class="number"><i class="fas fa-phone"></i> 09682506493</div></div>
-        <button class="copy-btn" id="copyBtn2" onclick="event.stopPropagation();copyNumber('09682506493',this)">ကူးယူမည်</button>
+        <button class="copy-btn" id="copyBtn2" onclick="copyNumber('09682506493',this)">ကူးယူမည်</button>
     </div>
 
     <div class="section-title"><i class="fas fa-list"></i> <span id="howToTitle">ငွေပေးချေနည်း</span></div>
@@ -137,8 +139,8 @@
 
 <script>
 const LANG_DATA={
-    my:{appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',paymentSub:'အောက်ပါအကောင့်များထဲမှ တစ်ခုခုသို့ ငွေပို့ပါ',accountsTitle:'ငွေလက်ခံမည့်အကောင့်များ',waveName:'Wave Pay',kpayName:'KBZ Pay',howToTitle:'ငွေပေးချေနည်း',step1:'<strong>Wave Pay</strong> သို့မဟုတ် <strong>KBZ Pay</strong> ရွေးပါ',step2:'အပေါ်က <strong>ဖုန်းနံပါတ်</strong> ကိုကူးယူပါ',step3:'အတိအကျငွေပို့ပြီး <strong>Screenshot</strong> ရိုက်ပါ',step4:'<strong>ဆိုင်</strong> သို့သွားပြီး အော်ဒါအပြီးသတ်ပါ',supportTitle:'အကူအညီ',supportLabel:'Telegram မှ ဆက်သွယ်ပါ',supportDesc:'@Energypremiumhub • ၂၄/၇ ဝန်ဆောင်မှု',copy:'ကူးယူမည်',copied:'✅ ကူးပြီး'},
-    en:{appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',paymentSub:'Send payment to one of the following accounts',accountsTitle:'Payment Accounts',waveName:'Wave Pay',kpayName:'KBZ Pay',howToTitle:'How to Pay',step1:'Choose <strong>Wave Pay</strong> or <strong>KBZ Pay</strong>',step2:'Copy the <strong>phone number</strong> above',step3:'Send the exact amount and <strong>take a screenshot</strong>',step4:'Go to <strong>Shop</strong> and complete your order',supportTitle:'Support',supportLabel:'Contact us on Telegram',supportDesc:'@Energypremiumhub • 24/7 Support',copy:'Copy',copied:'✅ Copied!'}
+    my:{appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',paymentSub:'အောက်ပါအကောင့်များထဲမှ တစ်ခုခုသို့ ငွေပို့ပါ',accountsTitle:'ငွေလက်ခံမည့်အကောင့်များ',waveName:'Wave Pay',kpayName:'KBZ Pay',howToTitle:'ငွေပေးချေနည်း',step1:'<strong>Wave Pay</strong> သို့မဟုတ် <strong>KBZ Pay</strong> ရွေးပါ',step2:'အပေါ်က <strong>ဖုန်းနံပါတ်</strong> ကိုကူးယူပါ',step3:'အတိအကျငွေပို့ပြီး <strong>Screenshot</strong> ရိုက်ပါ',step4:'<strong>ဆိုင်</strong> သို့သွားပြီး အော်ဒါအပြီးသတ်ပါ',supportTitle:'အကူအညီ',supportLabel:'Telegram မှ ဆက်သွယ်ပါ',supportDesc:'@Energypremiumhub • ၂၄/၇ ဝန်ဆောင်မှု',copy:'ကူးယူမည်'},
+    en:{appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',paymentSub:'Send payment to one of the following accounts',accountsTitle:'Payment Accounts',waveName:'Wave Pay',kpayName:'KBZ Pay',howToTitle:'How to Pay',step1:'Choose <strong>Wave Pay</strong> or <strong>KBZ Pay</strong>',step2:'Copy the <strong>phone number</strong> above',step3:'Send the exact amount and <strong>take a screenshot</strong>',step4:'Go to <strong>Shop</strong> and complete your order',supportTitle:'Support',supportLabel:'Contact us on Telegram',supportDesc:'@Energypremiumhub • 24/7 Support',copy:'Copy'}
 };
 let currentLang=localStorage.getItem('lang')||'my';
 function getText(k){return LANG_DATA[currentLang]?.[k]||k}
@@ -146,7 +148,7 @@ function setLang(l){currentLang=l;localStorage.setItem('lang',l);document.queryS
 function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','paymentSub','accountsTitle','waveName','kpayName','howToTitle','supportTitle','supportLabel','supportDesc','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});['step1','step2','step3','step4'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.innerHTML=d[id]});document.getElementById('copyBtn1').textContent=d.copy;document.getElementById('copyBtn2').textContent=d.copy}
 function toggleNightMode(){document.body.classList.toggle('night-mode');const i=document.querySelector('.night-toggle i');i.className=document.body.classList.contains('night-mode')?'fas fa-sun':'fas fa-moon';localStorage.setItem('nightMode',document.body.classList.contains('night-mode')?'true':'false')}
 function updateBadge(){const n=JSON.parse(localStorage.getItem('notifications')||'[]');const c=n.filter(x=>x.status==='pending').length;const b=document.getElementById('notiBadge');if(b){b.style.display=c>0?'block':'none';if(c>0)b.textContent=c}}
-function copyNumber(num,btn){navigator.clipboard.writeText(num).then(()=>{btn.textContent=getText('copied');btn.classList.add('copied');setTimeout(()=>{btn.textContent=getText('copy');btn.classList.remove('copied')},2500)})}
+function copyNumber(num,btn){navigator.clipboard.writeText(num).then(()=>{const orig=btn.textContent;btn.textContent='✅';setTimeout(()=>{btn.textContent=orig},500)})}
 document.addEventListener('DOMContentLoaded',()=>{currentLang=localStorage.getItem('lang')||'my';document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===currentLang));if(localStorage.getItem('nightMode')==='true'){document.body.classList.add('night-mode');document.querySelector('.night-toggle i').className='fas fa-sun'}updateLanguage();updateBadge();document.getElementById('nightToggle').addEventListener('click',toggleNightMode);document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang)}))});
 </script>
 </body>
