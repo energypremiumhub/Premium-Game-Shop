@@ -39,6 +39,7 @@
         .page-header{margin-bottom:16px;animation:slideUp 0.6s ease}
         .page-header h1{font-size:1.3rem;font-weight:800;color:var(--text-primary)}
         .page-header h1 span{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 2s ease-in-out infinite}
+        .page-header h1 i{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-right:6px}
         .page-header p{color:var(--text-secondary);font-size:0.7rem;margin-top:2px}
         .section-title{font-size:.65rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:10px;opacity:.5}
         .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-color),transparent)}
@@ -46,6 +47,7 @@
         .footer-text{text-align:center;color:var(--text-secondary);font-size:0.45rem;margin-top:10px;opacity:0.3}
         .search-box{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border-color);border-radius:var(--radius);padding:10px 16px;display:flex;align-items:center;gap:12px;margin-bottom:20px;transition:var(--transition);box-shadow:0 4px 15px rgba(0,0,0,0.1)}
         .search-box:focus-within{border-color:var(--cyan);box-shadow:0 0 40px rgba(0,180,216,0.15)}
+        .search-box .search-icon{color:var(--text-secondary);font-size:0.9rem}
         .search-box input{background:transparent;border:none;color:var(--text-primary);font-size:0.85rem;flex:1;outline:none;padding:4px 0}
         .search-box input::placeholder{color:var(--text-secondary);font-size:0.75rem}
         .search-box .clear-btn{color:var(--text-secondary);font-size:0.8rem;cursor:pointer;padding:4px;display:none;transition:var(--transition)}
@@ -61,7 +63,6 @@
         .game-item .info .name{display:flex;flex-direction:column;line-height:1.2}
         .game-item .info .name .line1{font-size:0.85rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300% 300%;animation:gradientMove 1.5s ease-in-out infinite}
         .game-item .info .name .line2{font-size:0.6rem;font-weight:600;color:var(--text-secondary);opacity:0.7;margin-top:-1px}
-        .game-item .info .sub{font-size:0.5rem;color:var(--text-secondary);margin-top:3px;opacity:0.6;font-weight:500}
         .game-item.hidden{display:none}
         .bottom-nav{position:fixed;bottom:14px;left:16px;right:16px;width:auto;max-width:480px;margin:0 auto;background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-color);border-radius:16px;display:flex;justify-content:space-around;padding:5px 2px;z-index:100;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
         .bottom-nav .nav-item{text-align:center;cursor:pointer;text-decoration:none;color:var(--text-secondary);transition:var(--transition);padding:5px 8px;border-radius:12px;min-width:40px;border:none;display:flex;flex-direction:column;align-items:center;gap:2px}
@@ -105,7 +106,8 @@
     </div>
 
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 ဂိမ်းနာမည်ရှာပါ...">
+        <span class="search-icon"><i class="fas fa-search"></i></span>
+        <input type="text" id="searchInput" placeholder="ဂိမ်းနာမည်ရှာပါ...">
         <span class="clear-btn" id="clearBtn"><i class="fas fa-times-circle"></i></span>
     </div>
 
@@ -115,21 +117,21 @@
             <span class="glow"></span>
             <img src="https://i.ibb.co/cKsDX2Nt/x.jpg" alt="MLBB" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <span class="game-img-placeholder" style="display:none;">⚔️</span>
-            <div class="info"><div class="name"><span class="line1">Mobile Legends</span><span class="line2">Bang Bang</span></div><div class="sub" id="mlbbSub">စိန်ဖြည့်မှု</div></div>
+            <div class="info"><div class="name"><span class="line1">Mobile Legends</span><span class="line2">Bang Bang</span></div></div>
         </div>
         <div class="game-item glass-box" data-name="magic chess go go mcgg">
             <span class="glow"></span>
             <img src="https://files.catbox.moe/8lxv1s.jpg" alt="MCGG" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <span class="game-img-placeholder" style="display:none;">♟️</span>
-            <div class="info"><div class="name"><span class="line1">Magic Chess</span><span class="line2">Go Go</span></div><div class="sub" id="mcggSub">စိန်ဖြည့်မှု</div></div>
+            <div class="info"><div class="name"><span class="line1">Magic Chess</span><span class="line2">Go Go</span></div></div>
         </div>
         <div class="game-item glass-box" data-name="coming soon">
             <span class="glow"></span><span class="game-img-placeholder">🎮</span>
-            <div class="info"><div class="name"><span class="line1" id="cs1">Coming Soon</span></div><div class="sub" id="cs1sub">⏳ အသစ်ထွက်ရှိမည်</div></div>
+            <div class="info"><div class="name"><span class="line1" id="cs1">Coming Soon</span></div></div>
         </div>
         <div class="game-item glass-box" data-name="coming soon">
             <span class="glow"></span><span class="game-img-placeholder">🎯</span>
-            <div class="info"><div class="name"><span class="line1" id="cs2">Coming Soon</span></div><div class="sub" id="cs2sub">⏳ အသစ်ထွက်ရှိမည်</div></div>
+            <div class="info"><div class="name"><span class="line1" id="cs2">Coming Soon</span></div></div>
         </div>
     </div>
     <div class="footer-text">&copy; 2026 Premium Game Shop</div>
@@ -145,13 +147,13 @@
 
 <script>
 const LANG_DATA={
-    my:{appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',pageTitleShop:'Game Shop',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',comingSoonSub:'⏳ အသစ်ထွက်ရှိမည်',searchPlaceholder:'🔍 ဂိမ်းနာမည်ရှာပါ...',selectGame:'ရွေးချယ်လိုက်ပါ',comingSoonMsg:'🎮 ဤဂိမ်းကို မကြာမီ ထည့်သွင်းပေးပါမည်။',mlbbSub:'စိန်ဖြည့်မှု',mcggSub:'စိန်ဖြည့်မှု'},
-    en:{appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',pageTitleShop:'Game Shop',pageSubShop:'Choose a game and purchase packages',gamesTitle:'Games',comingSoon:'Coming Soon',comingSoonSub:'⏳ Coming Soon',searchPlaceholder:'🔍 Search game name...',selectGame:'Selected',comingSoonMsg:'🎮 This game will be added soon.',mlbbSub:'Diamond Top Up',mcggSub:'Diamond Top Up'}
+    my:{appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',pageTitleShop:'ဂိမ်းဆိုင်',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',searchPlaceholder:'ဂိမ်းနာမည်ရှာပါ...',selectGame:'ရွေးချယ်လိုက်ပါ',comingSoonMsg:'🎮 ဤဂိမ်းကို မကြာမီ ထည့်သွင်းပေးပါမည်။'},
+    en:{appName:'Premium',appSub:'Game Shop',home:'Home',shop:'Shop',payment:'Payment',profile:'Profile',pageTitleShop:'Game Shop',pageSubShop:'Choose a game and purchase packages',gamesTitle:'Games',comingSoon:'Coming Soon',searchPlaceholder:'Search game name...',selectGame:'Selected',comingSoonMsg:'🎮 This game will be added soon.'}
 };
 let currentLang=localStorage.getItem('lang')||'my';
 function getText(k){return LANG_DATA[currentLang]?.[k]||k}
 function setLang(l){currentLang=l;localStorage.setItem('lang',l);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));updateLanguage()}
-function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','pageTitleShop','pageSubShop','gamesTitle','cs1','cs2','cs1sub','cs2sub','mlbbSub','mcggSub','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});document.getElementById('searchInput').placeholder=d.searchPlaceholder}
+function updateLanguage(){const d=LANG_DATA[currentLang];['appName','appSub','pageTitleShop','pageSubShop','gamesTitle','cs1','cs2','navHome','navShop','navPayment','navProfile'].forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.textContent=d[id]});document.getElementById('searchInput').placeholder=d.searchPlaceholder}
 function toggleNightMode(){document.body.classList.toggle('night-mode');const i=document.querySelector('.night-toggle i');i.className=document.body.classList.contains('night-mode')?'fas fa-sun':'fas fa-moon';localStorage.setItem('nightMode',document.body.classList.contains('night-mode')?'true':'false')}
 function updateBadge(){const n=JSON.parse(localStorage.getItem('notifications')||'[]');const c=n.filter(x=>x.status==='pending').length;const b=document.getElementById('notiBadge');if(b){b.style.display=c>0?'block':'none';if(c>0)b.textContent=c}}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.className='toast show';clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000)}
