@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>💎 Premium Game Shop</title>
+    <title>Premium Game Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -26,7 +26,6 @@
             --accent-secondary: #333333;
             --cyan: #00b4d8;
             --purple: #7c3aed;
-            --violet: #8b5cf6;
             --red: #dc2626;
             --green: #16a34a;
             --nav-dark: #1a1a1a;
@@ -69,11 +68,6 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
         @keyframes floatIcon {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-4px); }
@@ -91,21 +85,17 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
         }
 
-        /* ==================== Gradient Text Utility ==================== */
+        /* ==================== Gradient Text (Static, 2 colors) ==================== */
         .gradient-text {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            background-size: 200% 200%;
-            animation: gradientMove 3s ease-in-out infinite;
         }
 
-        .gradient-icon {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* ==================== Cyan Icon Utility ==================== */
+        .cyan-icon {
+            color: var(--cyan);
         }
 
         /* ==================== Header ==================== */
@@ -146,7 +136,6 @@
         .logo-premium {
             font-size: 1.1rem;
             font-weight: 800;
-            color: var(--text-primary);
             letter-spacing: -0.5px;
         }
 
@@ -285,10 +274,7 @@
         }
 
         .greeting i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--cyan);
             margin-right: 4px;
         }
 
@@ -301,12 +287,7 @@
         }
 
         .welcome h1 i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: gradientMove 3s ease-in-out infinite;
+            color: var(--cyan);
         }
 
         .welcome p {
@@ -406,10 +387,7 @@
         }
 
         .shop-card .icon i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--cyan);
         }
 
         .shop-card .label {
@@ -446,10 +424,7 @@
         }
 
         .section-title i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--cyan);
             font-size: 0.7rem;
         }
 
@@ -490,13 +465,7 @@
 
         .service-card .icon {
             font-size: 1.5rem;
-        }
-
-        .service-card .icon i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-secondary);
         }
 
         .service-card .label {
@@ -533,14 +502,8 @@
 
         .contact-card .icon {
             font-size: 1.3rem;
+            color: var(--text-secondary);
             flex-shrink: 0;
-        }
-
-        .contact-card .icon i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .contact-card .info {
@@ -794,14 +757,12 @@
         }
 
         .btn-primary.enabled {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
             color: #ffffff;
             border: none;
             cursor: pointer;
             opacity: 1;
             font-weight: 700;
-            background-size: 200% 200%;
-            animation: gradientMove 3s ease-in-out infinite;
         }
 
         .btn-primary.enabled:hover {
@@ -936,7 +897,7 @@
         <!-- ==================== Shop Card ==================== -->
         <a href="shop.html" class="shop-card" id="shopCard">
             <span class="icon"><i class="fas fa-store-alt"></i></span>
-            <div class="label gradient-text" id="goToShop">💎 GO TO SHOP</div>
+            <div class="label gradient-text" id="goToShop">GO TO SHOP</div>
             <div class="sub" id="shopSubText">Browse all packages</div>
         </a>
 
@@ -1096,7 +1057,7 @@
                 appName: 'Premium', appSub: 'Game Shop',
                 home: 'Home', shop: 'Shop', payment: 'Payment', profile: 'Profile',
                 greeting: 'Hey, Gamer!', subtitle: 'Top up diamonds and dominate the battlefield',
-                goToShop: '💎 GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                goToShop: 'GO TO SHOP', shopClosed: 'SHOP CLOSED',
                 shopSubText: 'Browse all packages',
                 servicesTitle: 'How We Work?',
                 s1: '10 mins delivery', s2: 'Fast • Easy • Trusted',
@@ -1144,7 +1105,7 @@
                 appName: 'Premium', appSub: 'Game Shop',
                 home: 'ပင်မ', shop: 'ဆိုင်', payment: 'ငွေပေးချေ', profile: 'ပရိုဖိုင်',
                 greeting: 'ဟေ့ကောင်လေး!', subtitle: 'စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ',
-                goToShop: '💎 GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                goToShop: 'GO TO SHOP', shopClosed: 'SHOP CLOSED',
                 shopSubText: 'ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ',
                 servicesTitle: 'ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?',
                 s1: '၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်',
