@@ -161,6 +161,7 @@
             text-shadow: none;
         }
         .game-item .info .name .line2 { font-size: 0.55rem; font-weight: 500; color: var(--text-muted); margin-top: -1px; text-shadow: var(--text-shadow); }
+        .game-item .info .name .line3 { font-size: 0.5rem; font-weight: 400; color: var(--text-muted); opacity: 0.7; margin-top: -1px; text-shadow: var(--text-shadow); }
         .game-item.hidden { display: none; }
         .bounce-click { animation: bounceClick 0.35s ease; }
 
@@ -180,10 +181,16 @@
             padding: 10px 16px; border-radius: var(--radius-pill); cursor: pointer;
             transition: var(--transition); color: var(--text-muted); font-size: 1.1rem;
             text-decoration: none; border: none; background: transparent; white-space: nowrap; min-width: 44px;
+            position: relative; z-index: 1;
         }
         .nav-item:hover:not(.active) { color: var(--text-secondary); background: var(--bg-card-hover); }
         .nav-item:active { transform: scale(0.94); }
-        .nav-item.active { background: var(--nav-dark); color: #ffffff; font-size: 0.85rem; padding: 10px 20px 10px 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+        .nav-item.active {
+            background: var(--nav-dark); color: #ffffff; font-size: 0.85rem;
+            padding: 10px 20px 10px 16px; font-weight: 600;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
         .nav-item.active i { font-size: 1rem; }
         .nav-label { display: none; font-weight: 600; letter-spacing: 0.3px; }
         .nav-item.active .nav-label { display: inline-block; }
@@ -250,7 +257,7 @@
                 <span class="glow"></span>
                 <img src="https://files.catbox.moe/8lxv1s.jpg" alt="MCGG" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <span class="game-img-placeholder" style="display:none;">♟️</span>
-                <div class="info"><div class="name"><span class="line1">Magic Chess</span><span class="line2">Go Go</span></div></div>
+                <div class="info"><div class="name"><span class="line1">Magic</span><span class="line2">Chess</span><span class="line3">Go Go</span></div></div>
             </div>
             <div class="game-item" data-name="coming soon">
                 <span class="glow"></span><span class="game-img-placeholder">🎮</span>
@@ -330,8 +337,8 @@
             document.getElementById('searchInput').addEventListener('input', function() { searchGames(this.value); });
             document.querySelectorAll('.game-item').forEach(item => {
                 item.addEventListener('click', function(e) {
-                    const lines = this.querySelectorAll('.line1,.line2');
-                    const gn = lines[0]?.textContent + ' ' + (lines[1]?.textContent || '');
+                    const lines = this.querySelectorAll('.line1,.line2,.line3');
+                    const gn = lines[0]?.textContent + ' ' + (lines[1]?.textContent || '') + ' ' + (lines[2]?.textContent || '');
                     const gi = this.dataset.name.includes('mlbb') ? 'mlbb' : this.dataset.name.includes('mcgg') ? 'mcgg' : null;
                     if (gi) selectGame(gn.trim(), gi, e);
                 });
