@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>⚡ Premium Game Shop</title>
+    <title>💎 Premium Game Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ==================== CSS Variables (Light Mode) ==================== */
+        /* ==================== CSS Variables ==================== */
         :root {
             --bg-primary: #f5f5f7;
             --bg-secondary: #ffffff;
@@ -24,7 +24,9 @@
             --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
             --accent: #1a1a1a;
             --accent-secondary: #333333;
-            --cyan: #0077b6;
+            --cyan: #00b4d8;
+            --purple: #7c3aed;
+            --violet: #8b5cf6;
             --red: #dc2626;
             --green: #16a34a;
             --nav-dark: #1a1a1a;
@@ -67,6 +69,15 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+        }
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.7); }
@@ -78,6 +89,23 @@
         @keyframes toastPop {
             from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.9); }
             to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+
+        /* ==================== Gradient Text Utility ==================== */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        .gradient-icon {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* ==================== Header ==================== */
@@ -136,7 +164,7 @@
             gap: 8px;
         }
 
-        /* ==================== Language Toggle (Same as icon-btn) ==================== */
+        /* ==================== Language Toggle ==================== */
         .lang-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -257,7 +285,10 @@
         }
 
         .greeting i {
-            color: var(--cyan);
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-right: 4px;
         }
 
@@ -269,8 +300,13 @@
             letter-spacing: -0.5px;
         }
 
-        .welcome h1 span {
-            color: var(--cyan);
+        .welcome h1 i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease-in-out infinite;
         }
 
         .welcome p {
@@ -337,7 +373,7 @@
             color: var(--text-muted);
         }
 
-        /* ==================== Shop Card (No hover lift) ==================== */
+        /* ==================== Shop Card ==================== */
         .shop-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -366,7 +402,14 @@
             font-size: 2.2rem;
             display: block;
             margin-bottom: 8px;
-            color: var(--text-primary);
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        .shop-card .icon i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .shop-card .label {
@@ -374,7 +417,6 @@
             font-size: 1.3rem;
             letter-spacing: -0.5px;
             text-transform: uppercase;
-            color: var(--text-primary);
         }
 
         .shop-card .sub {
@@ -404,11 +446,14 @@
         }
 
         .section-title i {
-            color: var(--cyan);
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 0.7rem;
         }
 
-        /* ==================== Services Grid (3 per row, no hover lift) ==================== */
+        /* ==================== Services Grid ==================== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -445,7 +490,13 @@
 
         .service-card .icon {
             font-size: 1.5rem;
-            color: var(--text-secondary);
+        }
+
+        .service-card .icon i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .service-card .label {
@@ -455,7 +506,7 @@
             line-height: 1.3;
         }
 
-        /* ==================== Contact Cards (No hover lift) ==================== */
+        /* ==================== Contact Cards ==================== */
         .contact-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -482,8 +533,14 @@
 
         .contact-card .icon {
             font-size: 1.3rem;
-            color: var(--text-secondary);
             flex-shrink: 0;
+        }
+
+        .contact-card .icon i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .contact-card .info {
@@ -713,7 +770,7 @@
 
         .form-group input:focus {
             border-color: var(--cyan);
-            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
         }
 
         .form-group input::placeholder {
@@ -737,16 +794,18 @@
         }
 
         .btn-primary.enabled {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
             color: #ffffff;
             border: none;
             cursor: pointer;
             opacity: 1;
             font-weight: 700;
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease-in-out infinite;
         }
 
         .btn-primary.enabled:hover {
-            background: var(--accent-secondary);
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
         }
 
         .btn-primary.enabled:active {
@@ -765,7 +824,7 @@
         }
 
         .switch-link:hover {
-            color: var(--text-primary);
+            color: var(--purple);
         }
 
         .forgot-link {
@@ -844,7 +903,7 @@
                 <div class="logo-wrap">
                     <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo" width="38" height="38">
                     <div class="logo-text-group">
-                        <span class="logo-premium" id="appName">Premium</span>
+                        <span class="logo-premium gradient-text" id="appName">Premium</span>
                         <span class="logo-sub" id="appSub">Game Shop</span>
                     </div>
                 </div>
@@ -862,7 +921,7 @@
         <!-- ==================== Welcome ==================== -->
         <section class="welcome">
             <p class="greeting"><i class="fas fa-fire"></i> <span id="greeting">Hey, Gamer!</span></p>
-            <h1><i class="fas fa-gamepad"></i> <span>Level Up Your Game!</span></h1>
+            <h1><i class="fas fa-gamepad"></i> <span class="gradient-text">Level Up Your Game!</span></h1>
             <p id="subtitle">Top up diamonds and dominate the battlefield</p>
         </section>
 
@@ -877,7 +936,7 @@
         <!-- ==================== Shop Card ==================== -->
         <a href="shop.html" class="shop-card" id="shopCard">
             <span class="icon"><i class="fas fa-store-alt"></i></span>
-            <div class="label" id="goToShop">⚡ GO TO SHOP</div>
+            <div class="label gradient-text" id="goToShop">💎 GO TO SHOP</div>
             <div class="sub" id="shopSubText">Browse all packages</div>
         </a>
 
@@ -1037,7 +1096,7 @@
                 appName: 'Premium', appSub: 'Game Shop',
                 home: 'Home', shop: 'Shop', payment: 'Payment', profile: 'Profile',
                 greeting: 'Hey, Gamer!', subtitle: 'Top up diamonds and dominate the battlefield',
-                goToShop: '⚡ GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                goToShop: '💎 GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
                 shopSubText: 'Browse all packages',
                 servicesTitle: 'How We Work?',
                 s1: '10 mins delivery', s2: 'Fast • Easy • Trusted',
@@ -1068,13 +1127,24 @@
                 accountNotFound: '❌ Account not found. Please try again.',
                 regUsernameLabel: 'Username', regEmailLabel: 'Email',
                 regPhoneLabel: 'Phone', regPassLabel: 'Password',
-                regConfirmLabel: 'Confirm Password'
+                regConfirmLabel: 'Confirm Password',
+                loginPlaceholder: 'Enter email, username or phone',
+                loginPassPlaceholder: 'Enter your password',
+                regUsernamePlaceholder: 'Choose a username',
+                regEmailPlaceholder: 'Enter email (optional)',
+                regPhonePlaceholder: 'Enter phone (optional)',
+                regPassPlaceholder: 'At least 4 characters',
+                regConfirmPlaceholder: 'Re-enter your password',
+                forgotIdentifyPlaceholder: 'Enter to search',
+                otpPlaceholder: '123456',
+                newPassPlaceholder: 'At least 4 characters',
+                confirmNewPassPlaceholder: 'Re-enter password'
             },
             my: {
                 appName: 'Premium', appSub: 'Game Shop',
                 home: 'ပင်မ', shop: 'ဆိုင်', payment: 'ငွေပေးချေ', profile: 'ပရိုဖိုင်',
                 greeting: 'ဟေ့ကောင်လေး!', subtitle: 'စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ',
-                goToShop: '⚡ GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                goToShop: '💎 GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
                 shopSubText: 'ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ',
                 servicesTitle: 'ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?',
                 s1: '၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်',
@@ -1111,7 +1181,18 @@
                 accountNotFound: '❌ အကောင့်မတွေ့ပါ။ ထပ်မံကြိုးစားပါ။',
                 regUsernameLabel: 'အသုံးပြုသူအမည်', regEmailLabel: 'အီးမေးလ်',
                 regPhoneLabel: 'ဖုန်းနံပါတ်', regPassLabel: 'စကားဝှက်',
-                regConfirmLabel: 'စကားဝှက်အတည်ပြုရန်'
+                regConfirmLabel: 'စကားဝှက်အတည်ပြုရန်',
+                loginPlaceholder: 'အီးမေးလ်၊ အသုံးပြုသူအမည် သို့မဟုတ် ဖုန်းနံပါတ်',
+                loginPassPlaceholder: 'စကားဝှက်ထည့်ပါ',
+                regUsernamePlaceholder: 'အသုံးပြုသူအမည်ရွေးပါ',
+                regEmailPlaceholder: 'အီးမေးလ်ထည့်ပါ (မထည့်လည်းရ)',
+                regPhonePlaceholder: 'ဖုန်းနံပါတ်ထည့်ပါ (မထည့်လည်းရ)',
+                regPassPlaceholder: 'အနည်းဆုံး ၄ လုံး',
+                regConfirmPlaceholder: 'စကားဝှက်ပြန်ထည့်ပါ',
+                forgotIdentifyPlaceholder: 'ရှာဖွေရန် ထည့်ပါ',
+                otpPlaceholder: '၁၂၃၄၅၆',
+                newPassPlaceholder: 'အနည်းဆုံး ၄ လုံး',
+                confirmNewPassPlaceholder: 'စကားဝှက်ပြန်ထည့်ပါ'
             }
         };
 
@@ -1185,9 +1266,25 @@
             document.getElementById('goToShop').textContent = isOpen ? d.goToShop : d.shopClosed;
             document.getElementById('shopSubText').textContent = isOpen ? d.shopSubText : d.shopClosedText;
 
+            updatePlaceholders();
             updateAuthModalTexts();
             updateAuthUI();
             updateBadge();
+        }
+
+        function updatePlaceholders() {
+            const d = LANG_DATA[currentLang];
+            document.getElementById('loginInput').placeholder = d.loginPlaceholder;
+            document.getElementById('loginPassword').placeholder = d.loginPassPlaceholder;
+            document.getElementById('regUsername').placeholder = d.regUsernamePlaceholder;
+            document.getElementById('regEmail').placeholder = d.regEmailPlaceholder;
+            document.getElementById('regPhone').placeholder = d.regPhonePlaceholder;
+            document.getElementById('regPassword').placeholder = d.regPassPlaceholder;
+            document.getElementById('regConfirmPassword').placeholder = d.regConfirmPlaceholder;
+            document.getElementById('forgotIdentify').placeholder = d.forgotIdentifyPlaceholder;
+            document.getElementById('otpInput').placeholder = d.otpPlaceholder;
+            document.getElementById('newPassword').placeholder = d.newPassPlaceholder;
+            document.getElementById('confirmNewPassword').placeholder = d.confirmNewPassPlaceholder;
         }
 
         function updateAuthUI() {
@@ -1209,6 +1306,7 @@
             document.getElementById('registerForm').style.display = mode === 'register' ? 'block' : 'none';
             const err = document.getElementById('loginError');
             if (err) { err.style.display = 'none'; err.textContent = ''; }
+            updatePlaceholders();
             updateAuthModalTexts();
             checkLoginForm();
             checkRegisterForm();
@@ -1344,6 +1442,7 @@
             document.getElementById('forgotStep3').style.display = 'none';
             const err = document.getElementById('forgotError');
             if (err) { err.style.display = 'none'; err.textContent = ''; }
+            updatePlaceholders();
             updateForgotModalTexts();
         }
 
@@ -1507,11 +1606,13 @@
             document.getElementById('switchToRegister').addEventListener('click', () => {
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('registerForm').style.display = 'block';
+                updatePlaceholders();
                 updateAuthModalTexts();
             });
             document.getElementById('switchToLogin').addEventListener('click', () => {
                 document.getElementById('loginForm').style.display = 'block';
                 document.getElementById('registerForm').style.display = 'none';
+                updatePlaceholders();
                 updateAuthModalTexts();
             });
 
