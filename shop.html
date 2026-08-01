@@ -48,7 +48,6 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes bounceClick { 0% { transform: scale(1); } 50% { transform: scale(0.92); } 100% { transform: scale(1); } }
-        @keyframes floatIcon { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-4px); } }
         @keyframes toastPop { from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.9); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
 
         .gradient-text {
@@ -102,27 +101,27 @@
         .auth-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--border-color-light); box-shadow: var(--shadow-sm); }
         .auth-btn:active { transform: scale(0.96); }
 
-        /* Welcome */
-        .welcome { margin-bottom: 18px; animation: slideUp 0.5s ease; }
-        .welcome h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; text-shadow: var(--text-shadow-strong); }
-        .welcome p { color: var(--text-secondary); font-size: 0.75rem; margin-top: 4px; text-shadow: var(--text-shadow); }
+        /* Page Header */
+        .page-header { margin-bottom: 18px; animation: slideUp 0.5s ease; }
+        .page-header h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; text-shadow: var(--text-shadow-strong); }
+        .page-header h1 i { color: var(--cyan); margin-right: 6px; }
+        .page-header p { color: var(--text-secondary); font-size: 0.75rem; margin-top: 4px; text-shadow: var(--text-shadow); }
 
         /* Search */
-        .search-wrap { position: relative; margin-bottom: 18px; }
-        .search-wrap input {
-            width: 100%; padding: 11px 42px 11px 38px; border-radius: 12px; border: 1px solid var(--border-color);
-            background: var(--bg-card); color: var(--text-primary); font-size: 0.72rem; outline: none;
+        .search-box {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius);
+            padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
             box-shadow: var(--shadow-sm); transition: var(--transition);
         }
-        .search-wrap input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,180,216,0.08), var(--shadow-md); }
-        .search-wrap .s-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.8rem; }
-        .search-wrap .clear-btn {
-            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-            background: var(--bg-input); border: none; width: 24px; height: 24px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0;
-            transition: var(--transition); color: var(--text-muted); font-size: 0.6rem;
+        .search-box:focus-within { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,180,216,0.08), var(--shadow-md); }
+        .search-box .search-icon { color: var(--text-muted); font-size: 0.85rem; }
+        .search-box input {
+            background: transparent; border: none; color: var(--text-primary); font-size: 0.8rem;
+            flex: 1; outline: none; padding: 4px 0;
         }
-        .search-wrap .clear-btn.show { opacity: 1; }
+        .search-box input::placeholder { color: var(--text-muted); font-size: 0.7rem; }
+        .clear-btn { color: var(--text-muted); font-size: 0.7rem; cursor: pointer; padding: 4px; display: none; transition: var(--transition); background: none; border: none; }
+        .clear-btn.show { display: block; }
 
         /* Section Title */
         .section-title {
@@ -133,21 +132,36 @@
         .section-title i { color: var(--cyan); font-size: 0.7rem; text-shadow: var(--text-shadow); }
 
         /* Game Grid */
-        .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .game-item {
             background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
-            padding: 22px 14px 16px; text-align: center; cursor: pointer; transition: var(--transition);
-            box-shadow: var(--shadow-sm); display: flex; flex-direction: column; align-items: center; gap: 8px;
+            padding: 14px; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm);
+            display: flex; align-items: center; gap: 12px; min-height: 72px; position: relative; overflow: hidden;
         }
         .game-item:hover { background: var(--bg-card-hover); border-color: var(--border-color-light); box-shadow: var(--shadow-md); }
         .game-item:active { transform: scale(0.96); }
-        .game-item.selected { background: var(--accent); border-color: var(--accent); box-shadow: var(--shadow-lg); }
-        .game-item.selected .line1, .game-item.selected .line2 { color: #ffffff; }
-        .game-item.selected .game-icon { color: #ffffff; text-shadow: 0 1px 3px rgba(255,255,255,0.3); }
+        .game-item .glow {
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,180,216,0.08), transparent 70%);
+            pointer-events: none; opacity: 0; transition: opacity 0.6s ease;
+        }
+        .game-item:active .glow { opacity: 1; }
+        .game-item .game-img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border-color); box-shadow: var(--shadow-xs); }
+        .game-item .game-img-placeholder {
+            font-size: 1.8rem; flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center;
+            justify-content: center; border-radius: 12px; border: 1px solid var(--border-color);
+            background: var(--bg-input); box-shadow: var(--shadow-xs);
+        }
+        .game-item .info { flex: 1; min-width: 0; }
+        .game-item .info .name { display: flex; flex-direction: column; line-height: 1.2; }
+        .game-item .info .name .line1 {
+            font-size: 0.8rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            text-shadow: none;
+        }
+        .game-item .info .name .line2 { font-size: 0.55rem; font-weight: 500; color: var(--text-muted); margin-top: -1px; text-shadow: var(--text-shadow); }
         .game-item.hidden { display: none; }
-        .game-icon { font-size: 2.5rem; color: var(--cyan); text-shadow: var(--text-shadow); }
-        .game-item .line1 { font-weight: 700; font-size: 0.75rem; color: var(--text-primary); text-shadow: var(--text-shadow); }
-        .game-item .line2 { font-size: 0.5rem; color: var(--text-muted); text-shadow: var(--text-shadow); }
         .bounce-click { animation: bounceClick 0.35s ease; }
 
         /* Footer */
@@ -186,7 +200,7 @@
 
         @media (max-width: 360px) {
             .game-grid { gap: 8px; }
-            .game-item { padding: 18px 10px 14px; }
+            .game-item { padding: 12px 10px; }
         }
         @media (min-width: 768px) {
             .container { max-width: 560px; }
@@ -213,28 +227,38 @@
             </div>
         </header>
 
-        <section class="welcome">
-            <h1 class="gradient-text" id="pageTitle">Shop</h1>
+        <div class="page-header">
+            <h1><i class="fas fa-store"></i> <span class="gradient-text" id="pageTitle">Shop</span></h1>
             <p id="pageSubShop">Choose a game and purchase packages</p>
-        </section>
+        </div>
 
-        <div class="search-wrap">
-            <span class="s-icon"><i class="fas fa-search"></i></span>
+        <div class="search-box">
+            <span class="search-icon"><i class="fas fa-search"></i></span>
             <input type="text" id="searchInput" placeholder="Search game name..." autocomplete="off">
-            <button class="clear-btn" id="clearBtn" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+            <button class="clear-btn" id="clearBtn" onclick="clearSearch()"><i class="fas fa-times-circle"></i></button>
         </div>
 
         <div class="section-title"><i class="fas fa-gamepad"></i> <span id="gamesTitle">Games</span></div>
         <div class="game-grid" id="gameGrid">
-            <div class="game-item" data-name="mobile legends mlbb">
-                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
-                <span class="line1">Mobile Legends</span>
-                <span class="line2">MLBB</span>
+            <div class="game-item" data-name="mobile legends bang bang mlbb">
+                <span class="glow"></span>
+                <img src="https://i.ibb.co/cKsDX2Nt/x.jpg" alt="MLBB" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <span class="game-img-placeholder" style="display:none;">⚔️</span>
+                <div class="info"><div class="name"><span class="line1">Mobile Legends</span><span class="line2">Bang Bang</span></div></div>
+            </div>
+            <div class="game-item" data-name="magic chess go go mcgg">
+                <span class="glow"></span>
+                <img src="https://files.catbox.moe/8lxv1s.jpg" alt="MCGG" class="game-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <span class="game-img-placeholder" style="display:none;">♟️</span>
+                <div class="info"><div class="name"><span class="line1">Magic Chess</span><span class="line2">Go Go</span></div></div>
             </div>
             <div class="game-item" data-name="coming soon">
-                <span class="game-icon"><i class="fas fa-clock"></i></span>
-                <span class="line1" id="cs1">Coming Soon</span>
-                <span class="line2" id="cs2">Coming Soon</span>
+                <span class="glow"></span><span class="game-img-placeholder">🎮</span>
+                <div class="info"><div class="name"><span class="line1" id="cs1">Coming Soon</span></div></div>
+            </div>
+            <div class="game-item" data-name="coming soon">
+                <span class="glow"></span><span class="game-img-placeholder">🎯</span>
+                <div class="info"><div class="name"><span class="line1" id="cs2">Coming Soon</span></div></div>
             </div>
         </div>
 
@@ -307,7 +331,7 @@
             document.querySelectorAll('.game-item').forEach(item => {
                 item.addEventListener('click', function(e) {
                     const lines = this.querySelectorAll('.line1,.line2');
-                    const gn = lines[0]?.textContent + ' ' + lines[1]?.textContent;
+                    const gn = lines[0]?.textContent + ' ' + (lines[1]?.textContent || '');
                     const gi = this.dataset.name.includes('mlbb') ? 'mlbb' : this.dataset.name.includes('mcgg') ? 'mcgg' : null;
                     if (gi) selectGame(gn.trim(), gi, e);
                 });
