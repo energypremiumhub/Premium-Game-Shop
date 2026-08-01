@@ -144,12 +144,8 @@
         }
         .game-item .info { flex: 1; min-width: 0; }
         .game-item .info .name { display: flex; flex-direction: column; line-height: 1.25; }
-        .game-item .info .name .line1 {
-            font-size: 0.75rem; font-weight: 700;
-        }
-        .game-item .info .name .line2 {
-            font-size: 0.75rem; font-weight: 700;
-        }
+        .game-item .info .name .line1 { font-size: 0.75rem; font-weight: 700; }
+        .game-item .info .name .line2 { font-size: 0.75rem; font-weight: 700; }
         .game-item .info .name .line3 { font-size: 0.5rem; font-weight: 400; color: var(--text-muted); opacity: 0.7; margin-top: 2px; text-shadow: var(--text-shadow); }
         .game-item.hidden { display: none; }
         .bounce-click { animation: bounceClick 0.35s ease; }
@@ -164,24 +160,34 @@
             border: 1px solid var(--border-color); border-radius: var(--radius-lg);
             display: flex; justify-content: space-around; align-items: center;
             padding: 5px 6px; z-index: 100; box-shadow: var(--shadow-xl);
+            position: relative;
         }
         .nav-item {
             display: flex; align-items: center; justify-content: center; gap: 8px;
             padding: 10px 16px; border-radius: var(--radius-pill); cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            color: var(--text-muted); font-size: 1.1rem;
+            transition: all 0.2s ease; color: var(--text-muted); font-size: 1.1rem;
             text-decoration: none; border: none; background: transparent; white-space: nowrap; min-width: 44px;
+            position: relative; z-index: 1;
         }
         .nav-item:hover:not(.active) { color: var(--text-secondary); background: var(--bg-card-hover); }
         .nav-item:active { transform: scale(0.94); }
-        .nav-item.active {
-            background: var(--nav-dark); color: #ffffff; font-size: 0.85rem;
-            padding: 10px 20px 10px 16px; font-weight: 600;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        }
+        .nav-item.active { color: #ffffff; font-size: 0.85rem; font-weight: 600; background: transparent; }
         .nav-item.active i { font-size: 1rem; }
         .nav-label { display: none; font-weight: 600; letter-spacing: 0.3px; }
         .nav-item.active .nav-label { display: inline-block; }
+
+        /* Sliding Pill Indicator */
+        .nav-indicator {
+            position: absolute;
+            height: 40px;
+            background: var(--nav-dark);
+            border-radius: var(--radius-pill);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
         /* Toast */
         .toast {
@@ -271,7 +277,8 @@
         <p class="footer-text">&copy; 2026 Premium Game Shop</p>
     </div>
 
-    <nav class="bottom-nav">
+    <nav class="bottom-nav" id="bottomNav">
+        <span class="nav-indicator" id="navIndicator"></span>
         <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span class="nav-label" id="navHome">Home</span></a>
         <a href="shop.html" class="nav-item active"><i class="fas fa-shopping-bag"></i><span class="nav-label" id="navShop">Shop</span></a>
         <a href="payment.html" class="nav-item"><i class="fas fa-credit-card"></i><span class="nav-label" id="navPayment">Payment</span></a>
@@ -284,7 +291,7 @@
         const LANG_DATA = {
             my: {
                 appName:'Premium',appSub:'Game Shop',home:'ပင်မ',shop:'ဆိုင်',payment:'ငွေပေးချေ',profile:'ပရိုဖိုင်',
-                pageTitle:'ဆိုင်',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',
+                pageTitle:'Shop',pageSubShop:'ဂိမ်းတစ်ခုရွေးပြီး ပက်ကေ့ခ်ျများကို ဝယ်ယူလိုက်ပါ',
                 gamesTitle:'ဂိမ်းများ',comingSoon:'Coming Soon',searchPlaceholder:'ဂိမ်းနာမည်ရှာပါ...',
                 selectGame:'ရွေးချယ်လိုက်ပါ',cs1:'Coming Soon',cs2:'Coming Soon'
             },
@@ -323,9 +330,24 @@
             setTimeout(() => { window.location.href = gi === 'mlbb' ? 'mlbb-packages.html' : 'mcgg-packages.html'; }, 500);
         }
 
+        // Sliding pill indicator
+        function moveIndicator() {
+            const active = document.querySelector('.nav-item.active');
+            const indicator = document.getElementById('navIndicator');
+            if (active && indicator) {
+                const navRect = document.getElementById('bottomNav').getBoundingClientRect();
+                const activeRect = active.getBoundingClientRect();
+                const left = activeRect.left - navRect.left;
+                const width = activeRect.width;
+                indicator.style.left = left + 'px';
+                indicator.style.width = width + 'px';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             currentLang = localStorage.getItem('lang') || 'en';
             updateLanguage(); updateBadge();
+            moveIndicator();
 
             document.getElementById('langToggle').addEventListener('click', toggleLang);
             document.getElementById('searchInput').addEventListener('input', function() { searchGames(this.value); });
@@ -337,6 +359,19 @@
                     if (gi) selectGame(gn.trim(), gi, e);
                 });
             });
+
+            // Move indicator on nav item click (for demo, actual page navigation will reload)
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Remove active from all, add to clicked
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    this.classList.add('active');
+                    moveIndicator();
+                    // The page will still navigate due to href, indicator move is visual feedback
+                });
+            });
+
+            window.addEventListener('resize', moveIndicator);
         });
     </script>
 </body>
