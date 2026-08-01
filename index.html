@@ -100,674 +100,212 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo-wrap img {
-            height: 38px;
-            width: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-        .logo-premium {
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .logo-sub {
-            font-size: 0.5rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .logo-wrap { display: flex; align-items: center; gap: 10px; }
+        .logo-wrap img { height: 38px; width: auto; border-radius: 8px; border: 1px solid var(--border-color); }
+        .logo-text-group { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-premium { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo-sub { font-size: 0.5rem; font-weight: 500; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+        .header-right { display: flex; align-items: center; gap: 8px; }
 
         /* Language Toggle */
         .lang-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.55rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            letter-spacing: 0.5px;
-            text-align: center;
-            padding: 0;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px;
+            width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 0.55rem; font-weight: 700; color: var(--text-secondary);
+            transition: var(--transition); letter-spacing: 0.5px; text-align: center; padding: 0;
+            user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; outline: none;
         }
-        .lang-toggle:focus {
-            outline: none;
-        }
-        .lang-toggle:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-            border-color: var(--border-color-light);
-        }
-        .lang-toggle:active {
-            transform: scale(0.94);
-            background: var(--bg-card-hover);
-        }
+        .lang-toggle:focus { outline: none; }
+        .lang-toggle:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--border-color-light); }
+        .lang-toggle:active { transform: scale(0.94); background: var(--bg-card-hover); }
 
         /* Icon Buttons */
         .icon-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            text-decoration: none;
-            position: relative;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px;
+            width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1rem; color: var(--text-secondary); transition: var(--transition);
+            text-decoration: none; position: relative;
         }
-        .icon-btn:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-            border-color: var(--border-color-light);
-        }
-        .icon-btn:active {
-            transform: scale(0.94);
-        }
+        .icon-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--border-color-light); }
+        .icon-btn:active { transform: scale(0.94); }
         .badge {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            background: var(--red);
-            color: #fff;
-            font-size: 0.45rem;
-            font-weight: 700;
-            min-width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 2px solid var(--bg-primary);
-            display: none;
-            padding: 0 4px;
+            position: absolute; top: -6px; right: -6px; background: var(--red); color: #fff;
+            font-size: 0.45rem; font-weight: 700; min-width: 18px; height: 18px; display: flex;
+            align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--bg-primary);
+            display: none; padding: 0 4px;
         }
 
         /* Auth Button */
         .auth-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.65rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            height: 36px;
-            width: fit-content;
-            transition: var(--transition);
-            white-space: nowrap;
+            background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary);
+            padding: 8px 16px; border-radius: 8px; font-size: 0.65rem; font-weight: 500; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 6px; height: 36px; width: fit-content;
+            transition: var(--transition); white-space: nowrap;
         }
-        .auth-btn:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-            border-color: var(--border-color-light);
-        }
-        .auth-btn:active {
-            transform: scale(0.96);
-        }
+        .auth-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--border-color-light); }
+        .auth-btn:active { transform: scale(0.96); }
 
         /* Welcome */
-        .welcome {
-            margin-bottom: 18px;
-            animation: slideUp 0.5s ease;
-        }
-        .greeting {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .greeting i {
-            color: var(--cyan);
-            margin-right: 4px;
-        }
-        .welcome h1 {
-            font-size: 1.5rem;
-            margin-top: 4px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .welcome h1 i {
-            color: var(--cyan);
-        }
-        .welcome p {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            margin-top: 4px;
-        }
+        .welcome { margin-bottom: 18px; animation: slideUp 0.5s ease; }
+        .greeting { font-size: 0.65rem; color: var(--text-muted); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .greeting i { color: var(--cyan); margin-right: 4px; }
+        .welcome h1 { font-size: 1.5rem; margin-top: 4px; font-weight: 800; letter-spacing: -0.5px; }
+        .welcome h1 i { color: var(--cyan); }
+        .welcome p { color: var(--text-secondary); font-size: 0.75rem; margin-top: 4px; }
 
         /* Status Banner */
         .status-banner {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 16px 20px;
-            margin-bottom: 16px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 16px 20px; margin-bottom: 16px; text-align: center; box-shadow: var(--shadow-sm);
         }
         .status-badge {
-            display: inline-block;
-            font-size: 0.9rem;
-            font-weight: 700;
-            padding: 6px 20px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
+            display: inline-block; font-size: 0.9rem; font-weight: 700; padding: 6px 20px;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px;
         }
-        .status-badge.open {
-            background: rgba(22, 163, 74, 0.1);
-            color: var(--green);
-            border: 1px solid rgba(22, 163, 74, 0.2);
-        }
-        .status-badge.closed {
-            background: rgba(220, 38, 38, 0.1);
-            color: var(--red);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-        }
-        .status-dot {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        .status-badge.open .status-dot {
-            background: var(--green);
-            animation: pulseDot 1.5s ease-in-out infinite;
-        }
-        .status-badge.closed .status-dot {
-            background: var(--red);
-            animation: pulseDotRed 1.5s ease-in-out infinite;
-        }
-        .status-text {
-            font-size: 0.55rem;
-            color: var(--text-muted);
-        }
+        .status-badge.open { background: rgba(22, 163, 74, 0.1); color: var(--green); border: 1px solid rgba(22, 163, 74, 0.2); }
+        .status-badge.closed { background: rgba(220, 38, 38, 0.1); color: var(--red); border: 1px solid rgba(220, 38, 38, 0.2); }
+        .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; }
+        .status-badge.open .status-dot { background: var(--green); animation: pulseDot 1.5s ease-in-out infinite; }
+        .status-badge.closed .status-dot { background: var(--red); animation: pulseDotRed 1.5s ease-in-out infinite; }
+        .status-text { font-size: 0.55rem; color: var(--text-muted); }
 
         /* Shop Card */
         .shop-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 24px 16px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-bottom: 20px;
-            text-decoration: none;
-            display: block;
-            box-shadow: var(--shadow-sm);
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 24px 16px; text-align: center; cursor: pointer; transition: var(--transition);
+            margin-bottom: 20px; text-decoration: none; display: block; box-shadow: var(--shadow-sm);
         }
-        .shop-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-color-light);
-            box-shadow: var(--shadow-md);
-        }
-        .shop-card:active {
-            transform: scale(0.97);
-        }
-        .shop-card .icon {
-            font-size: 2.2rem;
-            display: block;
-            margin-bottom: 8px;
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-        .shop-card .icon i {
-            color: var(--cyan);
-        }
-        .shop-card .label {
-            font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
-        .shop-card .sub {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
+        .shop-card:hover { background: var(--bg-card-hover); border-color: var(--border-color-light); box-shadow: var(--shadow-md); }
+        .shop-card:active { transform: scale(0.97); }
+        .shop-card .icon { font-size: 2.2rem; display: block; margin-bottom: 8px; animation: floatIcon 3s ease-in-out infinite; }
+        .shop-card .icon i { color: var(--cyan); }
+        .shop-card .label { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px; text-transform: uppercase; }
+        .shop-card .sub { font-size: 0.6rem; color: var(--text-muted); margin-top: 4px; }
 
         /* Section Title */
         .section-title {
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 0.6rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
         }
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-        }
-        .section-title i {
-            color: var(--cyan);
-            font-size: 0.7rem;
-        }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
+        .section-title i { color: var(--cyan); font-size: 0.7rem; }
 
         /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
         .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 16px 8px 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 90px;
-            box-shadow: var(--shadow-sm);
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius);
+            padding: 16px 8px 12px; text-align: center; cursor: pointer; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px; min-height: 90px; box-shadow: var(--shadow-sm);
         }
-        .service-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-color-light);
-            box-shadow: var(--shadow-md);
-        }
-        .service-card:active {
-            transform: scale(0.96);
-        }
-        .service-card.selected {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-md);
-        }
-        .service-card.selected .icon {
-            color: #ffffff;
-        }
-        .service-card.selected .label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .service-card .icon {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            transition: var(--transition);
-        }
-        .service-card .label {
-            font-size: 0.5rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            line-height: 1.3;
-            transition: var(--transition);
-        }
+        .service-card:hover { background: var(--bg-card-hover); border-color: var(--border-color-light); box-shadow: var(--shadow-md); }
+        .service-card:active { transform: scale(0.96); }
+        .service-card.selected { background: var(--accent); border-color: var(--accent); box-shadow: var(--shadow-md); }
+        .service-card.selected .icon { color: #ffffff; }
+        .service-card.selected .label { color: rgba(255, 255, 255, 0.8); }
+        .service-card .icon { font-size: 1.5rem; color: var(--text-secondary); transition: var(--transition); }
+        .service-card .label { font-size: 0.5rem; color: var(--text-muted); font-weight: 500; line-height: 1.3; transition: var(--transition); }
 
         /* Contact Cards */
         .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius);
+            padding: 14px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+            cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm);
         }
-        .contact-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-color-light);
-            box-shadow: var(--shadow-md);
-        }
-        .contact-card:active {
-            transform: scale(0.98);
-        }
-        .contact-card .icon {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            flex-shrink: 0;
-        }
-        .contact-card .info {
-            flex: 1;
-        }
-        .contact-card .info .title {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .contact-card .info .desc {
-            font-size: 0.5rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-        .contact-card .arrow {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-        .contact-card:hover .arrow {
-            color: var(--text-primary);
-            transform: translateX(2px);
-        }
+        .contact-card:hover { background: var(--bg-card-hover); border-color: var(--border-color-light); box-shadow: var(--shadow-md); }
+        .contact-card:active { transform: scale(0.98); }
+        .contact-card .icon { font-size: 1.3rem; color: var(--text-secondary); flex-shrink: 0; }
+        .contact-card .info { flex: 1; }
+        .contact-card .info .title { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); }
+        .contact-card .info .desc { font-size: 0.5rem; color: var(--text-muted); margin-top: 2px; }
+        .contact-card .arrow { color: var(--text-muted); font-size: 0.85rem; transition: var(--transition); }
+        .contact-card:hover .arrow { color: var(--text-primary); transform: translateX(2px); }
 
         /* Footer */
-        .footer-text {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.45rem;
-            margin-top: 12px;
-            opacity: 0.6;
-        }
+        .footer-text { text-align: center; color: var(--text-muted); font-size: 0.45rem; margin-top: 12px; opacity: 0.6; }
 
         /* Bottom Nav */
         .bottom-nav {
-            position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            max-width: 440px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 5px 6px;
-            z-index: 100;
-            box-shadow: var(--shadow-lg);
+            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 32px); max-width: 440px; background: var(--bg-card);
+            border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 5px 6px; z-index: 100; box-shadow: var(--shadow-lg);
         }
         .nav-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 16px;
-            border-radius: var(--radius-pill);
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            text-decoration: none;
-            border: none;
-            background: transparent;
-            white-space: nowrap;
-            min-width: 44px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 16px; border-radius: var(--radius-pill); cursor: pointer;
+            transition: var(--transition); color: var(--text-muted); font-size: 1.1rem;
+            text-decoration: none; border: none; background: transparent; white-space: nowrap; min-width: 44px;
         }
-        .nav-item:hover:not(.active) {
-            color: var(--text-secondary);
-            background: var(--bg-card-hover);
-        }
-        .nav-item:active {
-            transform: scale(0.94);
-        }
+        .nav-item:hover:not(.active) { color: var(--text-secondary); background: var(--bg-card-hover); }
+        .nav-item:active { transform: scale(0.94); }
         .nav-item.active {
-            background: var(--nav-dark);
-            color: #ffffff;
-            font-size: 0.85rem;
-            padding: 10px 20px 10px 16px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            background: var(--nav-dark); color: #ffffff; font-size: 0.85rem;
+            padding: 10px 20px 10px 16px; font-weight: 600; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
-        .nav-item.active i {
-            font-size: 1rem;
-        }
-        .nav-label {
-            display: none;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-        .nav-item.active .nav-label {
-            display: inline-block;
-        }
+        .nav-item.active i { font-size: 1rem; }
+        .nav-label { display: none; font-weight: 600; letter-spacing: 0.3px; }
+        .nav-item.active .nav-label { display: inline-block; }
 
         /* Toast */
         .toast {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-card);
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.75rem;
-            display: none;
-            z-index: 200;
-            text-align: center;
-            max-width: 90%;
-            box-shadow: var(--shadow-lg);
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+            background: var(--bg-card); padding: 12px 24px; border-radius: 12px;
+            border: 1px solid var(--border-color); color: var(--text-primary); font-weight: 500;
+            font-size: 0.75rem; display: none; z-index: 200; text-align: center;
+            max-width: 90%; box-shadow: var(--shadow-lg);
         }
-        .toast.show {
-            display: block;
-            animation: toastPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+        .toast.show { display: block; animation: toastPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
         /* Modal */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            display: none;
-            z-index: 300;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            display: none; z-index: 300; align-items: center; justify-content: center; padding: 20px;
         }
-        .modal-overlay.show {
-            display: flex;
-            animation: fadeIn 0.2s ease;
-        }
+        .modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
         .modal-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color-light);
-            border-radius: var(--radius-lg);
-            padding: 28px 24px 24px;
-            max-width: 380px;
-            width: 100%;
-            position: relative;
-            box-shadow: var(--shadow-lg);
+            background: var(--bg-secondary); border: 1px solid var(--border-color-light);
+            border-radius: var(--radius-lg); padding: 28px 24px 24px; max-width: 380px;
+            width: 100%; position: relative; box-shadow: var(--shadow-lg);
         }
         .modal-box .close-btn {
-            position: absolute;
-            top: 14px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1rem;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
+            position: absolute; top: 14px; right: 16px; background: none; border: none;
+            color: var(--text-muted); font-size: 1rem; cursor: pointer; width: 30px; height: 30px;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition);
         }
-        .modal-box .close-btn:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-        }
-        .modal-box h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            margin-bottom: 4px;
-        }
-        .modal-box .sub {
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group label {
-            display: block;
-            color: var(--text-secondary);
-            font-size: 0.55rem;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
+        .modal-box .close-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .modal-box h2 { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 4px; }
+        .modal-box .sub { color: var(--text-muted); font-size: 0.65rem; text-align: center; margin-bottom: 20px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; color: var(--text-secondary); font-size: 0.55rem; font-weight: 500; margin-bottom: 4px; }
         .form-group input {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-input);
-            color: var(--text-primary);
-            font-size: 0.75rem;
-            outline: none;
-            transition: var(--transition);
+            width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--bg-input); color: var(--text-primary); font-size: 0.75rem; outline: none; transition: var(--transition);
         }
-        .form-group input:focus {
-            border-color: var(--cyan);
-            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
-        }
-        .form-group input::placeholder {
-            color: var(--text-muted);
-            font-size: 0.65rem;
-        }
+        .form-group input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1); }
+        .form-group input::placeholder { color: var(--text-muted); font-size: 0.65rem; }
         .btn-primary {
-            width: 100%;
-            padding: 11px;
-            background: var(--bg-input);
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: not-allowed;
-            margin-top: 4px;
-            opacity: 0.5;
-            transition: var(--transition);
+            width: 100%; padding: 11px; background: var(--bg-input); color: var(--text-muted);
+            border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.8rem;
+            font-weight: 600; cursor: not-allowed; margin-top: 4px; opacity: 0.5; transition: var(--transition);
         }
         .btn-primary.enabled {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            opacity: 1;
-            font-weight: 700;
+            background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #ffffff;
+            border: none; cursor: pointer; opacity: 1; font-weight: 700;
         }
-        .btn-primary.enabled:hover {
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
-        }
-        .btn-primary.enabled:active {
-            transform: scale(0.97);
-        }
-        .switch-link {
-            color: var(--cyan);
-            cursor: pointer;
-            font-weight: 500;
-            text-align: center;
-            display: block;
-            margin-top: 14px;
-            font-size: 0.65rem;
-            transition: var(--transition);
-        }
-        .switch-link:hover {
-            color: var(--purple);
-        }
-        .forgot-link {
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.5rem;
-            text-align: right;
-            display: block;
-            margin-top: 2px;
-            margin-bottom: 6px;
-            transition: var(--transition);
-        }
-        .forgot-link:hover {
-            color: var(--cyan);
-        }
-        .error-msg {
-            color: var(--red);
-            font-size: 0.55rem;
-            text-align: center;
-            margin-bottom: 8px;
-            display: none;
-            padding: 6px 10px;
-            background: rgba(220, 38, 38, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(220, 38, 38, 0.15);
-        }
-        .error-msg.show {
-            display: block;
-        }
-        .success-msg {
-            color: var(--green);
-            font-size: 0.55rem;
-            text-align: center;
-            margin-bottom: 8px;
-            display: none;
-            padding: 6px 10px;
-            background: rgba(22, 163, 74, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(22, 163, 74, 0.15);
-        }
-        .success-msg.show {
-            display: block;
-        }
+        .btn-primary.enabled:hover { box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3); }
+        .btn-primary.enabled:active { transform: scale(0.97); }
+        .switch-link { color: var(--cyan); cursor: pointer; font-weight: 500; text-align: center; display: block; margin-top: 14px; font-size: 0.65rem; transition: var(--transition); }
+        .switch-link:hover { color: var(--purple); }
+        .forgot-link { color: var(--text-muted); cursor: pointer; font-size: 0.5rem; text-align: right; display: block; margin-top: 2px; margin-bottom: 6px; transition: var(--transition); }
+        .forgot-link:hover { color: var(--cyan); }
+        .error-msg { color: var(--red); font-size: 0.55rem; text-align: center; margin-bottom: 8px; display: none; padding: 6px 10px; background: rgba(220, 38, 38, 0.05); border-radius: 8px; border: 1px solid rgba(220, 38, 38, 0.15); }
+        .error-msg.show { display: block; }
+        .success-msg { color: var(--green); font-size: 0.55rem; text-align: center; margin-bottom: 8px; display: none; padding: 6px 10px; background: rgba(22, 163, 74, 0.05); border-radius: 8px; border: 1px solid rgba(22, 163, 74, 0.15); }
+        .success-msg.show { display: block; }
 
         @media (max-width: 360px) {
             .services-grid { gap: 6px; }
@@ -796,10 +334,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <a href="notifications.html" class="icon-btn noti-btn" id="notiBtn">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge" id="notiBadge">0</span>
-                </a>
+                <a href="notifications.html" class="icon-btn noti-btn" id="notiBtn"><i class="fas fa-bell"></i><span class="badge" id="notiBadge">0</span></a>
                 <button class="lang-toggle" id="langToggle">MM</button>
                 <button class="auth-btn" id="authBtn"><i class="fas fa-key"></i> Login</button>
             </div>
@@ -834,19 +369,12 @@
 
         <div class="contact-card" onclick="window.open('https://t.me/Premium_GameShop','_blank')">
             <span class="icon"><i class="fab fa-telegram-plane"></i></span>
-            <div class="info">
-                <div class="title" id="telegramTitle">📢 Join Our Telegram Channel</div>
-                <div class="desc" id="telegramDesc">Events & News</div>
-            </div>
+            <div class="info"><div class="title" id="telegramTitle">📢 Join Our Telegram Channel</div><div class="desc" id="telegramDesc">Events & News</div></div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
         </div>
-
         <div class="contact-card" onclick="window.open('https://t.me/OfficialPremiumEnergy','_blank')">
             <span class="icon"><i class="fas fa-headset"></i></span>
-            <div class="info">
-                <div class="title" id="contactLabel">💬 Need Help?</div>
-                <div class="desc" id="contactUsername">Contact for support</div>
-            </div>
+            <div class="info"><div class="title" id="contactLabel">💬 Need Help?</div><div class="desc" id="contactUsername">Contact for support</div></div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
         </div>
 
@@ -862,11 +390,11 @@
 
     <div class="toast" id="toast"></div>
 
+    <!-- Auth Modal -->
     <div class="modal-overlay" id="authModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
-            <h2 id="modalTitle">Login</h2>
-            <p class="sub" id="modalSub">Welcome back!</p>
+            <h2 id="modalTitle">Login</h2><p class="sub" id="modalSub">Welcome back!</p>
             <div class="error-msg" id="loginError"></div>
             <div id="loginForm">
                 <div class="form-group"><label id="emailLabel">Email / Username / Phone</label><input type="text" id="loginInput" placeholder="Enter email, username or phone"></div>
@@ -887,13 +415,12 @@
         </div>
     </div>
 
+    <!-- Forgot Password Modal -->
     <div class="modal-overlay" id="forgotPasswordModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeForgotPasswordModal()"><i class="fas fa-times"></i></button>
-            <h2 id="forgotTitle">Forgot Password?</h2>
-            <p class="sub" id="forgotSub">Fill in your details below</p>
-            <div class="error-msg" id="forgotError"></div>
-            <div class="success-msg" id="forgotSuccess"></div>
+            <h2 id="forgotTitle">Forgot Password?</h2><p class="sub" id="forgotSub">Fill in your details below</p>
+            <div class="error-msg" id="forgotError"></div><div class="success-msg" id="forgotSuccess"></div>
             <div id="forgotStep1">
                 <div class="form-group"><label id="forgotIdentifyLabel">Username / Email / Phone</label><input type="text" id="forgotIdentify" placeholder="Enter to search"></div>
                 <button class="btn-primary enabled" id="forgotFindBtn" onclick="findAccount()">🔍 Find Account</button>
@@ -913,11 +440,11 @@
         </div>
     </div>
 
+    <!-- New Password Modal -->
     <div class="modal-overlay" id="newPasswordModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeNewPasswordModal()"><i class="fas fa-times"></i></button>
-            <h2 id="newPassTitle">Set New Password</h2>
-            <p class="sub" id="newPassSub">Enter your new password below</p>
+            <h2 id="newPassTitle">Set New Password</h2><p class="sub" id="newPassSub">Enter your new password below</p>
             <div class="error-msg" id="newPassError"></div>
             <div class="form-group"><label id="newPassLabel">New Password</label><input type="password" id="newPassword" placeholder="At least 4 characters"></div>
             <div class="form-group"><label id="confirmNewPassLabel">Confirm New Password</label><input type="password" id="confirmNewPassword" placeholder="Re-enter password"></div>
@@ -1081,7 +608,21 @@
         function closeNewPasswordModal(){document.getElementById('newPasswordModal').classList.remove('show')}
         function updateNewPassModalTexts(){const d=LANG_DATA[currentLang];document.getElementById('newPassTitle').textContent=d.newPassTitle;document.getElementById('newPassSub').textContent=d.newPassSub;document.getElementById('newPassLabel').textContent=d.newPassLabel;document.getElementById('confirmNewPassLabel').textContent=d.confirmNewPassLabel;document.getElementById('resetPasswordBtn').textContent=d.resetPasswordBtn}
         function resetPassword(){const np=document.getElementById('newPassword').value.trim(),cp=document.getElementById('confirmNewPassword').value.trim();const err=document.getElementById('newPassError'),d=LANG_DATA[currentLang];if(!np||!cp){err.textContent='❌ Please fill all fields';err.style.display='block';return}if(np!==cp){err.textContent='Passwords do not match';err.style.display='block';return}const users=JSON.parse(localStorage.getItem('users')||'{}');users[fpUser.username].password=np;localStorage.setItem('users',JSON.stringify(users));closeNewPasswordModal();showToast(d.forgotPasswordSuccess);setTimeout(()=>{openAuthModal('login')},1500)}
-        function initServiceCards(){const cards=document.querySelectorAll('.service-card');cards.forEach(card=>{card.addEventListener('click',function(){cards.forEach(c=>c.classList.remove('selected'));this.classList.add('selected')})})}
+
+        // ==================== Services Select/Deselect ====================
+        function initServiceCards() {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                    } else {
+                        cards.forEach(c => c.classList.remove('selected'));
+                        this.classList.add('selected');
+                    }
+                });
+            });
+        }
 
         document.addEventListener('DOMContentLoaded',()=>{
             currentLang=localStorage.getItem('lang')||'en';
