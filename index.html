@@ -4,172 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Game Shop</title>
-    <!-- Google Fonts နှင့် Icons များ ထည့်သွင်းခြင်း -->
+    <!-- Fonts နှင့် Icons များ -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* အခြေခံ အရောင်များ သတ်မှတ်ခြင်း (Dark Gaming Theme) */
-        :root {
-            --primary: #f5c518; /* Premium အဝါရောင်/ရွှေရောင် */
-            --bg-dark: #0f1014;
-            --card-bg: #1e1f26;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
-        }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); padding-bottom: 75px; }
+        body { background-color: #f8f9fa; color: #333; padding-bottom: 75px; }
         a { text-decoration: none; color: inherit; }
         
-        /* ခေါင်းစီးပိုင်း (Header) */
-        .header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 20px; 
-            background: rgba(30, 31, 38, 0.85); 
-            backdrop-filter: blur(10px); 
-            position: sticky; top: 0; z-index: 100; 
-            border-bottom: 1px solid #333; 
-        }
-        .logo-sec { display: flex; align-items: center; gap: 12px; }
-        .logo-sec img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary); padding: 2px; }
-        .logo-text { font-weight: 700; font-size: 1.1rem; line-height: 1.2; letter-spacing: 0.5px; }
-        .logo-text span { display: block; color: var(--primary); font-size: 0.8rem; letter-spacing: 1px; }
-        
-        /* ပင်မ ဆွဲဆောင်သည့် အပိုင်း (Hero Section) */
-        .hero { 
-            padding: 50px 20px; 
-            text-align: center; 
-            background: linear-gradient(180deg, rgba(245,197,24,0.08) 0%, var(--bg-dark) 100%); 
-        }
-        .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; line-height: 1.5; }
-        
-        /* ခလုတ် ဒီဇိုင်း (Button) */
-        .btn-primary { 
-            background: var(--primary); color: #000; 
-            padding: 14px 30px; border-radius: 30px; 
-            font-weight: 700; font-size: 1rem;
-            display: inline-flex; align-items: center; gap: 10px; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 20px rgba(245, 197, 24, 0.3); 
-        }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(245, 197, 24, 0.5); }
-        .btn-primary:active { transform: scale(0.95); }
-        
-        /* ဝန်ဆောင်မှု အချက်အလက်များ (Features Grid) */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
-        .info-card { 
-            background: var(--card-bg); padding: 20px 15px; 
-            border-radius: 16px; text-align: center; 
-            border: 1px solid #2a2b36; 
-            transition: transform 0.3s ease;
-        }
-        .info-card:active { transform: scale(0.97); border-color: var(--primary); }
-        .info-card i { color: var(--primary); font-size: 1.8rem; margin-bottom: 12px; }
-        .info-card h4 { font-size: 0.95rem; margin-bottom: 6px; font-weight: 600; }
-        .info-card p { font-size: 0.8rem; color: var(--text-muted); }
+        .container { padding: 15px; max-width: 100%; overflow-x: hidden; }
 
-        /* ဆက်သွယ်ရန် နှင့် ဖွင့်ချိန်ပိတ်ချိန် (Banner) */
-        .banner {
-            margin: 20px; padding: 15px;
-            background: rgba(245, 197, 24, 0.1);
-            border: 1px solid rgba(245, 197, 24, 0.3);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .banner-text h4 { color: var(--primary); font-size: 0.95rem; margin-bottom: 4px;}
-        .banner-text p { font-size: 0.8rem; color: var(--text-muted); }
+        /* Header ပိုင်း */
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .logo-box { display: flex; align-items: center; gap: 10px; }
+        .logo-box img { width: 50px; height: 50px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .logo-text { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+        .logo-text span { display: block; }
+        .logo-text span:first-child { color: #d4af37; font-size: 0.85rem; }
         
-        /* အောက်ခြေ မီနူး (Bottom Navigation) */
-        .bottom-nav { 
-            position: fixed; bottom: 0; left: 0; width: 100%; 
-            background: rgba(30, 31, 38, 0.95); backdrop-filter: blur(10px);
-            display: flex; justify-content: space-around; 
-            padding: 15px 0; border-top: 1px solid #333; z-index: 100; 
-        }
-        .nav-item { 
-            display: flex; flex-direction: column; align-items: center; gap: 5px; 
-            font-size: 0.75rem; font-weight: 600; color: var(--text-muted); 
-            transition: color 0.3s; 
-        }
-        .nav-item i { font-size: 1.3rem; }
-        .nav-item.active { color: var(--primary); }
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .login-btn { font-size: 0.9rem; font-weight: 600; color: #555; }
+        .noti-btn { position: relative; font-size: 1.2rem; color: #555; }
+        .noti-badge { position: absolute; top: -5px; right: -8px; background: red; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
+
+        /* နှုတ်ခွန်းဆက် စာသား */
+        .welcome-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; }
+        .welcome-text { color: #d4af37; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .welcome-section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 5px; color: #222; }
+        .welcome-section p { font-size: 0.9rem; color: #666; }
+
+        /* ဆိုင်ဖွင့်ချိန် */
+        .status-box { display: flex; align-items: center; justify-content: space-between; background: #e8f5e9; padding: 12px 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #c8e6c9; }
+        .status-open { font-weight: 700; color: #2e7d32; display: flex; align-items: center; gap: 5px; }
+        .status-open span { display: inline-block; width: 8px; height: 8px; background: #2e7d32; border-radius: 50%; animation: blink 1.5s infinite; }
+        .status-time { font-size: 0.8rem; color: #555; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        /* ဆိုင်သွားရန် ခလုတ် */
+        .shop-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #222; color: white; padding: 18px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.2s ease; }
+        .shop-btn:active { transform: scale(0.97); }
+        .shop-btn .title { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .shop-btn .subtitle { font-size: 0.8rem; color: #aaa; }
+
+        /* လုပ်ဆောင်ပုံ အချက်အလက်များ */
+        .info-section { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; }
+        .info-title { font-weight: 600; margin-bottom: 15px; color: #333; display: flex; align-items: center; gap: 8px; }
+        .info-list { display: flex; flex-direction: column; gap: 12px; }
+        .info-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #555; }
+        .info-item i { color: #d4af37; font-size: 1rem; width: 20px; text-align: center; }
+
+        /* ဆက်သွယ်ရန် လင့်ခ်များ */
+        .contact-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+        .contact-card { display: flex; align-items: center; justify-content: space-between; background: white; padding: 12px 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .contact-card .left { display: flex; align-items: center; gap: 12px; }
+        .contact-card .icon { font-size: 1.5rem; color: #0088cc; }
+        .contact-card .text h4 { font-size: 0.9rem; color: #333; margin-bottom: 2px; }
+        .contact-card .text p { font-size: 0.75rem; color: #777; }
+        
+        .footer-text { text-align: center; font-size: 0.8rem; color: #aaa; margin-bottom: 20px; }
+
+        /* Bottom Navigation */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; color: #888; }
+        .nav-item i { font-size: 1.2rem; }
+        .nav-item.active { color: #d4af37; }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header class="header">
-        <div class="logo-sec">
-            <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Logo">
-            <div class="logo-text">Premium <span>GAME SHOP</span></div>
+<div class="container">
+    
+    <!-- ခေါင်းစီးပိုင်း -->
+    <div class="header-top">
+        <div class="logo-box">
+            <img alt="Premium Game Shop Logo" src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg">
+            <div class="logo-text">
+                <span>Premium</span>
+                <span>Game Shop</span>
+            </div>
         </div>
-        <a href="profile.html" style="color: var(--primary); font-size: 1.4rem;">
-            <i class="fa-solid fa-circle-user"></i>
-        </a>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Level Up <br><span>Your Game</span></h1>
-        <p>မြန်ဆန်၊ ယုံကြည်စိတ်ချရပြီး အတန်ဆုံးဈေးနှုန်းများဖြင့် ဂိမ်းငွေကြေးများကို ယခုပဲ ဝယ်ယူလိုက်ပါ။</p>
-        <a href="shop.html" class="btn-primary">
-            <i class="fa-solid fa-bolt"></i> ဆိုင်သို့သွားမည်
-        </a>
-    </section>
-
-    <!-- Info Banner -->
-    <div class="banner">
-        <div class="banner-text">
-            <h4><i class="fa-solid fa-clock"></i> ဆိုင်ဖွင့်ချိန်</h4>
-            <p>မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ</p>
-        </div>
-        <a href="https://t.me/PremEnergy" style="color: #0088cc; font-size: 2rem;">
-            <i class="fa-brands fa-telegram"></i>
-        </a>
-    </div>
-
-    <!-- Features Grid -->
-    <div class="info-grid">
-        <div class="info-card">
-            <i class="fa-solid fa-bolt-lightning"></i>
-            <h4>လျင်မြန်မှု</h4>
-            <p>၁၀ မိနစ်အတွင်း ရရှိမည်</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-shield-check"></i>
-            <h4>ယုံကြည်ရသော</h4>
-            <p>လုံခြုံမှု ၁၀၀% အာမခံသည်</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-tags"></i>
-            <h4>အသက်သာဆုံး</h4>
-            <p>အထူးပရိုမိုးရှင်းများ</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-headset"></i>
-            <h4>Customer Service</h4>
-            <p>အမြဲတမ်း ကူညီပေးမည်</p>
+        <div class="header-actions">
+            <div class="login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</div>
+            <a href="notifications.html" class="noti-btn">
+                <i class="fa-regular fa-bell"></i>
+                <span class="noti-badge">0</span>
+            </a>
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active">
-            <i class="fa-solid fa-house"></i><span>ပင်မ</span>
+    <!-- ကြိုဆိုသည့် နေရာ (စာသားပြင်ထားသည်) -->
+    <div class="welcome-section">
+        <div class="welcome-text"><i class="fa-solid fa-hand-wave"></i> <span>မင်္ဂလာပါ Gamer!</span></div>
+        <h2><i class="fa-solid fa-gamepad"></i> Level Up Your Game!</h2>
+        <p>စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ</p>
+    </div>
+
+    <!-- ဆိုင်ဖွင့်ချိန် -->
+    <div class="status-box">
+        <div class="status-open"><span></span> OPEN</div>
+        <div class="status-time">မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည်</div>
+    </div>
+
+    <!-- ဆိုင်သွားရန် ခလုတ် -->
+    <a href="shop.html" class="shop-btn">
+        <div class="title"><i class="fa-solid fa-bolt"></i> GO TO SHOP</div>
+        <div class="subtitle">ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ</div>
+    </a>
+
+    <!-- အလုပ်လုပ်ပုံ -->
+    <div class="info-section">
+        <div class="info-title"><i class="fa-solid fa-circle-info"></i> ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?</div>
+        <div class="info-list">
+            <div class="info-item"><i class="fa-solid fa-clock-rotate-left"></i> ၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်</div>
+            <div class="info-item"><i class="fa-solid fa-check-double"></i> လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ</div>
+            <div class="info-item"><i class="fa-solid fa-hand-holding-dollar"></i> အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service</div>
+            <div class="info-item"><i class="fa-solid fa-calendar-day"></i> မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ</div>
+            <div class="info-item"><i class="fa-solid fa-mobile-screen"></i> Mobile Legends</div>
+            <div class="info-item"><i class="fa-solid fa-spinner"></i> Coming Soon</div>
+        </div>
+    </div>
+
+    <!-- ဆက်သွယ်ရန် -->
+    <div class="contact-links">
+        <a href="https://t.me/PremEnergy" class="contact-card">
+            <div class="left">
+                <i class="fa-brands fa-telegram icon"></i>
+                <div class="text">
+                    <h4>Telegram ချန်နယ်</h4>
+                    <p>သတင်းများနှင့် အကူအညီ</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="color: #ccc;"></i>
         </a>
-        <a href="shop.html" class="nav-item">
-            <i class="fa-solid fa-store"></i><span>ဆိုင်</span>
+        
+        <a href="https://t.me/PremEnergy" class="contact-card">
+            <div class="left">
+                <i class="fa-solid fa-headset icon" style="color: #d4af37;"></i>
+                <div class="text">
+                    <h4>အကူအညီလိုပါသလား?</h4>
+                    <p>@PremEnergy</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="color: #ccc;"></i>
         </a>
-        <a href="payment.html" class="nav-item">
-            <i class="fa-solid fa-wallet"></i><span>ငွေပေးချေ</span>
-        </a>
-        <a href="profile.html" class="nav-item">
-            <i class="fa-solid fa-user"></i><span>ပရိုဖိုင်</span>
-        </a>
-    </nav>
+    </div>
+
+    <!-- အောက်ခြေ စာသား -->
+    <div class="footer-text">© 2026 Premium Game Shop</div>
+
+</div>
+
+<!-- အောက်ခြေ မီနူး -->
+<div class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>ပင်မ</span>
+    </a>
+    <a href="shop.html" class="nav-item">
+        <i class="fa-solid fa-store"></i>
+        <span>ဆိုင်</span>
+    </a>
+    <a href="payment.html" class="nav-item">
+        <i class="fa-solid fa-wallet"></i>
+        <span>ငွေပေးချေ</span>
+    </a>
+    <a href="profile.html" class="nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>ပရိုဖိုင်</span>
+    </a>
+</div>
 
 </body>
 </html>
