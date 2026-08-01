@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,27 +7,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ==================== CSS Variables (Monochrome Dark) ==================== */
+        /* ==================== CSS Variables (Light Mode) ==================== */
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #141414;
-            --bg-card: #1a1a1a;
-            --bg-card-hover: #222222;
-            --bg-input: #1e1e1e;
-            --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --text-muted: #666666;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-color-light: rgba(255, 255, 255, 0.12);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
-            --accent: #ffffff;
-            --accent-secondary: #cccccc;
-            --cyan: #00b4d8;
-            --red: #ff4444;
-            --green: #00c853;
-            --nav-dark: #ffffff;
+            --bg-primary: #f5f5f7;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f9f9fb;
+            --bg-input: #f5f5f7;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-color-light: rgba(0, 0, 0, 0.12);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --accent: #1a1a1a;
+            --accent-secondary: #333333;
+            --cyan: #0077b6;
+            --red: #dc2626;
+            --green: #16a34a;
+            --nav-dark: #1a1a1a;
             --radius: 12px;
             --radius-lg: 16px;
             --radius-pill: 30px;
@@ -69,11 +69,11 @@
         }
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.6); }
+            50% { opacity: 0.4; transform: scale(0.7); }
         }
         @keyframes pulseDotRed {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(0.5); }
+            50% { opacity: 0.3; transform: scale(0.6); }
         }
         @keyframes toastPop {
             from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.9); }
@@ -125,7 +125,7 @@
         .logo-sub {
             font-size: 0.5rem;
             font-weight: 500;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -136,39 +136,34 @@
             gap: 8px;
         }
 
-        /* ==================== Language Switcher ==================== */
-        .lang-switcher {
-            display: flex;
-            gap: 2px;
+        /* ==================== Language Toggle Button ==================== */
+        .lang-toggle {
             background: var(--bg-card);
-            padding: 3px;
-            border-radius: 8px;
             border: 1px solid var(--border-color);
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
             color: var(--text-secondary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: var(--transition);
-            letter-spacing: 0.5px;
-        }
-
-        .lang-btn:hover {
-            color: var(--text-primary);
-            background: var(--bg-card-hover);
-        }
-
-        .lang-btn.active {
-            background: var(--accent);
-            color: #000000;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.55rem;
             font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            min-width: 38px;
+            text-align: center;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-toggle:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-color-light);
+            color: var(--text-primary);
+        }
+
+        .lang-toggle:active {
+            transform: scale(0.94);
         }
 
         /* ==================== Icon Buttons ==================== */
@@ -254,7 +249,7 @@
 
         .greeting {
             font-size: 0.65rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -292,6 +287,7 @@
             margin-bottom: 16px;
             text-align: center;
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         .status-badge {
@@ -306,15 +302,15 @@
         }
 
         .status-badge.open {
-            background: rgba(0, 200, 83, 0.1);
+            background: rgba(22, 163, 74, 0.1);
             color: var(--green);
-            border: 1px solid rgba(0, 200, 83, 0.2);
+            border: 1px solid rgba(22, 163, 74, 0.2);
         }
 
         .status-badge.closed {
-            background: rgba(255, 68, 68, 0.1);
+            background: rgba(220, 38, 38, 0.1);
             color: var(--red);
-            border: 1px solid rgba(255, 68, 68, 0.2);
+            border: 1px solid rgba(220, 38, 38, 0.2);
         }
 
         .status-dot {
@@ -352,12 +348,14 @@
             margin-bottom: 20px;
             text-decoration: none;
             display: block;
+            box-shadow: var(--shadow-sm);
         }
 
         .shop-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-color-light);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .shop-card:active {
@@ -410,7 +408,7 @@
             font-size: 0.7rem;
         }
 
-        /* ==================== Services Grid ==================== */
+        /* ==================== Services Grid (3 per row) ==================== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -432,12 +430,14 @@
             justify-content: center;
             gap: 6px;
             min-height: 90px;
+            box-shadow: var(--shadow-sm);
         }
 
         .service-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-color-light);
             transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         .service-card:active {
@@ -468,11 +468,13 @@
             margin-bottom: 8px;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         .contact-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-color-light);
+            box-shadow: var(--shadow-md);
         }
 
         .contact-card:active {
@@ -518,7 +520,7 @@
             color: var(--text-muted);
             font-size: 0.45rem;
             margin-top: 12px;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         /* ==================== Bottom Navigation ==================== */
@@ -537,6 +539,7 @@
             align-items: center;
             padding: 5px 6px;
             z-index: 100;
+            box-shadow: var(--shadow-lg);
         }
 
         .nav-item {
@@ -567,11 +570,12 @@
         }
 
         .nav-item.active {
-            background: var(--accent);
-            color: #000000;
+            background: var(--nav-dark);
+            color: #ffffff;
             font-size: 0.85rem;
             padding: 10px 20px 10px 16px;
             font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
         .nav-item.active i {
@@ -605,6 +609,7 @@
             z-index: 200;
             text-align: center;
             max-width: 90%;
+            box-shadow: var(--shadow-lg);
         }
 
         .toast.show {
@@ -619,7 +624,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             display: none;
@@ -642,6 +647,7 @@
             max-width: 380px;
             width: 100%;
             position: relative;
+            box-shadow: var(--shadow-lg);
         }
 
         .modal-box .close-btn {
@@ -708,7 +714,7 @@
 
         .form-group input:focus {
             border-color: var(--cyan);
-            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
         }
 
         .form-group input::placeholder {
@@ -733,7 +739,7 @@
 
         .btn-primary.enabled {
             background: var(--accent);
-            color: #000000;
+            color: #ffffff;
             border: none;
             cursor: pointer;
             opacity: 1;
@@ -785,9 +791,9 @@
             margin-bottom: 8px;
             display: none;
             padding: 6px 10px;
-            background: rgba(255, 68, 68, 0.08);
+            background: rgba(220, 38, 38, 0.05);
             border-radius: 8px;
-            border: 1px solid rgba(255, 68, 68, 0.15);
+            border: 1px solid rgba(220, 38, 38, 0.15);
         }
 
         .error-msg.show {
@@ -797,8 +803,15 @@
         /* ==================== Responsive ==================== */
         @media (max-width: 360px) {
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 6px;
+            }
+            .service-card {
+                padding: 12px 6px 10px;
+                min-height: 80px;
+            }
+            .service-card .label {
+                font-size: 0.45rem;
             }
             .nav-item {
                 padding: 8px 10px;
@@ -839,10 +852,7 @@
                 <button class="auth-btn" id="authBtn"><i class="fas fa-key"></i> Login</button>
             </div>
             <div class="header-right">
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="my">မြန်မာ</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
+                <button class="lang-toggle" id="langToggle" aria-label="Toggle language">MM</button>
                 <a href="notifications.html" class="icon-btn noti-btn" id="notiBtn" aria-label="Notifications">
                     <i class="fas fa-bell"></i>
                     <span class="badge" id="notiBadge">0</span>
@@ -852,9 +862,9 @@
 
         <!-- ==================== Welcome ==================== -->
         <section class="welcome">
-            <p class="greeting"><i class="fas fa-fire"></i> <span id="greeting">ဟေ့ကောင်လေး!</span></p>
+            <p class="greeting"><i class="fas fa-fire"></i> <span id="greeting">Hey, Gamer!</span></p>
             <h1><i class="fas fa-gamepad"></i> <span>Level Up Your Game!</span></h1>
-            <p id="subtitle">စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ</p>
+            <p id="subtitle">Top up diamonds and dominate the battlefield</p>
         </section>
 
         <!-- ==================== Shop Status ==================== -->
@@ -862,23 +872,23 @@
             <div class="status-badge open" id="statusBadge">
                 <span class="status-dot"></span> OPEN
             </div>
-            <p class="status-text" id="statusText">မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည်</p>
+            <p class="status-text" id="statusText">Open from 9:30 AM to 9:30 PM (Myanmar Time)</p>
         </div>
 
         <!-- ==================== Shop Card ==================== -->
         <a href="shop.html" class="shop-card" id="shopCard">
             <span class="icon"><i class="fas fa-store-alt"></i></span>
             <div class="label" id="goToShop">⚡ GO TO SHOP</div>
-            <div class="sub" id="shopSubText">ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ</div>
+            <div class="sub" id="shopSubText">Browse all packages</div>
         </a>
 
         <!-- ==================== Services ==================== -->
-        <div class="section-title"><i class="fas fa-bolt"></i> <span id="servicesTitle">ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?</span></div>
+        <div class="section-title"><i class="fas fa-bolt"></i> <span id="servicesTitle">How We Work?</span></div>
         <div class="services-grid">
-            <div class="service-card"><span class="icon"><i class="fas fa-bolt"></i></span><span class="label" id="s1">၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-rocket"></i></span><span class="label" id="s2">လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-gem"></i></span><span class="label" id="s3">အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-clock"></i></span><span class="label" id="s4">မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-bolt"></i></span><span class="label" id="s1">10 mins delivery</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-rocket"></i></span><span class="label" id="s2">Fast • Easy • Trusted</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-gem"></i></span><span class="label" id="s3">Best Price & Best Service</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-clock"></i></span><span class="label" id="s4">9:30 AM - 9:30 PM</span></div>
             <div class="service-card"><span class="icon"><i class="fas fa-gamepad"></i></span><span class="label" id="s5">Mobile Legends</span></div>
             <div class="service-card"><span class="icon"><i class="fas fa-star"></i></span><span class="label" id="s6">Coming Soon</span></div>
         </div>
@@ -887,8 +897,8 @@
         <div class="contact-card" onclick="window.open('https://t.me/Premium_GameShop','_blank')">
             <span class="icon"><i class="fab fa-telegram-plane"></i></span>
             <div class="info">
-                <div class="title" id="telegramTitle">📢 Telegram ချန်နယ်</div>
-                <div class="desc" id="telegramDesc">သတင်းများနှင့် အကူအညီ</div>
+                <div class="title" id="telegramTitle">📢 Join Our Telegram Channel</div>
+                <div class="desc" id="telegramDesc">Get latest updates, promos and support</div>
             </div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
         </div>
@@ -896,7 +906,7 @@
         <div class="contact-card" onclick="window.open('https://t.me/PremEnergy','_blank')">
             <span class="icon"><i class="fas fa-headset"></i></span>
             <div class="info">
-                <div class="title" id="contactLabel">အကူအညီလိုပါသလား?</div>
+                <div class="title" id="contactLabel">💬 Need Help?</div>
                 <div class="desc" id="contactUsername">@PremEnergy</div>
             </div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -910,19 +920,19 @@
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active">
             <i class="fas fa-home"></i>
-            <span class="nav-label" id="navHome">ပင်မ</span>
+            <span class="nav-label" id="navHome">Home</span>
         </a>
         <a href="shop.html" class="nav-item">
             <i class="fas fa-shopping-bag"></i>
-            <span class="nav-label" id="navShop">ဆိုင်</span>
+            <span class="nav-label" id="navShop">Shop</span>
         </a>
         <a href="payment.html" class="nav-item">
             <i class="fas fa-credit-card"></i>
-            <span class="nav-label" id="navPayment">ငွေပေးချေ</span>
+            <span class="nav-label" id="navPayment">Payment</span>
         </a>
         <a href="profile.html" class="nav-item">
             <i class="fas fa-user"></i>
-            <span class="nav-label" id="navProfile">ပရိုဖိုင်</span>
+            <span class="nav-label" id="navProfile">Profile</span>
         </a>
     </nav>
 
@@ -933,45 +943,45 @@
     <div class="modal-overlay" id="authModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
-            <h2 id="modalTitle">ဝင်ရန်</h2>
-            <p class="sub" id="modalSub">ပြန်လည်ကြိုဆိုပါတယ်!</p>
+            <h2 id="modalTitle">Login</h2>
+            <p class="sub" id="modalSub">Welcome back!</p>
             <div class="error-msg" id="loginError"></div>
             <div id="loginForm">
                 <div class="form-group">
-                    <label id="emailLabel">အီးမေးလ် / အသုံးပြုသူအမည် / ဖုန်းနံပါတ်</label>
-                    <input type="text" id="loginInput" placeholder="အီးမေးလ်၊ အသုံးပြုသူအမည် သို့မဟုတ် ဖုန်းနံပါတ်">
+                    <label id="emailLabel">Email / Username / Phone</label>
+                    <input type="text" id="loginInput" placeholder="Enter email, username or phone">
                 </div>
                 <div class="form-group">
-                    <label id="passLabel">စကားဝှက်</label>
-                    <input type="password" id="loginPassword" placeholder="စကားဝှက်ထည့်ပါ">
+                    <label id="passLabel">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password">
                 </div>
-                <span class="forgot-link" id="forgotLink" onclick="openForgotPasswordModal()">စကားဝှက်မေ့နေပါသလား?</span>
-                <button class="btn-primary" id="loginBtn">ဝင်ရန်</button>
-                <span class="switch-link" id="switchToRegister">အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်ရန်</span>
+                <span class="forgot-link" id="forgotLink" onclick="openForgotPasswordModal()">Forgot Password?</span>
+                <button class="btn-primary" id="loginBtn">Login</button>
+                <span class="switch-link" id="switchToRegister">Don't have an account? Register</span>
             </div>
             <div id="registerForm" style="display:none;">
                 <div class="form-group">
-                    <label id="regUsernameLabel">အသုံးပြုသူအမည် <span style="color:var(--red);">*</span></label>
-                    <input type="text" id="regUsername" placeholder="အသုံးပြုသူအမည်ရွေးပါ">
+                    <label id="regUsernameLabel">Username <span style="color:var(--red);">*</span></label>
+                    <input type="text" id="regUsername" placeholder="Choose a username">
                 </div>
                 <div class="form-group">
-                    <label id="regEmailLabel">အီးမေးလ်</label>
-                    <input type="email" id="regEmail" placeholder="အီးမေးလ်ထည့်ပါ (မထည့်လည်းရ)">
+                    <label id="regEmailLabel">Email</label>
+                    <input type="email" id="regEmail" placeholder="Enter email (optional)">
                 </div>
                 <div class="form-group">
-                    <label id="regPhoneLabel">ဖုန်းနံပါတ်</label>
-                    <input type="tel" id="regPhone" placeholder="ဖုန်းနံပါတ်ထည့်ပါ (မထည့်လည်းရ)">
+                    <label id="regPhoneLabel">Phone</label>
+                    <input type="tel" id="regPhone" placeholder="Enter phone (optional)">
                 </div>
                 <div class="form-group">
-                    <label id="regPassLabel">စကားဝှက် <span style="color:var(--red);">*</span></label>
-                    <input type="password" id="regPassword" placeholder="အနည်းဆုံး ၄ လုံး">
+                    <label id="regPassLabel">Password <span style="color:var(--red);">*</span></label>
+                    <input type="password" id="regPassword" placeholder="At least 4 characters">
                 </div>
                 <div class="form-group">
-                    <label id="regConfirmLabel">စကားဝှက်အတည်ပြုရန် <span style="color:var(--red);">*</span></label>
-                    <input type="password" id="regConfirmPassword" placeholder="စကားဝှက်ပြန်ထည့်ပါ">
+                    <label id="regConfirmLabel">Confirm Password <span style="color:var(--red);">*</span></label>
+                    <input type="password" id="regConfirmPassword" placeholder="Re-enter your password">
                 </div>
-                <button class="btn-primary" id="registerBtn">မှတ်ပုံတင်ရန်</button>
-                <span class="switch-link" id="switchToLogin">အကောင့်ရှိပြီးသား? ဝင်ရန်</span>
+                <button class="btn-primary" id="registerBtn">Register</button>
+                <span class="switch-link" id="switchToLogin">Already have an account? Login</span>
             </div>
         </div>
     </div>
@@ -980,39 +990,39 @@
     <div class="modal-overlay" id="forgotPasswordModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeForgotPasswordModal()"><i class="fas fa-times"></i></button>
-            <h2 id="forgotTitle">စကားဝှက်မေ့နေပါသလား?</h2>
-            <p class="sub" id="forgotSub">အောက်ပါအချက်အလက်များ ဖြည့်ပါ</p>
+            <h2 id="forgotTitle">Forgot Password?</h2>
+            <p class="sub" id="forgotSub">Fill in your details below</p>
             <div class="error-msg" id="forgotError"></div>
             <div id="forgotStep1">
                 <div class="form-group">
-                    <label id="forgotIdentifyLabel">အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်</label>
-                    <input type="text" id="forgotIdentify" placeholder="ရှာဖွေရန် ထည့်ပါ">
+                    <label id="forgotIdentifyLabel">Username / Email / Phone</label>
+                    <input type="text" id="forgotIdentify" placeholder="Enter to search">
                 </div>
-                <button class="btn-primary enabled" id="forgotFindBtn" onclick="findAccount()">🔍 အကောင့်ရှာမည်</button>
-                <span class="switch-link" onclick="closeForgotPasswordModal();openAuthModal('login');">← လော့အင်ဝင်ရန် ပြန်သွားမည်</span>
+                <button class="btn-primary enabled" id="forgotFindBtn" onclick="findAccount()">🔍 Find Account</button>
+                <span class="switch-link" onclick="closeForgotPasswordModal();openAuthModal('login');">← Back to Login</span>
             </div>
             <div id="forgotStep2" style="display:none;">
                 <div class="form-group" id="otpSentMsg" style="text-align:center;color:var(--cyan);font-size:0.65rem;margin-bottom:8px;"></div>
                 <div class="form-group">
-                    <label id="otpLabel">OTP ကုဒ် (၆ လုံး)</label>
+                    <label id="otpLabel">OTP Code (6 digits)</label>
                     <div style="display:flex;gap:8px;">
                         <input type="text" id="otpInput" placeholder="123456" inputmode="numeric" maxlength="6" style="flex:1;">
-                        <button class="btn-primary enabled" id="resendOtpBtn" onclick="resendOTP()" style="width:auto;padding:10px 12px;font-size:0.55rem;">📩 ပြန်ပို့မည်</button>
+                        <button class="btn-primary enabled" id="resendOtpBtn" onclick="resendOTP()" style="width:auto;padding:10px 12px;font-size:0.55rem;">📩 Resend</button>
                     </div>
                     <div id="otpTimer" style="font-size:0.5rem;color:var(--text-muted);margin-top:4px;"></div>
                 </div>
-                <button class="btn-primary enabled" id="verifyOtpBtn" onclick="verifyOTP()">✅ အတည်ပြုမည်</button>
+                <button class="btn-primary enabled" id="verifyOtpBtn" onclick="verifyOTP()">✅ Verify</button>
             </div>
             <div id="forgotStep3" style="display:none;">
                 <div class="form-group">
-                    <label id="newPassLabel">စကားဝှက်အသစ်</label>
-                    <input type="password" id="newPassword" placeholder="အနည်းဆုံး ၄ လုံး">
+                    <label id="newPassLabel">New Password</label>
+                    <input type="password" id="newPassword" placeholder="At least 4 characters">
                 </div>
                 <div class="form-group">
-                    <label id="confirmNewPassLabel">စကားဝှက်အတည်ပြုရန်</label>
-                    <input type="password" id="confirmNewPassword" placeholder="စကားဝှက်ပြန်ထည့်ပါ">
+                    <label id="confirmNewPassLabel">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword" placeholder="Re-enter password">
                 </div>
-                <button class="btn-primary enabled" id="resetPasswordBtn" onclick="resetPassword()">🔑 စကားဝှက်ပြောင်းမည်</button>
+                <button class="btn-primary enabled" id="resetPasswordBtn" onclick="resetPassword()">🔑 Reset Password</button>
             </div>
         </div>
     </div>
@@ -1024,44 +1034,6 @@
 
         // ==================== Language Data ====================
         const LANG_DATA = {
-            my: {
-                appName: 'Premium', appSub: 'Game Shop',
-                home: 'ပင်မ', shop: 'ဆိုင်', payment: 'ငွေပေးချေ', profile: 'ပရိုဖိုင်',
-                greeting: 'ဟေ့ကောင်လေး!', subtitle: 'စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ',
-                goToShop: '⚡ GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
-                shopSubText: 'ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ',
-                servicesTitle: 'ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?',
-                s1: '၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်',
-                s2: 'လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ',
-                s3: 'အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service',
-                s4: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ',
-                s5: 'Mobile Legends', s6: 'Coming Soon',
-                telegramTitle: '📢 Telegram ချန်နယ်', telegramDesc: 'သတင်းများနှင့် အကူအညီ',
-                contactLabel: 'အကူအညီလိုပါသလား?', contactUsername: '@PremEnergy',
-                shopOpen: 'OPEN', shopClosedStatus: 'CLOSED',
-                shopOpenText: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည် (မြန်မာစံတော်ချိန်)',
-                shopClosedText: 'မနက် ၉:၃၀ မှသာ ဆိုင်ဖွင့်ပါမည် (မြန်မာစံတော်ချိန်)',
-                modalLogin: 'ဝင်ရန်', modalRegister: 'မှတ်ပုံတင်ရန်',
-                modalLoginSub: 'ပြန်လည်ကြိုဆိုပါတယ်!', modalRegisterSub: 'အကောင့်ဖွင့်ပါ!',
-                email: 'အီးမေးလ် / အသုံးပြုသူအမည် / ဖုန်းနံပါတ်',
-                password: 'စကားဝှက်', forgotPassword: 'စကားဝှက်မေ့နေပါသလား?',
-                switchLogin: 'အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်ရန်',
-                switchRegister: 'အကောင့်ရှိပြီးသား? ဝင်ရန်',
-                login: 'ဝင်ရန်', register: 'မှတ်ပုံတင်ရန်',
-                loginSuccess: '✅ ကြိုဆိုပါတယ်!', registerSuccess: '✅ အကောင့်ဖွင့်ခြင်းအောင်မြင်ပါပြီ!',
-                invalidCredentials: '❌ အချက်အလက်များ မှားယွင်းနေပါသည်',
-                forgotTitle: 'စကားဝှက်မေ့နေပါသလား?',
-                forgotSub: 'အောက်ပါအချက်အလက်များ ဖြည့်ပါ',
-                forgotIdentifyLabel: 'အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်',
-                forgotFindBtn: '🔍 အကောင့်ရှာမည်',
-                forgotBackToLogin: '← လော့အင်ဝင်ရန် ပြန်သွားမည်',
-                otpLabel: 'OTP ကုဒ် (၆ လုံး)', resendOtpBtn: '📩 ပြန်ပို့မည်',
-                verifyOtpBtn: '✅ အတည်ပြုမည်',
-                newPassLabel: 'စကားဝှက်အသစ်', confirmNewPassLabel: 'စကားဝှက်အတည်ပြုရန်',
-                resetPasswordBtn: '🔑 စကားဝှက်ပြောင်းမည်',
-                forgotPasswordSuccess: '✅ စကားဝှက် အောင်မြင်စွာပြောင်းပြီးပါပြီ။',
-                accountNotFound: '❌ အကောင့်မတွေ့ပါ။ ထပ်မံကြိုးစားပါ။'
-            },
             en: {
                 appName: 'Premium', appSub: 'Game Shop',
                 home: 'Home', shop: 'Shop', payment: 'Payment', profile: 'Profile',
@@ -1080,11 +1052,11 @@
                 shopClosedText: 'Will open at 9:30 AM (Myanmar Time)',
                 modalLogin: 'Login', modalRegister: 'Register',
                 modalLoginSub: 'Welcome back!', modalRegisterSub: 'Create your account!',
-                email: 'Email / Username / Phone', password: 'Password',
-                forgotPassword: 'Forgot Password?',
-                switchLogin: "Don't have an account? Register",
-                switchRegister: 'Already have an account? Login',
-                login: 'Login', register: 'Register',
+                emailLabel: 'Email / Username / Phone', passLabel: 'Password',
+                forgotLink: 'Forgot Password?',
+                switchToRegister: "Don't have an account? Register",
+                switchToLogin: 'Already have an account? Login',
+                loginBtn: 'Login', registerBtn: 'Register',
                 loginSuccess: '✅ Welcome back!', registerSuccess: '✅ Account created!',
                 invalidCredentials: '❌ Invalid credentials',
                 forgotTitle: 'Forgot Password?', forgotSub: 'Fill in your details below',
@@ -1094,12 +1066,58 @@
                 verifyOtpBtn: '✅ Verify', newPassLabel: 'New Password',
                 confirmNewPassLabel: 'Confirm New Password', resetPasswordBtn: '🔑 Reset Password',
                 forgotPasswordSuccess: '✅ Password reset successful!',
-                accountNotFound: '❌ Account not found. Please try again.'
+                accountNotFound: '❌ Account not found. Please try again.',
+                regUsernameLabel: 'Username', regEmailLabel: 'Email',
+                regPhoneLabel: 'Phone', regPassLabel: 'Password',
+                regConfirmLabel: 'Confirm Password'
+            },
+            my: {
+                appName: 'Premium', appSub: 'Game Shop',
+                home: 'ပင်မ', shop: 'ဆိုင်', payment: 'ငွေပေးချေ', profile: 'ပရိုဖိုင်',
+                greeting: 'ဟေ့ကောင်လေး!', subtitle: 'စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ',
+                goToShop: '⚡ GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                shopSubText: 'ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ',
+                servicesTitle: 'ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?',
+                s1: '၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်',
+                s2: 'လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ',
+                s3: 'အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service',
+                s4: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ',
+                s5: 'Mobile Legends', s6: 'Coming Soon',
+                telegramTitle: '📢 Telegram ချန်နယ်',
+                telegramDesc: 'သတင်းများနှင့် အကူအညီ',
+                contactLabel: 'အကူအညီလိုပါသလား?', contactUsername: '@PremEnergy',
+                shopOpen: 'OPEN', shopClosedStatus: 'CLOSED',
+                shopOpenText: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည် (မြန်မာစံတော်ချိန်)',
+                shopClosedText: 'မနက် ၉:၃၀ မှသာ ဆိုင်ဖွင့်ပါမည် (မြန်မာစံတော်ချိန်)',
+                modalLogin: 'ဝင်ရန်', modalRegister: 'မှတ်ပုံတင်ရန်',
+                modalLoginSub: 'ပြန်လည်ကြိုဆိုပါတယ်!', modalRegisterSub: 'အကောင့်ဖွင့်ပါ!',
+                emailLabel: 'အီးမေးလ် / အသုံးပြုသူအမည် / ဖုန်းနံပါတ်',
+                passLabel: 'စကားဝှက်',
+                forgotLink: 'စကားဝှက်မေ့နေပါသလား?',
+                switchToRegister: 'အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်ရန်',
+                switchToLogin: 'အကောင့်ရှိပြီးသား? ဝင်ရန်',
+                loginBtn: 'ဝင်ရန်', registerBtn: 'မှတ်ပုံတင်ရန်',
+                loginSuccess: '✅ ကြိုဆိုပါတယ်!', registerSuccess: '✅ အကောင့်ဖွင့်ခြင်းအောင်မြင်ပါပြီ!',
+                invalidCredentials: '❌ အချက်အလက်များ မှားယွင်းနေပါသည်',
+                forgotTitle: 'စကားဝှက်မေ့နေပါသလား?',
+                forgotSub: 'အောက်ပါအချက်အလက်များ ဖြည့်ပါ',
+                forgotIdentifyLabel: 'အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်',
+                forgotFindBtn: '🔍 အကောင့်ရှာမည်',
+                forgotBackToLogin: '← လော့အင်ဝင်ရန် ပြန်သွားမည်',
+                otpLabel: 'OTP ကုဒ် (၆ လုံး)', resendOtpBtn: '📩 ပြန်ပို့မည်',
+                verifyOtpBtn: '✅ အတည်ပြုမည်',
+                newPassLabel: 'စကားဝှက်အသစ်', confirmNewPassLabel: 'စကားဝှက်အတည်ပြုရန်',
+                resetPasswordBtn: '🔑 စကားဝှက်ပြောင်းမည်',
+                forgotPasswordSuccess: '✅ စကားဝှက် အောင်မြင်စွာပြောင်းပြီးပါပြီ။',
+                accountNotFound: '❌ အကောင့်မတွေ့ပါ။ ထပ်မံကြိုးစားပါ။',
+                regUsernameLabel: 'အသုံးပြုသူအမည်', regEmailLabel: 'အီးမေးလ်',
+                regPhoneLabel: 'ဖုန်းနံပါတ်', regPassLabel: 'စကားဝှက်',
+                regConfirmLabel: 'စကားဝှက်အတည်ပြုရန်'
             }
         };
 
         // ==================== State ====================
-        let currentLang = localStorage.getItem('lang') || 'my';
+        let currentLang = localStorage.getItem('lang') || 'en';
         let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
         let fpUser = null, fpOTP = null, otpTimer = null, otpSec = 0, otpOk = true;
 
@@ -1124,10 +1142,9 @@
             }
         }
 
-        function setLang(l) {
-            currentLang = l;
-            localStorage.setItem('lang', l);
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'my' : 'en';
+            localStorage.setItem('lang', currentLang);
             updateLanguage();
         }
 
@@ -1142,6 +1159,13 @@
             const d = LANG_DATA[currentLang];
             if (!d) return;
 
+            // Update lang toggle button text
+            const langToggle = document.getElementById('langToggle');
+            if (langToggle) {
+                langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
+            }
+
+            // Update all text elements
             ['appName', 'appSub', 'greeting', 'subtitle', 'goToShop', 'shopSubText',
              'servicesTitle', 's1', 's2', 's3', 's4', 's5', 's6',
              'telegramTitle', 'telegramDesc', 'contactLabel', 'contactUsername',
@@ -1151,6 +1175,7 @@
                 if (el && d[id]) el.textContent = d[id];
             });
 
+            // Update shop status
             const isOpen = isShopOpen();
             const statusBadge = document.getElementById('statusBadge');
             if (statusBadge) {
@@ -1164,6 +1189,8 @@
             document.getElementById('goToShop').textContent = isOpen ? d.goToShop : d.shopClosed;
             document.getElementById('shopSubText').textContent = isOpen ? d.shopSubText : d.shopClosedText;
 
+            // Update auth modal if open
+            updateAuthModalTexts();
             updateAuthUI();
             updateBadge();
         }
@@ -1199,14 +1226,24 @@
         function updateAuthModalTexts() {
             const d = LANG_DATA[currentLang];
             const isLogin = document.getElementById('registerForm').style.display === 'none';
+
             document.getElementById('modalTitle').textContent = isLogin ? d.modalLogin : d.modalRegister;
             document.getElementById('modalSub').textContent = isLogin ? d.modalLoginSub : d.modalRegisterSub;
-            document.getElementById('emailLabel').textContent = d.email;
-            document.getElementById('passLabel').textContent = d.password;
-            document.getElementById('loginBtn').textContent = d.login;
-            document.getElementById('registerBtn').textContent = d.register;
-            document.getElementById('switchToRegister').textContent = d.switchLogin;
-            document.getElementById('switchToLogin').textContent = d.switchRegister;
+
+            // Labels (form labels change with language)
+            document.getElementById('emailLabel').textContent = d.emailLabel;
+            document.getElementById('passLabel').textContent = d.passLabel;
+            document.getElementById('loginBtn').textContent = d.loginBtn;
+            document.getElementById('registerBtn').textContent = d.registerBtn;
+            document.getElementById('switchToRegister').textContent = d.switchToRegister;
+            document.getElementById('switchToLogin').textContent = d.switchToLogin;
+            document.getElementById('forgotLink').textContent = d.forgotLink;
+
+            document.getElementById('regUsernameLabel').innerHTML = d.regUsernameLabel + ' <span style="color:var(--red);">*</span>';
+            document.getElementById('regEmailLabel').textContent = d.regEmailLabel;
+            document.getElementById('regPhoneLabel').textContent = d.regPhoneLabel;
+            document.getElementById('regPassLabel').innerHTML = d.regPassLabel + ' <span style="color:var(--red);">*</span>';
+            document.getElementById('regConfirmLabel').innerHTML = d.regConfirmLabel + ' <span style="color:var(--red);">*</span>';
         }
 
         function checkLoginForm() {
@@ -1314,10 +1351,25 @@
             document.getElementById('forgotStep3').style.display = 'none';
             const err = document.getElementById('forgotError');
             if (err) { err.style.display = 'none'; err.textContent = ''; }
+            updateForgotModalTexts();
         }
 
         function closeForgotPasswordModal() {
             document.getElementById('forgotPasswordModal').classList.remove('show');
+        }
+
+        function updateForgotModalTexts() {
+            const d = LANG_DATA[currentLang];
+            document.getElementById('forgotTitle').textContent = d.forgotTitle;
+            document.getElementById('forgotSub').textContent = d.forgotSub;
+            document.getElementById('forgotIdentifyLabel').textContent = d.forgotIdentifyLabel;
+            document.getElementById('forgotFindBtn').textContent = d.forgotFindBtn;
+            document.getElementById('otpLabel').textContent = d.otpLabel;
+            document.getElementById('resendOtpBtn').textContent = d.resendOtpBtn;
+            document.getElementById('verifyOtpBtn').textContent = d.verifyOtpBtn;
+            document.getElementById('newPassLabel').textContent = d.newPassLabel;
+            document.getElementById('confirmNewPassLabel').textContent = d.confirmNewPassLabel;
+            document.getElementById('resetPasswordBtn').textContent = d.resetPasswordBtn;
         }
 
         function findAccount() {
@@ -1438,8 +1490,8 @@
 
         // ==================== Initialize ====================
         document.addEventListener('DOMContentLoaded', () => {
-            currentLang = localStorage.getItem('lang') || 'my';
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+            // Load saved language (default: en)
+            currentLang = localStorage.getItem('lang') || 'en';
 
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) currentUser = JSON.parse(savedUser);
@@ -1447,14 +1499,15 @@
             updateLanguage();
             updateBadge();
 
+            // Language toggle button
+            document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+            // Auth button
             document.getElementById('authBtn').addEventListener('click', () => {
                 currentUser ? window.location.href = 'profile.html' : openAuthModal('login');
             });
 
-            document.querySelectorAll('.lang-btn').forEach(b => {
-                b.addEventListener('click', function() { setLang(this.dataset.lang); });
-            });
-
+            // Modal close on overlay click
             document.getElementById('authModal').addEventListener('click', function(e) {
                 if (e.target === this) closeAuthModal();
             });
@@ -1462,6 +1515,7 @@
                 if (e.target === this) closeForgotPasswordModal();
             });
 
+            // Auth modal switches
             document.getElementById('switchToRegister').addEventListener('click', () => {
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('registerForm').style.display = 'block';
@@ -1473,9 +1527,11 @@
                 updateAuthModalTexts();
             });
 
+            // Auth actions
             document.getElementById('loginBtn').addEventListener('click', handleAuthLogin);
             document.getElementById('registerBtn').addEventListener('click', handleAuthRegister);
 
+            // Form validation listeners
             document.getElementById('loginInput').addEventListener('input', checkLoginForm);
             document.getElementById('loginPassword').addEventListener('input', checkLoginForm);
             document.getElementById('regUsername').addEventListener('input', checkRegisterForm);
