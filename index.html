@@ -7,45 +7,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ==================== CSS Variables ==================== */
+        /* ==================== CSS Variables (Monochrome Dark) ==================== */
         :root {
-            --bg-primary: #f5f5f7;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --bg-input: #f5f5f7;
-            --text-primary: #1a1a2e;
-            --text-secondary: #6b7280;
-            --border-color: rgba(0, 0, 0, 0.06);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
-            --cyan: #00b4d8;
-            --purple: #7c3aed;
-            --violet: #8b5cf6;
-            --pink: #ec4899;
-            --gold: #f5a623;
-            --red: #ff0044;
-            --green: #00c853;
-            --nav-dark: #1a1e24;
-            --radius: 14px;
-            --radius-lg: 20px;
-            --radius-pill: 30px;
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .night-mode {
-            --bg-primary: #0d0d1a;
-            --bg-secondary: #1a1a2e;
-            --bg-card: #1e1e30;
-            --bg-input: #252540;
-            --text-primary: #e8eaf0;
-            --text-secondary: #a0a0b8;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #222222;
+            --bg-input: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #666666;
             --border-color: rgba(255, 255, 255, 0.08);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
-            --gold: #ffd700;
-            --nav-dark: #e8eaf0;
+            --border-color-light: rgba(255, 255, 255, 0.12);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+            --accent: #ffffff;
+            --accent-secondary: #cccccc;
+            --cyan: #00b4d8;
+            --red: #ff4444;
+            --green: #00c853;
+            --nav-dark: #ffffff;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-pill: 30px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ==================== Reset & Base ==================== */
@@ -62,9 +48,9 @@
             min-height: 100vh;
             padding: 16px;
             padding-bottom: 100px;
-            transition: background 0.4s ease, color 0.4s ease;
             -webkit-tap-highlight-color: transparent;
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -80,15 +66,6 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
         }
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -126,10 +103,10 @@
         }
 
         .logo-wrap img {
-            height: 40px;
+            height: 38px;
             width: auto;
-            border-radius: 10px;
-            box-shadow: var(--shadow-md);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
         .logo-text-group {
@@ -141,20 +118,16 @@
         .logo-premium {
             font-size: 1.1rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientMove 3s ease-in-out infinite;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
         }
 
         .logo-sub {
             font-size: 0.5rem;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--text-secondary);
-            opacity: 0.7;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .header-right {
@@ -171,7 +144,6 @@
             padding: 3px;
             border-radius: 8px;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
         }
 
         .lang-btn {
@@ -181,7 +153,7 @@
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.5rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             text-transform: uppercase;
             transition: var(--transition);
@@ -189,13 +161,14 @@
         }
 
         .lang-btn:hover {
-            background: var(--bg-input);
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
         }
 
         .lang-btn.active {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 180, 216, 0.3);
+            background: var(--accent);
+            color: #000000;
+            font-weight: 700;
         }
 
         /* ==================== Icon Buttons ==================== */
@@ -214,21 +187,16 @@
             transition: var(--transition);
             text-decoration: none;
             position: relative;
-            box-shadow: var(--shadow-sm);
         }
 
         .icon-btn:hover {
-            background: var(--bg-input);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            border-color: var(--border-color-light);
         }
 
         .icon-btn:active {
             transform: scale(0.94);
-        }
-
-        .night-mode .icon-btn .fa-sun {
-            color: #ffd700;
         }
 
         .badge {
@@ -245,7 +213,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            border: 2px solid var(--bg-card);
+            border: 2px solid var(--bg-primary);
             display: none;
             padding: 0 4px;
         }
@@ -258,31 +226,24 @@
             padding: 8px 16px;
             border-radius: 8px;
             font-size: 0.65rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             height: 34px;
             width: fit-content;
-            box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
 
         .auth-btn:hover {
-            background: var(--bg-input);
-            box-shadow: var(--shadow-md);
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            border-color: var(--border-color-light);
         }
 
         .auth-btn:active {
             transform: scale(0.96);
-        }
-
-        .auth-btn.logged-in {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
         }
 
         /* ==================== Welcome Section ==================== */
@@ -294,38 +255,32 @@
         .greeting {
             font-size: 0.65rem;
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
-            opacity: 0.7;
         }
 
         .greeting i {
-            color: var(--pink);
+            color: var(--cyan);
             margin-right: 4px;
         }
 
         .welcome h1 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-top: 4px;
             font-weight: 800;
             color: var(--text-primary);
+            letter-spacing: -0.5px;
         }
 
         .welcome h1 span {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientMove 3s ease-in-out infinite;
+            color: var(--cyan);
         }
 
         .welcome p {
             color: var(--text-secondary);
             font-size: 0.75rem;
             margin-top: 4px;
-            opacity: 0.7;
         }
 
         /* ==================== Shop Status Banner ==================== */
@@ -333,40 +288,39 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
-            padding: 18px 20px;
-            margin-bottom: 18px;
-            box-shadow: var(--shadow-md);
+            padding: 16px 20px;
+            margin-bottom: 16px;
             text-align: center;
             transition: var(--transition);
         }
 
         .status-badge {
             display: inline-block;
-            font-size: 1rem;
-            font-weight: 900;
-            padding: 6px 24px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 6px 20px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .status-badge.open {
-            background: rgba(0, 200, 83, 0.08);
+            background: rgba(0, 200, 83, 0.1);
             color: var(--green);
             border: 1px solid rgba(0, 200, 83, 0.2);
         }
 
         .status-badge.closed {
-            background: rgba(255, 0, 68, 0.08);
+            background: rgba(255, 68, 68, 0.1);
             color: var(--red);
-            border: 1px solid rgba(255, 0, 68, 0.2);
+            border: 1px solid rgba(255, 68, 68, 0.2);
         }
 
         .status-dot {
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             margin-right: 8px;
         }
@@ -382,9 +336,8 @@
         }
 
         .status-text {
-            font-size: 0.6rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
+            font-size: 0.55rem;
+            color: var(--text-muted);
         }
 
         /* ==================== Shop Card ==================== */
@@ -397,14 +350,14 @@
             cursor: pointer;
             transition: var(--transition);
             margin-bottom: 20px;
-            box-shadow: var(--shadow-md);
             text-decoration: none;
             display: block;
         }
 
         .shop-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-color-light);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
         }
 
         .shop-card:active {
@@ -412,73 +365,56 @@
         }
 
         .shop-card .icon {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             display: block;
             margin-bottom: 8px;
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        .shop-card .icon i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
         }
 
         .shop-card .label {
-            font-weight: 900;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
             text-transform: uppercase;
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientMove 3s ease-in-out infinite;
+            color: var(--text-primary);
         }
 
         .shop-card .sub {
             font-size: 0.6rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             margin-top: 4px;
-            opacity: 0.6;
         }
 
         /* ==================== Section Title ==================== */
         .section-title {
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--text-secondary);
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
-            opacity: 0.6;
         }
 
         .section-title::after {
             content: '';
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, var(--border-color), transparent);
+            background: var(--border-color);
         }
 
         .section-title i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 0.8rem;
+            color: var(--cyan);
+            font-size: 0.7rem;
         }
 
         /* ==================== Services Grid ==================== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 20px;
         }
 
@@ -486,22 +422,22 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 18px 10px 14px;
+            padding: 16px 8px 12px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            min-height: 100px;
+            gap: 6px;
+            min-height: 90px;
         }
 
         .service-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            background: var(--bg-card-hover);
+            border-color: var(--border-color-light);
+            transform: translateY(-1px);
         }
 
         .service-card:active {
@@ -509,20 +445,13 @@
         }
 
         .service-card .icon {
-            font-size: 1.8rem;
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        .service-card .icon i {
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
         }
 
         .service-card .label {
-            font-size: 0.55rem;
-            color: var(--text-secondary);
+            font-size: 0.5rem;
+            color: var(--text-muted);
             font-weight: 500;
             line-height: 1.3;
         }
@@ -536,15 +465,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: pointer;
-            box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
 
         .contact-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-color-light);
         }
 
         .contact-card:active {
@@ -552,13 +480,9 @@
         }
 
         .contact-card .icon {
-            font-size: 1.4rem;
-            color: var(--cyan);
+            font-size: 1.3rem;
+            color: var(--text-secondary);
             flex-shrink: 0;
-        }
-
-        .contact-card .icon.telegram {
-            color: #0088cc;
         }
 
         .contact-card .info {
@@ -573,33 +497,31 @@
 
         .contact-card .info .desc {
             font-size: 0.5rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             margin-top: 2px;
-            opacity: 0.7;
         }
 
         .contact-card .arrow {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            opacity: 0.5;
+            color: var(--text-muted);
+            font-size: 0.85rem;
             transition: var(--transition);
         }
 
         .contact-card:hover .arrow {
-            opacity: 1;
+            color: var(--text-primary);
             transform: translateX(2px);
         }
 
         /* ==================== Footer ==================== */
         .footer-text {
             text-align: center;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.45rem;
             margin-top: 12px;
-            opacity: 0.4;
+            opacity: 0.5;
         }
 
-        /* ==================== Bottom Navigation (Dark Pill Style) ==================== */
+        /* ==================== Bottom Navigation ==================== */
         .bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -613,9 +535,8 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 6px 8px;
+            padding: 5px 6px;
             z-index: 100;
-            box-shadow: var(--shadow-lg);
         }
 
         .nav-item {
@@ -627,7 +548,7 @@
             border-radius: var(--radius-pill);
             cursor: pointer;
             transition: var(--transition);
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 1.1rem;
             text-decoration: none;
             border: none;
@@ -637,8 +558,8 @@
         }
 
         .nav-item:hover:not(.active) {
-            background: var(--bg-input);
-            color: var(--text-primary);
+            color: var(--text-secondary);
+            background: var(--bg-card-hover);
         }
 
         .nav-item:active {
@@ -646,17 +567,11 @@
         }
 
         .nav-item.active {
-            background: var(--nav-dark);
-            color: #ffffff;
+            background: var(--accent);
+            color: #000000;
             font-size: 0.85rem;
             padding: 10px 20px 10px 16px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .night-mode .nav-item.active {
-            background: #ffffff;
-            color: #1a1a2e;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+            font-weight: 600;
         }
 
         .nav-item.active i {
@@ -679,18 +594,17 @@
             bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--bg-secondary);
+            background: var(--bg-card);
             padding: 12px 24px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.75rem;
             display: none;
             z-index: 200;
             text-align: center;
             max-width: 90%;
-            box-shadow: var(--shadow-lg);
         }
 
         .toast.show {
@@ -705,7 +619,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             display: none;
@@ -722,12 +636,11 @@
 
         .modal-box {
             background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-color-light);
             border-radius: var(--radius-lg);
             padding: 28px 24px 24px;
             max-width: 380px;
             width: 100%;
-            box-shadow: var(--shadow-lg);
             position: relative;
         }
 
@@ -737,7 +650,7 @@
             right: 16px;
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 1rem;
             cursor: pointer;
             width: 30px;
@@ -750,40 +663,41 @@
         }
 
         .modal-box .close-btn:hover {
-            background: var(--bg-input);
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
         }
 
         .modal-box h2 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--text-primary);
             text-align: center;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .modal-box .sub {
-            color: var(--text-secondary);
-            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.65rem;
             text-align: center;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .form-group label {
             display: block;
             color: var(--text-secondary);
-            font-size: 0.6rem;
-            font-weight: 600;
+            font-size: 0.55rem;
+            font-weight: 500;
             margin-bottom: 4px;
         }
 
         .form-group input {
             width: 100%;
             padding: 10px 12px;
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             background: var(--bg-input);
             color: var(--text-primary);
@@ -797,15 +711,20 @@
             box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
         }
 
+        .form-group input::placeholder {
+            color: var(--text-muted);
+            font-size: 0.65rem;
+        }
+
         .btn-primary {
             width: 100%;
             padding: 11px;
             background: var(--bg-input);
-            color: var(--text-secondary);
+            color: var(--text-muted);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 0.8rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: not-allowed;
             margin-top: 4px;
             opacity: 0.5;
@@ -813,17 +732,16 @@
         }
 
         .btn-primary.enabled {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            color: #fff;
+            background: var(--accent);
+            color: #000000;
             border: none;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
             cursor: pointer;
             opacity: 1;
+            font-weight: 700;
         }
 
         .btn-primary.enabled:hover {
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
-            transform: translateY(-1px);
+            background: var(--accent-secondary);
         }
 
         .btn-primary.enabled:active {
@@ -833,25 +751,27 @@
         .switch-link {
             color: var(--cyan);
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             text-align: center;
             display: block;
-            margin-top: 16px;
-            font-size: 0.7rem;
+            margin-top: 14px;
+            font-size: 0.65rem;
+            transition: var(--transition);
         }
 
         .switch-link:hover {
-            text-decoration: underline;
+            color: var(--text-primary);
         }
 
         .forgot-link {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             cursor: pointer;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             text-align: right;
             display: block;
             margin-top: 2px;
             margin-bottom: 6px;
+            transition: var(--transition);
         }
 
         .forgot-link:hover {
@@ -865,8 +785,9 @@
             margin-bottom: 8px;
             display: none;
             padding: 6px 10px;
-            background: rgba(255, 0, 68, 0.05);
+            background: rgba(255, 68, 68, 0.08);
             border-radius: 8px;
+            border: 1px solid rgba(255, 68, 68, 0.15);
         }
 
         .error-msg.show {
@@ -877,7 +798,7 @@
         @media (max-width: 360px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
+                gap: 6px;
             }
             .nav-item {
                 padding: 8px 10px;
@@ -891,14 +812,14 @@
 
         @media (min-width: 768px) {
             .container {
-                max-width: 600px;
+                max-width: 560px;
             }
             .services-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
+                gap: 10px;
             }
             .bottom-nav {
-                max-width: 560px;
+                max-width: 520px;
             }
         }
     </style>
@@ -909,7 +830,7 @@
         <header class="header">
             <div class="header-left">
                 <div class="logo-wrap">
-                    <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo" width="40" height="40">
+                    <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo" width="38" height="38">
                     <div class="logo-text-group">
                         <span class="logo-premium" id="appName">Premium</span>
                         <span class="logo-sub" id="appSub">Game Shop</span>
@@ -922,9 +843,6 @@
                     <button class="lang-btn active" data-lang="my">မြန်မာ</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button class="icon-btn night-toggle" id="nightToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
                 <a href="notifications.html" class="icon-btn noti-btn" id="notiBtn" aria-label="Notifications">
                     <i class="fas fa-bell"></i>
                     <span class="badge" id="notiBadge">0</span>
@@ -967,7 +885,7 @@
 
         <!-- ==================== Contact ==================== -->
         <div class="contact-card" onclick="window.open('https://t.me/Premium_GameShop','_blank')">
-            <span class="icon telegram"><i class="fab fa-telegram-plane"></i></span>
+            <span class="icon"><i class="fab fa-telegram-plane"></i></span>
             <div class="info">
                 <div class="title" id="telegramTitle">📢 Telegram ချန်နယ်</div>
                 <div class="desc" id="telegramDesc">သတင်းများနှင့် အကူအညီ</div>
@@ -978,7 +896,7 @@
         <div class="contact-card" onclick="window.open('https://t.me/PremEnergy','_blank')">
             <span class="icon"><i class="fas fa-headset"></i></span>
             <div class="info">
-                <div class="label" id="contactLabel">အကူအညီလိုပါသလား?</div>
+                <div class="title" id="contactLabel">အကူအညီလိုပါသလား?</div>
                 <div class="desc" id="contactUsername">@PremEnergy</div>
             </div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
@@ -988,7 +906,7 @@
         <p class="footer-text">&copy; 2026 Premium Game Shop</p>
     </div>
 
-    <!-- ==================== Bottom Navigation (Dark Pill Style) ==================== -->
+    <!-- ==================== Bottom Navigation ==================== -->
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active">
             <i class="fas fa-home"></i>
@@ -1074,14 +992,14 @@
                 <span class="switch-link" onclick="closeForgotPasswordModal();openAuthModal('login');">← လော့အင်ဝင်ရန် ပြန်သွားမည်</span>
             </div>
             <div id="forgotStep2" style="display:none;">
-                <div class="form-group" id="otpSentMsg" style="text-align:center;color:var(--cyan);font-size:0.7rem;margin-bottom:8px;"></div>
+                <div class="form-group" id="otpSentMsg" style="text-align:center;color:var(--cyan);font-size:0.65rem;margin-bottom:8px;"></div>
                 <div class="form-group">
                     <label id="otpLabel">OTP ကုဒ် (၆ လုံး)</label>
                     <div style="display:flex;gap:8px;">
                         <input type="text" id="otpInput" placeholder="123456" inputmode="numeric" maxlength="6" style="flex:1;">
-                        <button class="btn-primary enabled" id="resendOtpBtn" onclick="resendOTP()" style="width:auto;padding:10px 12px;font-size:0.6rem;">📩 ပြန်ပို့မည်</button>
+                        <button class="btn-primary enabled" id="resendOtpBtn" onclick="resendOTP()" style="width:auto;padding:10px 12px;font-size:0.55rem;">📩 ပြန်ပို့မည်</button>
                     </div>
-                    <div id="otpTimer" style="font-size:0.5rem;color:var(--text-secondary);margin-top:4px;"></div>
+                    <div id="otpTimer" style="font-size:0.5rem;color:var(--text-muted);margin-top:4px;"></div>
                 </div>
                 <button class="btn-primary enabled" id="verifyOtpBtn" onclick="verifyOTP()">✅ အတည်ပြုမည်</button>
             </div>
@@ -1131,7 +1049,7 @@
                 switchRegister: 'အကောင့်ရှိပြီးသား? ဝင်ရန်',
                 login: 'ဝင်ရန်', register: 'မှတ်ပုံတင်ရန်',
                 loginSuccess: '✅ ကြိုဆိုပါတယ်!', registerSuccess: '✅ အကောင့်ဖွင့်ခြင်းအောင်မြင်ပါပြီ!',
-                invalidCredentials: '❌ အီးမေးလ်/အသုံးပြုသူအမည်/ဖုန်းနံပါတ် သို့မဟုတ် စကားဝှက် မှားနေပါသည်',
+                invalidCredentials: '❌ အချက်အလက်များ မှားယွင်းနေပါသည်',
                 forgotTitle: 'စကားဝှက်မေ့နေပါသလား?',
                 forgotSub: 'အောက်ပါအချက်အလက်များ ဖြည့်ပါ',
                 forgotIdentifyLabel: 'အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်',
@@ -1141,7 +1059,7 @@
                 verifyOtpBtn: '✅ အတည်ပြုမည်',
                 newPassLabel: 'စကားဝှက်အသစ်', confirmNewPassLabel: 'စကားဝှက်အတည်ပြုရန်',
                 resetPasswordBtn: '🔑 စကားဝှက်ပြောင်းမည်',
-                forgotPasswordSuccess: '✅ စကားဝှက် အောင်မြင်စွာပြောင်းပြီးပါပြီ။ လော့အင်ဝင်ရန် ပြန်သွားပါမည်။',
+                forgotPasswordSuccess: '✅ စကားဝှက် အောင်မြင်စွာပြောင်းပြီးပါပြီ။',
                 accountNotFound: '❌ အကောင့်မတွေ့ပါ။ ထပ်မံကြိုးစားပါ။'
             },
             en: {
@@ -1168,14 +1086,14 @@
                 switchRegister: 'Already have an account? Login',
                 login: 'Login', register: 'Register',
                 loginSuccess: '✅ Welcome back!', registerSuccess: '✅ Account created!',
-                invalidCredentials: '❌ Invalid email/username/phone or password',
+                invalidCredentials: '❌ Invalid credentials',
                 forgotTitle: 'Forgot Password?', forgotSub: 'Fill in your details below',
                 forgotIdentifyLabel: 'Username / Email / Phone',
                 forgotFindBtn: '🔍 Find Account', forgotBackToLogin: '← Back to Login',
                 otpLabel: 'OTP Code (6 digits)', resendOtpBtn: '📩 Resend',
                 verifyOtpBtn: '✅ Verify', newPassLabel: 'New Password',
                 confirmNewPassLabel: 'Confirm New Password', resetPasswordBtn: '🔑 Reset Password',
-                forgotPasswordSuccess: '✅ Password reset successful! Redirecting to login...',
+                forgotPasswordSuccess: '✅ Password reset successful!',
                 accountNotFound: '❌ Account not found. Please try again.'
             }
         };
@@ -1193,14 +1111,7 @@
             t.textContent = m;
             t.className = 'toast show';
             clearTimeout(t._t);
-            t._t = setTimeout(() => t.classList.remove('show'), 3000);
-        }
-
-        function toggleNightMode() {
-            document.body.classList.toggle('night-mode');
-            const icon = document.querySelector('.night-toggle i');
-            icon.className = document.body.classList.contains('night-mode') ? 'fas fa-sun' : 'fas fa-moon';
-            localStorage.setItem('nightMode', document.body.classList.contains('night-mode') ? 'true' : 'false');
+            t._t = setTimeout(() => t.classList.remove('show'), 2500);
         }
 
         function updateBadge() {
@@ -1224,14 +1135,13 @@
             const now = new Date();
             const mmTime = new Date(now.getTime() + (6.5 * 60 * 60 * 1000));
             const minutes = mmTime.getUTCHours() * 60 + mmTime.getUTCMinutes();
-            return minutes >= 570 && minutes < 1290; // 9:30 AM - 9:30 PM
+            return minutes >= 570 && minutes < 1290;
         }
 
         function updateLanguage() {
             const d = LANG_DATA[currentLang];
             if (!d) return;
 
-            // Update all text elements
             ['appName', 'appSub', 'greeting', 'subtitle', 'goToShop', 'shopSubText',
              'servicesTitle', 's1', 's2', 's3', 's4', 's5', 's6',
              'telegramTitle', 'telegramDesc', 'contactLabel', 'contactUsername',
@@ -1241,7 +1151,6 @@
                 if (el && d[id]) el.textContent = d[id];
             });
 
-            // Update shop status
             const isOpen = isShopOpen();
             const statusBadge = document.getElementById('statusBadge');
             if (statusBadge) {
@@ -1252,11 +1161,8 @@
             const statusText = document.getElementById('statusText');
             if (statusText) statusText.textContent = isOpen ? d.shopOpenText : d.shopClosedText;
 
-            const shopCard = document.getElementById('shopCard');
-            if (shopCard) {
-                document.getElementById('goToShop').textContent = isOpen ? d.goToShop : d.shopClosed;
-                document.getElementById('shopSubText').textContent = isOpen ? d.shopSubText : d.shopClosedText;
-            }
+            document.getElementById('goToShop').textContent = isOpen ? d.goToShop : d.shopClosed;
+            document.getElementById('shopSubText').textContent = isOpen ? d.shopSubText : d.shopClosedText;
 
             updateAuthUI();
             updateBadge();
@@ -1270,14 +1176,12 @@
             } else {
                 btn.style.display = 'inline-flex';
                 btn.innerHTML = '<i class="fas fa-key"></i> Login';
-                btn.className = 'auth-btn';
             }
         }
 
         // ==================== Auth Modal ====================
         function openAuthModal(mode) {
             const modal = document.getElementById('authModal');
-            if (!modal) return;
             modal.classList.add('show');
             document.getElementById('loginForm').style.display = mode === 'register' ? 'none' : 'block';
             document.getElementById('registerForm').style.display = mode === 'register' ? 'block' : 'none';
@@ -1445,7 +1349,6 @@
             fpUser = found;
             fpOTP = Math.floor(100000 + Math.random() * 900000).toString();
 
-            // Send OTP via Telegram
             fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1535,23 +1438,14 @@
 
         // ==================== Initialize ====================
         document.addEventListener('DOMContentLoaded', () => {
-            // Load saved preferences
             currentLang = localStorage.getItem('lang') || 'my';
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
 
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) currentUser = JSON.parse(savedUser);
 
-            if (localStorage.getItem('nightMode') === 'true') {
-                document.body.classList.add('night-mode');
-                document.querySelector('.night-toggle i').className = 'fas fa-sun';
-            }
-
             updateLanguage();
             updateBadge();
-
-            // Event Listeners
-            document.getElementById('nightToggle').addEventListener('click', toggleNightMode);
 
             document.getElementById('authBtn').addEventListener('click', () => {
                 currentUser ? window.location.href = 'profile.html' : openAuthModal('login');
@@ -1561,7 +1455,6 @@
                 b.addEventListener('click', function() { setLang(this.dataset.lang); });
             });
 
-            // Modal close on overlay click
             document.getElementById('authModal').addEventListener('click', function(e) {
                 if (e.target === this) closeAuthModal();
             });
@@ -1569,7 +1462,6 @@
                 if (e.target === this) closeForgotPasswordModal();
             });
 
-            // Auth modal switches
             document.getElementById('switchToRegister').addEventListener('click', () => {
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('registerForm').style.display = 'block';
@@ -1581,11 +1473,9 @@
                 updateAuthModalTexts();
             });
 
-            // Auth actions
             document.getElementById('loginBtn').addEventListener('click', handleAuthLogin);
             document.getElementById('registerBtn').addEventListener('click', handleAuthRegister);
 
-            // Form validation listeners
             document.getElementById('loginInput').addEventListener('input', checkLoginForm);
             document.getElementById('loginPassword').addEventListener('input', checkLoginForm);
             document.getElementById('regUsername').addEventListener('input', checkRegisterForm);
