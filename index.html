@@ -84,7 +84,7 @@
         .header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             padding: 8px 0 16px;
             flex-wrap: wrap;
             gap: 10px;
@@ -92,7 +92,7 @@
 
         .header-left {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 10px;
         }
 
@@ -136,30 +136,30 @@
             gap: 8px;
         }
 
-        /* ==================== Language Toggle Button ==================== */
+        /* ==================== Language Toggle (Same as icon-btn) ==================== */
         .lang-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 0.55rem;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-            transition: var(--transition);
-            min-width: 38px;
-            text-align: center;
-            height: 32px;
+            border-radius: 10px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding: 0;
         }
 
         .lang-toggle:hover {
             background: var(--bg-card-hover);
-            border-color: var(--border-color-light);
             color: var(--text-primary);
+            border-color: var(--border-color-light);
         }
 
         .lang-toggle:active {
@@ -226,9 +226,10 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            height: 34px;
+            height: 36px;
             width: fit-content;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .auth-btn:hover {
@@ -336,7 +337,7 @@
             color: var(--text-muted);
         }
 
-        /* ==================== Shop Card ==================== */
+        /* ==================== Shop Card (No hover lift) ==================== */
         .shop-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -354,7 +355,6 @@
         .shop-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-color-light);
-            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
@@ -408,7 +408,7 @@
             font-size: 0.7rem;
         }
 
-        /* ==================== Services Grid (3 per row) ==================== */
+        /* ==================== Services Grid (3 per row, no hover lift) ==================== */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -436,7 +436,6 @@
         .service-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--border-color-light);
-            transform: translateY(-1px);
             box-shadow: var(--shadow-md);
         }
 
@@ -456,7 +455,7 @@
             line-height: 1.3;
         }
 
-        /* ==================== Contact Cards ==================== */
+        /* ==================== Contact Cards (No hover lift) ==================== */
         .contact-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -849,14 +848,14 @@
                         <span class="logo-sub" id="appSub">Game Shop</span>
                     </div>
                 </div>
-                <button class="auth-btn" id="authBtn"><i class="fas fa-key"></i> Login</button>
             </div>
             <div class="header-right">
-                <button class="lang-toggle" id="langToggle" aria-label="Toggle language">MM</button>
                 <a href="notifications.html" class="icon-btn noti-btn" id="notiBtn" aria-label="Notifications">
                     <i class="fas fa-bell"></i>
                     <span class="badge" id="notiBadge">0</span>
                 </a>
+                <button class="lang-toggle" id="langToggle" aria-label="Toggle language">MM</button>
+                <button class="auth-btn" id="authBtn"><i class="fas fa-key"></i> Login</button>
             </div>
         </header>
 
@@ -1159,13 +1158,11 @@
             const d = LANG_DATA[currentLang];
             if (!d) return;
 
-            // Update lang toggle button text
             const langToggle = document.getElementById('langToggle');
             if (langToggle) {
                 langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
             }
 
-            // Update all text elements
             ['appName', 'appSub', 'greeting', 'subtitle', 'goToShop', 'shopSubText',
              'servicesTitle', 's1', 's2', 's3', 's4', 's5', 's6',
              'telegramTitle', 'telegramDesc', 'contactLabel', 'contactUsername',
@@ -1175,7 +1172,6 @@
                 if (el && d[id]) el.textContent = d[id];
             });
 
-            // Update shop status
             const isOpen = isShopOpen();
             const statusBadge = document.getElementById('statusBadge');
             if (statusBadge) {
@@ -1189,7 +1185,6 @@
             document.getElementById('goToShop').textContent = isOpen ? d.goToShop : d.shopClosed;
             document.getElementById('shopSubText').textContent = isOpen ? d.shopSubText : d.shopClosedText;
 
-            // Update auth modal if open
             updateAuthModalTexts();
             updateAuthUI();
             updateBadge();
@@ -1229,8 +1224,6 @@
 
             document.getElementById('modalTitle').textContent = isLogin ? d.modalLogin : d.modalRegister;
             document.getElementById('modalSub').textContent = isLogin ? d.modalLoginSub : d.modalRegisterSub;
-
-            // Labels (form labels change with language)
             document.getElementById('emailLabel').textContent = d.emailLabel;
             document.getElementById('passLabel').textContent = d.passLabel;
             document.getElementById('loginBtn').textContent = d.loginBtn;
@@ -1490,7 +1483,6 @@
 
         // ==================== Initialize ====================
         document.addEventListener('DOMContentLoaded', () => {
-            // Load saved language (default: en)
             currentLang = localStorage.getItem('lang') || 'en';
 
             const savedUser = localStorage.getItem('currentUser');
@@ -1499,15 +1491,12 @@
             updateLanguage();
             updateBadge();
 
-            // Language toggle button
             document.getElementById('langToggle').addEventListener('click', toggleLang);
 
-            // Auth button
             document.getElementById('authBtn').addEventListener('click', () => {
                 currentUser ? window.location.href = 'profile.html' : openAuthModal('login');
             });
 
-            // Modal close on overlay click
             document.getElementById('authModal').addEventListener('click', function(e) {
                 if (e.target === this) closeAuthModal();
             });
@@ -1515,7 +1504,6 @@
                 if (e.target === this) closeForgotPasswordModal();
             });
 
-            // Auth modal switches
             document.getElementById('switchToRegister').addEventListener('click', () => {
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('registerForm').style.display = 'block';
@@ -1527,11 +1515,9 @@
                 updateAuthModalTexts();
             });
 
-            // Auth actions
             document.getElementById('loginBtn').addEventListener('click', handleAuthLogin);
             document.getElementById('registerBtn').addEventListener('click', handleAuthRegister);
 
-            // Form validation listeners
             document.getElementById('loginInput').addEventListener('input', checkLoginForm);
             document.getElementById('loginPassword').addEventListener('input', checkLoginForm);
             document.getElementById('regUsername').addEventListener('input', checkRegisterForm);
