@@ -2,178 +2,1596 @@
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Game Shop</title>
-    <!-- Fonts နှင့် Icons များ -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ Premium Game Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #f8f9fa; color: #333; padding-bottom: 75px; }
-        a { text-decoration: none; color: inherit; }
-        
-        .container { padding: 15px; max-width: 100%; overflow-x: hidden; }
+        /* ==================== CSS Variables ==================== */
+        :root {
+            --bg-primary: #f5f5f7;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-input: #f5f5f7;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6b7280;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --cyan: #00b4d8;
+            --purple: #7c3aed;
+            --violet: #8b5cf6;
+            --pink: #ec4899;
+            --gold: #f5a623;
+            --red: #ff0044;
+            --green: #00c853;
+            --nav-dark: #1a1e24;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-pill: 30px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        /* Header ပိုင်း */
-        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-box img { width: 50px; height: 50px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .logo-text { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
-        .logo-text span { display: block; }
-        .logo-text span:first-child { color: #d4af37; font-size: 0.85rem; }
-        
-        .header-actions { display: flex; align-items: center; gap: 15px; }
-        .login-btn { font-size: 0.9rem; font-weight: 600; color: #555; }
-        .noti-btn { position: relative; font-size: 1.2rem; color: #555; }
-        .noti-badge { position: absolute; top: -5px; right: -8px; background: red; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
+        .night-mode {
+            --bg-primary: #0d0d1a;
+            --bg-secondary: #1a1a2e;
+            --bg-card: #1e1e30;
+            --bg-input: #252540;
+            --text-primary: #e8eaf0;
+            --text-secondary: #a0a0b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
+            --gold: #ffd700;
+            --nav-dark: #e8eaf0;
+        }
 
-        /* နှုတ်ခွန်းဆက် စာသား */
-        .welcome-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; }
-        .welcome-text { color: #d4af37; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .welcome-section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 5px; color: #222; }
-        .welcome-section p { font-size: 0.9rem; color: #666; }
+        /* ==================== Reset & Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* ဆိုင်ဖွင့်ချိန် */
-        .status-box { display: flex; align-items: center; justify-content: space-between; background: #e8f5e9; padding: 12px 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #c8e6c9; }
-        .status-open { font-weight: 700; color: #2e7d32; display: flex; align-items: center; gap: 5px; }
-        .status-open span { display: inline-block; width: 8px; height: 8px; background: #2e7d32; border-radius: 50%; animation: blink 1.5s infinite; }
-        .status-time { font-size: 0.8rem; color: #555; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        body {
+            font-family: 'Inter', 'Noto Sans Myanmar', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 16px;
+            padding-bottom: 100px;
+            transition: background 0.4s ease, color 0.4s ease;
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1.5;
+        }
 
-        /* ဆိုင်သွားရန် ခလုတ် */
-        .shop-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #222; color: white; padding: 18px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); transition: transform 0.2s ease; }
-        .shop-btn:active { transform: scale(0.97); }
-        .shop-btn .title { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-        .shop-btn .subtitle { font-size: 0.8rem; color: #aaa; }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
 
-        /* လုပ်ဆောင်ပုံ အချက်အလက်များ */
-        .info-section { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px; }
-        .info-title { font-weight: 600; margin-bottom: 15px; color: #333; display: flex; align-items: center; gap: 8px; }
-        .info-list { display: flex; flex-direction: column; gap: 12px; }
-        .info-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #555; }
-        .info-item i { color: #d4af37; font-size: 1rem; width: 20px; text-align: center; }
+        /* ==================== Animations ==================== */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.6); }
+        }
+        @keyframes pulseDotRed {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(0.5); }
+        }
+        @keyframes toastPop {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.9); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
 
-        /* ဆက်သွယ်ရန် လင့်ခ်များ */
-        .contact-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
-        .contact-card { display: flex; align-items: center; justify-content: space-between; background: white; padding: 12px 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .contact-card .left { display: flex; align-items: center; gap: 12px; }
-        .contact-card .icon { font-size: 1.5rem; color: #0088cc; }
-        .contact-card .text h4 { font-size: 0.9rem; color: #333; margin-bottom: 2px; }
-        .contact-card .text p { font-size: 0.75rem; color: #777; }
-        
-        .footer-text { text-align: center; font-size: 0.8rem; color: #aaa; margin-bottom: 20px; }
+        /* ==================== Header ==================== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 8px 0 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-        /* Bottom Navigation */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; color: #888; }
-        .nav-item i { font-size: 1.2rem; }
-        .nav-item.active { color: #d4af37; }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-wrap img {
+            height: 40px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-premium {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        .logo-sub {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ==================== Language Switcher ==================== */
+        .lang-switcher {
+            display: flex;
+            gap: 2px;
+            background: var(--bg-card);
+            padding: 3px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .lang-btn:hover {
+            background: var(--bg-input);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 180, 216, 0.3);
+        }
+
+        /* ==================== Icon Buttons ==================== */
+        .icon-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-input);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.94);
+        }
+
+        .night-mode .icon-btn .fa-sun {
+            color: #ffd700;
+        }
+
+        .badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.45rem;
+            font-weight: 700;
+            min-width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+            display: none;
+            padding: 0 4px;
+        }
+
+        /* ==================== Auth Button ==================== */
+        .auth-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            height: 34px;
+            width: fit-content;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .auth-btn:hover {
+            background: var(--bg-input);
+            box-shadow: var(--shadow-md);
+        }
+
+        .auth-btn:active {
+            transform: scale(0.96);
+        }
+
+        .auth-btn.logged-in {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+
+        /* ==================== Welcome Section ==================== */
+        .welcome {
+            margin-bottom: 18px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .greeting {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .greeting i {
+            color: var(--pink);
+            margin-right: 4px;
+        }
+
+        .welcome h1 {
+            font-size: 1.4rem;
+            margin-top: 4px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .welcome h1 span {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        .welcome p {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+
+        /* ==================== Shop Status Banner ==================== */
+        .status-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 900;
+            padding: 6px 24px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .status-badge.open {
+            background: rgba(0, 200, 83, 0.08);
+            color: var(--green);
+            border: 1px solid rgba(0, 200, 83, 0.2);
+        }
+
+        .status-badge.closed {
+            background: rgba(255, 0, 68, 0.08);
+            color: var(--red);
+            border: 1px solid rgba(255, 0, 68, 0.2);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-badge.open .status-dot {
+            background: var(--green);
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+
+        .status-badge.closed .status-dot {
+            background: var(--red);
+            animation: pulseDotRed 1.5s ease-in-out infinite;
+        }
+
+        .status-text {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        /* ==================== Shop Card ==================== */
+        .shop-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+            display: block;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .shop-card:active {
+            transform: scale(0.97);
+        }
+
+        .shop-card .icon {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 8px;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        .shop-card .icon i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .shop-card .label {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        .shop-card .sub {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            opacity: 0.6;
+        }
+
+        /* ==================== Section Title ==================== */
+        .section-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.6;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), transparent);
+        }
+
+        .section-title i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 0.8rem;
+        }
+
+        /* ==================== Services Grid ==================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 18px 10px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 100px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-card:active {
+            transform: scale(0.96);
+        }
+
+        .service-card .icon {
+            font-size: 1.8rem;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        .service-card .icon i {
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card .label {
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        /* ==================== Contact Cards ==================== */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .contact-card:active {
+            transform: scale(0.98);
+        }
+
+        .contact-card .icon {
+            font-size: 1.4rem;
+            color: var(--cyan);
+            flex-shrink: 0;
+        }
+
+        .contact-card .icon.telegram {
+            color: #0088cc;
+        }
+
+        .contact-card .info {
+            flex: 1;
+        }
+
+        .contact-card .info .title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .contact-card .info .desc {
+            font-size: 0.5rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            opacity: 0.7;
+        }
+
+        .contact-card .arrow {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        /* ==================== Footer ==================== */
+        .footer-text {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.45rem;
+            margin-top: 12px;
+            opacity: 0.4;
+        }
+
+        /* ==================== Bottom Navigation (Dark Pill Style) ==================== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 440px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 6px 8px;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            text-decoration: none;
+            border: none;
+            background: transparent;
+            white-space: nowrap;
+            min-width: 44px;
+        }
+
+        .nav-item:hover:not(.active) {
+            background: var(--bg-input);
+            color: var(--text-primary);
+        }
+
+        .nav-item:active {
+            transform: scale(0.94);
+        }
+
+        .nav-item.active {
+            background: var(--nav-dark);
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 10px 20px 10px 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .night-mode .nav-item.active {
+            background: #ffffff;
+            color: #1a1a2e;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-item.active i {
+            font-size: 1rem;
+        }
+
+        .nav-label {
+            display: none;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-item.active .nav-label {
+            display: inline-block;
+        }
+
+        /* ==================== Toast ==================== */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.75rem;
+            display: none;
+            z-index: 200;
+            text-align: center;
+            max-width: 90%;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.show {
+            display: block;
+            animation: toastPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ==================== Modal Styles ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: none;
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px 24px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal-box .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .modal-box .close-btn:hover {
+            background: var(--bg-input);
+        }
+
+        .modal-box h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .modal-box .sub {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.6rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 11px;
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: not-allowed;
+            margin-top: 4px;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .btn-primary.enabled {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .btn-primary.enabled:hover {
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary.enabled:active {
+            transform: scale(0.97);
+        }
+
+        .switch-link {
+            color: var(--cyan);
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            margin-top: 16px;
+            font-size: 0.7rem;
+        }
+
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-link {
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.55rem;
+            text-align: right;
+            display: block;
+            margin-top: 2px;
+            margin-bottom: 6px;
+        }
+
+        .forgot-link:hover {
+            color: var(--cyan);
+        }
+
+        .error-msg {
+            color: var(--red);
+            font-size: 0.55rem;
+            text-align: center;
+            margin-bottom: 8px;
+            display: none;
+            padding: 6px 10px;
+            background: rgba(255, 0, 68, 0.05);
+            border-radius: 8px;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 360px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .nav-item {
+                padding: 8px 10px;
+                font-size: 1rem;
+            }
+            .nav-item.active {
+                padding: 8px 14px 8px 10px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+            }
+            .bottom-nav {
+                max-width: 560px;
+            }
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    
-    <!-- ခေါင်းစီးပိုင်း -->
-    <div class="header-top">
-        <div class="logo-box">
-            <img alt="Premium Game Shop Logo" src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg">
-            <div class="logo-text">
-                <span>Premium</span>
-                <span>Game Shop</span>
-            </div>
-        </div>
-        <div class="header-actions">
-            <div class="login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</div>
-            <a href="notifications.html" class="noti-btn">
-                <i class="fa-regular fa-bell"></i>
-                <span class="noti-badge">0</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- ကြိုဆိုသည့် နေရာ (စာသားပြင်ထားသည်) -->
-    <div class="welcome-section">
-        <div class="welcome-text"><i class="fa-solid fa-hand-wave"></i> <span>မင်္ဂလာပါ Gamer!</span></div>
-        <h2><i class="fa-solid fa-gamepad"></i> Level Up Your Game!</h2>
-        <p>စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ</p>
-    </div>
-
-    <!-- ဆိုင်ဖွင့်ချိန် -->
-    <div class="status-box">
-        <div class="status-open"><span></span> OPEN</div>
-        <div class="status-time">မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည်</div>
-    </div>
-
-    <!-- ဆိုင်သွားရန် ခလုတ် -->
-    <a href="shop.html" class="shop-btn">
-        <div class="title"><i class="fa-solid fa-bolt"></i> GO TO SHOP</div>
-        <div class="subtitle">ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ</div>
-    </a>
-
-    <!-- အလုပ်လုပ်ပုံ -->
-    <div class="info-section">
-        <div class="info-title"><i class="fa-solid fa-circle-info"></i> ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?</div>
-        <div class="info-list">
-            <div class="info-item"><i class="fa-solid fa-clock-rotate-left"></i> ၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်</div>
-            <div class="info-item"><i class="fa-solid fa-check-double"></i> လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ</div>
-            <div class="info-item"><i class="fa-solid fa-hand-holding-dollar"></i> အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service</div>
-            <div class="info-item"><i class="fa-solid fa-calendar-day"></i> မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ</div>
-            <div class="info-item"><i class="fa-solid fa-mobile-screen"></i> Mobile Legends</div>
-            <div class="info-item"><i class="fa-solid fa-spinner"></i> Coming Soon</div>
-        </div>
-    </div>
-
-    <!-- ဆက်သွယ်ရန် -->
-    <div class="contact-links">
-        <a href="https://t.me/PremEnergy" class="contact-card">
-            <div class="left">
-                <i class="fa-brands fa-telegram icon"></i>
-                <div class="text">
-                    <h4>Telegram ချန်နယ်</h4>
-                    <p>သတင်းများနှင့် အကူအညီ</p>
+    <div class="container">
+        <!-- ==================== Header ==================== -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo-wrap">
+                    <img src="https://i.postimg.cc/zXBdB1xK/IMG-20260710-124320-224.jpg" alt="Premium Game Shop Logo" width="40" height="40">
+                    <div class="logo-text-group">
+                        <span class="logo-premium" id="appName">Premium</span>
+                        <span class="logo-sub" id="appSub">Game Shop</span>
+                    </div>
                 </div>
+                <button class="auth-btn" id="authBtn"><i class="fas fa-key"></i> Login</button>
             </div>
-            <i class="fa-solid fa-chevron-right" style="color: #ccc;"></i>
-        </a>
-        
-        <a href="https://t.me/PremEnergy" class="contact-card">
-            <div class="left">
-                <i class="fa-solid fa-headset icon" style="color: #d4af37;"></i>
-                <div class="text">
-                    <h4>အကူအညီလိုပါသလား?</h4>
-                    <p>@PremEnergy</p>
+            <div class="header-right">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="my">မြန်မာ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
                 </div>
+                <button class="icon-btn night-toggle" id="nightToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="notifications.html" class="icon-btn noti-btn" id="notiBtn" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge" id="notiBadge">0</span>
+                </a>
             </div>
-            <i class="fa-solid fa-chevron-right" style="color: #ccc;"></i>
+        </header>
+
+        <!-- ==================== Welcome ==================== -->
+        <section class="welcome">
+            <p class="greeting"><i class="fas fa-fire"></i> <span id="greeting">ဟေ့ကောင်လေး!</span></p>
+            <h1><i class="fas fa-gamepad"></i> <span>Level Up Your Game!</span></h1>
+            <p id="subtitle">စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ</p>
+        </section>
+
+        <!-- ==================== Shop Status ==================== -->
+        <div class="status-banner" id="shopStatusBanner">
+            <div class="status-badge open" id="statusBadge">
+                <span class="status-dot"></span> OPEN
+            </div>
+            <p class="status-text" id="statusText">မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည်</p>
+        </div>
+
+        <!-- ==================== Shop Card ==================== -->
+        <a href="shop.html" class="shop-card" id="shopCard">
+            <span class="icon"><i class="fas fa-store-alt"></i></span>
+            <div class="label" id="goToShop">⚡ GO TO SHOP</div>
+            <div class="sub" id="shopSubText">ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ</div>
         </a>
+
+        <!-- ==================== Services ==================== -->
+        <div class="section-title"><i class="fas fa-bolt"></i> <span id="servicesTitle">ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?</span></div>
+        <div class="services-grid">
+            <div class="service-card"><span class="icon"><i class="fas fa-bolt"></i></span><span class="label" id="s1">၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-rocket"></i></span><span class="label" id="s2">လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-gem"></i></span><span class="label" id="s3">အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-clock"></i></span><span class="label" id="s4">မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-gamepad"></i></span><span class="label" id="s5">Mobile Legends</span></div>
+            <div class="service-card"><span class="icon"><i class="fas fa-star"></i></span><span class="label" id="s6">Coming Soon</span></div>
+        </div>
+
+        <!-- ==================== Contact ==================== -->
+        <div class="contact-card" onclick="window.open('https://t.me/Premium_GameShop','_blank')">
+            <span class="icon telegram"><i class="fab fa-telegram-plane"></i></span>
+            <div class="info">
+                <div class="title" id="telegramTitle">📢 Telegram ချန်နယ်</div>
+                <div class="desc" id="telegramDesc">သတင်းများနှင့် အကူအညီ</div>
+            </div>
+            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+        </div>
+
+        <div class="contact-card" onclick="window.open('https://t.me/PremEnergy','_blank')">
+            <span class="icon"><i class="fas fa-headset"></i></span>
+            <div class="info">
+                <div class="label" id="contactLabel">အကူအညီလိုပါသလား?</div>
+                <div class="desc" id="contactUsername">@PremEnergy</div>
+            </div>
+            <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+        </div>
+
+        <!-- ==================== Footer ==================== -->
+        <p class="footer-text">&copy; 2026 Premium Game Shop</p>
     </div>
 
-    <!-- အောက်ခြေ စာသား -->
-    <div class="footer-text">© 2026 Premium Game Shop</div>
+    <!-- ==================== Bottom Navigation (Dark Pill Style) ==================== -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span class="nav-label" id="navHome">ပင်မ</span>
+        </a>
+        <a href="shop.html" class="nav-item">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="nav-label" id="navShop">ဆိုင်</span>
+        </a>
+        <a href="payment.html" class="nav-item">
+            <i class="fas fa-credit-card"></i>
+            <span class="nav-label" id="navPayment">ငွေပေးချေ</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span class="nav-label" id="navProfile">ပရိုဖိုင်</span>
+        </a>
+    </nav>
 
-</div>
+    <!-- ==================== Toast ==================== -->
+    <div class="toast" id="toast"></div>
 
-<!-- အောက်ခြေ မီနူး -->
-<div class="bottom-nav">
-    <a href="index.html" class="nav-item active">
-        <i class="fa-solid fa-house"></i>
-        <span>ပင်မ</span>
-    </a>
-    <a href="shop.html" class="nav-item">
-        <i class="fa-solid fa-store"></i>
-        <span>ဆိုင်</span>
-    </a>
-    <a href="payment.html" class="nav-item">
-        <i class="fa-solid fa-wallet"></i>
-        <span>ငွေပေးချေ</span>
-    </a>
-    <a href="profile.html" class="nav-item">
-        <i class="fa-solid fa-user"></i>
-        <span>ပရိုဖိုင်</span>
-    </a>
-</div>
+    <!-- ==================== Auth Modal ==================== -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
+            <h2 id="modalTitle">ဝင်ရန်</h2>
+            <p class="sub" id="modalSub">ပြန်လည်ကြိုဆိုပါတယ်!</p>
+            <div class="error-msg" id="loginError"></div>
+            <div id="loginForm">
+                <div class="form-group">
+                    <label id="emailLabel">အီးမေးလ် / အသုံးပြုသူအမည် / ဖုန်းနံပါတ်</label>
+                    <input type="text" id="loginInput" placeholder="အီးမေးလ်၊ အသုံးပြုသူအမည် သို့မဟုတ် ဖုန်းနံပါတ်">
+                </div>
+                <div class="form-group">
+                    <label id="passLabel">စကားဝှက်</label>
+                    <input type="password" id="loginPassword" placeholder="စကားဝှက်ထည့်ပါ">
+                </div>
+                <span class="forgot-link" id="forgotLink" onclick="openForgotPasswordModal()">စကားဝှက်မေ့နေပါသလား?</span>
+                <button class="btn-primary" id="loginBtn">ဝင်ရန်</button>
+                <span class="switch-link" id="switchToRegister">အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်ရန်</span>
+            </div>
+            <div id="registerForm" style="display:none;">
+                <div class="form-group">
+                    <label id="regUsernameLabel">အသုံးပြုသူအမည် <span style="color:var(--red);">*</span></label>
+                    <input type="text" id="regUsername" placeholder="အသုံးပြုသူအမည်ရွေးပါ">
+                </div>
+                <div class="form-group">
+                    <label id="regEmailLabel">အီးမေးလ်</label>
+                    <input type="email" id="regEmail" placeholder="အီးမေးလ်ထည့်ပါ (မထည့်လည်းရ)">
+                </div>
+                <div class="form-group">
+                    <label id="regPhoneLabel">ဖုန်းနံပါတ်</label>
+                    <input type="tel" id="regPhone" placeholder="ဖုန်းနံပါတ်ထည့်ပါ (မထည့်လည်းရ)">
+                </div>
+                <div class="form-group">
+                    <label id="regPassLabel">စကားဝှက် <span style="color:var(--red);">*</span></label>
+                    <input type="password" id="regPassword" placeholder="အနည်းဆုံး ၄ လုံး">
+                </div>
+                <div class="form-group">
+                    <label id="regConfirmLabel">စကားဝှက်အတည်ပြုရန် <span style="color:var(--red);">*</span></label>
+                    <input type="password" id="regConfirmPassword" placeholder="စကားဝှက်ပြန်ထည့်ပါ">
+                </div>
+                <button class="btn-primary" id="registerBtn">မှတ်ပုံတင်ရန်</button>
+                <span class="switch-link" id="switchToLogin">အကောင့်ရှိပြီးသား? ဝင်ရန်</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- ==================== Forgot Password Modal ==================== -->
+    <div class="modal-overlay" id="forgotPasswordModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeForgotPasswordModal()"><i class="fas fa-times"></i></button>
+            <h2 id="forgotTitle">စကားဝှက်မေ့နေပါသလား?</h2>
+            <p class="sub" id="forgotSub">အောက်ပါအချက်အလက်များ ဖြည့်ပါ</p>
+            <div class="error-msg" id="forgotError"></div>
+            <div id="forgotStep1">
+                <div class="form-group">
+                    <label id="forgotIdentifyLabel">အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်</label>
+                    <input type="text" id="forgotIdentify" placeholder="ရှာဖွေရန် ထည့်ပါ">
+                </div>
+                <button class="btn-primary enabled" id="forgotFindBtn" onclick="findAccount()">🔍 အကောင့်ရှာမည်</button>
+                <span class="switch-link" onclick="closeForgotPasswordModal();openAuthModal('login');">← လော့အင်ဝင်ရန် ပြန်သွားမည်</span>
+            </div>
+            <div id="forgotStep2" style="display:none;">
+                <div class="form-group" id="otpSentMsg" style="text-align:center;color:var(--cyan);font-size:0.7rem;margin-bottom:8px;"></div>
+                <div class="form-group">
+                    <label id="otpLabel">OTP ကုဒ် (၆ လုံး)</label>
+                    <div style="display:flex;gap:8px;">
+                        <input type="text" id="otpInput" placeholder="123456" inputmode="numeric" maxlength="6" style="flex:1;">
+                        <button class="btn-primary enabled" id="resendOtpBtn" onclick="resendOTP()" style="width:auto;padding:10px 12px;font-size:0.6rem;">📩 ပြန်ပို့မည်</button>
+                    </div>
+                    <div id="otpTimer" style="font-size:0.5rem;color:var(--text-secondary);margin-top:4px;"></div>
+                </div>
+                <button class="btn-primary enabled" id="verifyOtpBtn" onclick="verifyOTP()">✅ အတည်ပြုမည်</button>
+            </div>
+            <div id="forgotStep3" style="display:none;">
+                <div class="form-group">
+                    <label id="newPassLabel">စကားဝှက်အသစ်</label>
+                    <input type="password" id="newPassword" placeholder="အနည်းဆုံး ၄ လုံး">
+                </div>
+                <div class="form-group">
+                    <label id="confirmNewPassLabel">စကားဝှက်အတည်ပြုရန်</label>
+                    <input type="password" id="confirmNewPassword" placeholder="စကားဝှက်ပြန်ထည့်ပါ">
+                </div>
+                <button class="btn-primary enabled" id="resetPasswordBtn" onclick="resetPassword()">🔑 စကားဝှက်ပြောင်းမည်</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== Constants ====================
+        const TELEGRAM_BOT_TOKEN = '8751360822:AAFQNiWhfGWgUsjD7Bd5DzfHMfpkR4COHY8';
+        const TELEGRAM_CHAT_ID = '8745522082';
+
+        // ==================== Language Data ====================
+        const LANG_DATA = {
+            my: {
+                appName: 'Premium', appSub: 'Game Shop',
+                home: 'ပင်မ', shop: 'ဆိုင်', payment: 'ငွေပေးချေ', profile: 'ပရိုဖိုင်',
+                greeting: 'ဟေ့ကောင်လေး!', subtitle: 'စိန်တွေဖြည့်ပြီး စစ်မြေပြင်ကို အနိုင်ယူလိုက်ပါ',
+                goToShop: '⚡ GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                shopSubText: 'ပက်ကေ့ခ်ျအားလုံးကိုကြည့်ပါ',
+                servicesTitle: 'ကျွန်ုပ်တို့ ဘယ်လိုအလုပ်လုပ်လဲ?',
+                s1: '၁၀ မိနစ်အတွင်း အော်ဒါပြီးမြောက်',
+                s2: 'လျှင်မြန် • လွယ်ကူ • ယုံကြည်စိတ်ချရ',
+                s3: 'အတန်ဆုံးဈေးနဲ့ အကောင်းဆုံး Service',
+                s4: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ',
+                s5: 'Mobile Legends', s6: 'Coming Soon',
+                telegramTitle: '📢 Telegram ချန်နယ်', telegramDesc: 'သတင်းများနှင့် အကူအညီ',
+                contactLabel: 'အကူအညီလိုပါသလား?', contactUsername: '@PremEnergy',
+                shopOpen: 'OPEN', shopClosedStatus: 'CLOSED',
+                shopOpenText: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည် (မြန်မာစံတော်ချိန်)',
+                shopClosedText: 'မနက် ၉:၃၀ မှသာ ဆိုင်ဖွင့်ပါမည် (မြန်မာစံတော်ချိန်)',
+                modalLogin: 'ဝင်ရန်', modalRegister: 'မှတ်ပုံတင်ရန်',
+                modalLoginSub: 'ပြန်လည်ကြိုဆိုပါတယ်!', modalRegisterSub: 'အကောင့်ဖွင့်ပါ!',
+                email: 'အီးမေးလ် / အသုံးပြုသူအမည် / ဖုန်းနံပါတ်',
+                password: 'စကားဝှက်', forgotPassword: 'စကားဝှက်မေ့နေပါသလား?',
+                switchLogin: 'အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်ရန်',
+                switchRegister: 'အကောင့်ရှိပြီးသား? ဝင်ရန်',
+                login: 'ဝင်ရန်', register: 'မှတ်ပုံတင်ရန်',
+                loginSuccess: '✅ ကြိုဆိုပါတယ်!', registerSuccess: '✅ အကောင့်ဖွင့်ခြင်းအောင်မြင်ပါပြီ!',
+                invalidCredentials: '❌ အီးမေးလ်/အသုံးပြုသူအမည်/ဖုန်းနံပါတ် သို့မဟုတ် စကားဝှက် မှားနေပါသည်',
+                forgotTitle: 'စကားဝှက်မေ့နေပါသလား?',
+                forgotSub: 'အောက်ပါအချက်အလက်များ ဖြည့်ပါ',
+                forgotIdentifyLabel: 'အသုံးပြုသူအမည် / အီးမေးလ် / ဖုန်းနံပါတ်',
+                forgotFindBtn: '🔍 အကောင့်ရှာမည်',
+                forgotBackToLogin: '← လော့အင်ဝင်ရန် ပြန်သွားမည်',
+                otpLabel: 'OTP ကုဒ် (၆ လုံး)', resendOtpBtn: '📩 ပြန်ပို့မည်',
+                verifyOtpBtn: '✅ အတည်ပြုမည်',
+                newPassLabel: 'စကားဝှက်အသစ်', confirmNewPassLabel: 'စကားဝှက်အတည်ပြုရန်',
+                resetPasswordBtn: '🔑 စကားဝှက်ပြောင်းမည်',
+                forgotPasswordSuccess: '✅ စကားဝှက် အောင်မြင်စွာပြောင်းပြီးပါပြီ။ လော့အင်ဝင်ရန် ပြန်သွားပါမည်။',
+                accountNotFound: '❌ အကောင့်မတွေ့ပါ။ ထပ်မံကြိုးစားပါ။'
+            },
+            en: {
+                appName: 'Premium', appSub: 'Game Shop',
+                home: 'Home', shop: 'Shop', payment: 'Payment', profile: 'Profile',
+                greeting: 'Hey, Gamer!', subtitle: 'Top up diamonds and dominate the battlefield',
+                goToShop: '⚡ GO TO SHOP', shopClosed: '🔒 SHOP CLOSED',
+                shopSubText: 'Browse all packages',
+                servicesTitle: 'How We Work?',
+                s1: '10 mins delivery', s2: 'Fast • Easy • Trusted',
+                s3: 'Best Price & Best Service', s4: '9:30 AM - 9:30 PM',
+                s5: 'Mobile Legends', s6: 'Coming Soon',
+                telegramTitle: '📢 Join Our Telegram Channel',
+                telegramDesc: 'Get latest updates, promos and support',
+                contactLabel: '💬 Need Help?', contactUsername: '@PremEnergy',
+                shopOpen: 'OPEN', shopClosedStatus: 'CLOSED',
+                shopOpenText: 'Open from 9:30 AM to 9:30 PM (Myanmar Time)',
+                shopClosedText: 'Will open at 9:30 AM (Myanmar Time)',
+                modalLogin: 'Login', modalRegister: 'Register',
+                modalLoginSub: 'Welcome back!', modalRegisterSub: 'Create your account!',
+                email: 'Email / Username / Phone', password: 'Password',
+                forgotPassword: 'Forgot Password?',
+                switchLogin: "Don't have an account? Register",
+                switchRegister: 'Already have an account? Login',
+                login: 'Login', register: 'Register',
+                loginSuccess: '✅ Welcome back!', registerSuccess: '✅ Account created!',
+                invalidCredentials: '❌ Invalid email/username/phone or password',
+                forgotTitle: 'Forgot Password?', forgotSub: 'Fill in your details below',
+                forgotIdentifyLabel: 'Username / Email / Phone',
+                forgotFindBtn: '🔍 Find Account', forgotBackToLogin: '← Back to Login',
+                otpLabel: 'OTP Code (6 digits)', resendOtpBtn: '📩 Resend',
+                verifyOtpBtn: '✅ Verify', newPassLabel: 'New Password',
+                confirmNewPassLabel: 'Confirm New Password', resetPasswordBtn: '🔑 Reset Password',
+                forgotPasswordSuccess: '✅ Password reset successful! Redirecting to login...',
+                accountNotFound: '❌ Account not found. Please try again.'
+            }
+        };
+
+        // ==================== State ====================
+        let currentLang = localStorage.getItem('lang') || 'my';
+        let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        let fpUser = null, fpOTP = null, otpTimer = null, otpSec = 0, otpOk = true;
+
+        // ==================== Helper Functions ====================
+        function getText(k) { return LANG_DATA[currentLang]?.[k] || k; }
+
+        function showToast(m) {
+            const t = document.getElementById('toast');
+            t.textContent = m;
+            t.className = 'toast show';
+            clearTimeout(t._t);
+            t._t = setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+            const icon = document.querySelector('.night-toggle i');
+            icon.className = document.body.classList.contains('night-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('nightMode', document.body.classList.contains('night-mode') ? 'true' : 'false');
+        }
+
+        function updateBadge() {
+            const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
+            const count = notifications.filter(n => n.status === 'pending').length;
+            const badge = document.getElementById('notiBadge');
+            if (badge) {
+                badge.style.display = count > 0 ? 'flex' : 'none';
+                if (count > 0) badge.textContent = count > 99 ? '99+' : count;
+            }
+        }
+
+        function setLang(l) {
+            currentLang = l;
+            localStorage.setItem('lang', l);
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+            updateLanguage();
+        }
+
+        function isShopOpen() {
+            const now = new Date();
+            const mmTime = new Date(now.getTime() + (6.5 * 60 * 60 * 1000));
+            const minutes = mmTime.getUTCHours() * 60 + mmTime.getUTCMinutes();
+            return minutes >= 570 && minutes < 1290; // 9:30 AM - 9:30 PM
+        }
+
+        function updateLanguage() {
+            const d = LANG_DATA[currentLang];
+            if (!d) return;
+
+            // Update all text elements
+            ['appName', 'appSub', 'greeting', 'subtitle', 'goToShop', 'shopSubText',
+             'servicesTitle', 's1', 's2', 's3', 's4', 's5', 's6',
+             'telegramTitle', 'telegramDesc', 'contactLabel', 'contactUsername',
+             'navHome', 'navShop', 'navPayment', 'navProfile'
+            ].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && d[id]) el.textContent = d[id];
+            });
+
+            // Update shop status
+            const isOpen = isShopOpen();
+            const statusBadge = document.getElementById('statusBadge');
+            if (statusBadge) {
+                statusBadge.innerHTML = '<span class="status-dot"></span> ' + (isOpen ? d.shopOpen : d.shopClosedStatus);
+                statusBadge.className = 'status-badge ' + (isOpen ? 'open' : 'closed');
+            }
+
+            const statusText = document.getElementById('statusText');
+            if (statusText) statusText.textContent = isOpen ? d.shopOpenText : d.shopClosedText;
+
+            const shopCard = document.getElementById('shopCard');
+            if (shopCard) {
+                document.getElementById('goToShop').textContent = isOpen ? d.goToShop : d.shopClosed;
+                document.getElementById('shopSubText').textContent = isOpen ? d.shopSubText : d.shopClosedText;
+            }
+
+            updateAuthUI();
+            updateBadge();
+        }
+
+        function updateAuthUI() {
+            const btn = document.getElementById('authBtn');
+            if (!btn) return;
+            if (currentUser) {
+                btn.style.display = 'none';
+            } else {
+                btn.style.display = 'inline-flex';
+                btn.innerHTML = '<i class="fas fa-key"></i> Login';
+                btn.className = 'auth-btn';
+            }
+        }
+
+        // ==================== Auth Modal ====================
+        function openAuthModal(mode) {
+            const modal = document.getElementById('authModal');
+            if (!modal) return;
+            modal.classList.add('show');
+            document.getElementById('loginForm').style.display = mode === 'register' ? 'none' : 'block';
+            document.getElementById('registerForm').style.display = mode === 'register' ? 'block' : 'none';
+            const err = document.getElementById('loginError');
+            if (err) { err.style.display = 'none'; err.textContent = ''; }
+            updateAuthModalTexts();
+            checkLoginForm();
+            checkRegisterForm();
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.remove('show');
+        }
+
+        function updateAuthModalTexts() {
+            const d = LANG_DATA[currentLang];
+            const isLogin = document.getElementById('registerForm').style.display === 'none';
+            document.getElementById('modalTitle').textContent = isLogin ? d.modalLogin : d.modalRegister;
+            document.getElementById('modalSub').textContent = isLogin ? d.modalLoginSub : d.modalRegisterSub;
+            document.getElementById('emailLabel').textContent = d.email;
+            document.getElementById('passLabel').textContent = d.password;
+            document.getElementById('loginBtn').textContent = d.login;
+            document.getElementById('registerBtn').textContent = d.register;
+            document.getElementById('switchToRegister').textContent = d.switchLogin;
+            document.getElementById('switchToLogin').textContent = d.switchRegister;
+        }
+
+        function checkLoginForm() {
+            const li = document.getElementById('loginInput'), lp = document.getElementById('loginPassword'),
+                  lb = document.getElementById('loginBtn');
+            const valid = li.value.trim() && lp.value.trim();
+            lb.disabled = !valid;
+            lb.className = valid ? 'btn-primary enabled' : 'btn-primary';
+        }
+
+        function checkRegisterForm() {
+            const ru = document.getElementById('regUsername'), rp = document.getElementById('regPassword'),
+                  rc = document.getElementById('regConfirmPassword'), rb = document.getElementById('registerBtn');
+            const valid = ru.value.trim() && rp.value.trim() && rc.value.trim() && rp.value.trim() === rc.value.trim();
+            rb.disabled = !valid;
+            rb.className = valid ? 'btn-primary enabled' : 'btn-primary';
+        }
+
+        function handleAuthLogin() {
+            const input = document.getElementById('loginInput').value.trim(),
+                  password = document.getElementById('loginPassword').value.trim();
+            const d = LANG_DATA[currentLang], err = document.getElementById('loginError');
+
+            if (!input || !password) {
+                err.textContent = d.invalidCredentials;
+                err.style.display = 'block';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            let found = null;
+
+            for (const key in users) {
+                const u = users[key];
+                if (key === input || u.email === input || u.username === input || u.phone === input) {
+                    if (u.password === password) { found = u; break; }
+                }
+            }
+
+            if (found) {
+                currentUser = found;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                closeAuthModal();
+                showToast(d.loginSuccess);
+                updateAuthUI();
+                updateBadge();
+            } else {
+                err.textContent = d.invalidCredentials;
+                err.style.display = 'block';
+            }
+        }
+
+        function handleAuthRegister() {
+            const username = document.getElementById('regUsername').value.trim(),
+                  email = document.getElementById('regEmail').value.trim(),
+                  phone = document.getElementById('regPhone').value.trim(),
+                  password = document.getElementById('regPassword').value.trim(),
+                  confirm = document.getElementById('regConfirmPassword').value.trim();
+            const d = LANG_DATA[currentLang], err = document.getElementById('loginError');
+
+            if (!username || !password || !confirm) return;
+            if (password.length < 4) {
+                err.textContent = 'Password must be at least 4 characters';
+                err.style.display = 'block';
+                return;
+            }
+            if (password !== confirm) {
+                err.textContent = 'Passwords do not match';
+                err.style.display = 'block';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            for (const key in users) {
+                if (key === username || (email && users[key].email === email) || (phone && users[key].phone === phone)) {
+                    err.textContent = '❌ Account already exists';
+                    err.style.display = 'block';
+                    return;
+                }
+            }
+
+            const newUser = {
+                username, email, phone, password,
+                displayName: username,
+                diamonds: 100,
+                createdAt: new Date().toISOString()
+            };
+            users[username] = newUser;
+            localStorage.setItem('users', JSON.stringify(users));
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            closeAuthModal();
+            showToast(d.registerSuccess);
+            updateAuthUI();
+            updateBadge();
+        }
+
+        // ==================== Forgot Password ====================
+        function openForgotPasswordModal() {
+            closeAuthModal();
+            const modal = document.getElementById('forgotPasswordModal');
+            modal.classList.add('show');
+            document.getElementById('forgotStep1').style.display = 'block';
+            document.getElementById('forgotStep2').style.display = 'none';
+            document.getElementById('forgotStep3').style.display = 'none';
+            const err = document.getElementById('forgotError');
+            if (err) { err.style.display = 'none'; err.textContent = ''; }
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.remove('show');
+        }
+
+        function findAccount() {
+            const id = document.getElementById('forgotIdentify').value.trim();
+            const err = document.getElementById('forgotError'), d = LANG_DATA[currentLang];
+
+            if (!id) {
+                err.textContent = d.invalidCredentials;
+                err.style.display = 'block';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            let found = null;
+
+            for (const key in users) {
+                if (key === id || users[key].email === id || users[key].phone === id) {
+                    found = users[key];
+                    break;
+                }
+            }
+
+            if (!found) {
+                err.textContent = d.accountNotFound;
+                err.style.display = 'block';
+                return;
+            }
+
+            fpUser = found;
+            fpOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+            // Send OTP via Telegram
+            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: `🔐 OTP: ${fpOTP}\n👤 @${fpUser.username}`
+                })
+            }).catch(err => console.log('Telegram API error:', err));
+
+            document.getElementById('forgotStep1').style.display = 'none';
+            document.getElementById('forgotStep2').style.display = 'block';
+            document.getElementById('otpSentMsg').innerHTML = '✅ OTP sent to Telegram.';
+            startOTPTimer();
+        }
+
+        function startOTPTimer() {
+            otpSec = 60;
+            otpOk = false;
+            document.getElementById('resendOtpBtn').disabled = true;
+            document.getElementById('otpTimer').textContent = '60s';
+            clearInterval(otpTimer);
+            otpTimer = setInterval(() => {
+                otpSec--;
+                document.getElementById('otpTimer').textContent = otpSec > 0 ? `${otpSec}s` : 'Resend available';
+                if (otpSec <= 0) {
+                    clearInterval(otpTimer);
+                    otpOk = true;
+                    document.getElementById('resendOtpBtn').disabled = false;
+                }
+            }, 1000);
+        }
+
+        function resendOTP() {
+            if (!otpOk || !fpUser) return;
+            fpOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: `🔐 OTP: ${fpOTP}\n👤 @${fpUser.username}`
+                })
+            }).catch(err => console.log('Telegram API error:', err));
+            startOTPTimer();
+        }
+
+        function verifyOTP() {
+            const otpInput = document.getElementById('otpInput').value.trim();
+            const err = document.getElementById('forgotError');
+
+            if (otpInput !== fpOTP) {
+                err.textContent = '❌ Invalid OTP';
+                err.style.display = 'block';
+                return;
+            }
+
+            document.getElementById('forgotStep2').style.display = 'none';
+            document.getElementById('forgotStep3').style.display = 'block';
+        }
+
+        function resetPassword() {
+            const newPass = document.getElementById('newPassword').value.trim(),
+                  confirmPass = document.getElementById('confirmNewPassword').value.trim();
+            const err = document.getElementById('forgotError');
+
+            if (!newPass || !confirmPass) {
+                err.textContent = '❌ Please fill all fields';
+                err.style.display = 'block';
+                return;
+            }
+            if (newPass !== confirmPass) {
+                err.textContent = 'Passwords do not match';
+                err.style.display = 'block';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            users[fpUser.username].password = newPass;
+            localStorage.setItem('users', JSON.stringify(users));
+
+            showToast('✅ Password reset successful!');
+            setTimeout(() => {
+                closeForgotPasswordModal();
+                openAuthModal('login');
+            }, 1500);
+        }
+
+        // ==================== Initialize ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved preferences
+            currentLang = localStorage.getItem('lang') || 'my';
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) currentUser = JSON.parse(savedUser);
+
+            if (localStorage.getItem('nightMode') === 'true') {
+                document.body.classList.add('night-mode');
+                document.querySelector('.night-toggle i').className = 'fas fa-sun';
+            }
+
+            updateLanguage();
+            updateBadge();
+
+            // Event Listeners
+            document.getElementById('nightToggle').addEventListener('click', toggleNightMode);
+
+            document.getElementById('authBtn').addEventListener('click', () => {
+                currentUser ? window.location.href = 'profile.html' : openAuthModal('login');
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.addEventListener('click', function() { setLang(this.dataset.lang); });
+            });
+
+            // Modal close on overlay click
+            document.getElementById('authModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAuthModal();
+            });
+            document.getElementById('forgotPasswordModal').addEventListener('click', function(e) {
+                if (e.target === this) closeForgotPasswordModal();
+            });
+
+            // Auth modal switches
+            document.getElementById('switchToRegister').addEventListener('click', () => {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registerForm').style.display = 'block';
+                updateAuthModalTexts();
+            });
+            document.getElementById('switchToLogin').addEventListener('click', () => {
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('registerForm').style.display = 'none';
+                updateAuthModalTexts();
+            });
+
+            // Auth actions
+            document.getElementById('loginBtn').addEventListener('click', handleAuthLogin);
+            document.getElementById('registerBtn').addEventListener('click', handleAuthRegister);
+
+            // Form validation listeners
+            document.getElementById('loginInput').addEventListener('input', checkLoginForm);
+            document.getElementById('loginPassword').addEventListener('input', checkLoginForm);
+            document.getElementById('regUsername').addEventListener('input', checkRegisterForm);
+            document.getElementById('regPassword').addEventListener('input', checkRegisterForm);
+            document.getElementById('regConfirmPassword').addEventListener('input', checkRegisterForm);
+        });
+    </script>
 </body>
 </html>
