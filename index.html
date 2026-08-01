@@ -52,6 +52,8 @@
             -webkit-tap-highlight-color: transparent;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .container {
@@ -91,11 +93,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        /* ==================== Cyan Icon Utility ==================== */
-        .cyan-icon {
-            color: var(--cyan);
         }
 
         /* ==================== Header ==================== */
@@ -171,6 +168,14 @@
             letter-spacing: 0.5px;
             text-align: center;
             padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .lang-toggle:focus {
+            outline: none;
         }
 
         .lang-toggle:hover {
@@ -181,6 +186,7 @@
 
         .lang-toggle:active {
             transform: scale(0.94);
+            background: var(--bg-card-hover);
         }
 
         /* ==================== Icon Buttons ==================== */
@@ -438,7 +444,7 @@
 
         .service-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             border-radius: var(--radius);
             padding: 16px 8px 12px;
             text-align: center;
@@ -451,11 +457,11 @@
             gap: 6px;
             min-height: 90px;
             box-shadow: var(--shadow-sm);
+            position: relative;
         }
 
         .service-card:hover {
             background: var(--bg-card-hover);
-            border-color: var(--border-color-light);
             box-shadow: var(--shadow-md);
         }
 
@@ -463,9 +469,24 @@
             transform: scale(0.96);
         }
 
+        .service-card.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-card.selected .icon {
+            color: #ffffff;
+        }
+
+        .service-card.selected .label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .service-card .icon {
             font-size: 1.5rem;
             color: var(--text-secondary);
+            transition: var(--transition);
         }
 
         .service-card .label {
@@ -473,6 +494,7 @@
             color: var(--text-muted);
             font-weight: 500;
             line-height: 1.3;
+            transition: var(--transition);
         }
 
         /* ==================== Contact Cards ==================== */
@@ -819,6 +841,22 @@
             display: block;
         }
 
+        .success-msg {
+            color: var(--green);
+            font-size: 0.55rem;
+            text-align: center;
+            margin-bottom: 8px;
+            display: none;
+            padding: 6px 10px;
+            background: rgba(22, 163, 74, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(22, 163, 74, 0.15);
+        }
+
+        .success-msg.show {
+            display: block;
+        }
+
         /* ==================== Responsive ==================== */
         @media (max-width: 360px) {
             .services-grid {
@@ -903,13 +941,13 @@
 
         <!-- ==================== Services ==================== -->
         <div class="section-title"><i class="fas fa-bolt"></i> <span id="servicesTitle">How We Work?</span></div>
-        <div class="services-grid">
-            <div class="service-card"><span class="icon"><i class="fas fa-bolt"></i></span><span class="label" id="s1">10 mins delivery</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-rocket"></i></span><span class="label" id="s2">Fast • Easy • Trusted</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-gem"></i></span><span class="label" id="s3">Best Price & Best Service</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-clock"></i></span><span class="label" id="s4">9:30 AM - 9:30 PM</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-gamepad"></i></span><span class="label" id="s5">Mobile Legends</span></div>
-            <div class="service-card"><span class="icon"><i class="fas fa-star"></i></span><span class="label" id="s6">Coming Soon</span></div>
+        <div class="services-grid" id="servicesGrid">
+            <div class="service-card" data-service="delivery"><span class="icon"><i class="fas fa-bolt"></i></span><span class="label" id="s1">10 mins delivery</span></div>
+            <div class="service-card" data-service="fast"><span class="icon"><i class="fas fa-rocket"></i></span><span class="label" id="s2">Fast • Easy • Trusted</span></div>
+            <div class="service-card" data-service="price"><span class="icon"><i class="fas fa-gem"></i></span><span class="label" id="s3">Best Price & Best Service</span></div>
+            <div class="service-card" data-service="time"><span class="icon"><i class="fas fa-clock"></i></span><span class="label" id="s4">9:30 AM - 9:30 PM</span></div>
+            <div class="service-card" data-service="ml"><span class="icon"><i class="fas fa-gamepad"></i></span><span class="label" id="s5">Mobile Legends</span></div>
+            <div class="service-card" data-service="coming"><span class="icon"><i class="fas fa-star"></i></span><span class="label" id="s6">Coming Soon</span></div>
         </div>
 
         <!-- ==================== Contact ==================== -->
@@ -917,7 +955,7 @@
             <span class="icon"><i class="fab fa-telegram-plane"></i></span>
             <div class="info">
                 <div class="title" id="telegramTitle">📢 Join Our Telegram Channel</div>
-                <div class="desc" id="telegramDesc">Get latest updates, promos and support</div>
+                <div class="desc" id="telegramDesc">Events & News</div>
             </div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
         </div>
@@ -926,7 +964,7 @@
             <span class="icon"><i class="fas fa-headset"></i></span>
             <div class="info">
                 <div class="title" id="contactLabel">💬 Need Help?</div>
-                <div class="desc" id="contactUsername">@PremEnergy</div>
+                <div class="desc" id="contactUsername">Contact for support</div>
             </div>
             <span class="arrow"><i class="fas fa-chevron-right"></i></span>
         </div>
@@ -958,7 +996,7 @@
     <!-- ==================== Toast ==================== -->
     <div class="toast" id="toast"></div>
 
-    <!-- ==================== Auth Modal ==================== -->
+    <!-- ==================== Auth Modal (Login/Register) ==================== -->
     <div class="modal-overlay" id="authModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
@@ -1012,6 +1050,7 @@
             <h2 id="forgotTitle">Forgot Password?</h2>
             <p class="sub" id="forgotSub">Fill in your details below</p>
             <div class="error-msg" id="forgotError"></div>
+            <div class="success-msg" id="forgotSuccess"></div>
             <div id="forgotStep1">
                 <div class="form-group">
                     <label id="forgotIdentifyLabel">Username / Email / Phone</label>
@@ -1032,17 +1071,25 @@
                 </div>
                 <button class="btn-primary enabled" id="verifyOtpBtn" onclick="verifyOTP()">✅ Verify</button>
             </div>
-            <div id="forgotStep3" style="display:none;">
-                <div class="form-group">
-                    <label id="newPassLabel">New Password</label>
-                    <input type="password" id="newPassword" placeholder="At least 4 characters">
-                </div>
-                <div class="form-group">
-                    <label id="confirmNewPassLabel">Confirm New Password</label>
-                    <input type="password" id="confirmNewPassword" placeholder="Re-enter password">
-                </div>
-                <button class="btn-primary enabled" id="resetPasswordBtn" onclick="resetPassword()">🔑 Reset Password</button>
+        </div>
+    </div>
+
+    <!-- ==================== New Password Modal ==================== -->
+    <div class="modal-overlay" id="newPasswordModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeNewPasswordModal()"><i class="fas fa-times"></i></button>
+            <h2 id="newPassTitle">Set New Password</h2>
+            <p class="sub" id="newPassSub">Enter your new password below</p>
+            <div class="error-msg" id="newPassError"></div>
+            <div class="form-group">
+                <label id="newPassLabel">New Password</label>
+                <input type="password" id="newPassword" placeholder="At least 4 characters">
             </div>
+            <div class="form-group">
+                <label id="confirmNewPassLabel">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" placeholder="Re-enter password">
+            </div>
+            <button class="btn-primary enabled" id="resetPasswordBtn" onclick="resetPassword()">🔑 Reset Password</button>
         </div>
     </div>
 
@@ -1064,8 +1111,8 @@
                 s3: 'Best Price & Best Service', s4: '9:30 AM - 9:30 PM',
                 s5: 'Mobile Legends', s6: 'Coming Soon',
                 telegramTitle: '📢 Join Our Telegram Channel',
-                telegramDesc: 'Get latest updates, promos and support',
-                contactLabel: '💬 Need Help?', contactUsername: '@PremEnergy',
+                telegramDesc: 'Events & News',
+                contactLabel: '💬 Need Help?', contactUsername: 'Contact for support',
                 shopOpen: 'OPEN', shopClosedStatus: 'CLOSED',
                 shopOpenText: 'Open from 9:30 AM to 9:30 PM (Myanmar Time)',
                 shopClosedText: 'Will open at 9:30 AM (Myanmar Time)',
@@ -1082,8 +1129,10 @@
                 forgotIdentifyLabel: 'Username / Email / Phone',
                 forgotFindBtn: '🔍 Find Account', forgotBackToLogin: '← Back to Login',
                 otpLabel: 'OTP Code (6 digits)', resendOtpBtn: '📩 Resend',
-                verifyOtpBtn: '✅ Verify', newPassLabel: 'New Password',
-                confirmNewPassLabel: 'Confirm New Password', resetPasswordBtn: '🔑 Reset Password',
+                verifyOtpBtn: '✅ Verify',
+                newPassTitle: 'Set New Password', newPassSub: 'Enter your new password below',
+                newPassLabel: 'New Password', confirmNewPassLabel: 'Confirm New Password',
+                resetPasswordBtn: '🔑 Reset Password',
                 forgotPasswordSuccess: '✅ Password reset successful!',
                 accountNotFound: '❌ Account not found. Please try again.',
                 regUsernameLabel: 'Username', regEmailLabel: 'Email',
@@ -1099,7 +1148,8 @@
                 forgotIdentifyPlaceholder: 'Enter to search',
                 otpPlaceholder: '123456',
                 newPassPlaceholder: 'At least 4 characters',
-                confirmNewPassPlaceholder: 'Re-enter password'
+                confirmNewPassPlaceholder: 'Re-enter password',
+                otpSentMsg: '✅ OTP sent to Telegram.'
             },
             my: {
                 appName: 'Premium', appSub: 'Game Shop',
@@ -1114,8 +1164,8 @@
                 s4: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အထိ',
                 s5: 'Mobile Legends', s6: 'Coming Soon',
                 telegramTitle: '📢 Telegram ချန်နယ်',
-                telegramDesc: 'သတင်းများနှင့် အကူအညီ',
-                contactLabel: 'အကူအညီလိုပါသလား?', contactUsername: '@PremEnergy',
+                telegramDesc: 'အစီအစဉ်များနှင့် သတင်းများ',
+                contactLabel: 'အကူအညီလိုပါသလား?', contactUsername: 'အကူအညီရယူရန် ဆက်သွယ်ပါ',
                 shopOpen: 'OPEN', shopClosedStatus: 'CLOSED',
                 shopOpenText: 'မနက် ၉:၃၀ မှ ည ၉:၃၀ အတွင်းသာ ဆိုင်ဖွင့်မည် (မြန်မာစံတော်ချိန်)',
                 shopClosedText: 'မနက် ၉:၃၀ မှသာ ဆိုင်ဖွင့်ပါမည် (မြန်မာစံတော်ချိန်)',
@@ -1136,6 +1186,7 @@
                 forgotBackToLogin: '← လော့အင်ဝင်ရန် ပြန်သွားမည်',
                 otpLabel: 'OTP ကုဒ် (၆ လုံး)', resendOtpBtn: '📩 ပြန်ပို့မည်',
                 verifyOtpBtn: '✅ အတည်ပြုမည်',
+                newPassTitle: 'စကားဝှက်အသစ်', newPassSub: 'စကားဝှက်အသစ်ထည့်ပါ',
                 newPassLabel: 'စကားဝှက်အသစ်', confirmNewPassLabel: 'စကားဝှက်အတည်ပြုရန်',
                 resetPasswordBtn: '🔑 စကားဝှက်ပြောင်းမည်',
                 forgotPasswordSuccess: '✅ စကားဝှက် အောင်မြင်စွာပြောင်းပြီးပါပြီ။',
@@ -1153,7 +1204,8 @@
                 forgotIdentifyPlaceholder: 'ရှာဖွေရန် ထည့်ပါ',
                 otpPlaceholder: '၁၂၃၄၅၆',
                 newPassPlaceholder: 'အနည်းဆုံး ၄ လုံး',
-                confirmNewPassPlaceholder: 'စကားဝှက်ပြန်ထည့်ပါ'
+                confirmNewPassPlaceholder: 'စကားဝှက်ပြန်ထည့်ပါ',
+                otpSentMsg: '✅ OTP ကို Telegram သို့ ပို့ပြီးပါပြီ။'
             }
         };
 
@@ -1400,9 +1452,12 @@
             modal.classList.add('show');
             document.getElementById('forgotStep1').style.display = 'block';
             document.getElementById('forgotStep2').style.display = 'none';
-            document.getElementById('forgotStep3').style.display = 'none';
             const err = document.getElementById('forgotError');
+            const suc = document.getElementById('forgotSuccess');
             if (err) { err.style.display = 'none'; err.textContent = ''; }
+            if (suc) { suc.style.display = 'none'; suc.textContent = ''; }
+            document.getElementById('forgotIdentify').value = '';
+            document.getElementById('otpInput').value = '';
             updatePlaceholders();
             updateForgotModalTexts();
         }
@@ -1420,9 +1475,6 @@
             document.getElementById('otpLabel').textContent = d.otpLabel;
             document.getElementById('resendOtpBtn').textContent = d.resendOtpBtn;
             document.getElementById('verifyOtpBtn').textContent = d.verifyOtpBtn;
-            document.getElementById('newPassLabel').textContent = d.newPassLabel;
-            document.getElementById('confirmNewPassLabel').textContent = d.confirmNewPassLabel;
-            document.getElementById('resetPasswordBtn').textContent = d.resetPasswordBtn;
         }
 
         function findAccount() {
@@ -1465,7 +1517,8 @@
 
             document.getElementById('forgotStep1').style.display = 'none';
             document.getElementById('forgotStep2').style.display = 'block';
-            document.getElementById('otpSentMsg').innerHTML = '✅ OTP sent to Telegram.';
+            document.getElementById('otpSentMsg').innerHTML = d.otpSentMsg;
+            err.style.display = 'none';
             startOTPTimer();
         }
 
@@ -1510,14 +1563,39 @@
                 return;
             }
 
-            document.getElementById('forgotStep2').style.display = 'none';
-            document.getElementById('forgotStep3').style.display = 'block';
+            closeForgotPasswordModal();
+            openNewPasswordModal();
+        }
+
+        // ==================== New Password Modal ====================
+        function openNewPasswordModal() {
+            const modal = document.getElementById('newPasswordModal');
+            modal.classList.add('show');
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
+            const err = document.getElementById('newPassError');
+            if (err) { err.style.display = 'none'; err.textContent = ''; }
+            updateNewPassModalTexts();
+        }
+
+        function closeNewPasswordModal() {
+            document.getElementById('newPasswordModal').classList.remove('show');
+        }
+
+        function updateNewPassModalTexts() {
+            const d = LANG_DATA[currentLang];
+            document.getElementById('newPassTitle').textContent = d.newPassTitle;
+            document.getElementById('newPassSub').textContent = d.newPassSub;
+            document.getElementById('newPassLabel').textContent = d.newPassLabel;
+            document.getElementById('confirmNewPassLabel').textContent = d.confirmNewPassLabel;
+            document.getElementById('resetPasswordBtn').textContent = d.resetPasswordBtn;
         }
 
         function resetPassword() {
             const newPass = document.getElementById('newPassword').value.trim(),
                   confirmPass = document.getElementById('confirmNewPassword').value.trim();
-            const err = document.getElementById('forgotError');
+            const err = document.getElementById('newPassError');
+            const d = LANG_DATA[currentLang];
 
             if (!newPass || !confirmPass) {
                 err.textContent = '❌ Please fill all fields';
@@ -1534,11 +1612,21 @@
             users[fpUser.username].password = newPass;
             localStorage.setItem('users', JSON.stringify(users));
 
-            showToast('✅ Password reset successful!');
+            closeNewPasswordModal();
+            showToast(d.forgotPasswordSuccess);
             setTimeout(() => {
-                closeForgotPasswordModal();
                 openAuthModal('login');
             }, 1500);
+        }
+
+        // ==================== Services Select/Deselect ====================
+        function initServiceCards() {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
         }
 
         // ==================== Initialize ====================
@@ -1550,6 +1638,7 @@
 
             updateLanguage();
             updateBadge();
+            initServiceCards();
 
             document.getElementById('langToggle').addEventListener('click', toggleLang);
 
@@ -1562,6 +1651,9 @@
             });
             document.getElementById('forgotPasswordModal').addEventListener('click', function(e) {
                 if (e.target === this) closeForgotPasswordModal();
+            });
+            document.getElementById('newPasswordModal').addEventListener('click', function(e) {
+                if (e.target === this) closeNewPasswordModal();
             });
 
             document.getElementById('switchToRegister').addEventListener('click', () => {
