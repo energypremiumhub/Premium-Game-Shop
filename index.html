@@ -8,33 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0f0f14;
-            --bg-card: #1a1a22;
-            --bg-card-hover: #24242f;
-            --text-primary: #f5f5f7;
-            --text-secondary: #a0a0b0;
-            --accent: #7c5cff;
-            --accent-glow: rgba(124, 92, 255, 0.4);
-            --success: #2ecc71;
-            --danger: #e74c3c;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
-            --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 28px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .light-mode {
             --bg-primary: #f8f8fa;
             --bg-card: #ffffff;
             --bg-card-hover: #f0f0f5;
             --text-primary: #1a1a1a;
             --text-secondary: #666666;
+            --accent: #7c5cff;
+            --accent-glow: rgba(124, 92, 255, 0.3);
+            --success: #2ecc71;
+            --danger: #e74c3c;
             --border-color: rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
-            --accent-glow: rgba(124, 92, 255, 0.15);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -49,7 +38,7 @@
             -webkit-font-smoothing: antialiased;
             user-select: none;
         }
-        .container { max-width: 480px; margin: 0 auto; padding: 16px 16px 0; }
+        .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
 
         /* ===== Header ===== */
         .header {
@@ -57,174 +46,81 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 0;
-        }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
         .logo-img {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: #fff;
-            flex-shrink: 0;
+            width: 42px; height: 42px; border-radius: 12px;
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: #fff; flex-shrink: 0;
         }
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-        .logo-text .premium {
-            font-weight: 800;
-            font-size: 0.95rem;
-            letter-spacing: -0.3px;
-        }
-        .logo-text .shop {
-            font-size: 0.55rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-left: auto;
-        }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text .premium { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.3px; }
+        .logo-text .shop { font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .header-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-left: auto; }
         .icon-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            position: relative;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            text-decoration: none;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            width: 38px; height: 38px; border-radius: 12px;
+            color: var(--text-secondary); cursor: pointer; position: relative;
+            font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); text-decoration: none;
         }
         .icon-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
         .badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: var(--danger);
-            color: #fff;
-            font-size: 0.55rem;
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: -4px; right: -4px; background: var(--danger);
+            color: #fff; font-size: 0.55rem; width: 17px; height: 17px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
         .lang-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            height: 38px;
-            padding: 0 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            white-space: nowrap;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; height: 38px; padding: 0 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; font-weight: 700; cursor: pointer;
+            color: var(--text-secondary); transition: var(--transition); white-space: nowrap;
         }
         .lang-toggle:hover { color: var(--text-primary); background: var(--bg-card-hover); }
         .login-btn {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            height: 38px;
-            padding: 0 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 700;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: var(--transition);
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            color: #fff; border: none; border-radius: 12px;
+            height: 38px; padding: 0 14px; display: flex; align-items: center; gap: 6px;
+            font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: var(--transition);
             white-space: nowrap;
         }
         .login-btn:hover { box-shadow: 0 4px 15px var(--accent-glow); }
 
         /* ===== Hero ===== */
-        .hero {
-            text-align: center;
-            margin-bottom: 24px;
-        }
+        .hero { text-align: center; margin-bottom: 20px; }
         .hero .welcome {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-bottom: 6px;
+            font-size: 0.7rem; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 6px;
         }
         .hero h1 {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #7c5cff, #00b4d8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            margin-bottom: 4px;
+            font-size: 1.9rem; font-weight: 900; letter-spacing: -1px;
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; line-height: 1.1; margin-bottom: 4px;
         }
-        .hero .sub {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
+        .hero .sub { color: var(--text-secondary); font-size: 0.85rem; }
 
         /* ===== Shop Status ===== */
         .shop-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px;
-            border-radius: var(--radius-md);
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 14px 16px; border-radius: var(--radius-md); margin-bottom: 20px;
+            font-weight: 700; font-size: 0.8rem; transition: var(--transition);
         }
         .shop-status.open {
-            background: rgba(46, 204, 113, 0.12);
-            color: var(--success);
+            background: rgba(46, 204, 113, 0.1); color: #16a34a;
             border: 1px solid rgba(46, 204, 113, 0.3);
         }
         .shop-status.closed {
-            background: rgba(231, 76, 60, 0.12);
-            color: var(--danger);
-            border: 1px solid rgba(231, 76, 60, 0.3);
+            background: rgba(239, 68, 68, 0.1); color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
         }
         .status-light {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: currentColor;
-            box-shadow: 0 0 12px currentColor;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: currentColor; box-shadow: 0 0 12px currentColor;
             animation: pulse 1.5s ease-in-out infinite;
         }
         @keyframes pulse {
@@ -232,219 +128,201 @@
             50% { opacity: 0.5; transform: scale(0.8); }
         }
 
-        /* ===== Go To Shop ===== */
+        /* ===== GO TO SHOP HERO CARD ===== */
         .go-shop-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            position: relative;
             border-radius: var(--radius-lg);
-            padding: 28px 20px;
-            text-align: center;
+            overflow: hidden;
             margin-bottom: 28px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
             cursor: pointer;
+            aspect-ratio: 1.7 / 1;
+            display: flex;
+            align-items: flex-end;
+            transition: var(--transition);
+            background: #0f0f14;
+            border: 1px solid rgba(124, 92, 255, 0.2);
         }
         .go-shop-card:hover {
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 60px rgba(124, 92, 255, 0.3);
             transform: translateY(-3px);
         }
-        .go-shop-card .icon {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+        .go-shop-card .card-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
         }
-        .go-shop-card h2 {
-            font-size: 1.4rem;
+        .go-shop-card:hover .card-bg {
+            transform: scale(1.03);
+        }
+        .go-shop-card .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(
+                to top,
+                rgba(10, 10, 20, 0.85) 0%,
+                rgba(10, 10, 20, 0.4) 40%,
+                rgba(10, 10, 20, 0.1) 70%,
+                transparent 100%
+            );
+            z-index: 1;
+        }
+        .go-shop-card .card-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px 22px;
+            width: 100%;
+        }
+        .go-shop-card .card-content h2 {
+            color: #ffffff;
+            font-size: 1.35rem;
             font-weight: 800;
+            letter-spacing: -0.5px;
             margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
-        .go-shop-card p {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            margin-bottom: 16px;
+        .go-shop-card .card-content p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
         }
         .go-shop-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a1a1a;
             border: none;
-            padding: 13px 28px;
+            padding: 12px 22px;
             border-radius: 100px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
-            text-decoration: none;
             transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(124, 92, 255, 0.4);
         }
-        .go-shop-btn:hover { box-shadow: 0 4px 20px var(--accent-glow); }
+        .go-shop-btn:hover {
+            background: #ffffff;
+            box-shadow: 0 8px 30px rgba(124, 92, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        .go-shop-btn i {
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+        .go-shop-btn:hover i {
+            transform: translateX(4px);
+        }
 
         /* ===== Services ===== */
         .section-title {
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 0.65rem; font-weight: 700; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
         }
         .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
+            content: ''; flex: 1; height: 1px; background: var(--border-color);
         }
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 24px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; margin-bottom: 24px;
         }
         .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 18px 10px 14px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            min-height: 100px;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius-md); padding: 18px 10px 14px;
+            text-align: center; cursor: pointer; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 8px; min-height: 100px;
         }
         .service-card:hover {
             background: var(--bg-card-hover);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
-        .service-card .icon {
-            font-size: 1.6rem;
-        }
+        .service-card .icon { font-size: 1.6rem; }
         .service-card .label {
-            font-size: 0.55rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            line-height: 1.3;
+            font-size: 0.55rem; color: var(--text-secondary);
+            font-weight: 500; line-height: 1.3;
         }
 
         /* ===== Bottom Nav ===== */
         .bottom-nav {
-            position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            max-width: 480px;
-            background: rgba(20, 20, 28, 0.92);
+            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 32px); max-width: 520px;
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 40px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 6px 8px;
-            z-index: 100;
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 6px 8px; z-index: 100;
+            box-shadow: var(--shadow-lg);
         }
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 30px;
-            transition: var(--transition);
-            font-size: 0.62rem;
-            border: none;
-            background: none;
-            cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; gap: 3px;
+            color: var(--text-secondary); text-decoration: none;
+            padding: 8px 12px; border-radius: 30px; transition: var(--transition);
+            font-size: 0.62rem; border: none; background: none; cursor: pointer;
         }
         .nav-item i { font-size: 1.05rem; }
         .nav-item.active {
-            color: var(--bg-primary);
-            background: var(--text-primary);
+            color: #ffffff;
+            background: #1a1a1a;
             font-weight: 700;
         }
 
         /* ===== Modal ===== */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 200;
-            align-items: flex-end;
-            justify-content: center;
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);
+            z-index: 200; align-items: flex-end; justify-content: center;
         }
         .modal-overlay.active { display: flex; }
         .modal-sheet {
-            background: var(--bg-card);
-            width: 100%;
-            max-width: 480px;
-            border-radius: 28px 28px 0 0;
-            padding: 20px;
+            background: var(--bg-card); width: 100%; max-width: 520px;
+            border-radius: 28px 28px 0 0; padding: 20px;
             animation: slideUp 0.3s ease;
         }
         @keyframes slideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
         }
-        .auth-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+        .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            background: var(--bg-card-hover);
-            color: var(--text-secondary);
-            border: none;
-            font-size: 0.8rem;
+            flex: 1; text-align: center; padding: 10px; border-radius: 12px;
+            font-weight: 700; cursor: pointer; background: var(--bg-card-hover);
+            color: var(--text-secondary); border: none; font-size: 0.8rem;
         }
         .auth-tab.active {
-            background: var(--accent);
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
             color: #fff;
         }
         .form-group { margin-bottom: 12px; }
         .form-group label {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
+            display: block; font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px;
         }
         .form-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            outline: none;
-            font-size: 0.85rem;
+            width: 100%; padding: 12px; border-radius: 12px;
+            border: 1px solid var(--border-color); background: var(--bg-primary);
+            color: var(--text-primary); outline: none; font-size: 0.85rem;
         }
         .btn-submit {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 12px;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 8px;
-            font-size: 0.85rem;
+            width: 100%; padding: 13px; border: none; border-radius: 12px;
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            color: #fff; font-weight: 700; cursor: pointer; margin-top: 8px; font-size: 0.85rem;
+        }
+
+        /* Desktop */
+        @media (min-width: 768px) {
+            .container { max-width: 720px; }
+            .go-shop-card { aspect-ratio: 2.5 / 1; }
+            .go-shop-card .card-content h2 { font-size: 1.6rem; }
+            .go-shop-card .card-content p { font-size: 0.85rem; }
+            .bottom-nav { max-width: 720px; }
         }
     </style>
 </head>
@@ -479,12 +357,18 @@
             <span id="statusText">🟢 OPEN — 09:00 AM to 09:00 PM</span>
         </div>
 
-        <!-- Go To Shop -->
+        <!-- GO TO SHOP HERO CARD -->
         <div class="go-shop-card" onclick="location.href='shop.html'">
-            <div class="icon">🛍️</div>
-            <h2 data-i18n="goShopTitle">Premium Shop</h2>
-            <p data-i18n="goShopDesc">All packages available here</p>
-            <span class="go-shop-btn" data-i18n="goShopBtn">Go To Shop</span>
+            <div class="card-bg"></div>
+            <div class="overlay"></div>
+            <div class="card-content">
+                <h2 data-i18n="goShopTitle">Premium Game Shop</h2>
+                <p data-i18n="goShopDesc">Everything you need, all in one place.</p>
+                <span class="go-shop-btn">
+                    <span data-i18n="goShopBtn">Go To Shop</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </div>
         </div>
 
         <!-- Services -->
@@ -532,7 +416,8 @@
                 heroSub: "Top up diamonds, UC, Telegram & more",
                 open: "🟢 OPEN — 09:00 AM to 09:00 PM",
                 closed: "🔴 CLOSED — Opens at 09:00 AM",
-                goShopTitle: "Premium Shop", goShopDesc: "All packages available here",
+                goShopTitle: "Premium Game Shop",
+                goShopDesc: "Everything you need, all in one place.",
                 goShopBtn: "Go To Shop", servicesTitle: "Our Services",
                 navHome: "Home", navNews: "News", navShop: "Shop",
                 navPayment: "Payment", navProfile: "Profile",
@@ -549,7 +434,8 @@
                 heroSub: "ဒိုင်းမွန်၊ UC၊ Telegram နှင့် အခြား",
                 open: "🟢 ဖွင့်ထားသည် — မနက် ၉ မှ ည ၉",
                 closed: "🔴 ပိတ်ထားသည် — မနက် ၉ မှ ပြန်ဖွင့်မည်",
-                goShopTitle: "ပရီမီယံဆိုင်", goShopDesc: "ပက်ကေ့ခ်ျအားလုံး ဤနေရာတွင် ရှိသည်",
+                goShopTitle: "ပရီမီယံဂိမ်းဆိုင်",
+                goShopDesc: "လိုအပ်သမျှ အားလုံး တစ်နေရာတည်းတွင်။",
                 goShopBtn: "ဆိုင်သို့သွားမည်", servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
                 navHome: "ပင်မ", navNews: "သတင်းများ", navShop: "ဆိုင်",
                 navPayment: "ငွေပေးချေ", navProfile: "ပရိုဖိုင်",
@@ -578,7 +464,7 @@
             const min = now.getHours() * 60 + now.getMinutes();
             const statusEl = document.getElementById('shopStatus');
             const statusText = document.getElementById('statusText');
-            if (min >= 540 && min < 1260) { // 9:00 to 21:00
+            if (min >= 540 && min < 1260) {
                 statusEl.className = 'shop-status open';
                 statusText.textContent = I18N[currentLang].open;
             } else {
@@ -605,7 +491,6 @@
             `).join('');
         }
 
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             applyLanguage();
             updateShopStatus();
@@ -624,7 +509,6 @@
                 document.getElementById('authModal').classList.add('active');
             });
 
-            // Auth tabs
             document.querySelectorAll('.auth-tab').forEach(tab => {
                 tab.addEventListener('click', function() {
                     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
