@@ -53,7 +53,6 @@
         .user-text .name {
             font-weight: 800; font-size: 14px;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
         .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
         .header-btn {
@@ -96,7 +95,6 @@
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text; line-height: 1.1; margin-bottom: 4px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
         .hero .sub { color: var(--text-secondary); font-size: 13px; }
 
@@ -183,9 +181,7 @@
             transition: transform 0.3s ease;
             will-change: transform;
         }
-        .shop-slide:active .card-bg {
-            transform: scale(1.05);
-        }
+        .shop-slide:active .card-bg { transform: scale(1.05); }
         .shop-slide .overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to top, rgba(10,10,20,0.85) 0%, rgba(10,10,20,0.4) 40%, rgba(10,10,20,0.1) 70%, transparent 100%);
@@ -217,20 +213,14 @@
         .shop-btn:hover { background: #ffffff; }
         .shop-btn:active { transform: scale(0.97); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
         .shop-btn i { font-size: 11px; transition: transform 0.3s ease; }
-        .shop-slide:active .shop-btn i { transform: translateX(4px); } /* arrow moves on card press */
+        .shop-slide:active .shop-btn i { transform: translateX(4px); }
 
         .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 24px;
+            display: flex; justify-content: center; gap: 8px; margin-bottom: 24px;
         }
         .carousel-dots .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--border-color);
-            transition: var(--transition);
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--border-color); transition: var(--transition);
         }
         .carousel-dots .dot.active {
             background: var(--accent);
@@ -288,7 +278,7 @@
         .nav-item i { font-size: 16px; }
         .nav-item.active { color: #fff; background: #1a1a1a; font-weight: 700; }
 
-        /* Modals */
+        /* Modal */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
@@ -297,10 +287,22 @@
         .modal-overlay.active { display: flex; }
         .modal-sheet {
             background: var(--bg-card); width: 100%; max-width: 520px;
-            border-radius: 28px 28px 0 0; padding: 20px; animation: slideUp 0.3s ease;
+            border-radius: 28px 28px 0 0; padding: 12px 20px 20px; animation: slideUp 0.3s ease;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        .modal-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            margin: 0 auto 12px;
+            cursor: grab;
+        }
+        .modal-handle:active { cursor: grabbing; }
+
         .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .auth-tab {
             flex: 1; text-align: center; padding: 10px; border-radius: 12px;
@@ -328,13 +330,9 @@
         }
         .btn-submit:hover { background: linear-gradient(135deg, #7c5cff, #6b4fe0); }
         .btn-submit:active { transform: scale(0.98); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .forgot-link {
-            text-align: right; margin-top: -6px; margin-bottom: 8px;
-        }
+        .forgot-link { text-align: right; margin-top: -6px; margin-bottom: 8px; }
         .forgot-link a { color: var(--accent); font-size: 10px; text-decoration: none; cursor: pointer; }
-        .switch-link {
-            text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-secondary);
-        }
+        .switch-link { text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-secondary); }
         .switch-link a { color: var(--accent); text-decoration: none; cursor: pointer; }
 
         /* Desktop */
@@ -384,9 +382,8 @@
             </div>
         </div>
 
-        <!-- Shop Carousel (Go To Shop + second card) -->
+        <!-- Shop Carousel -->
         <div class="shop-carousel" id="shopCarousel">
-            <!-- Slide 1: Premium Game Shop -->
             <div class="shop-slide">
                 <div class="card-bg" style="background-image: url('https://files.catbox.moe/b66gyb.jpg');"></div>
                 <div class="overlay"></div>
@@ -399,7 +396,6 @@
                     </button>
                 </div>
             </div>
-            <!-- Slide 2: Special Offers -->
             <div class="shop-slide">
                 <div class="card-bg" style="background-image: url('https://files.catbox.moe/4317os.jpg');"></div>
                 <div class="overlay"></div>
@@ -414,7 +410,6 @@
             </div>
         </div>
 
-        <!-- Carousel Dots -->
         <div class="carousel-dots" id="carouselDots">
             <span class="dot active"></span>
             <span class="dot"></span>
@@ -437,10 +432,8 @@
     <!-- Auth Modal -->
     <div class="modal-overlay" id="authModal">
         <div class="modal-sheet">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h2 id="authTitle">သင့်အကောင့်ကိုဝင်ရောက်ပါ</h2>
-                <button class="header-btn" onclick="closeAuth()"><i class="fa-solid fa-xmark"></i></button>
-            </div>
+            <div class="modal-handle" id="authHandle"></div>
+            <h2 id="authTitle" style="font-size:16px; text-align:center; margin-bottom:8px;">သင့်အကောင့်ကိုဝင်ရောက်ပါ</h2>
             <div class="auth-tabs">
                 <button class="auth-tab active" data-tab="login">Login</button>
                 <button class="auth-tab" data-tab="register">Register</button>
@@ -488,10 +481,8 @@
     <!-- Forgot Password Modal -->
     <div class="modal-overlay" id="forgotModal">
         <div class="modal-sheet">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h2>Forgot Password</h2>
-                <button class="header-btn" onclick="closeForgot()"><i class="fa-solid fa-xmark"></i></button>
-            </div>
+            <div class="modal-handle" id="forgotHandle"></div>
+            <h2 style="font-size:16px; text-align:center; margin-bottom:8px;">Forgot Password</h2>
             <div id="forgotStep1">
                 <div class="form-group">
                     <label>Enter your email, phone or username</label>
@@ -522,12 +513,11 @@
                 statusOpenLine2: "(Open from 9:00 AM to 9:00 PM)",
                 statusClosedLine1: "Shop is Closed",
                 statusClosedLine2: "(Will open at 9:00 AM)",
-                goShopTitle: "Premium Game Shop",
-                goShopDesc: "Diamond, UC, Telegram Service",
-                goShopBtn: "Go To Shop",
                 servicesTitle: "Our Services",
                 navHome: "Home", navNews: "News", navShop: "Shop",
                 navPayment: "Payment", navProfile: "Profile",
+                loginTitle: "Login to your account",
+                registerTitle: "Create an account",
                 s1: "Instant Delivery", s2: "Secure Payment",
                 s3: "24/7 Support", s4: "Best Prices",
                 s5: "Trusted Shop", s6: "Fast Service"
@@ -539,12 +529,11 @@
                 statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
                 statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
                 statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
-                goShopTitle: "Premium Game Shop",
-                goShopDesc: "Diamond, UC, Telegram Service",
-                goShopBtn: "Go To Shop",
                 servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
                 navHome: "ပင်မ", navNews: "သတင်းများ", navShop: "ဆိုင်",
                 navPayment: "ငွေပေးချေ", navProfile: "ပရိုဖိုင်",
+                loginTitle: "သင့်အကောင့်ကို ဝင်ရောက်ပါ",
+                registerTitle: "အကောင့်တစ်ခု ပြုလုပ်ပါ",
                 s1: "ချက်ချင်းပို့ဆောင်မှု", s2: "လုံခြုံသောငွေပေးချေမှု",
                 s3: "၂၄/၇ အကူအညီ", s4: "အကောင်းဆုံးစျေးနှုန်း",
                 s5: "ယုံကြည်စိတ်ချရသောဆိုင်", s6: "မြန်ဆန်သောဝန်ဆောင်မှု"
@@ -617,7 +606,6 @@
         // Carousel dots update
         const carousel = document.getElementById('shopCarousel');
         const dots = document.querySelectorAll('#carouselDots .dot');
-
         carousel.addEventListener('scroll', function() {
             const scrollLeft = carousel.scrollLeft;
             const slideWidth = carousel.querySelector('.shop-slide').offsetWidth + 12;
@@ -627,19 +615,88 @@
             });
         });
 
+        // Modal drag-to-close and body scroll lock
+        function lockScroll() { document.body.style.overflow = 'hidden'; }
+        function unlockScroll() { document.body.style.overflow = ''; }
+
+        function enableDragClose(modalId, handleId) {
+            const modal = document.getElementById(modalId);
+            const sheet = modal.querySelector('.modal-sheet');
+            const handle = document.getElementById(handleId);
+            let startY = 0, currentY = 0, isDragging = false;
+
+            handle.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startY = e.clientY;
+                sheet.style.transition = 'none';
+                e.preventDefault();
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                currentY = e.clientY;
+                let dy = currentY - startY;
+                if (dy > 0) sheet.style.transform = `translateY(${dy}px)`;
+            });
+            document.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                let dy = currentY - startY;
+                sheet.style.transition = 'transform 0.3s ease';
+                if (dy > 100) {
+                    modal.classList.remove('active');
+                    unlockScroll();
+                    sheet.style.transform = '';
+                } else {
+                    sheet.style.transform = '';
+                }
+            });
+
+            handle.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startY = e.touches[0].clientY;
+                sheet.style.transition = 'none';
+            });
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentY = e.touches[0].clientY;
+                let dy = currentY - startY;
+                if (dy > 0) sheet.style.transform = `translateY(${dy}px)`;
+            });
+            document.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                let dy = currentY - startY;
+                sheet.style.transition = 'transform 0.3s ease';
+                if (dy > 100) {
+                    modal.classList.remove('active');
+                    unlockScroll();
+                    sheet.style.transform = '';
+                } else {
+                    sheet.style.transform = '';
+                }
+            });
+        }
+
+        enableDragClose('authModal', 'authHandle');
+        enableDragClose('forgotModal', 'forgotHandle');
+
         // Auth modal functions
         function openAuth() {
+            lockScroll();
             document.getElementById('authModal').classList.add('active');
             switchAuthTab('login');
         }
         function closeAuth() {
             document.getElementById('authModal').classList.remove('active');
+            unlockScroll();
         }
         function switchAuthTab(tab) {
             document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
             document.querySelector(`.auth-tab[data-tab="${tab}"]`).classList.add('active');
             document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
             document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+            const title = document.getElementById('authTitle');
+            title.textContent = tab === 'login' ? I18N[currentLang].loginTitle : I18N[currentLang].registerTitle;
         }
 
         function handleRegister() {
@@ -689,11 +746,15 @@
         }
 
         function openForgotModal() {
+            lockScroll();
             closeAuth();
             document.getElementById('forgotModal').classList.add('active');
+            document.getElementById('forgotStep1').style.display = 'block';
+            document.getElementById('forgotStep2').style.display = 'none';
         }
         function closeForgot() {
             document.getElementById('forgotModal').classList.remove('active');
+            unlockScroll();
         }
         function sendOTP() {
             const identifier = document.getElementById('forgotIdentifier').value.trim();
