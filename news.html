@@ -63,9 +63,8 @@
     </div>
 
     <script>
-        // ဒီနေရာမှာ မင်းရဲ့ Supabase အချက်အလက်တွေ ထည့်ပါ
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+        const SUPABASE_URL = 'https://gvqisrjaelobobvcslf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2cWlzcmphZWlvYm9idmNzbHlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4NzA2NzUsImV4cCI6MjEwMjQ0NjY3NX0.6BHbnmKhxHqmvYUj8CBMfyeA67angYFHnb-ghYHbvhM';
 
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -80,6 +79,11 @@
 
             if (error) {
                 container.innerHTML = '<p>သတင်းများ ရယူ၍မရပါ။</p>';
+                return;
+            }
+
+            if (data.length === 0) {
+                container.innerHTML = '<p>သတင်းများ မရှိသေးပါ။</p>';
                 return;
             }
 
