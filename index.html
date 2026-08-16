@@ -147,49 +147,64 @@
             overflow: hidden; text-overflow: ellipsis;
         }
 
-        /* Go To Shop Card */
-        .go-shop-card {
-            position: relative; border-radius: var(--radius-lg); overflow: hidden;
-            margin-bottom: 16px; box-shadow: var(--shadow-lg); cursor: pointer;
-            aspect-ratio: 1.8 / 1;  /* ပိုပါးလွှာ */
-            display: flex; align-items: flex-end;
-            background: #0f0f14; border: 1px solid rgba(124, 92, 255, 0.2);
+        /* Shop Carousel */
+        .shop-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 12px;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .shop-carousel::-webkit-scrollbar { display: none; }
+        .shop-slide {
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            width: 90%;
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 1.8 / 1;
+            background: #0f0f14;
+            border: 1px solid rgba(124, 92, 255, 0.2);
+            box-shadow: var(--shadow-lg);
             transition: box-shadow 0.3s ease;
         }
-        .go-shop-card:active {
+        .shop-slide:active {
             box-shadow: 0 0 30px rgba(124, 92, 255, 0.5);
         }
-        .go-shop-card .card-bg {
+        .shop-slide .card-bg {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://files.catbox.moe/b66gyb.jpg');
             background-size: cover;
             background-position: top center;
             transition: transform 0.3s ease;
             will-change: transform;
         }
-        .go-shop-card:active .card-bg {
+        .shop-slide:active .card-bg {
             transform: scale(1.08);
         }
-        .go-shop-card .overlay {
+        .shop-slide .overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to top, rgba(10,10,20,0.85) 0%, rgba(10,10,20,0.4) 40%, rgba(10,10,20,0.1) 70%, transparent 100%);
             z-index: 1; pointer-events: none;
         }
-        .go-shop-card .card-content {
+        .shop-slide .card-content {
             position: relative; z-index: 2; padding: 20px 22px; width: 100%;
             pointer-events: none;
         }
-        .go-shop-card .card-content h2 {
+        .shop-slide .card-content h2 {
             color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
             margin-bottom: 4px; text-shadow: 0 2px 8px rgba(0,0,0,0.4);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .go-shop-card .card-content p {
+        .shop-slide .card-content p {
             color: rgba(255,255,255,0.85); font-size: 12px; margin-bottom: 12px;
             text-shadow: 0 1px 4px rgba(0,0,0,0.4);
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .go-shop-btn {
+        .shop-btn {
             display: inline-flex; align-items: center; gap: 8px;
             background: rgba(255,255,255,0.95); color: #1a1a1a; border: none;
             padding: 12px 22px; border-radius: 100px; font-weight: 700;
@@ -198,9 +213,30 @@
             pointer-events: auto;
             white-space: nowrap;
         }
-        .go-shop-btn:hover { background: #fff; box-shadow: 0 8px 30px rgba(124,92,255,0.6); }
-        .go-shop-btn i { font-size: 11px; transition: transform 0.3s ease; }
-        .go-shop-btn:hover i { transform: translateX(4px); }
+        .shop-btn:hover { background: #fff; box-shadow: 0 8px 30px rgba(124,92,255,0.6); }
+        .shop-btn i { font-size: 11px; transition: transform 0.3s ease; }
+        .shop-btn:hover i { transform: translateX(4px); }
+        .shop-btn:active i { transform: translateX(4px); }
+        .shop-slide:active .shop-btn i { transform: translateX(4px); } /* arrow moves on card press */
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .carousel-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            transition: var(--transition);
+        }
+        .carousel-dots .dot.active {
+            background: var(--accent);
+            width: 20px;
+            border-radius: 10px;
+        }
 
         /* Promo Carousel */
         .promo-scroll {
@@ -322,9 +358,9 @@
         /* Desktop */
         @media (min-width: 768px) {
             .container { max-width: 720px; }
-            .go-shop-card { aspect-ratio: 2.2 / 1; }  /* desktop slightly shorter */
-            .go-shop-card .card-content h2 { font-size: 28px; }
-            .go-shop-card .card-content p { font-size: 14px; }
+            .shop-slide { aspect-ratio: 2.2 / 1; }
+            .shop-slide .card-content h2 { font-size: 28px; }
+            .shop-slide .card-content p { font-size: 14px; }
             .bottom-nav { max-width: 720px; }
         }
     </style>
@@ -366,18 +402,40 @@
             </div>
         </div>
 
-        <!-- Go To Shop Card -->
-        <div class="go-shop-card" id="goShopCard">
-            <div class="card-bg" id="cardBg"></div>
-            <div class="overlay"></div>
-            <div class="card-content">
-                <h2 data-i18n="goShopTitle">Premium Game Shop</h2>
-                <p data-i18n="goShopDesc">Diamond, UC, Telegram Service</p>
-                <button class="go-shop-btn" id="goShopBtn">
-                    <span data-i18n="goShopBtn">Go To Shop</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
+        <!-- Shop Carousel (Go To Shop + second card) -->
+        <div class="shop-carousel" id="shopCarousel">
+            <!-- Slide 1: Premium Game Shop -->
+            <div class="shop-slide">
+                <div class="card-bg" style="background-image: url('https://files.catbox.moe/b66gyb.jpg');"></div>
+                <div class="overlay"></div>
+                <div class="card-content">
+                    <h2>Premium Game Shop</h2>
+                    <p>Diamond, UC, Telegram Service</p>
+                    <button class="shop-btn" onclick="location.href='shop.html'">
+                        <span>Go To Shop</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
+            <!-- Slide 2: Special Offers -->
+            <div class="shop-slide">
+                <div class="card-bg" style="background-image: url('https://files.catbox.moe/4317os.jpg');"></div>
+                <div class="overlay"></div>
+                <div class="card-content">
+                    <h2>Special Offers</h2>
+                    <p>Limited-time deals & discounts</p>
+                    <button class="shop-btn" onclick="location.href='offers.html'">
+                        <span>View Offers</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="carousel-dots" id="carouselDots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
         </div>
 
         <!-- Promo Carousel -->
@@ -599,14 +657,18 @@
             }
         }
 
-        // Go To Shop Button Click
-        const goShopBtn = document.getElementById('goShopBtn');
-        goShopBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            window.location.href = 'shop.html';
-        });
+        // Shop Carousel Dots Update
+        const carousel = document.getElementById('shopCarousel');
+        const dots = document.querySelectorAll('#carouselDots .dot');
 
-        // (No JS needed for press effect; CSS :active handles it)
+        carousel.addEventListener('scroll', function() {
+            const scrollLeft = carousel.scrollLeft;
+            const slideWidth = carousel.querySelector('.shop-slide').offsetWidth + 12; // width + gap
+            const index = Math.round(scrollLeft / slideWidth);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        });
 
         // Auth modal functions
         function openAuth() {
