@@ -39,7 +39,7 @@
         }
         .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
 
-        /* Header */
+        /* ===== Header ===== */
         .header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .user-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .avatar {
@@ -84,7 +84,7 @@
         .login-btn:active { transform: scale(0.96); }
         .login-btn.hidden { display: none; }
 
-        /* Hero */
+        /* ===== Hero ===== */
         .hero { text-align: left; margin-bottom: 20px; }
         .hero .welcome {
             font-size: 11px; color: var(--text-secondary); text-transform: uppercase;
@@ -95,11 +95,10 @@
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text; line-height: 1.1; margin-bottom: 4px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
         .hero .sub { color: var(--text-secondary); font-size: 13px; }
 
-        /* Shop Status Banner */
+        /* ===== Shop Status Banner ===== */
         .status-banner {
             position: relative; border-radius: var(--radius-lg); overflow: hidden;
             margin-bottom: 20px; padding: 0; background: #0f0f14;
@@ -146,7 +145,7 @@
             overflow: hidden; text-overflow: ellipsis;
         }
 
-        /* Shop Carousel */
+        /* ===== Shop Carousel ===== */
         .shop-carousel {
             display: flex;
             overflow-x: auto;
@@ -232,7 +231,7 @@
             border-radius: 10px;
         }
 
-        /* Services */
+        /* ===== Services ===== */
         .section-title {
             font-size: 10px; font-weight: 700; color: var(--text-secondary);
             text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
@@ -262,57 +261,89 @@
             text-overflow: ellipsis; max-width: 100%;
         }
 
-        /* Bottom Nav - Premium with Shop highlighted */
+        /* ===== Premium Bottom Navigation ===== */
         .bottom-nav {
-            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-            width: calc(100% - 32px); max-width: 520px;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 32px;
             display: flex;
+            align-items: flex-end;
             justify-content: space-around;
-            align-items: center;
-            padding: 6px 8px;
+            padding: 10px 8px 8px;
             z-index: 100;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
         .nav-item {
-            display: flex; flex-direction: column; align-items: center; gap: 3px;
-            color: var(--text-secondary); text-decoration: none;
-            padding: 8px 12px; border-radius: 30px;
-            transition: var(--transition); font-size: 10px;
-            border: none; background: none; cursor: pointer;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            max-width: 70px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #999;
+            text-decoration: none;
+            padding: 8px 0;
+            border-radius: 20px;
+            transition: var(--transition);
+            font-size: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
         }
-        .nav-item i { font-size: 16px; }
-        .nav-item.active { color: #fff; background: #1a1a1a; font-weight: 700; }
-        /* Special Shop button */
-        .nav-item.shop-center {
-            background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            color: #fff;
-            padding: 14px 18px;
-            border-radius: 50%;
-            font-size: 9px;
+        .nav-item i { font-size: 18px; }
+        .nav-item.active:not(.shop-center) {
+            color: #1a1a1a;
+            background: #f0f0f5;
             font-weight: 700;
-            max-width: 70px;
-            transform: translateY(-12px);
-            box-shadow: 0 6px 16px rgba(124,92,255,0.35);
-            border: 3px solid #fff;
         }
-        .nav-item.shop-center i { font-size: 20px; }
-        .nav-item.shop-center:hover {
-            background: linear-gradient(135deg, #6b4fe0, #3f35b0);
-            transform: translateY(-14px);
-            box-shadow: 0 8px 20px rgba(124,92,255,0.45);
-        }
-        .nav-item.shop-center:active {
-            transform: translateY(-10px);
-            box-shadow: 0 4px 10px rgba(124,92,255,0.3);
+        .nav-item.active:not(.shop-center) i {
+            color: var(--accent);
         }
 
-        /* Modal */
+        /* Shop Special Center Button */
+        .nav-item.shop-center {
+            position: relative;
+            top: -22px;
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(124, 92, 255, 0.4);
+            border: 3px solid #fff;
+            font-size: 9px;
+            font-weight: 700;
+            flex: none;
+            margin: 0 4px;
+        }
+        .nav-item.shop-center i { font-size: 22px; }
+        .nav-item.shop-center .nav-label {
+            font-size: 8px;
+            margin-top: 2px;
+        }
+        .nav-item.shop-center:hover {
+            background: linear-gradient(135deg, #6b4fe0, #3f35b0);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(124, 92, 255, 0.5);
+        }
+        .nav-item.shop-center:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 92, 255, 0.3);
+        }
+
+        /* ===== Modal ===== */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
@@ -458,7 +489,7 @@
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Home</span></a>
         <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span data-i18n="navNews">News</span></a>
-        <a href="shop.html" class="nav-item shop-center"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="navShop">Shop</span></a>
+        <a href="shop.html" class="nav-item shop-center"><i class="fa-solid fa-bag-shopping"></i><span class="nav-label" data-i18n="navShop">Shop</span></a>
         <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span data-i18n="navPayment">Payment</span></a>
         <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span data-i18n="navProfile">Profile</span></a>
     </nav>
