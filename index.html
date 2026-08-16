@@ -49,108 +49,177 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-img {
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .avatar {
             width: 44px;
             height: 44px;
-            border-radius: 12px;
-            background-image: url('https://files.catbox.moe/23y1zs.png');
-            background-size: cover;
-            background-position: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
             flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .user-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .user-text .name { font-weight: 800; font-size: 0.9rem; }
+        .user-text .status { font-size: 0.6rem; color: var(--text-secondary); }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: auto;
+        }
+        .header-btn {
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
+            border-radius: 12px;
+            height: 38px;
+            min-width: 38px;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            white-space: nowrap;
+            outline: none;
         }
-        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-        .logo-text .premium { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.3px; }
-        .logo-text .shop { font-size: 0.55rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-        .header-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-left: auto; }
-        .icon-btn {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            width: 38px; height: 38px; border-radius: 12px;
-            color: var(--text-secondary); cursor: pointer; position: relative;
-            font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); text-decoration: none;
-        }
-        .icon-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .header-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .header-btn:active { transform: scale(0.94); }
+        .lang-btn { font-weight: 700; font-size: 0.65rem; }
         .badge {
-            position: absolute; top: -4px; right: -4px; background: var(--danger);
-            color: #fff; font-size: 0.55rem; width: 17px; height: 17px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
+            color: #fff;
+            font-size: 0.55rem;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .lang-toggle {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; height: 38px; padding: 0 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.65rem; font-weight: 700; cursor: pointer;
-            color: var(--text-secondary); transition: var(--transition); white-space: nowrap;
-        }
-        .lang-toggle:hover { color: var(--text-primary); background: var(--bg-card-hover); }
         .login-btn {
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            color: #fff; border: none; border-radius: 12px;
-            height: 38px; padding: 0 14px; display: flex; align-items: center; gap: 6px;
-            font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: var(--transition);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            height: 38px;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
             white-space: nowrap;
         }
         .login-btn:hover { box-shadow: 0 4px 15px var(--accent-glow); }
+        .login-btn.hidden { display: none; }
 
-        /* Hero */
-        .hero { text-align: center; margin-bottom: 20px; }
+        /* Hero - Left Aligned */
+        .hero {
+            text-align: left;
+            margin-bottom: 20px;
+        }
         .hero .welcome {
-            font-size: 0.7rem; color: var(--text-secondary);
-            text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 6px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
         .hero h1 {
-            font-size: 1.9rem; font-weight: 900; letter-spacing: -1px;
+            font-size: 1.9rem;
+            font-weight: 900;
+            letter-spacing: -1px;
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; line-height: 1.1; margin-bottom: 4px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
         .hero .sub { color: var(--text-secondary); font-size: 0.85rem; }
 
-        /* Shop Status */
-        .shop-status {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            padding: 14px 16px; border-radius: var(--radius-md); margin-bottom: 20px;
-            font-weight: 700; font-size: 0.8rem; transition: var(--transition);
+        /* Gaming Status Banner */
+        .status-banner {
+            position: relative;
+            background: linear-gradient(145deg, #f0edff, #e8e4ff);
+            border: 1px solid rgba(124, 92, 255, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 20px rgba(124, 92, 255, 0.15);
+            transition: var(--transition);
+            overflow: hidden;
         }
-        .shop-status.open {
-            background: rgba(46, 204, 113, 0.1); color: #16a34a;
-            border: 1px solid rgba(46, 204, 113, 0.3);
+        .status-banner.open {
+            background: linear-gradient(145deg, #e8ffe8, #d9f7d9);
+            border-color: rgba(46, 204, 113, 0.4);
         }
-        .shop-status.closed {
-            background: rgba(239, 68, 68, 0.1); color: #dc2626;
-            border: 1px solid rgba(239, 68, 68, 0.3);
+        .status-banner.closed {
+            background: linear-gradient(145deg, #ffe8e8, #f7d9d9);
+            border-color: rgba(239, 68, 68, 0.4);
         }
-        .status-light {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: currentColor; box-shadow: 0 0 12px currentColor;
+        .status-banner .status-icon {
+            font-size: 1.5rem;
+        }
+        .status-banner .status-text {
+            flex: 1;
+        }
+        .status-banner .status-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 12px currentColor;
             animation: pulse 1.5s ease-in-out infinite;
         }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 0.4; transform: scale(0.8); }
         }
 
-        /* Go To Shop Hero Card */
+        /* Go To Shop Card */
         .go-shop-card {
             position: relative;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
             box-shadow: var(--shadow-lg);
             cursor: pointer;
             aspect-ratio: 1.7 / 1;
             display: flex;
             align-items: flex-end;
-            transition: var(--transition);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
             background: #0f0f14;
             border: 1px solid rgba(124, 92, 255, 0.2);
         }
-        .go-shop-card:hover {
-            box-shadow: 0 20px 60px rgba(124, 92, 255, 0.3);
-            transform: translateY(-3px);
+        .go-shop-card:active {
+            transform: scale(0.97);
         }
         .go-shop-card .card-bg {
             position: absolute;
@@ -224,25 +293,78 @@
             transform: translateX(4px);
         }
 
+        /* Additional Promo Boxes */
+        .promo-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .promo-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .promo-box:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        .promo-box .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .promo-box h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .promo-box p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
         /* Services */
         .section-title {
-            font-size: 0.65rem; font-weight: 700; color: var(--text-secondary);
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
-            display: flex; align-items: center; gap: 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .section-title::after {
-            content: ''; flex: 1; height: 1px; background: var(--border-color);
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
         }
         .services-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
         }
         .service-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: var(--radius-md); padding: 18px 10px 14px;
-            text-align: center; cursor: pointer; transition: var(--transition);
-            display: flex; flex-direction: column; align-items: center;
-            gap: 8px; min-height: 100px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 18px 10px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-height: 100px;
         }
         .service-card:hover {
             background: var(--bg-card-hover);
@@ -251,27 +373,45 @@
         }
         .service-card .icon { font-size: 1.6rem; }
         .service-card .label {
-            font-size: 0.55rem; color: var(--text-secondary);
-            font-weight: 500; line-height: 1.3;
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            line-height: 1.3;
         }
 
         /* Bottom Nav */
         .bottom-nav {
-            position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-            width: calc(100% - 32px); max-width: 520px;
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 520px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 40px;
-            display: flex; justify-content: space-around; align-items: center;
-            padding: 6px 8px; z-index: 100;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 6px 8px;
+            z-index: 100;
             box-shadow: var(--shadow-lg);
         }
         .nav-item {
-            display: flex; flex-direction: column; align-items: center; gap: 3px;
-            color: var(--text-secondary); text-decoration: none;
-            padding: 8px 12px; border-radius: 30px; transition: var(--transition);
-            font-size: 0.62rem; border: none; background: none; cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-size: 0.62rem;
+            border: none;
+            background: none;
+            cursor: pointer;
         }
         .nav-item i { font-size: 1.05rem; }
         .nav-item.active {
@@ -280,16 +420,27 @@
             font-weight: 700;
         }
 
-        /* Modal */
+        /* Modals */
         .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);
-            z-index: 200; align-items: flex-end; justify-content: center;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            align-items: flex-end;
+            justify-content: center;
         }
         .modal-overlay.active { display: flex; }
         .modal-sheet {
-            background: var(--bg-card); width: 100%; max-width: 520px;
-            border-radius: 28px 28px 0 0; padding: 20px;
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 520px;
+            border-radius: 28px 28px 0 0;
+            padding: 20px;
             animation: slideUp 0.3s ease;
         }
         @keyframes slideUp {
@@ -298,9 +449,17 @@
         }
         .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .auth-tab {
-            flex: 1; text-align: center; padding: 10px; border-radius: 12px;
-            font-weight: 700; cursor: pointer; background: var(--bg-card-hover);
-            color: var(--text-secondary); border: none; font-size: 0.8rem;
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            background: var(--bg-card-hover);
+            color: var(--text-secondary);
+            border: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
         }
         .auth-tab.active {
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
@@ -308,17 +467,61 @@
         }
         .form-group { margin-bottom: 12px; }
         .form-group label {
-            display: block; font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px;
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
         }
         .form-group input {
-            width: 100%; padding: 12px; border-radius: 12px;
-            border: 1px solid var(--border-color); background: var(--bg-primary);
-            color: var(--text-primary); outline: none; font-size: 0.85rem;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            outline: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
         }
         .btn-submit {
-            width: 100%; padding: 13px; border: none; border-radius: 12px;
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            color: #fff; font-weight: 700; cursor: pointer; margin-top: 8px; font-size: 0.85rem;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .btn-submit:hover { box-shadow: 0 4px 15px var(--accent-glow); }
+        .forgot-link {
+            text-align: right;
+            margin-top: -6px;
+            margin-bottom: 8px;
+        }
+        .forgot-link a {
+            color: var(--accent);
+            font-size: 0.7rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .switch-link {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .switch-link a {
+            color: var(--accent);
+            text-decoration: none;
+            cursor: pointer;
         }
 
         /* Desktop */
@@ -335,17 +538,17 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="logo-area">
-                <div class="logo-img"></div>
-                <div class="logo-text">
-                    <span class="premium" data-i18n="brandName">Premium</span>
-                    <span class="shop" data-i18n="brandSub">Game Shop</span>
+            <div class="user-area" id="userArea" onclick="handleUserAreaClick()">
+                <div class="avatar" id="avatar">👤</div>
+                <div class="user-text">
+                    <span class="name" id="userName">Guest</span>
+                    <span class="status" id="userStatus">Login / Register</span>
                 </div>
             </div>
-            <div class="header-actions">
-                <button class="lang-toggle" id="langToggle">MM</button>
-                <a href="#" class="icon-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></a>
-                <button class="login-btn" id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i><span data-i18n="login">Login</span></button>
+            <div class="header-actions" id="headerActions">
+                <button class="header-btn lang-btn" id="langToggle">MM</button>
+                <button class="header-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
+                <button class="login-btn" id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i><span>Login</span></button>
             </div>
         </header>
 
@@ -356,13 +559,14 @@
             <p class="sub" data-i18n="heroSub">Top up diamonds, UC, Telegram & more</p>
         </div>
 
-        <!-- Shop Status -->
-        <div class="shop-status open" id="shopStatus">
+        <!-- Gaming Status -->
+        <div class="status-banner open" id="statusBanner">
+            <span class="status-icon">🎮</span>
+            <span class="status-text" id="statusText">🟢 OPEN — 09:00 AM to 09:00 PM</span>
             <span class="status-light"></span>
-            <span id="statusText">🟢 OPEN — 09:00 AM to 09:00 PM</span>
         </div>
 
-        <!-- GO TO SHOP HERO CARD -->
+        <!-- Go To Shop -->
         <div class="go-shop-card" onclick="location.href='shop.html'">
             <div class="card-bg"></div>
             <div class="overlay"></div>
@@ -373,6 +577,20 @@
                     <span data-i18n="goShopBtn">Go To Shop</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </span>
+            </div>
+        </div>
+
+        <!-- Additional Promo Boxes -->
+        <div class="promo-row">
+            <div class="promo-box" onclick="location.href='news.html'">
+                <div class="icon">📰</div>
+                <h4 data-i18n="newsPromo">Latest News</h4>
+                <p data-i18n="newsPromoDesc">Updates & events</p>
+            </div>
+            <div class="promo-box" onclick="location.href='offers.html'">
+                <div class="icon">🏷️</div>
+                <h4 data-i18n="offersPromo">Special Offers</h4>
+                <p data-i18n="offersPromoDesc">Discounts & deals</p>
             </div>
         </div>
 
@@ -394,26 +612,83 @@
     <div class="modal-overlay" id="authModal">
         <div class="modal-sheet">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h2 data-i18n="authTitle">Welcome Back</h2>
-                <button class="icon-btn" onclick="closeAuth()"><i class="fa-solid fa-xmark"></i></button>
+                <h2 id="authTitle">သင့်အကောင့်ကိုဝင်ရောက်ပါ</h2>
+                <button class="header-btn" onclick="closeAuth()"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login" data-i18n="loginTab">Login</button>
-                <button class="auth-tab" data-tab="register" data-i18n="registerTab">Register</button>
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="register">Register</button>
             </div>
-            <div class="form-group">
-                <label data-i18n="emailPhone">Email / Phone</label>
-                <input type="text" placeholder="Enter email or phone">
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>Email / Phone / Username</label>
+                    <input type="text" id="loginIdentifier" placeholder="Enter email, phone or username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <div class="forgot-link"><a onclick="openForgotModal()">Forgot Password?</a></div>
+                <button class="btn-submit" onclick="handleLogin()">Login</button>
+                <div class="switch-link">Don't have an account? <a onclick="switchAuthTab('register')">Register</a></div>
             </div>
-            <div class="form-group">
-                <label data-i18n="password">Password</label>
-                <input type="password" placeholder="Enter password">
+            <div id="registerForm" style="display:none;">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose a username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="Enter email (optional)">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="regPhone" placeholder="Enter phone (optional)">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="At least 4 characters">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirm" placeholder="Re-enter password">
+                </div>
+                <button class="btn-submit" onclick="handleRegister()">Register</button>
+                <div class="switch-link">Already have an account? <a onclick="switchAuthTab('login')">Login</a></div>
             </div>
-            <button class="btn-submit" data-i18n="loginBtn">Login</button>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgotModal">
+        <div class="modal-sheet">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h2>Forgot Password</h2>
+                <button class="header-btn" onclick="closeForgot()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="forgotStep1">
+                <div class="form-group">
+                    <label>Enter your email, phone or username</label>
+                    <input type="text" id="forgotIdentifier" placeholder="Email / Phone / Username">
+                </div>
+                <button class="btn-submit" onclick="sendOTP()">Send OTP</button>
+            </div>
+            <div id="forgotStep2" style="display:none;">
+                <div class="form-group">
+                    <label>Enter OTP</label>
+                    <input type="text" id="otpInput" placeholder="6-digit code">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new password">
+                </div>
+                <button class="btn-submit" onclick="resetPassword()">Reset Password</button>
+            </div>
         </div>
     </div>
 
     <script>
+        // ==================== I18N ====================
         const I18N = {
             en: {
                 brandName: "Premium", brandSub: "Game Shop",
@@ -426,12 +701,15 @@
                 goShopBtn: "Go To Shop", servicesTitle: "Our Services",
                 navHome: "Home", navNews: "News", navShop: "Shop",
                 navPayment: "Payment", navProfile: "Profile",
-                authTitle: "Welcome Back", loginTab: "Login", registerTab: "Register",
+                authTitle: "သင့်အကောင့်ကိုဝင်ရောက်ပါ",
+                loginTab: "Login", registerTab: "Register",
                 emailPhone: "Email / Phone", password: "Password", loginBtn: "Login",
                 registerBtn: "Register",
                 s1: "Instant Delivery", s2: "Secure Payment",
                 s3: "24/7 Support", s4: "Best Prices",
-                s5: "Trusted Shop", s6: "Fast Service"
+                s5: "Trusted Shop", s6: "Fast Service",
+                newsPromo: "Latest News", newsPromoDesc: "Updates & events",
+                offersPromo: "Special Offers", offersPromoDesc: "Discounts & deals"
             },
             my: {
                 brandName: "Premium", brandSub: "Game Shop",
@@ -444,17 +722,22 @@
                 goShopBtn: "ဆိုင်သို့သွားမည်", servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
                 navHome: "ပင်မ", navNews: "သတင်းများ", navShop: "ဆိုင်",
                 navPayment: "ငွေပေးချေ", navProfile: "ပရိုဖိုင်",
-                authTitle: "ပြန်လည်ကြိုဆိုပါတယ်", loginTab: "လော့အင်", registerTab: "မှတ်ပုံတင်မည်",
+                authTitle: "သင့်အကောင့်ကိုဝင်ရောက်ပါ",
+                loginTab: "လော့အင်", registerTab: "မှတ်ပုံတင်မည်",
                 emailPhone: "အီးမေးလ် / ဖုန်း", password: "စကားဝှက်", loginBtn: "လော့အင်",
                 registerBtn: "မှတ်ပုံတင်မည်",
                 s1: "ချက်ချင်းပို့ဆောင်မှု", s2: "လုံခြုံသောငွေပေးချေမှု",
                 s3: "၂၄/၇ အကူအညီ", s4: "အကောင်းဆုံးစျေးနှုန်း",
-                s5: "ယုံကြည်စိတ်ချရသောဆိုင်", s6: "မြန်ဆန်သောဝန်ဆောင်မှု"
+                s5: "ယုံကြည်စိတ်ချရသောဆိုင်", s6: "မြန်ဆန်သောဝန်ဆောင်မှု",
+                newsPromo: "နောက်ဆုံးရသတင်းများ", newsPromoDesc: "အပ်ဒိတ်များနှင့်ပွဲများ",
+                offersPromo: "အထူးကမ်းလှမ်းချက်များ", offersPromoDesc: "လျှော့စျေးများနှင့်အပေးအယူများ"
             }
         };
 
         let currentLang = localStorage.getItem('lang') || 'en';
+        let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
+        // ==================== Apply Language ====================
         function applyLanguage() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -462,22 +745,25 @@
             });
             updateShopStatus();
             renderServices();
+            updateUserUI();
         }
 
+        // ==================== Shop Status ====================
         function updateShopStatus() {
             const now = new Date();
             const min = now.getHours() * 60 + now.getMinutes();
-            const statusEl = document.getElementById('shopStatus');
+            const banner = document.getElementById('statusBanner');
             const statusText = document.getElementById('statusText');
             if (min >= 540 && min < 1260) {
-                statusEl.className = 'shop-status open';
+                banner.className = 'status-banner open';
                 statusText.textContent = I18N[currentLang].open;
             } else {
-                statusEl.className = 'shop-status closed';
+                banner.className = 'status-banner closed';
                 statusText.textContent = I18N[currentLang].closed;
             }
         }
 
+        // ==================== Render Services ====================
         function renderServices() {
             const grid = document.getElementById('servicesGrid');
             const services = [
@@ -496,37 +782,169 @@
             `).join('');
         }
 
+        // ==================== User UI ====================
+        function updateUserUI() {
+            const avatar = document.getElementById('avatar');
+            const userName = document.getElementById('userName');
+            const userStatus = document.getElementById('userStatus');
+            const loginBtn = document.getElementById('loginBtn');
+            if (currentUser) {
+                avatar.innerHTML = currentUser.username.charAt(0).toUpperCase();
+                userName.textContent = currentUser.username;
+                userStatus.textContent = 'Logged In';
+                loginBtn.classList.add('hidden');
+            } else {
+                avatar.innerHTML = '👤';
+                userName.textContent = 'Guest';
+                userStatus.textContent = currentLang === 'en' ? 'Login / Register' : 'လော့အင် / မှတ်ပုံတင်မည်';
+                loginBtn.classList.remove('hidden');
+            }
+        }
+
+        // ==================== Auth Modal ====================
+        function openAuth() {
+            document.getElementById('authModal').classList.add('active');
+            switchAuthTab('login');
+        }
+        function closeAuth() {
+            document.getElementById('authModal').classList.remove('active');
+        }
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.auth-tab[data-tab="${tab}"]`).classList.add('active');
+            document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+            document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+        }
+
+        // ==================== Auth Actions ====================
+        function handleRegister() {
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            if (!username || !password) return alert('Username and password required');
+            if (password.length < 4) return alert('Password must be at least 4 characters');
+            if (password !== confirm) return alert('Passwords do not match');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (users[username]) return alert('Username already exists');
+            users[username] = { username, email, phone, password };
+            localStorage.setItem('users', JSON.stringify(users));
+            currentUser = users[username];
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            closeAuth();
+            updateUserUI();
+            alert('Registration successful!');
+        }
+
+        function handleLogin() {
+            const identifier = document.getElementById('loginIdentifier').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            if (!identifier || !password) return alert('Please fill all fields');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            let found = null;
+            for (const key in users) {
+                const u = users[key];
+                if (u.username === identifier || u.email === identifier || u.phone === identifier) {
+                    if (u.password === password) {
+                        found = u;
+                        break;
+                    }
+                }
+            }
+            if (found) {
+                currentUser = found;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                closeAuth();
+                updateUserUI();
+                alert('Login successful!');
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        // ==================== Forgot Password ====================
+        function openForgotModal() {
+            closeAuth();
+            document.getElementById('forgotModal').classList.add('active');
+        }
+        function closeForgot() {
+            document.getElementById('forgotModal').classList.remove('active');
+        }
+        function sendOTP() {
+            const identifier = document.getElementById('forgotIdentifier').value.trim();
+            if (!identifier) return alert('Enter identifier');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            let found = null;
+            for (const key in users) {
+                const u = users[key];
+                if (u.username === identifier || u.email === identifier || u.phone === identifier) {
+                    found = u;
+                    break;
+                }
+            }
+            if (!found) return alert('Account not found');
+            // Simulate OTP
+            const otp = Math.floor(100000 + Math.random() * 900000).toString();
+            alert('Your OTP: ' + otp); // In production, send via Telegram/email
+            window.tempUser = found;
+            window.tempOTP = otp;
+            document.getElementById('forgotStep1').style.display = 'none';
+            document.getElementById('forgotStep2').style.display = 'block';
+        }
+        function resetPassword() {
+            const otp = document.getElementById('otpInput').value.trim();
+            const newPass = document.getElementById('newPassword').value;
+            if (otp !== window.tempOTP) return alert('Invalid OTP');
+            if (newPass.length < 4) return alert('Password too short');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            users[window.tempUser.username].password = newPass;
+            localStorage.setItem('users', JSON.stringify(users));
+            closeForgot();
+            alert('Password reset successful!');
+        }
+
+        // ==================== Header Actions ====================
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'my' : 'en';
+            localStorage.setItem('lang', currentLang);
+            this.textContent = currentLang === 'en' ? 'MM' : 'EN';
+            applyLanguage();
+        });
+        document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
+
+        document.getElementById('loginBtn').addEventListener('click', openAuth);
+        document.getElementById('userArea').addEventListener('click', () => {
+            if (currentUser) {
+                // Go to profile or show user menu
+                alert('Profile page coming soon');
+            } else {
+                openAuth();
+            }
+        });
+        document.getElementById('notiBtn').addEventListener('click', () => alert('Notifications'));
+
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                switchAuthTab(this.dataset.tab);
+            });
+        });
+
+        // Close modals on overlay click
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAuth();
+        });
+        document.getElementById('forgotModal').addEventListener('click', function(e) {
+            if (e.target === this) closeForgot();
+        });
+
+        // ==================== Init ====================
         document.addEventListener('DOMContentLoaded', () => {
             applyLanguage();
             updateShopStatus();
             renderServices();
+            updateUserUI();
             setInterval(updateShopStatus, 60000);
-
-            document.getElementById('langToggle').addEventListener('click', () => {
-                currentLang = currentLang === 'en' ? 'my' : 'en';
-                localStorage.setItem('lang', currentLang);
-                document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
-                applyLanguage();
-            });
-            document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
-
-            document.getElementById('loginBtn').addEventListener('click', () => {
-                document.getElementById('authModal').classList.add('active');
-            });
-
-            document.querySelectorAll('.auth-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        });
-
-        function closeAuth() {
-            document.getElementById('authModal').classList.remove('active');
-        }
-        document.getElementById('authModal').addEventListener('click', function(e) {
-            if (e.target === this) closeAuth();
         });
     </script>
 </body>
