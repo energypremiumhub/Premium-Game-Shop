@@ -321,7 +321,7 @@
         }
         .contact-card .info { flex: 1; min-width: 0; }
         .contact-card .info .title {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-primary);
         }
@@ -334,7 +334,7 @@
             font-size: 1rem;
         }
 
-        /* Bottom Navigation - Glass with gray tint and thin bottom border */
+        /* Bottom Navigation - Glass with full border, no white active box */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -345,7 +345,7 @@
             background: rgba(240, 240, 245, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.15); /* full border */
             border-radius: 32px;
             display: flex;
             align-items: center;
@@ -353,7 +353,6 @@
             padding: 6px 4px;
             z-index: 100;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* thin bottom border */
         }
         .nav-item {
             flex: 1 1 0;
@@ -377,8 +376,8 @@
         .nav-item i { font-size: 18px; }
         .nav-item.active {
             color: #1a1a1a;
-            background: rgba(255, 255, 255, 0.9);
             font-weight: 700;
+            background: none; /* no white box */
         }
         .nav-item.active i { color: var(--accent); }
 
@@ -566,7 +565,8 @@
             <a href="https://t.me/Premium_GameShop" target="_blank" class="contact-card">
                 <span class="icon"><i class="fa-brands fa-telegram"></i></span>
                 <div class="info">
-                    <div class="title">သတင်းအချက်အလက်များနှင့် အကူအညီရယူပါ</div>
+                    <div class="title">Telegram Channel</div>
+                    <div class="desc">သတင်းများနှင့် အကူအညီရယူပါ</div>
                 </div>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
             </a>
