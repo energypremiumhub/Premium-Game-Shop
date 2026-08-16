@@ -169,6 +169,11 @@
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow-md);
             transition: box-shadow 0.3s ease, transform 0.2s ease;
+
+            /* ===== စာသားများကို အောက်ခြေသို့ ရွှေ့ရန် ===== */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
         .shop-slide:active {
             transform: scale(0.98);
@@ -366,7 +371,7 @@
         <div class="hero">
             <p class="welcome" data-i18n="welcomeHero">Welcome To Premium Game Shop</p>
             <h1>Level Up Your Game</h1>
-            <p class="sub" data-i18n="heroSub">Top up diamonds, UC, Telegram & more</p>
+            <p class="sub" data-i18n="heroSub">Diamond, UC, Telegram Service</p>
         </div>
 
         <!-- Shop Status Banner -->
@@ -508,7 +513,7 @@
         const I18N = {
             en: {
                 welcomeHero: "Welcome To Premium Game Shop",
-                heroSub: "Top up diamonds, UC, Telegram & more",
+                heroSub: "Diamond, UC, Telegram Service", // အမြဲ English
                 statusOpenLine1: "Shop is Open",
                 statusOpenLine2: "(Open from 9:00 AM to 9:00 PM)",
                 statusClosedLine1: "Shop is Closed",
@@ -524,7 +529,7 @@
             },
             my: {
                 welcomeHero: "Premium Game Shop မှ ကြိုဆိုပါသည်",
-                heroSub: "ဒိုင်းမွန်၊ UC၊ Telegram နှင့် အခြား",
+                heroSub: "Diamond, UC, Telegram Service", // မြန်မာလိုဆိုရင်လည်း English
                 statusOpenLine1: "ဆိုင်ဖွင့်ပါသည်",
                 statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
                 statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
