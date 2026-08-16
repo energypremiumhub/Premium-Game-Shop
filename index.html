@@ -40,7 +40,7 @@
         .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
 
         /* Page Transition Animations */
-        .header, .hero, .status-banner, .shop-carousel, .carousel-dots, .section-title, .services-grid {
+        .header, .hero, .status-banner, .shop-carousel, .carousel-dots, .section-title, .services-grid, .contact-section {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease forwards;
@@ -52,6 +52,7 @@
         .carousel-dots { animation-delay: 0.35s; }
         .section-title { animation-delay: 0.4s; }
         .services-grid { animation-delay: 0.45s; }
+        .contact-section { animation-delay: 0.55s; }
 
         @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
@@ -262,7 +263,8 @@
             background: var(--bg-card); border: 1px solid var(--border-color);
             border-radius: var(--radius-md); padding: 18px 10px 14px; text-align: center;
             cursor: pointer; transition: var(--transition); display: flex;
-            flex-direction: column; align-items: center; gap: 8px; min-height: 100px;
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 8px; min-height: 110px;
             box-shadow: var(--shadow-sm);
             overflow: hidden;
             min-width: 0;
@@ -271,12 +273,68 @@
         .service-card:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
         .service-card .icon { font-size: 22px; color: var(--accent); }
         .service-card .label {
-            font-size: 9px; color: var(--text-secondary); font-weight: 500;
-            line-height: 1.3; white-space: nowrap; overflow: hidden;
-            text-overflow: ellipsis; max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            font-size: 9px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            line-height: 1.3;
+            text-align: center;
+        }
+        .service-card .label span {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
 
-        /* Bottom Navigation - Glass + Equal Widths */
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        .contact-card:hover { background: var(--bg-card-hover); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .contact-card .icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .contact-card .info { flex: 1; min-width: 0; }
+        .contact-card .info .title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .contact-card .info .desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+        .contact-card .arrow {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Bottom Navigation - Glass with gray tint and thin bottom border */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -284,10 +342,10 @@
             transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 520px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(240, 240, 245, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             border-radius: 32px;
             display: flex;
             align-items: center;
@@ -295,6 +353,7 @@
             padding: 6px 4px;
             z-index: 100;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* thin bottom border */
         }
         .nav-item {
             flex: 1 1 0;
@@ -304,7 +363,7 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            color: #999;
+            color: #888;
             text-decoration: none;
             padding: 8px 0;
             border-radius: 20px;
@@ -318,7 +377,7 @@
         .nav-item i { font-size: 18px; }
         .nav-item.active {
             color: #1a1a1a;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             font-weight: 700;
         }
         .nav-item.active i { color: var(--accent); }
@@ -455,15 +514,70 @@
             <span class="dot"></span>
         </div>
 
-        <!-- Services (6 boxes with new labels) -->
+        <!-- Services -->
         <div class="section-title"><i class="fa-solid fa-bolt"></i> <span>Our Services</span></div>
         <div class="services-grid">
-            <div class="service-card"><span class="icon"><i class="fa-solid fa-bolt"></i></span><span class="label">10 မိနစ်အတွင်း အော်ဒါပြီးမြောက်</span></div>
-            <div class="service-card"><span class="icon"><i class="fa-solid fa-shield-halved"></i></span><span class="label">လျှင်မြန်လွယ်ကူပြီး ယုံကြည်စိတ်ချရ</span></div>
-            <div class="service-card"><span class="icon"><i class="fa-solid fa-sack-dollar"></i></span><span class="label">လျှော့ဈေးများနှင့် အပိုစုများ</span></div>
-            <div class="service-card"><span class="icon"><i class="fa-solid fa-clock"></i></span><span class="label">မနက် 9 နာရီမှ ည 9 နာရီ အတွင်း</span></div>
-            <div class="service-card"><span class="icon"><i class="fa-solid fa-gamepad"></i></span><span class="label">Mobile Legends</span></div>
-            <div class="service-card"><span class="icon"><i class="fa-solid fa-telegram"></i></span><span class="label">Telegram Service</span></div>
+            <div class="service-card">
+                <span class="icon"><i class="fa-solid fa-bolt"></i></span>
+                <div class="label">
+                    <span>10 မိနစ်အတွင်း</span>
+                    <span>အော်ဒါပြီးမြောက်</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <div class="label">
+                    <span>လျှင်မြန်လွယ်ကူပြီး</span>
+                    <span>ယုံကြည်စိတ်ချရ</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <span class="icon"><i class="fa-solid fa-sack-dollar"></i></span>
+                <div class="label">
+                    <span>လျှော့ဈေးများနှင့်</span>
+                    <span>အပိုးဆုများ</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <span class="icon"><i class="fa-solid fa-clock"></i></span>
+                <div class="label">
+                    <span>မနက် 9 နာရီမှ</span>
+                    <span>ည 9 နာရီ အတွင်း</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <span class="icon"><i class="fa-solid fa-gamepad"></i></span>
+                <div class="label">
+                    <span>Top Game</span>
+                    <span>Mobile Legends</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <span class="icon"><i class="fa-brands fa-telegram"></i></span>
+                <div class="label">
+                    <span>Telegram</span>
+                    <span>Service</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <a href="https://t.me/Premium_GameShop" target="_blank" class="contact-card">
+                <span class="icon"><i class="fa-brands fa-telegram"></i></span>
+                <div class="info">
+                    <div class="title">သတင်းအချက်အလက်များနှင့် အကူအညီရယူပါ</div>
+                </div>
+                <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
+            </a>
+            <a href="https://t.me/OfficialPremiumEnergy" target="_blank" class="contact-card">
+                <span class="icon"><i class="fa-solid fa-headset"></i></span>
+                <div class="info">
+                    <div class="title">အကူအညီလိုပါသလား?</div>
+                    <div class="desc">@OfficialPremiumEnergy</div>
+                </div>
+                <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
+            </a>
         </div>
     </div>
 
@@ -576,7 +690,6 @@
         let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
         function applyLanguage() {
-            // Only hero and status texts are dynamic; nav & services remain static English
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (I18N[currentLang][key]) el.textContent = I18N[currentLang][key];
