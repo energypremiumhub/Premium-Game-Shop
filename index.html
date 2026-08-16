@@ -150,57 +150,80 @@
         }
         .hero .sub { color: var(--text-secondary); font-size: 0.85rem; }
 
-        /* ===== Gaming Status Pill ===== */
-        .status-pill {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            border: 1px solid;
+        /* ===== Shop Status Banner (New) ===== */
+        .status-banner {
             position: relative;
+            border-radius: var(--radius-lg);
             overflow: hidden;
+            margin-bottom: 20px;
+            padding: 0;
+            background: #0f0f14;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: stretch;
+            min-height: 110px;
+            border: 1px solid var(--border-color);
         }
-        .status-pill.open {
-            background: rgba(46, 204, 113, 0.08);
-            border-color: rgba(46, 204, 113, 0.4);
-            color: #16a34a;
+        .status-banner .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://files.catbox.moe/4317os.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
         }
-        .status-pill.closed {
-            background: rgba(239, 68, 68, 0.08);
-            border-color: rgba(239, 68, 68, 0.4);
-            color: #dc2626;
+        .status-banner .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
         }
-        .status-pill .icon-wrap {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+        .status-content {
+            position: relative;
+            z-index: 2;
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: currentColor;
-            color: #fff;
-            font-size: 0.85rem;
+            gap: 16px;
+            padding: 16px 20px;
+            width: 100%;
         }
-        .status-pill .status-text {
-            flex: 1;
-        }
-        .status-pill .status-dot {
-            width: 10px;
-            height: 10px;
+        .status-light {
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: currentColor;
-            box-shadow: 0 0 12px currentColor;
-            animation: pulse 1.5s ease-in-out infinite;
             flex-shrink: 0;
+            background: currentColor;
+            box-shadow: 0 0 14px currentColor;
+            animation: pulse 1.5s ease-in-out infinite;
         }
+        .status-banner.open .status-light { color: #2ecc71; }
+        .status-banner.closed .status-light { color: #e74c3c; }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.8); }
+        }
+        .status-text {
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+        }
+        .status-text .line1 {
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: -0.3px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+        .status-text .line2 {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
 
         /* ===== Go To Shop Hero Card ===== */
@@ -580,11 +603,17 @@
             <p class="sub" data-i18n="heroSub">Top up diamonds, UC, Telegram & more</p>
         </div>
 
-        <!-- Gaming Status -->
-        <div class="status-pill open" id="statusPill">
-            <span class="icon-wrap"><i class="fa-solid fa-gamepad"></i></span>
-            <span class="status-text" id="statusText">OPEN NOW — 09:00 AM to 09:00 PM</span>
-            <span class="status-dot"></span>
+        <!-- Shop Status Banner (New) -->
+        <div class="status-banner open" id="statusBanner">
+            <div class="bg-image"></div>
+            <div class="overlay"></div>
+            <div class="status-content">
+                <span class="status-light"></span>
+                <div class="status-text">
+                    <span class="line1" id="statusLine1">ဆိုင်ဖွင့်ပါသည်</span>
+                    <span class="line2" id="statusLine2">(မနက် 9 နာရီမှ ည 9 နာရီအတွင်းသာ)</span>
+                </div>
+            </div>
         </div>
 
         <!-- Go To Shop Hero Card -->
@@ -718,8 +747,10 @@
             en: {
                 welcomeHero: "Welcome To Premium Game Shop",
                 heroSub: "Top up diamonds, UC, Telegram & more",
-                open: "OPEN NOW — 09:00 AM to 09:00 PM",
-                closed: "CLOSED — Opens at 09:00 AM",
+                statusOpenLine1: "Shop is Open",
+                statusOpenLine2: "(Open from 9:00 AM to 9:00 PM)",
+                statusClosedLine1: "Shop is Closed",
+                statusClosedLine2: "(Will open at 9:00 AM)",
                 goShopTitle: "Premium Game Shop",
                 goShopDesc: "Everything you need, all in one place.",
                 goShopBtn: "Go To Shop",
@@ -736,8 +767,10 @@
             my: {
                 welcomeHero: "Premium Game Shop မှ ကြိုဆိုပါသည်",
                 heroSub: "ဒိုင်းမွန်၊ UC၊ Telegram နှင့် အခြား",
-                open: "ဖွင့်ထားသည် — မနက် ၉ မှ ည ၉",
-                closed: "ပိတ်ထားသည် — မနက် ၉ မှ ပြန်ဖွင့်မည်",
+                statusOpenLine1: "ဆိုင်ဖွင့်ပါသည်",
+                statusOpenLine2: "(မနက် 9 နာရီမှ ည 9 နာရီအတွင်းသာ)",
+                statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
+                statusClosedLine2: "(မနက် 9 နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
                 goShopTitle: "ပရီမီယံဂိမ်းဆိုင်",
                 goShopDesc: "လိုအပ်သမျှ အားလုံး တစ်နေရာတည်းတွင်။",
                 goShopBtn: "ဆိုင်သို့သွားမည်",
@@ -769,14 +802,17 @@
         function updateShopStatus() {
             const now = new Date();
             const min = now.getHours() * 60 + now.getMinutes();
-            const pill = document.getElementById('statusPill');
-            const statusText = document.getElementById('statusText');
+            const banner = document.getElementById('statusBanner');
+            const line1 = document.getElementById('statusLine1');
+            const line2 = document.getElementById('statusLine2');
             if (min >= 540 && min < 1260) {
-                pill.className = 'status-pill open';
-                statusText.textContent = I18N[currentLang].open;
+                banner.className = 'status-banner open';
+                line1.textContent = I18N[currentLang].statusOpenLine1;
+                line2.textContent = I18N[currentLang].statusOpenLine2;
             } else {
-                pill.className = 'status-pill closed';
-                statusText.textContent = I18N[currentLang].closed;
+                banner.className = 'status-banner closed';
+                line1.textContent = I18N[currentLang].statusClosedLine1;
+                line2.textContent = I18N[currentLang].statusClosedLine2;
             }
         }
 
