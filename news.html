@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - Premium Game Shop</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --bg: #0f0f14;
+            --card: #1a1a22;
+            --text: #ffffff;
+            --sub: #a0a0b0;
+            --accent: #7c5cff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Inter, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 600px; margin: 0 auto; }
+        h1 { font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+        .subtitle { color: var(--sub); margin-bottom: 20px; }
+        .news-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .category {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: 800;
+            margin: 8px 0 4px;
+        }
+        .content {
+            color: var(--sub);
+            font-size: 14px;
+        }
+        .date {
+            color: var(--sub);
+            font-size: 11px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>News</h1>
+        <p class="subtitle">နောက်ဆုံးရ သတင်းများနှင့် အပ်ဒိတ်များ</p>
+        <div id="newsList"></div>
+    </div>
+
+    <script>
+        // ဒီနေရာမှာ မင်းရဲ့ Supabase အချက်အလက်တွေ ထည့်ပါ
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function loadNews() {
+            const { data, error } = await supabase
+                .from('news')
+                .select('*')
+                .eq('is_hidden', false)
+                .order('published_at', { ascending: false });
+
+            const container = document.getElementById('newsList');
+
+            if (error) {
+                container.innerHTML = '<p>သတင်းများ ရယူ၍မရပါ။</p>';
+                return;
+            }
+
+            container.innerHTML = data.map(post => `
+                <div class="news-card">
+                    <span class="category">${post.category}</span>
+                    <h3 class="title">${post.title}</h3>
+                    <p class="content">${post.content}</p>
+                    <p class="date">${new Date(post.published_at).toLocaleDateString('my-MM')}</p>
+                </div>
+            `).join('');
+        }
+
+        loadNews();
+    </script>
+</body>
+</html>
