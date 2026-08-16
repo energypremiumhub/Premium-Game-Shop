@@ -270,13 +270,24 @@
             background: var(--bg-primary); color: var(--text-primary); outline: none;
             font-size: 13px; transition: var(--transition);
         }
+        .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
         .btn-submit {
             width: 100%; padding: 13px; border: none; border-radius: 12px;
             background: linear-gradient(135deg, #7c5cff, #4f46e5); color: #fff;
             font-weight: 700; cursor: pointer; margin-top: 8px; font-size: 13px;
         }
-        .forgot-link a { color: var(--accent); font-size: 10px; }
-        .switch-link { font-size: 11px; }
+        .btn-submit:hover { box-shadow: 0 4px 15px var(--accent-glow); }
+        .forgot-link {
+            text-align: right; margin-top: -6px; margin-bottom: 8px;
+        }
+        .forgot-link a { color: var(--accent); font-size: 10px; text-decoration: none; cursor: pointer; }
+        .switch-link {
+            text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-secondary);
+        }
+        .switch-link a { color: var(--accent); text-decoration: none; cursor: pointer; }
 
         /* Desktop */
         @media (min-width: 768px) {
@@ -289,8 +300,6 @@
     </style>
 </head>
 <body>
-    <!-- Same body structure as previous code, but all font sizes now in px -->
-    <!-- ... (rest of HTML unchanged except text content handled by JS) ... -->
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -344,7 +353,21 @@
 
         <!-- Promo Carousel -->
         <div class="promo-scroll">
-            <!-- promo boxes as before -->
+            <div class="promo-box" onclick="location.href='news.html'">
+                <div class="icon"><i class="fa-solid fa-newspaper"></i></div>
+                <h4 data-i18n="newsPromo">Latest News</h4>
+                <p data-i18n="newsPromoDesc">Updates & events</p>
+            </div>
+            <div class="promo-box" onclick="location.href='offers.html'">
+                <div class="icon"><i class="fa-solid fa-tag"></i></div>
+                <h4 data-i18n="offersPromo">Special Offers</h4>
+                <p data-i18n="offersPromoDesc">Discounts & deals</p>
+            </div>
+            <div class="promo-box" onclick="location.href='payment.html'">
+                <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
+                <h4 data-i18n="payPromo">Payments</h4>
+                <p data-i18n="payPromoDesc">Secure checkout</p>
+            </div>
         </div>
 
         <!-- Services -->
@@ -353,13 +376,358 @@
     </div>
 
     <!-- Bottom Navigation -->
-    <nav class="bottom-nav"> ... </nav>
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Home</span></a>
+        <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span data-i18n="navNews">News</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="navShop">Shop</span></a>
+        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span data-i18n="navPayment">Payment</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span data-i18n="navProfile">Profile</span></a>
+    </nav>
 
-    <!-- Modals (same as before) -->
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-sheet">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h2 id="authTitle">သင့်အကောင့်ကိုဝင်ရောက်ပါ</h2>
+                <button class="header-btn" onclick="closeAuth()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="register">Register</button>
+            </div>
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>Email / Phone / Username</label>
+                    <input type="text" id="loginIdentifier" placeholder="Enter email, phone or username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <div class="forgot-link"><a onclick="openForgotModal()">Forgot Password?</a></div>
+                <button class="btn-submit" onclick="handleLogin()">Login</button>
+                <div class="switch-link">Don't have an account? <a onclick="switchAuthTab('register')">Register</a></div>
+            </div>
+            <div id="registerForm" style="display:none;">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose a username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="Enter email (optional)">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="regPhone" placeholder="Enter phone (optional)">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="At least 4 characters">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirm" placeholder="Re-enter password">
+                </div>
+                <button class="btn-submit" onclick="handleRegister()">Register</button>
+                <div class="switch-link">Already have an account? <a onclick="switchAuthTab('login')">Login</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgotModal">
+        <div class="modal-sheet">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h2>Forgot Password</h2>
+                <button class="header-btn" onclick="closeForgot()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="forgotStep1">
+                <div class="form-group">
+                    <label>Enter your email, phone or username</label>
+                    <input type="text" id="forgotIdentifier" placeholder="Email / Phone / Username">
+                </div>
+                <button class="btn-submit" onclick="sendOTP()">Send OTP</button>
+            </div>
+            <div id="forgotStep2" style="display:none;">
+                <div class="form-group">
+                    <label>Enter OTP</label>
+                    <input type="text" id="otpInput" placeholder="6-digit code">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new password">
+                </div>
+                <button class="btn-submit" onclick="resetPassword()">Reset Password</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Same JavaScript, but language data unchanged. No font-size changes in JS.
-        // ...
+        const I18N = {
+            en: {
+                welcomeHero: "Welcome To Premium Game Shop",
+                heroSub: "Top up diamonds, UC, Telegram & more",
+                statusOpenLine1: "Shop is Open",
+                statusOpenLine2: "(Open from 9:00 AM to 9:00 PM)",
+                statusClosedLine1: "Shop is Closed",
+                statusClosedLine2: "(Will open at 9:00 AM)",
+                goShopTitle: "Premium Game Shop",
+                goShopDesc: "Everything you need, all in one place.",
+                goShopBtn: "Go To Shop",
+                servicesTitle: "Our Services",
+                navHome: "Home", navNews: "News", navShop: "Shop",
+                navPayment: "Payment", navProfile: "Profile",
+                newsPromo: "Latest News", newsPromoDesc: "Updates & events",
+                offersPromo: "Special Offers", offersPromoDesc: "Discounts & deals",
+                payPromo: "Payments", payPromoDesc: "Secure checkout",
+                s1: "Instant Delivery", s2: "Secure Payment",
+                s3: "24/7 Support", s4: "Best Prices",
+                s5: "Trusted Shop", s6: "Fast Service"
+            },
+            my: {
+                welcomeHero: "Premium Game Shop မှ ကြိုဆိုပါသည်",
+                heroSub: "ဒိုင်းမွန်၊ UC၊ Telegram နှင့် အခြား",
+                statusOpenLine1: "ဆိုင်ဖွင့်ပါသည်",
+                statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
+                statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
+                statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
+                goShopTitle: "ပရီမီယံဂိမ်းဆိုင်",
+                goShopDesc: "လိုအပ်သမျှ အားလုံး တစ်နေရာတည်းတွင်။",
+                goShopBtn: "ဆိုင်သို့သွားမည်",
+                servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
+                navHome: "ပင်မ", navNews: "သတင်းများ", navShop: "ဆိုင်",
+                navPayment: "ငွေပေးချေ", navProfile: "ပရိုဖိုင်",
+                newsPromo: "နောက်ဆုံးရသတင်းများ", newsPromoDesc: "အပ်ဒိတ်များနှင့်ပွဲများ",
+                offersPromo: "အထူးကမ်းလှမ်းချက်များ", offersPromoDesc: "လျှော့စျေးများနှင့်အပေးအယူများ",
+                payPromo: "ငွေပေးချေမှု", payPromoDesc: "လုံခြုံစိတ်ချရသော ငွေပေးချေမှု",
+                s1: "ချက်ချင်းပို့ဆောင်မှု", s2: "လုံခြုံသောငွေပေးချေမှု",
+                s3: "၂၄/၇ အကူအညီ", s4: "အကောင်းဆုံးစျေးနှုန်း",
+                s5: "ယုံကြည်စိတ်ချရသောဆိုင်", s6: "မြန်ဆန်သောဝန်ဆောင်မှု"
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'en';
+        let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+        function applyLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (I18N[currentLang][key]) el.textContent = I18N[currentLang][key];
+            });
+            updateShopStatus();
+            renderServices();
+            updateUserUI();
+        }
+
+        function updateShopStatus() {
+            const now = new Date();
+            const min = now.getHours() * 60 + now.getMinutes();
+            const banner = document.getElementById('statusBanner');
+            const line1 = document.getElementById('statusLine1');
+            const line2 = document.getElementById('statusLine2');
+            if (min >= 540 && min < 1260) {
+                banner.className = 'status-banner open';
+                line1.textContent = I18N[currentLang].statusOpenLine1;
+                line2.textContent = I18N[currentLang].statusOpenLine2;
+            } else {
+                banner.className = 'status-banner closed';
+                line1.textContent = I18N[currentLang].statusClosedLine1;
+                line2.textContent = I18N[currentLang].statusClosedLine2;
+            }
+        }
+
+        function renderServices() {
+            const grid = document.getElementById('servicesGrid');
+            const services = [
+                { icon: 'fa-solid fa-bolt', key: 's1' },
+                { icon: 'fa-solid fa-shield-halved', key: 's2' },
+                { icon: 'fa-solid fa-headset', key: 's3' },
+                { icon: 'fa-solid fa-sack-dollar', key: 's4' },
+                { icon: 'fa-solid fa-trophy', key: 's5' },
+                { icon: 'fa-solid fa-rocket', key: 's6' }
+            ];
+            grid.innerHTML = services.map(s => `
+                <div class="service-card">
+                    <span class="icon"><i class="${s.icon}"></i></span>
+                    <span class="label">${I18N[currentLang][s.key]}</span>
+                </div>
+            `).join('');
+        }
+
+        function updateUserUI() {
+            const avatar = document.getElementById('avatar');
+            const userName = document.getElementById('userName');
+            const userStatus = document.getElementById('userStatus');
+            const loginBtn = document.getElementById('loginBtn');
+            if (currentUser) {
+                avatar.innerHTML = currentUser.username.charAt(0).toUpperCase();
+                userName.textContent = currentUser.username;
+                userStatus.textContent = 'Logged In';
+                loginBtn.classList.add('hidden');
+            } else {
+                avatar.innerHTML = '<i class="fa-solid fa-user"></i>';
+                userName.textContent = 'Guest';
+                userStatus.textContent = currentLang === 'en' ? 'Login / Register' : 'လော့အင် / မှတ်ပုံတင်မည်';
+                loginBtn.classList.remove('hidden');
+            }
+        }
+
+        // Go To Shop Card interactions
+        const goShopCard = document.getElementById('goShopCard');
+        const cardBg = document.getElementById('cardBg');
+        const goShopBtn = document.getElementById('goShopBtn');
+
+        goShopCard.addEventListener('click', function(e) {
+            if (e.target === goShopBtn || goShopBtn.contains(e.target)) return;
+            cardBg.classList.toggle('zoomed');
+        });
+
+        goShopBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.location.href = 'shop.html';
+        });
+
+        // Auth modal functions
+        function openAuth() {
+            document.getElementById('authModal').classList.add('active');
+            switchAuthTab('login');
+        }
+        function closeAuth() {
+            document.getElementById('authModal').classList.remove('active');
+        }
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.auth-tab[data-tab="${tab}"]`).classList.add('active');
+            document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
+            document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
+        }
+
+        function handleRegister() {
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            if (!username || !password) return alert('Username and password required');
+            if (password.length < 4) return alert('Password must be at least 4 characters');
+            if (password !== confirm) return alert('Passwords do not match');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (users[username]) return alert('Username already exists');
+            users[username] = { username, email, phone, password };
+            localStorage.setItem('users', JSON.stringify(users));
+            currentUser = users[username];
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            closeAuth();
+            updateUserUI();
+            alert('Registration successful!');
+        }
+
+        function handleLogin() {
+            const identifier = document.getElementById('loginIdentifier').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            if (!identifier || !password) return alert('Please fill all fields');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            let found = null;
+            for (const key in users) {
+                const u = users[key];
+                if (u.username === identifier || u.email === identifier || u.phone === identifier) {
+                    if (u.password === password) {
+                        found = u;
+                        break;
+                    }
+                }
+            }
+            if (found) {
+                currentUser = found;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                closeAuth();
+                updateUserUI();
+                alert('Login successful!');
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        function openForgotModal() {
+            closeAuth();
+            document.getElementById('forgotModal').classList.add('active');
+        }
+        function closeForgot() {
+            document.getElementById('forgotModal').classList.remove('active');
+        }
+        function sendOTP() {
+            const identifier = document.getElementById('forgotIdentifier').value.trim();
+            if (!identifier) return alert('Enter identifier');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            let found = null;
+            for (const key in users) {
+                const u = users[key];
+                if (u.username === identifier || u.email === identifier || u.phone === identifier) {
+                    found = u;
+                    break;
+                }
+            }
+            if (!found) return alert('Account not found');
+            const otp = Math.floor(100000 + Math.random() * 900000).toString();
+            alert('Your OTP: ' + otp);
+            window.tempUser = found;
+            window.tempOTP = otp;
+            document.getElementById('forgotStep1').style.display = 'none';
+            document.getElementById('forgotStep2').style.display = 'block';
+        }
+        function resetPassword() {
+            const otp = document.getElementById('otpInput').value.trim();
+            const newPass = document.getElementById('newPassword').value;
+            if (otp !== window.tempOTP) return alert('Invalid OTP');
+            if (newPass.length < 4) return alert('Password too short');
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            users[window.tempUser.username].password = newPass;
+            localStorage.setItem('users', JSON.stringify(users));
+            closeForgot();
+            alert('Password reset successful!');
+        }
+
+        // Event listeners
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'my' : 'en';
+            localStorage.setItem('lang', currentLang);
+            this.textContent = currentLang === 'en' ? 'MM' : 'EN';
+            applyLanguage();
+        });
+        document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
+
+        document.getElementById('loginBtn').addEventListener('click', openAuth);
+        document.getElementById('userArea').addEventListener('click', () => {
+            if (currentUser) {
+                alert('Profile page coming soon');
+            } else {
+                openAuth();
+            }
+        });
+        document.getElementById('notiBtn').addEventListener('click', () => alert('Notifications'));
+
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                switchAuthTab(this.dataset.tab);
+            });
+        });
+
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAuth();
+        });
+        document.getElementById('forgotModal').addEventListener('click', function(e) {
+            if (e.target === this) closeForgot();
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage();
+            updateShopStatus();
+            renderServices();
+            updateUserUI();
+            setInterval(updateShopStatus, 60000);
+        });
     </script>
 </body>
 </html>
