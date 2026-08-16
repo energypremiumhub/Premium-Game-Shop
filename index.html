@@ -150,7 +150,7 @@
         }
         .hero .sub { color: var(--text-secondary); font-size: 0.85rem; }
 
-        /* ===== Shop Status Banner (New) ===== */
+        /* ===== Shop Status Banner (Thinner, Fixed Height, Glow Text) ===== */
         .status-banner {
             position: relative;
             border-radius: var(--radius-lg);
@@ -161,7 +161,7 @@
             box-shadow: var(--shadow-lg);
             display: flex;
             align-items: stretch;
-            min-height: 110px;
+            min-height: 80px;  /* Reduced from 110px */
             border: 1px solid var(--border-color);
         }
         .status-banner .bg-image {
@@ -181,7 +181,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 100%);
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
             z-index: 1;
         }
         .status-content {
@@ -189,17 +189,17 @@
             z-index: 2;
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 20px;
+            gap: 14px;
+            padding: 12px 16px;  /* Reduced padding */
             width: 100%;
         }
         .status-light {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             flex-shrink: 0;
             background: currentColor;
-            box-shadow: 0 0 14px currentColor;
+            box-shadow: 0 0 12px currentColor;
             animation: pulse 1.5s ease-in-out infinite;
         }
         .status-banner.open .status-light { color: #2ecc71; }
@@ -212,18 +212,31 @@
             display: flex;
             flex-direction: column;
             color: #ffffff;
+            min-width: 0; /* allow truncation */
         }
         .status-text .line1 {
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 0.9rem;  /* slightly smaller */
             letter-spacing: -0.3px;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 0 8px currentColor;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .status-banner.open .status-text .line1 {
+            color: #2ecc71;
+        }
+        .status-banner.closed .status-text .line1 {
+            color: #e74c3c;
         }
         .status-text .line2 {
-            font-size: 0.65rem;
+            font-size: 0.6rem;  /* smaller */
             color: rgba(255, 255, 255, 0.85);
             font-weight: 500;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* ===== Go To Shop Hero Card ===== */
@@ -242,25 +255,17 @@
         }
         .go-shop-card .card-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://files.catbox.moe/b66gyb.jpg');
             background-size: cover;
             background-position: center;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform;
         }
-        .go-shop-card .card-bg.zoomed {
-            transform: scale(1.08);
-        }
+        .go-shop-card .card-bg.zoomed { transform: scale(1.08); }
         .go-shop-card .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(
                 to top,
                 rgba(10, 10, 20, 0.85) 0%,
@@ -317,9 +322,7 @@
             font-size: 0.75rem;
             transition: transform 0.3s ease;
         }
-        .go-shop-btn:hover i {
-            transform: translateX(4px);
-        }
+        .go-shop-btn:hover i { transform: translateX(4px); }
 
         /* ===== Promo Carousel ===== */
         .promo-scroll {
@@ -468,10 +471,7 @@
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
             z-index: 200;
@@ -603,15 +603,15 @@
             <p class="sub" data-i18n="heroSub">Top up diamonds, UC, Telegram & more</p>
         </div>
 
-        <!-- Shop Status Banner (New) -->
+        <!-- Shop Status Banner (Thinner, Glow Text) -->
         <div class="status-banner open" id="statusBanner">
             <div class="bg-image"></div>
             <div class="overlay"></div>
             <div class="status-content">
                 <span class="status-light"></span>
                 <div class="status-text">
-                    <span class="line1" id="statusLine1">ဆိုင်ဖွင့်ပါသည်</span>
-                    <span class="line2" id="statusLine2">(မနက် 9 နာရီမှ ည 9 နာရီအတွင်းသာ)</span>
+                    <span class="line1" id="statusLine1">Shop is Open</span>
+                    <span class="line2" id="statusLine2">(Open from 9:00 AM to 9:00 PM)</span>
                 </div>
             </div>
         </div>
@@ -768,9 +768,9 @@
                 welcomeHero: "Premium Game Shop မှ ကြိုဆိုပါသည်",
                 heroSub: "ဒိုင်းမွန်၊ UC၊ Telegram နှင့် အခြား",
                 statusOpenLine1: "ဆိုင်ဖွင့်ပါသည်",
-                statusOpenLine2: "(မနက် 9 နာရီမှ ည 9 နာရီအတွင်းသာ)",
+                statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
                 statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
-                statusClosedLine2: "(မနက် 9 နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
+                statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
                 goShopTitle: "ပရီမီယံဂိမ်းဆိုင်",
                 goShopDesc: "လိုအပ်သမျှ အားလုံး တစ်နေရာတည်းတွင်။",
                 goShopBtn: "ဆိုင်သို့သွားမည်",
@@ -857,13 +857,11 @@
         const cardBg = document.getElementById('cardBg');
         const goShopBtn = document.getElementById('goShopBtn');
 
-        // Toggle zoom on card click (except button)
         goShopCard.addEventListener('click', function(e) {
             if (e.target === goShopBtn || goShopBtn.contains(e.target)) return;
             cardBg.classList.toggle('zoomed');
         });
 
-        // Button navigates to shop
         goShopBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             window.location.href = 'shop.html';
