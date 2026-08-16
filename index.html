@@ -282,7 +282,7 @@
             text-overflow: ellipsis; max-width: 100%;
         }
 
-        /* ===== Premium Bottom Navigation (Fixed) ===== */
+        /* ===== Bottom Navigation (Equal Spacing) ===== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -296,21 +296,21 @@
             border: 1px solid rgba(0, 0, 0, 0.06);
             border-radius: 32px;
             display: flex;
-            align-items: center;   /* changed from flex-end to center */
-            justify-content: space-around;
+            align-items: center;
+            justify-content: space-evenly;  /* <-- အဓိက ပြောင်းလဲမှု */
             padding: 6px 8px;
             z-index: 100;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
         .nav-item {
-            flex: 1;
+            flex: 0 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 4px;
             color: #999;
             text-decoration: none;
-            padding: 8px 0;
+            padding: 8px 12px;
             border-radius: 20px;
             transition: var(--transition);
             font-size: 10px;
@@ -327,41 +327,6 @@
         }
         .nav-item.active:not(.shop-center) i {
             color: var(--accent);
-        }
-
-        /* Shop Special Center Button - same line, larger circle */
-        .nav-item.shop-center {
-            position: relative;
-            top: 0; /* removed negative offset */
-            background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            border-radius: 50%;
-            width: 52px;
-            height: 52px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(124, 92, 255, 0.35);
-            border: 2px solid #fff;
-            font-size: 9px;
-            font-weight: 700;
-            flex: 0 0 auto;
-            margin: 0 4px;
-        }
-        .nav-item.shop-center i { font-size: 20px; }
-        .nav-item.shop-center .nav-label {
-            font-size: 8px;
-            margin-top: 2px;
-        }
-        .nav-item.shop-center:hover {
-            background: linear-gradient(135deg, #6b4fe0, #3f35b0);
-            transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(124, 92, 255, 0.5);
-        }
-        .nav-item.shop-center:active {
-            transform: scale(0.98);
-            box-shadow: 0 3px 8px rgba(124, 92, 255, 0.3);
         }
 
         /* ===== Modal ===== */
@@ -510,7 +475,7 @@
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Home</span></a>
         <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span data-i18n="navNews">News</span></a>
-        <a href="shop.html" class="nav-item shop-center"><i class="fa-solid fa-bag-shopping"></i><span class="nav-label" data-i18n="navShop">Shop</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="navShop">Shop</span></a>
         <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span data-i18n="navPayment">Payment</span></a>
         <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span data-i18n="navProfile">Profile</span></a>
     </nav>
