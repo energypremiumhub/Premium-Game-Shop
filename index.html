@@ -99,11 +99,19 @@
             margin-bottom: 20px; padding: 0; background: #0f0f14;
             box-shadow: var(--shadow-lg); display: flex; align-items: stretch;
             min-height: 80px; border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+        .status-banner:active {
+            box-shadow: 0 0 25px rgba(124, 92, 255, 0.4);
         }
         .status-banner .bg-image {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://files.catbox.moe/4317os.jpg');
-            background-size: cover; background-position: center;
+            background-size: cover; background-position: top center;
+            transition: transform 0.3s ease;
+        }
+        .status-banner:active .bg-image {
+            transform: scale(1.05);
         }
         .status-banner .overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -143,16 +151,25 @@
         .go-shop-card {
             position: relative; border-radius: var(--radius-lg); overflow: hidden;
             margin-bottom: 16px; box-shadow: var(--shadow-lg); cursor: pointer;
-            aspect-ratio: 1.7 / 1; display: flex; align-items: flex-end;
+            aspect-ratio: 1.8 / 1;  /* ပိုပါးလွှာ */
+            display: flex; align-items: flex-end;
             background: #0f0f14; border: 1px solid rgba(124, 92, 255, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+        .go-shop-card:active {
+            box-shadow: 0 0 30px rgba(124, 92, 255, 0.5);
         }
         .go-shop-card .card-bg {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://files.catbox.moe/b66gyb.jpg');
-            background-size: cover; background-position: center;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background-size: cover;
+            background-position: top center;
+            transition: transform 0.3s ease;
+            will-change: transform;
         }
-        .go-shop-card .card-bg.zoomed { transform: scale(1.08); }
+        .go-shop-card:active .card-bg {
+            transform: scale(1.08);
+        }
         .go-shop-card .overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to top, rgba(10,10,20,0.85) 0%, rgba(10,10,20,0.4) 40%, rgba(10,10,20,0.1) 70%, transparent 100%);
@@ -305,7 +322,7 @@
         /* Desktop */
         @media (min-width: 768px) {
             .container { max-width: 720px; }
-            .go-shop-card { aspect-ratio: 2.5 / 1; }
+            .go-shop-card { aspect-ratio: 2.2 / 1; }  /* desktop slightly shorter */
             .go-shop-card .card-content h2 { font-size: 28px; }
             .go-shop-card .card-content p { font-size: 14px; }
             .bottom-nav { max-width: 720px; }
@@ -355,7 +372,7 @@
             <div class="overlay"></div>
             <div class="card-content">
                 <h2 data-i18n="goShopTitle">Premium Game Shop</h2>
-                <p data-i18n="goShopDesc">Everything you need, all in one place.</p>
+                <p data-i18n="goShopDesc">Diamond, UC, Telegram Service</p>
                 <button class="go-shop-btn" id="goShopBtn">
                     <span data-i18n="goShopBtn">Go To Shop</span>
                     <i class="fa-solid fa-arrow-right"></i>
@@ -485,7 +502,7 @@
                 statusClosedLine1: "Shop is Closed",
                 statusClosedLine2: "(Will open at 9:00 AM)",
                 goShopTitle: "Premium Game Shop",
-                goShopDesc: "Everything you need, all in one place.",
+                goShopDesc: "Diamond, UC, Telegram Service",
                 goShopBtn: "Go To Shop",
                 servicesTitle: "Our Services",
                 navHome: "Home", navNews: "News", navShop: "Shop",
@@ -504,9 +521,9 @@
                 statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
                 statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
                 statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
-                goShopTitle: "ပရီမီယံဂိမ်းဆိုင်",
-                goShopDesc: "လိုအပ်သမျှ အားလုံး တစ်နေရာတည်းတွင်။",
-                goShopBtn: "ဆိုင်သို့သွားမည်",
+                goShopTitle: "Premium Game Shop",
+                goShopDesc: "Diamond, UC, Telegram Service",
+                goShopBtn: "Go To Shop",
                 servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
                 navHome: "ပင်မ", navNews: "သတင်းများ", navShop: "ဆိုင်",
                 navPayment: "ငွေပေးချေ", navProfile: "ပရိုဖိုင်",
@@ -582,20 +599,14 @@
             }
         }
 
-        // Go To Shop Card interactions
-        const goShopCard = document.getElementById('goShopCard');
-        const cardBg = document.getElementById('cardBg');
+        // Go To Shop Button Click
         const goShopBtn = document.getElementById('goShopBtn');
-
-        goShopCard.addEventListener('click', function(e) {
-            if (e.target === goShopBtn || goShopBtn.contains(e.target)) return;
-            cardBg.classList.toggle('zoomed');
-        });
-
         goShopBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             window.location.href = 'shop.html';
         });
+
+        // (No JS needed for press effect; CSS :active handles it)
 
         // Auth modal functions
         function openAuth() {
