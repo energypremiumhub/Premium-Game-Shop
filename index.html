@@ -39,7 +39,7 @@
         }
         .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
 
-        /* Page Transition Animations */
+        /* ===== Page Transition Animations ===== */
         .header, .hero, .status-banner, .shop-carousel, .carousel-dots, .section-title, .services-grid, .contact-section {
             opacity: 0;
             transform: translateY(20px);
@@ -58,7 +58,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Header */
+        /* ===== Header ===== */
         .header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .user-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .avatar {
@@ -76,7 +76,7 @@
         .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
         .header-btn {
             background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; height: 38px; min-width: 38px; padding: 0 10px;
+            border-radius: 12px; width: 38px; height: 38px;
             display: flex; align-items: center; justify-content: center;
             font-size: 14px; color: var(--text-secondary); cursor: pointer;
             transition: var(--transition); position: relative; text-decoration: none;
@@ -103,7 +103,7 @@
         .login-btn:active { transform: scale(0.96); }
         .login-btn.hidden { display: none; }
 
-        /* Hero */
+        /* ===== Hero ===== */
         .hero { text-align: left; margin-bottom: 20px; }
         .hero .welcome {
             font-size: 11px; color: var(--text-secondary); text-transform: uppercase;
@@ -117,7 +117,7 @@
         }
         .hero .sub { color: var(--text-secondary); font-size: 13px; }
 
-        /* Shop Status Banner */
+        /* ===== Shop Status Banner ===== */
         .status-banner {
             position: relative; border-radius: var(--radius-lg); overflow: hidden;
             margin-bottom: 20px; padding: 0; background: #0f0f14;
@@ -164,7 +164,7 @@
             overflow: hidden; text-overflow: ellipsis;
         }
 
-        /* Shop Carousel */
+        /* ===== Shop Carousel ===== */
         .shop-carousel {
             display: flex;
             overflow-x: auto;
@@ -247,7 +247,7 @@
             border-radius: 10px;
         }
 
-        /* Services */
+        /* ===== Services ===== */
         .section-title {
             font-size: 10px; font-weight: 700; color: var(--text-secondary);
             text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
@@ -292,7 +292,7 @@
             max-width: 100%;
         }
 
-        /* Contact Section */
+        /* ===== Contact Section ===== */
         .contact-section {
             display: flex;
             flex-direction: column;
@@ -314,27 +314,13 @@
             cursor: pointer;
         }
         .contact-card:hover { background: var(--bg-card-hover); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-        .contact-card .icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            flex-shrink: 0;
-        }
+        .contact-card .icon { font-size: 1.5rem; color: var(--accent); flex-shrink: 0; }
         .contact-card .info { flex: 1; min-width: 0; }
-        .contact-card .info .title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .contact-card .info .desc {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-        .contact-card .arrow {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
+        .contact-card .info .title { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+        .contact-card .info .desc { font-size: 0.7rem; color: var(--text-secondary); }
+        .contact-card .arrow { color: var(--text-secondary); font-size: 1rem; }
 
-        /* Bottom Navigation - Glass with full border, no white active box */
+        /* ===== Bottom Navigation (Glass with full border) ===== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -345,7 +331,7 @@
             background: rgba(240, 240, 245, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(0, 0, 0, 0.15); /* full border */
+            border: 1px solid rgba(0, 0, 0, 0.15);
             border-radius: 32px;
             display: flex;
             align-items: center;
@@ -374,14 +360,10 @@
             position: relative;
         }
         .nav-item i { font-size: 18px; }
-        .nav-item.active {
-            color: #1a1a1a;
-            font-weight: 700;
-            background: none; /* no white box */
-        }
+        .nav-item.active { color: #1a1a1a; font-weight: 700; background: none; }
         .nav-item.active i { color: var(--accent); }
 
-        /* Modal */
+        /* ===== Modal ===== */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
@@ -395,13 +377,10 @@
             transition: transform 0.3s ease;
         }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
         .modal-handle {
             width: 40px; height: 4px; background: var(--text-secondary);
             border-radius: 2px; margin: 0 auto 12px; cursor: grab;
         }
-        .modal-handle:active { cursor: grabbing; }
-
         .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .auth-tab {
             flex: 1; text-align: center; padding: 10px; border-radius: 12px;
@@ -450,13 +429,13 @@
             <div class="user-area" id="userArea">
                 <div class="avatar" id="avatar"><i class="fa-solid fa-user"></i></div>
                 <div class="user-text">
-                    <span class="name" id="userName">Guest</span>
+                    <span class="name" id="userName" data-i18n="guest">Guest</span>
                 </div>
             </div>
             <div class="header-actions">
                 <button class="header-btn lang-btn" id="langToggle">MM</button>
                 <button class="header-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
-                <button class="login-btn" id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i><span>Login</span></button>
+                <button class="login-btn" id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i><span data-i18n="loginBtnHeader">Login</span></button>
             </div>
         </header>
 
@@ -474,8 +453,8 @@
             <div class="status-content">
                 <span class="status-light"></span>
                 <div class="status-text">
-                    <span class="line1" id="statusLine1">Shop is Open</span>
-                    <span class="line2" id="statusLine2">(Open from 9:00 AM to 9:00 PM)</span>
+                    <span class="line1" id="statusLine1" data-i18n="statusOpenLine1">Shop is Open</span>
+                    <span class="line2" id="statusLine2" data-i18n="statusOpenLine2">(Open from 9:00 AM to 9:00 PM)</span>
                 </div>
             </div>
         </div>
@@ -486,10 +465,10 @@
                 <div class="card-bg" style="background-image: url('https://files.catbox.moe/b66gyb.jpg');"></div>
                 <div class="overlay"></div>
                 <div class="card-content">
-                    <h2>Premium Game Shop</h2>
-                    <p>Diamond, UC, Telegram Service and more</p>
+                    <h2 data-i18n="shopCardTitle">Premium Game Shop</h2>
+                    <p data-i18n="shopCardDesc">Diamond, UC, Telegram Service and more</p>
                     <button class="shop-btn" onclick="location.href='shop.html'">
-                        <span>Go To Shop</span>
+                        <span data-i18n="goShopBtn">Go To Shop</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
@@ -498,10 +477,10 @@
                 <div class="card-bg" style="background-image: url('https://files.catbox.moe/4317os.jpg');"></div>
                 <div class="overlay"></div>
                 <div class="card-content">
-                    <h2>Special Offers</h2>
-                    <p>Limited-time deals & discounts</p>
+                    <h2 data-i18n="offersTitle">Special Offers</h2>
+                    <p data-i18n="offersDesc">Limited-time deals & discounts</p>
                     <button class="shop-btn" onclick="location.href='offers.html'">
-                        <span>View Offers</span>
+                        <span data-i18n="viewOffersBtn">View Offers</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
@@ -514,48 +493,48 @@
         </div>
 
         <!-- Services -->
-        <div class="section-title"><i class="fa-solid fa-bolt"></i> <span>Our Services</span></div>
+        <div class="section-title"><i class="fa-solid fa-bolt"></i> <span data-i18n="servicesTitle">Our Services</span></div>
         <div class="services-grid">
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-bolt"></i></span>
                 <div class="label">
-                    <span>10 မိနစ်အတွင်း</span>
-                    <span>အော်ဒါပြီးမြောက်</span>
+                    <span data-i18n="s1Line1">Within 10 minutes</span>
+                    <span data-i18n="s1Line2">Order completed</span>
                 </div>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
                 <div class="label">
-                    <span>လျှင်မြန်လွယ်ကူပြီး</span>
-                    <span>ယုံကြည်စိတ်ချရ</span>
+                    <span data-i18n="s2Line1">Fast, easy and</span>
+                    <span data-i18n="s2Line2">Trusted</span>
                 </div>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-sack-dollar"></i></span>
                 <div class="label">
-                    <span>လျှော့ဈေးများနှင့်</span>
-                    <span>အပိုးဆုများ</span>
+                    <span data-i18n="s3Line1">Discounts and</span>
+                    <span data-i18n="s3Line2">Bonus rewards</span>
                 </div>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-clock"></i></span>
                 <div class="label">
-                    <span>မနက် 9 နာရီမှ</span>
-                    <span>ည 9 နာရီ အတွင်း</span>
+                    <span data-i18n="s4Line1">From 9 AM</span>
+                    <span data-i18n="s4Line2">to 9 PM</span>
                 </div>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-gamepad"></i></span>
                 <div class="label">
-                    <span>Top Game</span>
-                    <span>Mobile Legends</span>
+                    <span data-i18n="s5Line1">Top Game</span>
+                    <span data-i18n="s5Line2">Mobile Legends</span>
                 </div>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-brands fa-telegram"></i></span>
                 <div class="label">
-                    <span>Telegram</span>
-                    <span>Service</span>
+                    <span data-i18n="s6Line1">Telegram</span>
+                    <span data-i18n="s6Line2">Service</span>
                 </div>
             </div>
         </div>
@@ -565,15 +544,15 @@
             <a href="https://t.me/Premium_GameShop" target="_blank" class="contact-card">
                 <span class="icon"><i class="fa-brands fa-telegram"></i></span>
                 <div class="info">
-                    <div class="title">Telegram Channel</div>
-                    <div class="desc">သတင်းများနှင့် အကူအညီရယူပါ</div>
+                    <div class="title" data-i18n="telegramChannelTitle">Telegram Channel</div>
+                    <div class="desc" data-i18n="telegramChannelDesc">News and support</div>
                 </div>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
             </a>
             <a href="https://t.me/OfficialPremiumEnergy" target="_blank" class="contact-card">
                 <span class="icon"><i class="fa-solid fa-headset"></i></span>
                 <div class="info">
-                    <div class="title">အကူအညီလိုပါသလား?</div>
+                    <div class="title" data-i18n="supportTitle">Need help?</div>
                     <div class="desc">@OfficialPremiumEnergy</div>
                 </div>
                 <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
@@ -581,60 +560,60 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation (English always) -->
+    <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span>News</span></a>
-        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span>Shop</span></a>
-        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span>Payment</span></a>
-        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+        <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Home</span></a>
+        <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span data-i18n="navNews">News</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="navShop">Shop</span></a>
+        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span data-i18n="navPayment">Payment</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span data-i18n="navProfile">Profile</span></a>
     </nav>
 
     <!-- Auth Modal -->
     <div class="modal-overlay" id="authModal">
         <div class="modal-sheet">
             <div class="modal-handle" id="authHandle"></div>
-            <h2 id="authTitle" style="font-size:16px; text-align:center; margin-bottom:8px;">Login to your account</h2>
+            <h2 id="authTitle" style="font-size:16px; text-align:center; margin-bottom:8px;" data-i18n="loginTitle">Login to your account</h2>
             <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login">Login</button>
-                <button class="auth-tab" data-tab="register">Register</button>
+                <button class="auth-tab active" data-tab="login" data-i18n="loginTab">Login</button>
+                <button class="auth-tab" data-tab="register" data-i18n="registerTab">Register</button>
             </div>
             <div id="loginForm">
                 <div class="form-group">
-                    <label>Email / Phone / Username</label>
-                    <input type="text" id="loginIdentifier" placeholder="Enter email, phone or username">
+                    <label data-i18n="emailPhoneLabel">Email / Phone / Username</label>
+                    <input type="text" id="loginIdentifier" placeholder="Enter email, phone or username" data-i18n="loginIdentifierPlaceholder">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter password">
+                    <label data-i18n="passwordLabel">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password" data-i18n="passwordPlaceholder">
                 </div>
-                <div class="forgot-link"><a onclick="openForgotModal()">Forgot Password?</a></div>
-                <button class="btn-submit" onclick="handleLogin()">Login</button>
-                <div class="switch-link">Don't have an account? <a onclick="switchAuthTab('register')">Register</a></div>
+                <div class="forgot-link"><a onclick="openForgotModal()" data-i18n="forgotPassword">Forgot Password?</a></div>
+                <button class="btn-submit" onclick="handleLogin()" data-i18n="loginBtn">Login</button>
+                <div class="switch-link"><span data-i18n="switchToRegister">Don't have an account? <a onclick="switchAuthTab('register')">Register</a></span></div>
             </div>
             <div id="registerForm" style="display:none;">
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" id="regUsername" placeholder="Choose a username">
+                    <label data-i18n="usernameLabel">Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose a username" data-i18n="regUsernamePlaceholder">
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="regEmail" placeholder="Enter email (optional)">
+                    <label data-i18n="emailLabel">Email</label>
+                    <input type="email" id="regEmail" placeholder="Enter email (optional)" data-i18n="regEmailPlaceholder">
                 </div>
                 <div class="form-group">
-                    <label>Phone</label>
-                    <input type="tel" id="regPhone" placeholder="Enter phone (optional)">
+                    <label data-i18n="phoneLabel">Phone</label>
+                    <input type="tel" id="regPhone" placeholder="Enter phone (optional)" data-i18n="regPhonePlaceholder">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="regPassword" placeholder="At least 4 characters">
+                    <label data-i18n="passwordLabel">Password</label>
+                    <input type="password" id="regPassword" placeholder="At least 4 characters" data-i18n="regPasswordPlaceholder">
                 </div>
                 <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" id="regConfirm" placeholder="Re-enter password">
+                    <label data-i18n="confirmPasswordLabel">Confirm Password</label>
+                    <input type="password" id="regConfirm" placeholder="Re-enter password" data-i18n="regConfirmPlaceholder">
                 </div>
-                <button class="btn-submit" onclick="handleRegister()">Register</button>
-                <div class="switch-link">Already have an account? <a onclick="switchAuthTab('login')">Login</a></div>
+                <button class="btn-submit" onclick="handleRegister()" data-i18n="registerBtn">Register</button>
+                <div class="switch-link"><span data-i18n="switchToLogin">Already have an account? <a onclick="switchAuthTab('login')">Login</a></span></div>
             </div>
         </div>
     </div>
@@ -643,46 +622,165 @@
     <div class="modal-overlay" id="forgotModal">
         <div class="modal-sheet">
             <div class="modal-handle" id="forgotHandle"></div>
-            <h2 style="font-size:16px; text-align:center; margin-bottom:8px;">Forgot Password</h2>
+            <h2 style="font-size:16px; text-align:center; margin-bottom:8px;" data-i18n="forgotTitle">Forgot Password</h2>
             <div id="forgotStep1">
                 <div class="form-group">
-                    <label>Enter your email, phone or username</label>
-                    <input type="text" id="forgotIdentifier" placeholder="Email / Phone / Username">
+                    <label data-i18n="forgotIdentifyLabel">Enter your email, phone or username</label>
+                    <input type="text" id="forgotIdentifier" placeholder="Email / Phone / Username" data-i18n="forgotIdentifyPlaceholder">
                 </div>
-                <button class="btn-submit" onclick="sendOTP()">Send OTP</button>
+                <button class="btn-submit" onclick="sendOTP()" data-i18n="sendOTP">Send OTP</button>
             </div>
             <div id="forgotStep2" style="display:none;">
                 <div class="form-group">
-                    <label>Enter OTP</label>
-                    <input type="text" id="otpInput" placeholder="6-digit code">
+                    <label data-i18n="otpLabel">Enter OTP</label>
+                    <input type="text" id="otpInput" placeholder="6-digit code" data-i18n="otpPlaceholder">
                 </div>
                 <div class="form-group">
-                    <label>New Password</label>
-                    <input type="password" id="newPassword" placeholder="Enter new password">
+                    <label data-i18n="newPasswordLabel">New Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new password" data-i18n="newPasswordPlaceholder">
                 </div>
-                <button class="btn-submit" onclick="resetPassword()">Reset Password</button>
+                <button class="btn-submit" onclick="resetPassword()" data-i18n="resetPasswordBtn">Reset Password</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Language data — only used for hero/status, but mostly static English as requested
         const I18N = {
             en: {
+                guest: "Guest",
+                loginBtnHeader: "Login",
                 welcomeHero: "Welcome To Premium Game Shop",
                 heroSub: "Diamond, UC, Telegram Service and more",
                 statusOpenLine1: "Shop is Open",
                 statusOpenLine2: "(Open from 9:00 AM to 9:00 PM)",
                 statusClosedLine1: "Shop is Closed",
-                statusClosedLine2: "(Will open at 9:00 AM)"
+                statusClosedLine2: "(Will open at 9:00 AM)",
+                shopCardTitle: "Premium Game Shop",
+                shopCardDesc: "Diamond, UC, Telegram Service and more",
+                goShopBtn: "Go To Shop",
+                offersTitle: "Special Offers",
+                offersDesc: "Limited-time deals & discounts",
+                viewOffersBtn: "View Offers",
+                servicesTitle: "Our Services",
+                s1Line1: "Within 10 minutes",
+                s1Line2: "Order completed",
+                s2Line1: "Fast, easy and",
+                s2Line2: "Trusted",
+                s3Line1: "Discounts and",
+                s3Line2: "Bonus rewards",
+                s4Line1: "From 9 AM",
+                s4Line2: "to 9 PM",
+                s5Line1: "Top Game",
+                s5Line2: "Mobile Legends",
+                s6Line1: "Telegram",
+                s6Line2: "Service",
+                telegramChannelTitle: "Telegram Channel",
+                telegramChannelDesc: "News and support",
+                supportTitle: "Need help?",
+                navHome: "Home",
+                navNews: "News",
+                navShop: "Shop",
+                navPayment: "Payment",
+                navProfile: "Profile",
+                loginTitle: "Login to your account",
+                registerTitle: "Create an account",
+                loginTab: "Login",
+                registerTab: "Register",
+                emailPhoneLabel: "Email / Phone / Username",
+                loginIdentifierPlaceholder: "Enter email, phone or username",
+                passwordLabel: "Password",
+                passwordPlaceholder: "Enter password",
+                forgotPassword: "Forgot Password?",
+                loginBtn: "Login",
+                registerBtn: "Register",
+                switchToRegister: "Don't have an account? Register",
+                switchToLogin: "Already have an account? Login",
+                usernameLabel: "Username",
+                emailLabel: "Email",
+                phoneLabel: "Phone",
+                confirmPasswordLabel: "Confirm Password",
+                regUsernamePlaceholder: "Choose a username",
+                regEmailPlaceholder: "Enter email (optional)",
+                regPhonePlaceholder: "Enter phone (optional)",
+                regPasswordPlaceholder: "At least 4 characters",
+                regConfirmPlaceholder: "Re-enter password",
+                forgotTitle: "Forgot Password",
+                forgotIdentifyLabel: "Enter your email, phone or username",
+                forgotIdentifyPlaceholder: "Email / Phone / Username",
+                sendOTP: "Send OTP",
+                otpLabel: "Enter OTP",
+                otpPlaceholder: "6-digit code",
+                newPasswordLabel: "New Password",
+                newPasswordPlaceholder: "Enter new password",
+                resetPasswordBtn: "Reset Password"
             },
             my: {
+                guest: "ဧည့်သည်",
+                loginBtnHeader: "လော့အင်",
                 welcomeHero: "Premium Game Shop မှ ကြိုဆိုပါသည်",
                 heroSub: "Diamond, UC, Telegram Service and more",
                 statusOpenLine1: "ဆိုင်ဖွင့်ပါသည်",
                 statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
                 statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
-                statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)"
+                statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
+                shopCardTitle: "Premium Game Shop",
+                shopCardDesc: "Diamond, UC, Telegram Service and more",
+                goShopBtn: "ဆိုင်သို့သွားမည်",
+                offersTitle: "အထူးကမ်းလှမ်းချက်များ",
+                offersDesc: "အချိန်အကန့်အသတ်ဖြင့် လျှော့စျေးများ",
+                viewOffersBtn: "ကြည့်မည်",
+                servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
+                s1Line1: "၁၀ မိနစ်အတွင်း",
+                s1Line2: "အော်ဒါပြီးမြောက်",
+                s2Line1: "လျှင်မြန်လွယ်ကူပြီး",
+                s2Line2: "ယုံကြည်စိတ်ချရ",
+                s3Line1: "လျှော့ဈေးများနှင့်",
+                s3Line2: "အပိုးဆုများ",
+                s4Line1: "မနက် ၉ နာရီမှ",
+                s4Line2: "ည ၉ နာရီ အတွင်း",
+                s5Line1: "Top Game",
+                s5Line2: "Mobile Legends",
+                s6Line1: "Telegram",
+                s6Line2: "Service",
+                telegramChannelTitle: "Telegram Channel",
+                telegramChannelDesc: "သတင်းများနှင့် အကူအညီရယူပါ",
+                supportTitle: "အကူအညီလိုပါသလား?",
+                navHome: "ပင်မ",
+                navNews: "သတင်းများ",
+                navShop: "ဆိုင်",
+                navPayment: "ငွေပေးချေ",
+                navProfile: "ပရိုဖိုင်",
+                loginTitle: "သင့်အကောင့်ကို ဝင်ရောက်ပါ",
+                registerTitle: "အကောင့်တစ်ခု ပြုလုပ်ပါ",
+                loginTab: "လော့အင်",
+                registerTab: "မှတ်ပုံတင်မည်",
+                emailPhoneLabel: "အီးမေးလ် / ဖုန်း / အသုံးပြုသူအမည်",
+                loginIdentifierPlaceholder: "အီးမေးလ်၊ ဖုန်း သို့မဟုတ် အသုံးပြုသူအမည် ထည့်ပါ",
+                passwordLabel: "စကားဝှက်",
+                passwordPlaceholder: "စကားဝှက်ထည့်ပါ",
+                forgotPassword: "စကားဝှက်မေ့နေပါသလား?",
+                loginBtn: "လော့အင်",
+                registerBtn: "မှတ်ပုံတင်မည်",
+                switchToRegister: "အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်မည်",
+                switchToLogin: "အကောင့်ရှိပြီးသား? လော့အင်",
+                usernameLabel: "အသုံးပြုသူအမည်",
+                emailLabel: "အီးမေးလ်",
+                phoneLabel: "ဖုန်းနံပါတ်",
+                confirmPasswordLabel: "စကားဝှက် အတည်ပြုပါ",
+                regUsernamePlaceholder: "အသုံးပြုသူအမည်ရွေးပါ",
+                regEmailPlaceholder: "အီးမေးလ်ထည့်ပါ (မထည့်လည်းရ)",
+                regPhonePlaceholder: "ဖုန်းနံပါတ်ထည့်ပါ (မထည့်လည်းရ)",
+                regPasswordPlaceholder: "အနည်းဆုံး ၄ လုံး",
+                regConfirmPlaceholder: "စကားဝှက်ပြန်ထည့်ပါ",
+                forgotTitle: "စကားဝှက်မေ့နေပါသလား?",
+                forgotIdentifyLabel: "အီးမေးလ်၊ ဖုန်း သို့မဟုတ် အသုံးပြုသူအမည် ထည့်ပါ",
+                forgotIdentifyPlaceholder: "အီးမေးလ် / ဖုန်း / အသုံးပြုသူအမည်",
+                sendOTP: "OTP ပို့မည်",
+                otpLabel: "OTP ကုဒ်ထည့်ပါ",
+                otpPlaceholder: "၆ လုံးကုဒ်",
+                newPasswordLabel: "စကားဝှက်အသစ်",
+                newPasswordPlaceholder: "စကားဝှက်အသစ်ထည့်ပါ",
+                resetPasswordBtn: "စကားဝှက်ပြောင်းမည်"
             }
         };
 
@@ -692,7 +790,13 @@
         function applyLanguage() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (I18N[currentLang][key]) el.textContent = I18N[currentLang][key];
+                if (I18N[currentLang][key]) {
+                    if (el.tagName === 'INPUT' && el.placeholder !== undefined) {
+                        el.placeholder = I18N[currentLang][key];
+                    } else {
+                        el.textContent = I18N[currentLang][key];
+                    }
+                }
             });
             updateShopStatus();
             updateUserUI();
@@ -725,7 +829,7 @@
                 loginBtn.classList.add('hidden');
             } else {
                 avatar.innerHTML = '<i class="fa-solid fa-user"></i>';
-                userName.textContent = 'Guest';
+                userName.textContent = I18N[currentLang].guest;
                 loginBtn.classList.remove('hidden');
             }
         }
@@ -823,7 +927,7 @@
             document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
             document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
             const title = document.getElementById('authTitle');
-            title.textContent = tab === 'login' ? 'Login to your account' : 'Create an account';
+            title.textContent = tab === 'login' ? I18N[currentLang].loginTitle : I18N[currentLang].registerTitle;
         }
 
         function handleRegister() {
