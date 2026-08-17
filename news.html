@@ -13,6 +13,7 @@
             --text-primary: #1a1a1a;
             --text-secondary: #666666;
             --accent: #7c5cff;
+            --accent-glow: rgba(124, 92, 255, 0.3);
             --border-color: rgba(0, 0, 0, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -73,9 +74,24 @@
             color: var(--text-secondary);
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
+            position: relative;
         }
         .header-btn:active { transform: scale(0.94); }
         .lang-btn { font-weight: 700; font-size: 11px; }
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 9px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         /* ===== Page Title ===== */
         .page-title {
@@ -107,12 +123,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== News Card ===== */
+        /* ===== News Card (No hover lift, stable shadow) ===== */
         .news-card {
             background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-sm); /* အမြဲတမ်း ဒီ shadow ပဲ */
             transition: var(--transition);
             cursor: pointer;
             opacity: 0;
@@ -130,10 +147,7 @@
         .news-card:nth-child(5) { animation-delay: 0.65s; }
         .news-card:nth-child(6) { animation-delay: 0.75s; }
 
-        .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
+        /* Hover lift ဖျောက်ထား */
 
         .news-image-wrap {
             width: 100%;
@@ -183,6 +197,23 @@
             color: var(--text-secondary);
             font-size: 10px;
         }
+
+        /* Go To Shop Button */
+        .shop-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        .shop-btn:active { transform: scale(0.96); }
 
         /* ===== Bottom Navigation (Fade + Slide Up) ===== */
         .bottom-nav {
@@ -240,31 +271,31 @@
         <header class="header">
             <div class="header-left">
                 <a href="profile.html" class="profile-avatar"><i class="fa-solid fa-user"></i></a>
-                <span class="header-title">News</span>
+                <span class="header-title" id="headerTitle">News</span>
             </div>
             <div class="header-actions">
                 <button class="header-btn lang-btn" id="langToggle">MM</button>
-                <button class="header-btn"><i class="fa-regular fa-bell"></i></button>
+                <button class="header-btn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
             </div>
         </header>
 
         <!-- Page Title -->
         <div class="page-title">
-            <h1>Latest News</h1>
-            <p>နောက်ဆုံးရ သတင်းများနှင့် ကြော်ငြာများ</p>
+            <h1 id="pageTitle">Latest News</h1>
+            <p id="pageSubtitle">နောက်ဆုံးရ သတင်းများနှင့် ကြော်ငြာများ</p>
         </div>
 
         <!-- News Grid -->
-        <div class="news-grid">
+        <div class="news-grid" id="newsGrid">
             <!-- သတင်း ၁ -->
-            <div class="news-card">
+            <div class="news-card" data-i18n-type="game">
                 <div class="news-image-wrap">
                     <img src="https://files.catbox.moe/jy76co.jpg" alt="Kagura" class="news-image" draggable="false">
                 </div>
                 <div class="news-body">
-                    <span class="news-category">🎮 Kagura</span>
-                    <h3 class="news-title">Radiant kits for Kagura Legend</h3>
-                    <p class="news-desc"></p>
+                    <span class="news-category" data-i18n-category>🎮 Kagura</span>
+                    <h3 class="news-title" data-i18n-title>Radiant kits for Kagura Legend</h3>
+                    <p class="news-desc" data-i18n-desc></p>
                     <p class="news-date">Aug 17, 2026</p>
                 </div>
             </div>
@@ -275,19 +306,20 @@
                     <img src="https://files.catbox.moe/4317os.jpg" alt="Telegram" class="news-image" draggable="false">
                 </div>
                 <div class="news-body">
-                    <span class="news-category">🔥 Promotion</span>
-                    <h3 class="news-title">Telegram Premium - 20% Off</h3>
-                    <p class="news-desc">Get Telegram Premium subscription at 20% discount.</p>
+                    <span class="news-category" data-i18n-category>🔥 Promotion</span>
+                    <h3 class="news-title" data-i18n-title>Telegram Premium - 20% Off</h3>
+                    <p class="news-desc" data-i18n-desc>Get Telegram Premium subscription at 20% discount.</p>
                     <p class="news-date">Aug 16, 2026</p>
+                    <a href="shop.html" class="shop-btn">Go To Shop <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
 
             <!-- သတင်း ၃ -->
             <div class="news-card">
                 <div class="news-body">
-                    <span class="news-category">📢 Announcement</span>
-                    <h3 class="news-title">Shop Hours Update</h3>
-                    <p class="news-desc">Our shop is now open from 9 AM to 9 PM daily.</p>
+                    <span class="news-category" data-i18n-category>📢 Announcement</span>
+                    <h3 class="news-title" data-i18n-title>Shop Hours Update</h3>
+                    <p class="news-desc" data-i18n-desc>Our shop is now open from 9 AM to 9 PM daily.</p>
                     <p class="news-date">Aug 15, 2026</p>
                 </div>
             </div>
@@ -296,21 +328,59 @@
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="news.html" class="nav-item active"><i class="fa-solid fa-newspaper"></i><span>News</span></a>
-        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span>Shop</span></a>
-        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span>Payment</span></a>
-        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+        <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span id="navHome">Home</span></a>
+        <a href="news.html" class="nav-item active"><i class="fa-solid fa-newspaper"></i><span id="navNews">News</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span id="navShop">Shop</span></a>
+        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span id="navPayment">Payment</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span id="navProfile">Profile</span></a>
     </nav>
 
     <script>
-        const langToggle = document.getElementById('langToggle');
+        const I18N = {
+            en: {
+                headerTitle: "News",
+                pageTitle: "Latest News",
+                pageSubtitle: "Latest updates, promotions and announcements",
+                navHome: "Home",
+                navNews: "News",
+                navShop: "Shop",
+                navPayment: "Payment",
+                navProfile: "Profile"
+            },
+            my: {
+                headerTitle: "သတင်းများ",
+                pageTitle: "နောက်ဆုံးရ သတင်းများ",
+                pageSubtitle: "နောက်ဆုံးရ သတင်းများနှင့် ကြော်ငြာများ",
+                navHome: "ပင်မ",
+                navNews: "သတင်းများ",
+                navShop: "ဆိုင်",
+                navPayment: "ငွေပေးချေ",
+                navProfile: "ပရိုဖိုင်"
+            }
+        };
+
         let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLanguage() {
+            document.querySelectorAll('[id]').forEach(el => {
+                const key = el.id;
+                if (I18N[currentLang][key]) {
+                    el.textContent = I18N[currentLang][key];
+                }
+            });
+        }
+
+        const langToggle = document.getElementById('langToggle');
         langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
         langToggle.addEventListener('click', function() {
             currentLang = currentLang === 'en' ? 'my' : 'en';
             localStorage.setItem('lang', currentLang);
             langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
+            applyLanguage();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage();
         });
     </script>
 </body>
