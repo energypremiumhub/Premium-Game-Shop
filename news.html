@@ -123,13 +123,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== News Card (No hover lift, stable shadow) ===== */
+        /* ===== News Card ===== */
         .news-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             overflow: hidden;
-            box-shadow: var(--shadow-sm); /* အမြဲတမ်း ဒီ shadow ပဲ */
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
             cursor: pointer;
             opacity: 0;
@@ -139,15 +139,12 @@
         @keyframes cardSlideUp {
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Stagger delay for cards */
         .news-card:nth-child(1) { animation-delay: 0.25s; }
         .news-card:nth-child(2) { animation-delay: 0.35s; }
         .news-card:nth-child(3) { animation-delay: 0.45s; }
         .news-card:nth-child(4) { animation-delay: 0.55s; }
         .news-card:nth-child(5) { animation-delay: 0.65s; }
         .news-card:nth-child(6) { animation-delay: 0.75s; }
-
-        /* Hover lift ဖျောက်ထား */
 
         .news-image-wrap {
             width: 100%;
@@ -156,6 +153,7 @@
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
+            cursor: zoom-in;
         }
         .news-image {
             width: 100%;
@@ -198,24 +196,83 @@
             font-size: 10px;
         }
 
-        /* Go To Shop Button */
+        /* Go To Shop Button - Small, Right aligned */
+        .news-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
         .shop-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             background: var(--accent);
             color: #fff;
-            padding: 10px 18px;
-            border-radius: 30px;
-            font-size: 11px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 10px;
             font-weight: 700;
             text-decoration: none;
-            margin-top: 10px;
             transition: var(--transition);
+            flex-shrink: 0;
         }
-        .shop-btn:active { transform: scale(0.96); }
+        .shop-btn:active { transform: scale(0.95); }
+        .shop-btn i { font-size: 9px; }
 
-        /* ===== Bottom Navigation (Fade + Slide Up) ===== */
+        /* ===== Image Viewer Modal ===== */
+        .viewer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            touch-action: pinch-zoom;
+        }
+        .viewer-overlay.active {
+            display: flex;
+        }
+        .viewer-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .viewer-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 201;
+        }
+        .viewer-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            z-index: 201;
+        }
+
+        /* ===== Bottom Navigation ===== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -288,42 +345,51 @@
         <!-- News Grid -->
         <div class="news-grid" id="newsGrid">
             <!-- သတင်း ၁ -->
-            <div class="news-card" data-i18n-type="game">
-                <div class="news-image-wrap">
+            <div class="news-card">
+                <div class="news-image-wrap" onclick="openViewer('https://files.catbox.moe/jy76co.jpg')">
                     <img src="https://files.catbox.moe/jy76co.jpg" alt="Kagura" class="news-image" draggable="false">
                 </div>
                 <div class="news-body">
-                    <span class="news-category" data-i18n-category>🎮 Kagura</span>
-                    <h3 class="news-title" data-i18n-title>Radiant kits for Kagura Legend</h3>
-                    <p class="news-desc" data-i18n-desc></p>
+                    <span class="news-category">🎮 Kagura</span>
+                    <h3 class="news-title">Radiant kits for Kagura Legend</h3>
+                    <p class="news-desc"></p>
                     <p class="news-date">Aug 17, 2026</p>
                 </div>
             </div>
 
             <!-- သတင်း ၂ -->
             <div class="news-card">
-                <div class="news-image-wrap">
+                <div class="news-image-wrap" onclick="openViewer('https://files.catbox.moe/4317os.jpg')">
                     <img src="https://files.catbox.moe/4317os.jpg" alt="Telegram" class="news-image" draggable="false">
                 </div>
                 <div class="news-body">
-                    <span class="news-category" data-i18n-category>🔥 Promotion</span>
-                    <h3 class="news-title" data-i18n-title>Telegram Premium - 20% Off</h3>
-                    <p class="news-desc" data-i18n-desc>Get Telegram Premium subscription at 20% discount.</p>
-                    <p class="news-date">Aug 16, 2026</p>
-                    <a href="shop.html" class="shop-btn">Go To Shop <i class="fa-solid fa-arrow-right"></i></a>
+                    <span class="news-category">🔥 Promotion</span>
+                    <h3 class="news-title">Telegram Premium - 20% Off</h3>
+                    <p class="news-desc">Get Telegram Premium subscription at 20% discount.</p>
+                    <div class="news-footer">
+                        <p class="news-date">Aug 16, 2026</p>
+                        <a href="shop.html" class="shop-btn">Go To Shop <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
 
             <!-- သတင်း ၃ -->
             <div class="news-card">
                 <div class="news-body">
-                    <span class="news-category" data-i18n-category>📢 Announcement</span>
-                    <h3 class="news-title" data-i18n-title>Shop Hours Update</h3>
-                    <p class="news-desc" data-i18n-desc>Our shop is now open from 9 AM to 9 PM daily.</p>
+                    <span class="news-category">📢 Announcement</span>
+                    <h3 class="news-title">Shop Hours Update</h3>
+                    <p class="news-desc">Our shop is now open from 9 AM to 9 PM daily.</p>
                     <p class="news-date">Aug 15, 2026</p>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Fullscreen Image Viewer -->
+    <div class="viewer-overlay" id="imageViewer" onclick="closeViewer()">
+        <button class="viewer-close" onclick="closeViewer()"><i class="fa-solid fa-xmark"></i></button>
+        <img src="" alt="Viewer" class="viewer-image" id="viewerImage" draggable="false">
+        <span class="viewer-hint">Pinch to zoom • Tap to close</span>
     </div>
 
     <!-- Bottom Navigation -->
@@ -336,6 +402,7 @@
     </nav>
 
     <script>
+        // ===== Language Toggle =====
         const I18N = {
             en: {
                 headerTitle: "News",
@@ -377,6 +444,24 @@
             localStorage.setItem('lang', currentLang);
             langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
             applyLanguage();
+        });
+
+        // ===== Image Viewer =====
+        function openViewer(src) {
+            event.stopPropagation();
+            document.getElementById('viewerImage').src = src;
+            document.getElementById('imageViewer').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeViewer() {
+            document.getElementById('imageViewer').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Keyboard ESC to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeViewer();
         });
 
         document.addEventListener('DOMContentLoaded', () => {
