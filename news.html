@@ -41,7 +41,7 @@
         .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
 
         /* ===== Page Transition Animations ===== */
-        .header, .page-title, .news-grid, .bottom-nav {
+        .header, .page-title, .news-grid {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.6s ease forwards;
@@ -49,7 +49,6 @@
         .header { animation-delay: 0.05s; }
         .page-title { animation-delay: 0.1s; }
         .news-grid { animation-delay: 0.2s; }
-        .bottom-nav { animation-delay: 0.3s; }
 
         @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
@@ -77,14 +76,59 @@
             font-size: 1rem;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
+            flex-shrink: 0;
         }
         .back-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .back-btn:active { transform: scale(0.94); }
         .header-title {
             font-size: 1rem;
             font-weight: 800;
             letter-spacing: -0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .header-spacer { width: 40px; }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .header-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            outline: none;
+            box-shadow: var(--shadow-sm);
+        }
+        .header-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .header-btn:active { transform: scale(0.94); }
+        .lang-btn { font-weight: 700; font-size: 11px; }
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
+            color: #fff;
+            font-size: 9px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
 
         /* ===== Page Title ===== */
         .page-title { margin-bottom: 20px; }
@@ -118,23 +162,32 @@
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            transition: box-shadow 0.3s ease;
             cursor: pointer;
         }
         .news-card:hover {
-            transform: translateY(-4px);
             box-shadow: var(--shadow-md);
         }
         .news-card:active {
-            transform: translateY(-1px);
             box-shadow: var(--shadow-sm);
+        }
+        .news-image-wrap {
+            width: 100%;
+            height: 170px;
+            overflow: hidden;
         }
         .news-image {
             width: 100%;
-            height: 170px;
+            height: 100%;
             object-fit: cover;
             display: block;
             background: var(--bg-card-hover);
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+        /* ဖိနှိပ်လိုက်ရင် ပုံကြီးသွားမယ် */
+        .news-card:active .news-image {
+            transform: scale(1.06);
         }
         .news-body {
             padding: 16px;
@@ -230,7 +283,25 @@
             transition: transform 0.3s ease;
         }
 
-        /* ===== Bottom Navigation ===== */
+        /* Shop CTA Button inside card */
+        .shop-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            pointer-events: auto;
+        }
+        .shop-cta:hover { box-shadow: 0 4px 15px var(--accent-glow); }
+        .shop-cta:active { transform: scale(0.96); }
+
+        /* ===== Bottom Navigation (Fixed Center + Slide Up Animation) ===== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -245,10 +316,20 @@
             border-radius: 32px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-evenly; /* center + even spacing */
             padding: 6px 4px;
             z-index: 100;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            /* Slide up animation */
+            opacity: 0;
+            transform: translateX(-50%) translateY(100px);
+            animation: navSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+        }
+        @keyframes navSlideUp {
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
         .nav-item {
             flex: 1 1 0;
@@ -272,6 +353,12 @@
         .nav-item i { font-size: 18px; }
         .nav-item.active { color: #1a1a1a; font-weight: 700; }
         .nav-item.active i { color: var(--accent); }
+
+        /* Desktop */
+        @media (min-width: 768px) {
+            .container { max-width: 720px; }
+            .bottom-nav { max-width: 720px; }
+        }
     </style>
 </head>
 <body>
@@ -279,100 +366,188 @@
         <!-- Header -->
         <header class="header">
             <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
-            <span class="header-title">News</span>
-            <div class="header-spacer"></div>
+            <span class="header-title" id="newsHeaderTitle">News</span>
+            <div class="header-actions">
+                <button class="header-btn lang-btn" id="langToggle">MM</button>
+                <button class="header-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
+            </div>
         </header>
 
         <!-- Page Title -->
         <div class="page-title">
-            <h1>Latest News</h1>
-            <p>နောက်ဆုံးရ သတင်းများ၊ ပရိုမိုးရှင်းများနှင့် ကြော်ငြာများ</p>
+            <h1 id="pageTitle">Latest News</h1>
+            <p id="pageSubtitle">နောက်ဆုံးရ သတင်းများ၊ ပရိုမိုးရှင်းများနှင့် ကြော်ငြာများ</p>
         </div>
 
         <!-- News Grid -->
-        <div class="news-grid">
-            <!-- ============================================ -->
-            <!-- 📌 PINNED / FEATURED NEWS - ထိပ်ဆုံးမှာ ပြရန် -->
-            <!-- ============================================ -->
-            <div class="news-card">
-                <img src="https://files.catbox.moe/b66gyb.jpg" alt="MLBB Promotion" class="news-image" loading="lazy">
-                <div class="news-body">
-                    <div class="news-meta">
-                        <span class="news-category promotion">🔥 Promotion</span>
-                        <span class="pinned-badge">📌 Pinned</span>
-                        <span class="featured-badge">⭐ Featured</span>
-                    </div>
-                    <h3 class="news-title">MLBB Diamond Special Offer</h3>
-                    <p class="news-desc">Special pricing is now available for selected MLBB Diamond packages. Limited time only!</p>
-                    <div class="news-footer">
-                        <span class="news-date">Aug 17, 2026</span>
-                        <span class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================ -->
-            <!-- 🔥 PROMOTION သတင်းထည့်ရန် -->
-            <!-- ============================================ -->
-            <div class="news-card">
-                <img src="https://files.catbox.moe/4317os.jpg" alt="Telegram Premium" class="news-image" loading="lazy">
-                <div class="news-body">
-                    <div class="news-meta">
-                        <span class="news-category promotion">🔥 Promotion</span>
-                    </div>
-                    <h3 class="news-title">Telegram Premium - 20% Off</h3>
-                    <p class="news-desc">Get Telegram Premium subscription at 20% discount. Offer ends soon!</p>
-                    <div class="news-footer">
-                        <span class="news-date">Aug 16, 2026</span>
-                        <span class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================ -->
-            <!-- 📢 ANNOUNCEMENT သတင်းထည့်ရန် -->
-            <!-- ============================================ -->
-            <div class="news-card">
-                <img src="https://files.catbox.moe/23y1zs.png" alt="Shop Update" class="news-image" loading="lazy">
-                <div class="news-body">
-                    <div class="news-meta">
-                        <span class="news-category announcement">📢 Announcement</span>
-                    </div>
-                    <h3 class="news-title">Shop Hours Update</h3>
-                    <p class="news-desc">Our shop is now open from 9 AM to 9 PM daily. Orders placed during business hours will be processed immediately.</p>
-                    <div class="news-footer">
-                        <span class="news-date">Aug 15, 2026</span>
-                        <span class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================ -->
-            <!-- 🎮 GAME NEWS သတင်းထည့်ရန် -->
-            <!-- ============================================ -->
-            <div class="news-card">
-                <div class="news-body">
-                    <div class="news-meta">
-                        <span class="news-category game">🎮 Game News</span>
-                    </div>
-                    <h3 class="news-title">New Game Coming Soon</h3>
-                    <p class="news-desc">Exciting new game titles will be available soon. Stay tuned for more updates!</p>
-                    <div class="news-footer">
-                        <span class="news-date">Aug 14, 2026</span>
-                        <span class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </div>
+        <div class="news-grid" id="newsGrid">
+            <!-- သတင်းကတ်များကို JS ဖြင့် render လုပ်မည် -->
         </div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="news.html" class="nav-item active"><i class="fa-solid fa-newspaper"></i><span>News</span></a>
-        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span>Shop</span></a>
-        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span>Payment</span></a>
-        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+        <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span id="navHome">Home</span></a>
+        <a href="news.html" class="nav-item active"><i class="fa-solid fa-newspaper"></i><span id="navNews">News</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span id="navShop">Shop</span></a>
+        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span id="navPayment">Payment</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span id="navProfile">Profile</span></a>
     </nav>
+
+    <script>
+        // ==================== LANGUAGE DATA ====================
+        const I18N = {
+            en: {
+                newsHeaderTitle: "News",
+                pageTitle: "Latest News",
+                pageSubtitle: "Latest updates, promotions and announcements",
+                navHome: "Home",
+                navNews: "News",
+                navShop: "Shop",
+                navPayment: "Payment",
+                navProfile: "Profile",
+                readMore: "Read More",
+                shopNow: "Shop Now",
+                pinned: "Pinned",
+                featured: "Featured"
+            },
+            my: {
+                newsHeaderTitle: "သတင်းများ",
+                pageTitle: "နောက်ဆုံးရ သတင်းများ",
+                pageSubtitle: "နောက်ဆုံးရ သတင်းများ၊ ပရိုမိုးရှင်းများနှင့် ကြော်ငြာများ",
+                navHome: "ပင်မ",
+                navNews: "သတင်းများ",
+                navShop: "ဆိုင်",
+                navPayment: "ငွေပေးချေ",
+                navProfile: "ပရိုဖိုင်",
+                readMore: "ဆက်ဖတ်မည်",
+                shopNow: "ယခုဝယ်မည်",
+                pinned: "ထိပ်တင်ထားသည်",
+                featured: "အထူးသတင်း"
+            }
+        };
+
+        // ==================== NEWS DATA (ဒီနေရာတွင် သတင်းများ ထည့်ပါ) ====================
+        const NEWS_DATA = [
+            {
+                id: 1,
+                category: "promotion",
+                categoryIcon: "🔥",
+                categoryName: { en: "Promotion", my: "ပရိုမိုးရှင်း" },
+                isPinned: true,
+                isFeatured: true,
+                title: { en: "MLBB Diamond Special Offer", my: "MLBB ဒိုင်းမွန် အထူးကမ်းလှမ်းချက်" },
+                desc: { en: "Special pricing is now available for selected MLBB Diamond packages. Limited time only!", my: "ရွေးချယ်ထားသော MLBB ဒိုင်းမွန် ပက်ကေ့ချ်များအတွက် အထူးစျေးနှုန်း ရရှိနေပါပြီ။ အချိန်အကန့်အသတ်ဖြင့်သာ!" },
+                date: "Aug 17, 2026",
+                image: "https://files.catbox.moe/b66gyb.jpg",
+                ctaText: { en: "Shop Now", my: "ယခုဝယ်မည်" },
+                ctaUrl: "shop.html"
+            },
+            {
+                id: 2,
+                category: "promotion",
+                categoryIcon: "🔥",
+                categoryName: { en: "Promotion", my: "ပရိုမိုးရှင်း" },
+                isPinned: false,
+                isFeatured: false,
+                title: { en: "Telegram Premium - 20% Off", my: "Telegram Premium - ၂၀% လျှော့စျေး" },
+                desc: { en: "Get Telegram Premium subscription at 20% discount. Offer ends soon!", my: "Telegram Premium စာရင်းသွင်းမှုကို ၂၀% လျှော့စျေးဖြင့် ရယူလိုက်ပါ။ ကမ်းလှမ်းချက် မကြာမီ ကုန်ဆုံးမည်!" },
+                date: "Aug 16, 2026",
+                image: "https://files.catbox.moe/4317os.jpg",
+                ctaText: { en: "Shop Now", my: "ယခုဝယ်မည်" },
+                ctaUrl: "shop.html"
+            },
+            {
+                id: 3,
+                category: "announcement",
+                categoryIcon: "📢",
+                categoryName: { en: "Announcement", my: "ကြေငြာချက်" },
+                isPinned: false,
+                isFeatured: false,
+                title: { en: "Shop Hours Update", my: "ဆိုင်ဖွင့်ချိန် အပ်ဒိတ်" },
+                desc: { en: "Our shop is now open from 9 AM to 9 PM daily. Orders placed during business hours will be processed immediately.", my: "ကျွန်ုပ်တို့၏ ဆိုင်သည် နေ့စဉ် မနက် ၉ နာရီမှ ည ၉ နာရီအထိ ဖွင့်လှစ်ပါသည်။ ဆိုင်ဖွင့်ချိန်အတွင်း မှာယူထားသော အော်ဒါများကို ချက်ချင်း ဆောင်ရွက်ပေးပါမည်။" },
+                date: "Aug 15, 2026",
+                image: "",
+                ctaText: null,
+                ctaUrl: null
+            },
+            {
+                id: 4,
+                category: "game",
+                categoryIcon: "🎮",
+                categoryName: { en: "Game News", my: "ဂိမ်းသတင်း" },
+                isPinned: false,
+                isFeatured: false,
+                title: { en: "New Game Coming Soon", my: "ဂိမ်းအသစ် မကြာမီ ရောက်ရှိမည်" },
+                desc: { en: "Exciting new game titles will be available soon. Stay tuned for more updates!", my: "စိတ်လှုပ်ရှားဖွယ် ဂိမ်းအသစ်များ မကြာမီ ရရှိနိုင်ပါမည်။ နောက်ထပ် အပ်ဒိတ်များအတွက် စောင့်ကြည့်ပါ!" },
+                date: "Aug 14, 2026",
+                image: "https://files.catbox.moe/23y1zs.png",
+                ctaText: null,
+                ctaUrl: null
+            }
+        ];
+
+        // ==================== STATE ====================
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        // ==================== FUNCTIONS ====================
+        function applyLanguage() {
+            document.querySelectorAll('[id]').forEach(el => {
+                const key = el.id;
+                if (I18N[currentLang][key]) {
+                    el.textContent = I18N[currentLang][key];
+                }
+            });
+            renderNews();
+        }
+
+        function renderNews() {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = NEWS_DATA.map((news, index) => `
+                <div class="news-card" style="animation-delay: ${index * 0.08}s">
+                    ${news.image ? `
+                    <div class="news-image-wrap">
+                        <img src="${news.image}" alt="${news.title[currentLang]}" class="news-image" loading="lazy">
+                    </div>` : ''}
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-category ${news.category}">${news.categoryIcon} ${news.categoryName[currentLang]}</span>
+                            ${news.isPinned ? `<span class="pinned-badge">📌 ${I18N[currentLang].pinned}</span>` : ''}
+                            ${news.isFeatured ? `<span class="featured-badge">⭐ ${I18N[currentLang].featured}</span>` : ''}
+                        </div>
+                        <h3 class="news-title">${news.title[currentLang]}</h3>
+                        <p class="news-desc">${news.desc[currentLang]}</p>
+                        <div class="news-footer">
+                            <span class="news-date">${news.date}</span>
+                            ${news.ctaText && news.ctaUrl ? `
+                                <a href="${news.ctaUrl}" class="shop-cta" onclick="event.stopPropagation();">
+                                    ${news.ctaText[currentLang]} <i class="fa-solid fa-arrow-right"></i>
+                                </a>` : `
+                                <span class="read-more">${I18N[currentLang].readMore} <i class="fa-solid fa-arrow-right"></i></span>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        document.getElementById('langToggle').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'my' : 'en';
+            localStorage.setItem('lang', currentLang);
+            this.textContent = currentLang === 'en' ? 'MM' : 'EN';
+            applyLanguage();
+        });
+
+        document.getElementById('notiBtn').addEventListener('click', () => {
+            alert('Notifications');
+        });
+
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
+            applyLanguage();
+        });
+    </script>
 </body>
 </html>
