@@ -61,7 +61,7 @@
             box-shadow: var(--shadow-sm);
         }
         .header-title { font-size: 1rem; font-weight: 800; }
-        .header-actions { display: flex; gap: 6px; }
+        .header-actions { display: flex; align-items: center; gap: 6px; }
         .header-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -94,6 +94,22 @@
             align-items: center;
             justify-content: center;
         }
+        .login-btn {
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            height: 38px;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+        .login-btn:active { transform: scale(0.96); }
 
         /* Hero */
         .hero {
@@ -172,7 +188,6 @@
             font-weight: 800;
             font-size: 14px;
             color: #2ecc71;
-            text-shadow: 0 0 8px currentColor;
         }
         .status-banner.closed .status-text .line1 { color: #e74c3c; }
         .status-text .line2 {
@@ -201,9 +216,7 @@
             background-image: url('https://files.catbox.moe/b66gyb.jpg');
             background-size: cover;
             background-position: top center;
-            transition: transform 0.3s ease;
         }
-        .go-shop-card:active .card-bg { transform: scale(1.05); }
         .go-shop-card .overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -259,43 +272,19 @@
             border-radius: var(--radius-md);
             padding: 18px 10px 14px;
             text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
             min-height: 100px;
-            box-shadow: var(--shadow-sm);
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
-        .service-card.selected {
-            background: #1a1a1a;
-            border-color: #1a1a1a;
-        }
-        .service-card.selected .icon {
-            color: #fff;
-        }
-        .service-card.selected .label {
-            color: rgba(255,255,255,0.8);
-        }
-        .service-card .icon {
-            font-size: 22px;
-            color: var(--accent);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        /* Icon ကြီးသွားတာ */
-        .service-card:active .icon {
-            transform: scale(1.4);
-        }
+        .service-card .icon { font-size: 22px; color: var(--accent); }
         .service-card .label {
             font-size: 9px;
             color: var(--text-secondary);
             font-weight: 500;
             line-height: 1.3;
-            transition: color 0.3s ease;
         }
 
         /* Bottom Nav */
@@ -357,16 +346,17 @@
                 <span class="header-title">Premium Game Shop</span>
             </div>
             <div class="header-actions">
-                <button class="header-btn lang-btn" id="langToggle">MM</button>
+                <button class="header-btn lang-btn">MM</button>
                 <button class="header-btn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
+                <button class="login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
             </div>
         </header>
 
         <!-- Hero -->
         <div class="hero">
-            <p class="welcome" data-i18n="welcome">Welcome To Premium Game Shop</p>
+            <p class="welcome">Welcome To Premium Game Shop</p>
             <h1>Level Up Your Game</h1>
-            <p class="sub" data-i18n="subtitle">Diamond, UC, Telegram Service and more</p>
+            <p class="sub">Diamond, UC, Telegram Service and more</p>
         </div>
 
         <!-- Status -->
@@ -376,14 +366,14 @@
             <div class="status-content">
                 <span class="status-light"></span>
                 <div class="status-text">
-                    <div class="line1" data-i18n="statusOpen">Shop is Open</div>
-                    <div class="line2" data-i18n="statusOpenDesc">(Open from 9 AM to 9 PM)</div>
+                    <div class="line1">Shop is Open</div>
+                    <div class="line2">(Open from 9 AM to 9 PM)</div>
                 </div>
             </div>
         </div>
 
         <!-- Go To Shop -->
-        <div class="go-shop-card">
+        <div class="go-shop-card" onclick="location.href='shop.html'">
             <div class="card-bg"></div>
             <div class="overlay"></div>
             <div class="card-content">
@@ -394,102 +384,45 @@
         </div>
 
         <!-- Services -->
-        <div class="section-title" data-i18n="servicesTitle">Our Services</div>
-        <div class="services-grid" id="servicesGrid">
+        <div class="section-title">Our Services</div>
+        <div class="services-grid">
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-bolt"></i></span>
-                <span class="label" data-i18n="s1">10 mins delivery</span>
+                <span class="label">10 mins delivery</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
-                <span class="label" data-i18n="s2">Fast • Easy • Trusted</span>
+                <span class="label">Fast • Easy • Trusted</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-sack-dollar"></i></span>
-                <span class="label" data-i18n="s3">Discounts & Bonuses</span>
+                <span class="label">Discounts & Bonuses</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-clock"></i></span>
-                <span class="label" data-i18n="s4">9 AM - 9 PM</span>
+                <span class="label">9 AM - 9 PM</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-gamepad"></i></span>
-                <span class="label" data-i18n="s5">Mobile Legends</span>
+                <span class="label">Mobile Legends</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-brands fa-telegram"></i></span>
-                <span class="label" data-i18n="s6">Telegram Service</span>
+                <span class="label">Telegram Service</span>
             </div>
         </div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Home</span></a>
-        <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span data-i18n="navNews">News</span></a>
-        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="navShop">Shop</span></a>
-        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span data-i18n="navPayment">Payment</span></a>
-        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span data-i18n="navProfile">Profile</span></a>
+        <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="news.html" class="nav-item"><i class="fa-solid fa-newspaper"></i><span>News</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span>Shop</span></a>
+        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span>Payment</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
     </nav>
 
     <script>
-        // ===== ENGLISH DEFAULT =====
-        const I18N = {
-            en: {
-                welcome: "Welcome To Premium Game Shop",
-                subtitle: "Diamond, UC, Telegram Service and more",
-                statusOpen: "Shop is Open",
-                statusOpenDesc: "(Open from 9 AM to 9 PM)",
-                statusClosed: "Shop is Closed",
-                statusClosedDesc: "(Will open at 9 AM)",
-                servicesTitle: "Our Services",
-                s1: "10 mins delivery",
-                s2: "Fast • Easy • Trusted",
-                s3: "Discounts & Bonuses",
-                s4: "9 AM - 9 PM",
-                s5: "Mobile Legends",
-                s6: "Telegram Service",
-                navHome: "Home",
-                navNews: "News",
-                navShop: "Shop",
-                navPayment: "Payment",
-                navProfile: "Profile"
-            },
-            my: {
-                welcome: "Premium Game Shop မှ ကြိုဆိုပါသည်",
-                subtitle: "Diamond, UC, Telegram Service and more",
-                statusOpen: "ဆိုင်ဖွင့်ပါသည်",
-                statusOpenDesc: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
-                statusClosed: "ဆိုင်ပိတ်ပါသည်",
-                statusClosedDesc: "(မနက် ၉ နာရီထိုးမှသာ ပြန်ဖွင့်ပါမည်)",
-                servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
-                s1: "၁၀ မိနစ်အတွင်း ပြီးမြောက်",
-                s2: "လျှင်မြန် • လွယ်ကူ • ယုံကြည်ရ",
-                s3: "လျှော့စျေးများနှင့် အပိုဆုများ",
-                s4: "မနက် ၉ - ည ၉",
-                s5: "Mobile Legends",
-                s6: "Telegram Service",
-                navHome: "ပင်မ",
-                navNews: "သတင်းများ",
-                navShop: "ဆိုင်",
-                navPayment: "ငွေပေးချေ",
-                navProfile: "ပရိုဖိုင်"
-            }
-        };
-
-        // ===== DEFAULT ENGLISH =====
-        let currentLang = localStorage.getItem('lang') || 'en';
-
-        function applyLanguage() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (I18N[currentLang][key]) {
-                    el.textContent = I18N[currentLang][key];
-                }
-            });
-            updateShopStatus();
-        }
-
         function updateShopStatus() {
             const now = new Date();
             const min = now.getHours() * 60 + now.getMinutes();
@@ -498,43 +431,17 @@
             const line2 = banner.querySelector('.line2');
             if (min >= 540 && min < 1260) {
                 banner.className = 'status-banner open';
-                line1.textContent = I18N[currentLang].statusOpen;
-                line2.textContent = I18N[currentLang].statusOpenDesc;
+                line1.textContent = 'Shop is Open';
+                line2.textContent = '(Open from 9 AM to 9 PM)';
             } else {
                 banner.className = 'status-banner closed';
-                line1.textContent = I18N[currentLang].statusClosed;
-                line2.textContent = I18N[currentLang].statusClosedDesc;
+                line1.textContent = 'Shop is Closed';
+                line2.textContent = '(Will open at 9 AM)';
             }
         }
 
-        // ===== Language Toggle =====
-        const langToggle = document.getElementById('langToggle');
-        langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
-        langToggle.addEventListener('click', function() {
-            currentLang = currentLang === 'en' ? 'my' : 'en';
-            localStorage.setItem('lang', currentLang);
-            langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
-            applyLanguage();
-        });
-
-        // ===== Select/Deselect for Service Cards =====
-        const serviceCards = document.querySelectorAll('.service-card');
-        serviceCards.forEach(card => {
-            card.addEventListener('click', function() {
-                if (this.classList.contains('selected')) {
-                    this.classList.remove('selected');
-                } else {
-                    serviceCards.forEach(c => c.classList.remove('selected'));
-                    this.classList.add('selected');
-                }
-            });
-        });
-
-        // ===== Init =====
-        document.addEventListener('DOMContentLoaded', () => {
-            applyLanguage();
-            setInterval(updateShopStatus, 60000);
-        });
+        updateShopStatus();
+        setInterval(updateShopStatus, 60000);
     </script>
 </body>
 </html>
