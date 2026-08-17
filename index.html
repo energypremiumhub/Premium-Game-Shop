@@ -10,17 +10,13 @@
         :root {
             --bg-primary: #f8f8fa;
             --bg-card: #ffffff;
-            --bg-card-hover: #f5f5f7;
             --text-primary: #1a1a1a;
             --text-secondary: #666666;
             --accent: #7c5cff;
-            --success: #2ecc71;
-            --danger: #e74c3c;
+            --accent-glow: rgba(124, 92, 255, 0.3);
             --border-color: rgba(0, 0, 0, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.14);
-            --radius-sm: 12px;
             --radius-md: 20px;
             --radius-lg: 28px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -31,118 +27,140 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            padding-bottom: 110px;
+            padding: 16px 16px 110px;
             -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
             user-select: none;
+            -webkit-user-select: none;
         }
-        .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
+        .container { max-width: 520px; margin: 0 auto; }
 
-        /* ===== Page Transition Animations ===== */
-        .header, .hero, .status-banner, .shop-carousel, .carousel-dots, .section-title, .services-grid, .contact-section {
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 0.6s ease 0.05s forwards;
         }
-        .header { animation-delay: 0.05s; }
-        .hero { animation-delay: 0.1s; }
-        .status-banner { animation-delay: 0.2s; }
-        .shop-carousel { animation-delay: 0.3s; }
-        .carousel-dots { animation-delay: 0.35s; }
-        .section-title { animation-delay: 0.4s; }
-        .services-grid { animation-delay: 0.45s; }
-        .contact-section { animation-delay: 0.55s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== Header ===== */
-        .header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-        .user-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .avatar {
-            width: 44px; height: 44px; border-radius: 50%;
+        .header-left { display: flex; align-items: center; gap: 8px; }
+        .profile-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; color: #fff; flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+            text-decoration: none;
             box-shadow: var(--shadow-sm);
         }
-        .user-text { display: flex; flex-direction: column; line-height: 1.2; }
-        .user-text .name {
-            font-weight: 800; font-size: 14px;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;
-        }
-        .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+        .header-title { font-size: 1rem; font-weight: 800; }
+        .header-actions { display: flex; gap: 6px; }
         .header-btn {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; width: 38px; height: 38px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px; color: var(--text-secondary); cursor: pointer;
-            transition: var(--transition); position: relative; text-decoration: none;
-            white-space: nowrap; outline: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-secondary);
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
         }
-        .header-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); box-shadow: var(--shadow-md); }
         .header-btn:active { transform: scale(0.94); }
         .lang-btn { font-weight: 700; font-size: 11px; }
         .badge {
-            position: absolute; top: -4px; right: -4px; background: var(--danger);
-            color: #fff; font-size: 9px; width: 17px; height: 17px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 9px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .login-btn {
-            background: linear-gradient(135deg, #7c5cff, #4f46e5); color: #fff;
-            border: none; border-radius: 12px; height: 38px; padding: 0 14px;
-            display: flex; align-items: center; gap: 6px; font-weight: 700;
-            font-size: 11px; cursor: pointer; transition: var(--transition); white-space: nowrap;
-            box-shadow: var(--shadow-sm);
-        }
-        .login-btn:hover { background: linear-gradient(135deg, #7c5cff, #6b4fe0); box-shadow: var(--shadow-md); }
-        .login-btn:active { transform: scale(0.96); }
-        .login-btn.hidden { display: none; }
 
-        /* ===== Hero ===== */
-        .hero { text-align: left; margin-bottom: 20px; }
+        /* Hero */
+        .hero {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease 0.1s forwards;
+        }
         .hero .welcome {
-            font-size: 11px; color: var(--text-secondary); text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 600; margin-bottom: 6px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
         .hero h1 {
-            font-size: 32px; font-weight: 900; letter-spacing: -1px;
+            font-size: 32px;
+            font-weight: 900;
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; line-height: 1.1; margin-bottom: 4px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
         }
         .hero .sub { color: var(--text-secondary); font-size: 13px; }
 
-        /* ===== Shop Status Banner ===== */
+        /* Status Banner */
         .status-banner {
-            position: relative; border-radius: var(--radius-lg); overflow: hidden;
-            margin-bottom: 20px; padding: 0; background: #0f0f14;
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #0f0f14;
             box-shadow: var(--shadow-md);
-            display: flex; align-items: stretch;
-            min-height: 80px; border: 1px solid var(--border-color);
+            min-height: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease 0.15s forwards;
         }
         .status-banner .bg-image {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://files.catbox.moe/4317os.jpg');
-            background-size: cover; background-position: top center;
+            background-size: cover;
+            background-position: top center;
         }
         .status-banner .overlay {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
             z-index: 1;
         }
         .status-content {
-            position: relative; z-index: 2; display: flex; align-items: center;
-            gap: 14px; padding: 12px 16px; width: 100%;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
         }
         .status-light {
-            width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
-            background: currentColor; box-shadow: 0 0 12px currentColor;
-            animation: pulse 1.5s ease-in-out infinite;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 12px currentColor;
+            animation: pulse 1.5s infinite;
         }
         .status-banner.open .status-light { color: #2ecc71; }
         .status-banner.closed .status-light { color: #e74c3c; }
@@ -150,274 +168,182 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.8); }
         }
-        .status-text { display: flex; flex-direction: column; color: #fff; min-width: 0; }
         .status-text .line1 {
-            font-weight: 800; font-size: 14px; letter-spacing: -0.3px;
-            text-shadow: 0 0 8px currentColor; white-space: nowrap;
-            overflow: hidden; text-overflow: ellipsis;
+            font-weight: 800;
+            font-size: 14px;
+            color: #2ecc71;
+            text-shadow: 0 0 8px currentColor;
         }
-        .status-banner.open .status-text .line1 { color: #2ecc71; }
         .status-banner.closed .status-text .line1 { color: #e74c3c; }
         .status-text .line2 {
-            font-size: 10px; color: rgba(255, 255, 255, 0.85); font-weight: 500;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3); white-space: nowrap;
-            overflow: hidden; text-overflow: ellipsis;
+            font-size: 10px;
+            color: rgba(255,255,255,0.85);
         }
 
-        /* ===== Shop Carousel ===== */
-        .shop-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 12px;
-            padding-bottom: 8px;
-            margin-bottom: 8px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .shop-carousel::-webkit-scrollbar { display: none; }
-        .shop-slide {
-            scroll-snap-align: center;
-            flex-shrink: 0;
-            width: 90%;
+        /* Go To Shop */
+        .go-shop-card {
             position: relative;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            aspect-ratio: 1.8 / 1;
-            background: #0f0f14;
-            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
             box-shadow: var(--shadow-md);
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            aspect-ratio: 1.8 / 1;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            align-items: flex-end;
+            background: #0f0f14;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease 0.2s forwards;
         }
-        .shop-slide:active { transform: scale(0.98); box-shadow: var(--shadow-sm); }
-        .shop-slide .card-bg {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        .go-shop-card .card-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://files.catbox.moe/b66gyb.jpg');
             background-size: cover;
             background-position: top center;
             transition: transform 0.3s ease;
-            will-change: transform;
         }
-        .shop-slide:active .card-bg { transform: scale(1.05); }
-        .shop-slide .overlay {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to top, rgba(10,10,20,0.85) 0%, rgba(10,10,20,0.4) 40%, rgba(10,10,20,0.1) 70%, transparent 100%);
-            z-index: 1; pointer-events: none;
+        .go-shop-card:active .card-bg { transform: scale(1.05); }
+        .go-shop-card .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(10,10,20,0.85), transparent);
+            z-index: 1;
         }
-        .shop-slide .card-content {
-            position: relative; z-index: 2; padding: 20px 22px; width: 100%;
-            pointer-events: none;
+        .go-shop-card .card-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px 22px;
         }
-        .shop-slide .card-content h2 {
-            color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
-            margin-bottom: 4px; text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        .go-shop-card .card-content h2 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
         }
-        .shop-slide .card-content p {
-            color: rgba(255,255,255,0.85); font-size: 12px; margin-bottom: 12px;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        .go-shop-card .card-content p {
+            color: rgba(255,255,255,0.85);
+            font-size: 12px;
+            margin-bottom: 10px;
         }
         .shop-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255,255,255,0.95); color: #1a1a1a; border: none;
-            padding: 12px 22px; border-radius: 100px; font-weight: 700;
-            font-size: 12px; cursor: pointer; transition: var(--transition);
-            text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            pointer-events: auto;
-            white-space: nowrap;
-        }
-        .shop-btn:hover { background: #ffffff; }
-        .shop-btn:active { transform: scale(0.97); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-        .shop-btn i { font-size: 11px; transition: transform 0.3s ease; }
-        .shop-slide:active .shop-btn i { transform: translateX(4px); }
-
-        .carousel-dots {
-            display: flex; justify-content: center; gap: 8px; margin-bottom: 24px;
-        }
-        .carousel-dots .dot {
-            width: 8px; height: 8px; border-radius: 50%;
-            background: var(--border-color); transition: var(--transition);
-        }
-        .carousel-dots .dot.active {
-            background: var(--accent);
-            width: 20px;
-            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #fff;
+            color: #1a1a1a;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-decoration: none;
         }
 
-        /* ===== Services ===== */
+        /* Services */
         .section-title {
-            font-size: 10px; font-weight: 700; color: var(--text-secondary);
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
-            display: flex; align-items: center; gap: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
         }
-        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
-        .section-title i { color: var(--accent); font-size: 12px; }
         .services-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
         }
         .service-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: var(--radius-md); padding: 18px 10px 14px; text-align: center;
-            cursor: pointer; transition: var(--transition); display: flex;
-            flex-direction: column; align-items: center; justify-content: center;
-            gap: 8px; min-height: 110px;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            min-width: 0;
-        }
-        .service-card:hover { background: var(--bg-card-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .service-card:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
-        .service-card .icon { font-size: 22px; color: var(--accent); }
-        .service-card .label {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 18px 10px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 2px;
+            gap: 8px;
+            min-height: 100px;
+            box-shadow: var(--shadow-sm);
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .service-card.selected {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+        }
+        .service-card.selected .icon {
+            color: #fff;
+        }
+        .service-card.selected .label {
+            color: rgba(255,255,255,0.8);
+        }
+        .service-card .icon {
+            font-size: 22px;
+            color: var(--accent);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        /* Icon ကြီးသွားတာ */
+        .service-card:active .icon {
+            transform: scale(1.4);
+        }
+        .service-card .label {
             font-size: 9px;
             color: var(--text-secondary);
             font-weight: 500;
             line-height: 1.3;
-            text-align: center;
-        }
-        .service-card .label span {
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
+            transition: color 0.3s ease;
         }
 
-        /* ===== Contact Section ===== */
-        .contact-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            text-decoration: none;
-            color: var(--text-primary);
-            cursor: pointer;
-        }
-        .contact-card:hover { background: var(--bg-card-hover); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-        .contact-card .icon { font-size: 1.5rem; color: var(--accent); flex-shrink: 0; }
-        .contact-card .info { flex: 1; min-width: 0; }
-        .contact-card .info .title { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
-        .contact-card .info .desc { font-size: 0.7rem; color: var(--text-secondary); }
-        .contact-card .arrow { color: var(--text-secondary); font-size: 1rem; }
-
-        /* ===== Bottom Navigation (Glass with full border) ===== */
+        /* Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
             left: 50%;
-            transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 520px;
-            background: rgba(240, 240, 245, 0.75);
+            background: rgba(240, 240, 245, 0.85);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 32px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-evenly;
             padding: 6px 4px;
             z-index: 100;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50%) translateY(80px);
+            animation: navFadeSlideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+        }
+        @keyframes navFadeSlideUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(80px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         .nav-item {
-            flex: 1 1 0;
-            min-width: 0;
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: 4px;
             color: #888;
             text-decoration: none;
+            font-size: 10px;
             padding: 8px 0;
             border-radius: 20px;
-            transition: var(--transition);
-            font-size: 10px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            position: relative;
         }
         .nav-item i { font-size: 18px; }
-        .nav-item.active { color: #1a1a1a; font-weight: 700; background: none; }
+        .nav-item.active { color: #1a1a1a; font-weight: 700; }
         .nav-item.active i { color: var(--accent); }
 
-        /* ===== Modal ===== */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
-            z-index: 200; align-items: flex-end; justify-content: center;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-sheet {
-            background: var(--bg-card); width: 100%; max-width: 520px;
-            border-radius: 28px 28px 0 0; padding: 12px 20px 20px; animation: slideUp 0.3s ease;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .modal-handle {
-            width: 40px; height: 4px; background: var(--text-secondary);
-            border-radius: 2px; margin: 0 auto 12px; cursor: grab;
-        }
-        .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .auth-tab {
-            flex: 1; text-align: center; padding: 10px; border-radius: 12px;
-            font-weight: 700; cursor: pointer; background: var(--bg-card-hover);
-            color: var(--text-secondary); border: none; font-size: 13px; transition: var(--transition);
-        }
-        .auth-tab.active { background: linear-gradient(135deg, #7c5cff, #4f46e5); color: #fff; box-shadow: var(--shadow-sm); }
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
-        .form-group input {
-            width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color);
-            background: var(--bg-primary); color: var(--text-primary); outline: none;
-            font-size: 13px; transition: var(--transition);
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
-        }
-        .form-group input:focus {
-            border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,92,255,0.1);
-        }
-        .btn-submit {
-            width: 100%; padding: 13px; border: none; border-radius: 12px;
-            background: linear-gradient(135deg, #7c5cff, #4f46e5); color: #fff;
-            font-weight: 700; cursor: pointer; margin-top: 8px; font-size: 13px;
-            box-shadow: var(--shadow-sm);
-        }
-        .btn-submit:hover { background: linear-gradient(135deg, #7c5cff, #6b4fe0); box-shadow: var(--shadow-md); }
-        .btn-submit:active { transform: scale(0.98); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .forgot-link { text-align: right; margin-top: -6px; margin-bottom: 8px; }
-        .forgot-link a { color: var(--accent); font-size: 10px; text-decoration: none; cursor: pointer; }
-        .switch-link { text-align: center; margin-top: 12px; font-size: 11px; color: var(--text-secondary); }
-        .switch-link a { color: var(--accent); text-decoration: none; cursor: pointer; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* Desktop */
         @media (min-width: 768px) {
             .container { max-width: 720px; }
-            .shop-slide { aspect-ratio: 2.2 / 1; }
-            .shop-slide .card-content h2 { font-size: 28px; }
-            .shop-slide .card-content p { font-size: 14px; }
             .bottom-nav { max-width: 720px; }
         }
     </style>
@@ -426,137 +352,74 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="user-area" id="userArea">
-                <div class="avatar" id="avatar"><i class="fa-solid fa-user"></i></div>
-                <div class="user-text">
-                    <span class="name" id="userName" data-i18n="guest">Guest</span>
-                </div>
+            <div class="header-left">
+                <a href="profile.html" class="profile-avatar"><i class="fa-solid fa-user"></i></a>
+                <span class="header-title">Premium Game Shop</span>
             </div>
             <div class="header-actions">
                 <button class="header-btn lang-btn" id="langToggle">MM</button>
-                <button class="header-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
-                <button class="login-btn" id="loginBtn"><i class="fa-solid fa-right-to-bracket"></i><span data-i18n="loginBtnHeader">Login</span></button>
+                <button class="header-btn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
             </div>
         </header>
 
         <!-- Hero -->
         <div class="hero">
-            <p class="welcome" data-i18n="welcomeHero">Welcome To Premium Game Shop</p>
+            <p class="welcome" data-i18n="welcome">Welcome To Premium Game Shop</p>
             <h1>Level Up Your Game</h1>
-            <p class="sub" data-i18n="heroSub">Diamond, UC, Telegram Service and more</p>
+            <p class="sub" data-i18n="subtitle">Diamond, UC, Telegram Service and more</p>
         </div>
 
-        <!-- Shop Status Banner -->
+        <!-- Status -->
         <div class="status-banner open" id="statusBanner">
             <div class="bg-image"></div>
             <div class="overlay"></div>
             <div class="status-content">
                 <span class="status-light"></span>
                 <div class="status-text">
-                    <span class="line1" id="statusLine1" data-i18n="statusOpenLine1">Shop is Open</span>
-                    <span class="line2" id="statusLine2" data-i18n="statusOpenLine2">(Open from 9:00 AM to 9:00 PM)</span>
+                    <div class="line1" data-i18n="statusOpen">Shop is Open</div>
+                    <div class="line2" data-i18n="statusOpenDesc">(Open from 9 AM to 9 PM)</div>
                 </div>
             </div>
         </div>
 
-        <!-- Shop Carousel -->
-        <div class="shop-carousel" id="shopCarousel">
-            <div class="shop-slide">
-                <div class="card-bg" style="background-image: url('https://files.catbox.moe/b66gyb.jpg');"></div>
-                <div class="overlay"></div>
-                <div class="card-content">
-                    <h2 data-i18n="shopCardTitle">Premium Game Shop</h2>
-                    <p data-i18n="shopCardDesc">Diamond, UC, Telegram Service and more</p>
-                    <button class="shop-btn" onclick="location.href='shop.html'">
-                        <span data-i18n="goShopBtn">Go To Shop</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+        <!-- Go To Shop -->
+        <div class="go-shop-card">
+            <div class="card-bg"></div>
+            <div class="overlay"></div>
+            <div class="card-content">
+                <h2>Premium Game Shop</h2>
+                <p>Diamond, UC, Telegram Service and more</p>
+                <a href="shop.html" class="shop-btn">Go To Shop <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="shop-slide">
-                <div class="card-bg" style="background-image: url('https://files.catbox.moe/4317os.jpg');"></div>
-                <div class="overlay"></div>
-                <div class="card-content">
-                    <h2 data-i18n="offersTitle">Special Offers</h2>
-                    <p data-i18n="offersDesc">Limited-time deals & discounts</p>
-                    <button class="shop-btn" onclick="location.href='offers.html'">
-                        <span data-i18n="viewOffersBtn">View Offers</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-dots" id="carouselDots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
         </div>
 
         <!-- Services -->
-        <div class="section-title"><i class="fa-solid fa-bolt"></i> <span data-i18n="servicesTitle">Our Services</span></div>
-        <div class="services-grid">
+        <div class="section-title" data-i18n="servicesTitle">Our Services</div>
+        <div class="services-grid" id="servicesGrid">
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-bolt"></i></span>
-                <div class="label">
-                    <span data-i18n="s1Line1">Within 10 minutes</span>
-                    <span data-i18n="s1Line2">Order completed</span>
-                </div>
+                <span class="label" data-i18n="s1">10 mins delivery</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
-                <div class="label">
-                    <span data-i18n="s2Line1">Fast, easy and</span>
-                    <span data-i18n="s2Line2">Trusted</span>
-                </div>
+                <span class="label" data-i18n="s2">Fast • Easy • Trusted</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-sack-dollar"></i></span>
-                <div class="label">
-                    <span data-i18n="s3Line1">Discounts and</span>
-                    <span data-i18n="s3Line2">Bonus rewards</span>
-                </div>
+                <span class="label" data-i18n="s3">Discounts & Bonuses</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-clock"></i></span>
-                <div class="label">
-                    <span data-i18n="s4Line1">From 9 AM</span>
-                    <span data-i18n="s4Line2">to 9 PM</span>
-                </div>
+                <span class="label" data-i18n="s4">9 AM - 9 PM</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-solid fa-gamepad"></i></span>
-                <div class="label">
-                    <span data-i18n="s5Line1">Top Game</span>
-                    <span data-i18n="s5Line2">Mobile Legends</span>
-                </div>
+                <span class="label" data-i18n="s5">Mobile Legends</span>
             </div>
             <div class="service-card">
                 <span class="icon"><i class="fa-brands fa-telegram"></i></span>
-                <div class="label">
-                    <span data-i18n="s6Line1">Telegram</span>
-                    <span data-i18n="s6Line2">Service</span>
-                </div>
+                <span class="label" data-i18n="s6">Telegram Service</span>
             </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="contact-section">
-            <a href="https://t.me/Premium_GameShop" target="_blank" class="contact-card">
-                <span class="icon"><i class="fa-brands fa-telegram"></i></span>
-                <div class="info">
-                    <div class="title" data-i18n="telegramChannelTitle">Telegram Channel</div>
-                    <div class="desc" data-i18n="telegramChannelDesc">News and support</div>
-                </div>
-                <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
-            <a href="https://t.me/OfficialPremiumEnergy" target="_blank" class="contact-card">
-                <span class="icon"><i class="fa-solid fa-headset"></i></span>
-                <div class="info">
-                    <div class="title" data-i18n="supportTitle">Need help?</div>
-                    <div class="desc">@OfficialPremiumEnergy</div>
-                </div>
-                <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
-            </a>
         </div>
     </div>
 
@@ -569,493 +432,107 @@
         <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span data-i18n="navProfile">Profile</span></a>
     </nav>
 
-    <!-- Auth Modal -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal-sheet">
-            <div class="modal-handle" id="authHandle"></div>
-            <h2 id="authTitle" style="font-size:16px; text-align:center; margin-bottom:8px;" data-i18n="loginTitle">Login to your account</h2>
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login" data-i18n="loginTab">Login</button>
-                <button class="auth-tab" data-tab="register" data-i18n="registerTab">Register</button>
-            </div>
-            <div id="loginForm">
-                <div class="form-group">
-                    <label data-i18n="emailPhoneLabel">Email / Phone / Username</label>
-                    <input type="text" id="loginIdentifier" placeholder="Enter email, phone or username" data-i18n="loginIdentifierPlaceholder">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="passwordLabel">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter password" data-i18n="passwordPlaceholder">
-                </div>
-                <div class="forgot-link"><a onclick="openForgotModal()" data-i18n="forgotPassword">Forgot Password?</a></div>
-                <button class="btn-submit" onclick="handleLogin()" data-i18n="loginBtn">Login</button>
-                <div class="switch-link"><span data-i18n="switchToRegister">Don't have an account? <a onclick="switchAuthTab('register')">Register</a></span></div>
-            </div>
-            <div id="registerForm" style="display:none;">
-                <div class="form-group">
-                    <label data-i18n="usernameLabel">Username</label>
-                    <input type="text" id="regUsername" placeholder="Choose a username" data-i18n="regUsernamePlaceholder">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="emailLabel">Email</label>
-                    <input type="email" id="regEmail" placeholder="Enter email (optional)" data-i18n="regEmailPlaceholder">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="phoneLabel">Phone</label>
-                    <input type="tel" id="regPhone" placeholder="Enter phone (optional)" data-i18n="regPhonePlaceholder">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="passwordLabel">Password</label>
-                    <input type="password" id="regPassword" placeholder="At least 4 characters" data-i18n="regPasswordPlaceholder">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="confirmPasswordLabel">Confirm Password</label>
-                    <input type="password" id="regConfirm" placeholder="Re-enter password" data-i18n="regConfirmPlaceholder">
-                </div>
-                <button class="btn-submit" onclick="handleRegister()" data-i18n="registerBtn">Register</button>
-                <div class="switch-link"><span data-i18n="switchToLogin">Already have an account? <a onclick="switchAuthTab('login')">Login</a></span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Forgot Password Modal -->
-    <div class="modal-overlay" id="forgotModal">
-        <div class="modal-sheet">
-            <div class="modal-handle" id="forgotHandle"></div>
-            <h2 style="font-size:16px; text-align:center; margin-bottom:8px;" data-i18n="forgotTitle">Forgot Password</h2>
-            <div id="forgotStep1">
-                <div class="form-group">
-                    <label data-i18n="forgotIdentifyLabel">Enter your email, phone or username</label>
-                    <input type="text" id="forgotIdentifier" placeholder="Email / Phone / Username" data-i18n="forgotIdentifyPlaceholder">
-                </div>
-                <button class="btn-submit" onclick="sendOTP()" data-i18n="sendOTP">Send OTP</button>
-            </div>
-            <div id="forgotStep2" style="display:none;">
-                <div class="form-group">
-                    <label data-i18n="otpLabel">Enter OTP</label>
-                    <input type="text" id="otpInput" placeholder="6-digit code" data-i18n="otpPlaceholder">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="newPasswordLabel">New Password</label>
-                    <input type="password" id="newPassword" placeholder="Enter new password" data-i18n="newPasswordPlaceholder">
-                </div>
-                <button class="btn-submit" onclick="resetPassword()" data-i18n="resetPasswordBtn">Reset Password</button>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // ===== ENGLISH DEFAULT =====
         const I18N = {
             en: {
-                guest: "Guest",
-                loginBtnHeader: "Login",
-                welcomeHero: "Welcome To Premium Game Shop",
-                heroSub: "Diamond, UC, Telegram Service and more",
-                statusOpenLine1: "Shop is Open",
-                statusOpenLine2: "(Open from 9:00 AM to 9:00 PM)",
-                statusClosedLine1: "Shop is Closed",
-                statusClosedLine2: "(Will open at 9:00 AM)",
-                shopCardTitle: "Premium Game Shop",
-                shopCardDesc: "Diamond, UC, Telegram Service and more",
-                goShopBtn: "Go To Shop",
-                offersTitle: "Special Offers",
-                offersDesc: "Limited-time deals & discounts",
-                viewOffersBtn: "View Offers",
+                welcome: "Welcome To Premium Game Shop",
+                subtitle: "Diamond, UC, Telegram Service and more",
+                statusOpen: "Shop is Open",
+                statusOpenDesc: "(Open from 9 AM to 9 PM)",
+                statusClosed: "Shop is Closed",
+                statusClosedDesc: "(Will open at 9 AM)",
                 servicesTitle: "Our Services",
-                s1Line1: "Within 10 minutes",
-                s1Line2: "Order completed",
-                s2Line1: "Fast, easy and",
-                s2Line2: "Trusted",
-                s3Line1: "Discounts and",
-                s3Line2: "Bonus rewards",
-                s4Line1: "From 9 AM",
-                s4Line2: "to 9 PM",
-                s5Line1: "Top Game",
-                s5Line2: "Mobile Legends",
-                s6Line1: "Telegram",
-                s6Line2: "Service",
-                telegramChannelTitle: "Telegram Channel",
-                telegramChannelDesc: "News and support",
-                supportTitle: "Need help?",
+                s1: "10 mins delivery",
+                s2: "Fast • Easy • Trusted",
+                s3: "Discounts & Bonuses",
+                s4: "9 AM - 9 PM",
+                s5: "Mobile Legends",
+                s6: "Telegram Service",
                 navHome: "Home",
                 navNews: "News",
                 navShop: "Shop",
                 navPayment: "Payment",
-                navProfile: "Profile",
-                loginTitle: "Login to your account",
-                registerTitle: "Create an account",
-                loginTab: "Login",
-                registerTab: "Register",
-                emailPhoneLabel: "Email / Phone / Username",
-                loginIdentifierPlaceholder: "Enter email, phone or username",
-                passwordLabel: "Password",
-                passwordPlaceholder: "Enter password",
-                forgotPassword: "Forgot Password?",
-                loginBtn: "Login",
-                registerBtn: "Register",
-                switchToRegister: "Don't have an account? Register",
-                switchToLogin: "Already have an account? Login",
-                usernameLabel: "Username",
-                emailLabel: "Email",
-                phoneLabel: "Phone",
-                confirmPasswordLabel: "Confirm Password",
-                regUsernamePlaceholder: "Choose a username",
-                regEmailPlaceholder: "Enter email (optional)",
-                regPhonePlaceholder: "Enter phone (optional)",
-                regPasswordPlaceholder: "At least 4 characters",
-                regConfirmPlaceholder: "Re-enter password",
-                forgotTitle: "Forgot Password",
-                forgotIdentifyLabel: "Enter your email, phone or username",
-                forgotIdentifyPlaceholder: "Email / Phone / Username",
-                sendOTP: "Send OTP",
-                otpLabel: "Enter OTP",
-                otpPlaceholder: "6-digit code",
-                newPasswordLabel: "New Password",
-                newPasswordPlaceholder: "Enter new password",
-                resetPasswordBtn: "Reset Password"
+                navProfile: "Profile"
             },
             my: {
-                guest: "ဧည့်သည်",
-                loginBtnHeader: "လော့အင်",
-                welcomeHero: "Premium Game Shop မှ ကြိုဆိုပါသည်",
-                heroSub: "Diamond, UC, Telegram Service and more",
-                statusOpenLine1: "ဆိုင်ဖွင့်ပါသည်",
-                statusOpenLine2: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
-                statusClosedLine1: "ဆိုင်ပိတ်ပါသည်",
-                statusClosedLine2: "(မနက် ၉ နာရီထိုးမှသာ ပြန်လည်ဖွင့်ပါမည်)",
-                shopCardTitle: "Premium Game Shop",
-                shopCardDesc: "Diamond, UC, Telegram Service and more",
-                goShopBtn: "ဆိုင်သို့သွားမည်",
-                offersTitle: "အထူးကမ်းလှမ်းချက်များ",
-                offersDesc: "အချိန်အကန့်အသတ်ဖြင့် လျှော့စျေးများ",
-                viewOffersBtn: "ကြည့်မည်",
+                welcome: "Premium Game Shop မှ ကြိုဆိုပါသည်",
+                subtitle: "Diamond, UC, Telegram Service and more",
+                statusOpen: "ဆိုင်ဖွင့်ပါသည်",
+                statusOpenDesc: "(မနက် ၉ နာရီမှ ည ၉ နာရီအတွင်းသာ)",
+                statusClosed: "ဆိုင်ပိတ်ပါသည်",
+                statusClosedDesc: "(မနက် ၉ နာရီထိုးမှသာ ပြန်ဖွင့်ပါမည်)",
                 servicesTitle: "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုများ",
-                s1Line1: "၁၀ မိနစ်အတွင်း",
-                s1Line2: "အော်ဒါပြီးမြောက်",
-                s2Line1: "လျှင်မြန်လွယ်ကူပြီး",
-                s2Line2: "ယုံကြည်စိတ်ချရ",
-                s3Line1: "လျှော့ဈေးများနှင့်",
-                s3Line2: "အပိုးဆုများ",
-                s4Line1: "မနက် ၉ နာရီမှ",
-                s4Line2: "ည ၉ နာရီ အတွင်း",
-                s5Line1: "Top Game",
-                s5Line2: "Mobile Legends",
-                s6Line1: "Telegram",
-                s6Line2: "Service",
-                telegramChannelTitle: "Telegram Channel",
-                telegramChannelDesc: "သတင်းများနှင့် အကူအညီရယူပါ",
-                supportTitle: "အကူအညီလိုပါသလား?",
+                s1: "၁၀ မိနစ်အတွင်း ပြီးမြောက်",
+                s2: "လျှင်မြန် • လွယ်ကူ • ယုံကြည်ရ",
+                s3: "လျှော့စျေးများနှင့် အပိုဆုများ",
+                s4: "မနက် ၉ - ည ၉",
+                s5: "Mobile Legends",
+                s6: "Telegram Service",
                 navHome: "ပင်မ",
                 navNews: "သတင်းများ",
                 navShop: "ဆိုင်",
                 navPayment: "ငွေပေးချေ",
-                navProfile: "ပရိုဖိုင်",
-                loginTitle: "သင့်အကောင့်ကို ဝင်ရောက်ပါ",
-                registerTitle: "အကောင့်တစ်ခု ပြုလုပ်ပါ",
-                loginTab: "လော့အင်",
-                registerTab: "မှတ်ပုံတင်မည်",
-                emailPhoneLabel: "အီးမေးလ် / ဖုန်း / အသုံးပြုသူအမည်",
-                loginIdentifierPlaceholder: "အီးမေးလ်၊ ဖုန်း သို့မဟုတ် အသုံးပြုသူအမည် ထည့်ပါ",
-                passwordLabel: "စကားဝှက်",
-                passwordPlaceholder: "စကားဝှက်ထည့်ပါ",
-                forgotPassword: "စကားဝှက်မေ့နေပါသလား?",
-                loginBtn: "လော့အင်",
-                registerBtn: "မှတ်ပုံတင်မည်",
-                switchToRegister: "အကောင့်မရှိသေးဘူး? မှတ်ပုံတင်မည်",
-                switchToLogin: "အကောင့်ရှိပြီးသား? လော့အင်",
-                usernameLabel: "အသုံးပြုသူအမည်",
-                emailLabel: "အီးမေးလ်",
-                phoneLabel: "ဖုန်းနံပါတ်",
-                confirmPasswordLabel: "စကားဝှက် အတည်ပြုပါ",
-                regUsernamePlaceholder: "အသုံးပြုသူအမည်ရွေးပါ",
-                regEmailPlaceholder: "အီးမေးလ်ထည့်ပါ (မထည့်လည်းရ)",
-                regPhonePlaceholder: "ဖုန်းနံပါတ်ထည့်ပါ (မထည့်လည်းရ)",
-                regPasswordPlaceholder: "အနည်းဆုံး ၄ လုံး",
-                regConfirmPlaceholder: "စကားဝှက်ပြန်ထည့်ပါ",
-                forgotTitle: "စကားဝှက်မေ့နေပါသလား?",
-                forgotIdentifyLabel: "အီးမေးလ်၊ ဖုန်း သို့မဟုတ် အသုံးပြုသူအမည် ထည့်ပါ",
-                forgotIdentifyPlaceholder: "အီးမေးလ် / ဖုန်း / အသုံးပြုသူအမည်",
-                sendOTP: "OTP ပို့မည်",
-                otpLabel: "OTP ကုဒ်ထည့်ပါ",
-                otpPlaceholder: "၆ လုံးကုဒ်",
-                newPasswordLabel: "စကားဝှက်အသစ်",
-                newPasswordPlaceholder: "စကားဝှက်အသစ်ထည့်ပါ",
-                resetPasswordBtn: "စကားဝှက်ပြောင်းမည်"
+                navProfile: "ပရိုဖိုင်"
             }
         };
 
+        // ===== DEFAULT ENGLISH =====
         let currentLang = localStorage.getItem('lang') || 'en';
-        let currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
         function applyLanguage() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (I18N[currentLang][key]) {
-                    if (el.tagName === 'INPUT' && el.placeholder !== undefined) {
-                        el.placeholder = I18N[currentLang][key];
-                    } else {
-                        el.textContent = I18N[currentLang][key];
-                    }
+                    el.textContent = I18N[currentLang][key];
                 }
             });
             updateShopStatus();
-            updateUserUI();
         }
 
         function updateShopStatus() {
             const now = new Date();
             const min = now.getHours() * 60 + now.getMinutes();
             const banner = document.getElementById('statusBanner');
-            const line1 = document.getElementById('statusLine1');
-            const line2 = document.getElementById('statusLine2');
+            const line1 = banner.querySelector('.line1');
+            const line2 = banner.querySelector('.line2');
             if (min >= 540 && min < 1260) {
                 banner.className = 'status-banner open';
-                line1.textContent = I18N[currentLang].statusOpenLine1;
-                line2.textContent = I18N[currentLang].statusOpenLine2;
+                line1.textContent = I18N[currentLang].statusOpen;
+                line2.textContent = I18N[currentLang].statusOpenDesc;
             } else {
                 banner.className = 'status-banner closed';
-                line1.textContent = I18N[currentLang].statusClosedLine1;
-                line2.textContent = I18N[currentLang].statusClosedLine2;
+                line1.textContent = I18N[currentLang].statusClosed;
+                line2.textContent = I18N[currentLang].statusClosedDesc;
             }
         }
 
-        function updateUserUI() {
-            const avatar = document.getElementById('avatar');
-            const userName = document.getElementById('userName');
-            const loginBtn = document.getElementById('loginBtn');
-            if (currentUser) {
-                avatar.innerHTML = currentUser.username.charAt(0).toUpperCase();
-                userName.textContent = currentUser.username;
-                loginBtn.classList.add('hidden');
-            } else {
-                avatar.innerHTML = '<i class="fa-solid fa-user"></i>';
-                userName.textContent = I18N[currentLang].guest;
-                loginBtn.classList.remove('hidden');
-            }
-        }
-
-        // Carousel dots update
-        const carousel = document.getElementById('shopCarousel');
-        const dots = document.querySelectorAll('#carouselDots .dot');
-        carousel.addEventListener('scroll', function() {
-            const scrollLeft = carousel.scrollLeft;
-            const slideWidth = carousel.querySelector('.shop-slide').offsetWidth + 12;
-            const index = Math.round(scrollLeft / slideWidth);
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        });
-
-        // Modal drag-to-close and body scroll lock
-        function lockScroll() { document.body.style.overflow = 'hidden'; }
-        function unlockScroll() { document.body.style.overflow = ''; }
-
-        function enableDragClose(modalId, handleId) {
-            const modal = document.getElementById(modalId);
-            const sheet = modal.querySelector('.modal-sheet');
-            const handle = document.getElementById(handleId);
-            let startY = 0, currentY = 0, isDragging = false;
-
-            handle.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                startY = e.clientY;
-                sheet.style.transition = 'none';
-                e.preventDefault();
-            });
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                currentY = e.clientY;
-                let dy = currentY - startY;
-                if (dy > 0) sheet.style.transform = `translateY(${dy}px)`;
-            });
-            document.addEventListener('mouseup', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                let dy = currentY - startY;
-                sheet.style.transition = 'transform 0.3s ease';
-                if (dy > 100) {
-                    modal.classList.remove('active');
-                    unlockScroll();
-                    sheet.style.transform = '';
-                } else {
-                    sheet.style.transform = '';
-                }
-            });
-
-            handle.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                startY = e.touches[0].clientY;
-                sheet.style.transition = 'none';
-            });
-            document.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                currentY = e.touches[0].clientY;
-                let dy = currentY - startY;
-                if (dy > 0) sheet.style.transform = `translateY(${dy}px)`;
-            });
-            document.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                let dy = currentY - startY;
-                sheet.style.transition = 'transform 0.3s ease';
-                if (dy > 100) {
-                    modal.classList.remove('active');
-                    unlockScroll();
-                    sheet.style.transform = '';
-                } else {
-                    sheet.style.transform = '';
-                }
-            });
-        }
-
-        enableDragClose('authModal', 'authHandle');
-        enableDragClose('forgotModal', 'forgotHandle');
-
-        // Auth modal functions
-        function openAuth() {
-            lockScroll();
-            document.getElementById('authModal').classList.add('active');
-            switchAuthTab('login');
-        }
-        function closeAuth() {
-            document.getElementById('authModal').classList.remove('active');
-            unlockScroll();
-        }
-        function switchAuthTab(tab) {
-            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`.auth-tab[data-tab="${tab}"]`).classList.add('active');
-            document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
-            document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
-            const title = document.getElementById('authTitle');
-            title.textContent = tab === 'login' ? I18N[currentLang].loginTitle : I18N[currentLang].registerTitle;
-        }
-
-        function handleRegister() {
-            const username = document.getElementById('regUsername').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const phone = document.getElementById('regPhone').value.trim();
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirm').value;
-            if (!username || !password) return alert('Username and password required');
-            if (password.length < 4) return alert('Password must be at least 4 characters');
-            if (password !== confirm) return alert('Passwords do not match');
-            const users = JSON.parse(localStorage.getItem('users') || '{}');
-            if (users[username]) return alert('Username already exists');
-            users[username] = { username, email, phone, password };
-            localStorage.setItem('users', JSON.stringify(users));
-            currentUser = users[username];
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            closeAuth();
-            updateUserUI();
-            alert('Registration successful!');
-        }
-
-        function handleLogin() {
-            const identifier = document.getElementById('loginIdentifier').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            if (!identifier || !password) return alert('Please fill all fields');
-            const users = JSON.parse(localStorage.getItem('users') || '{}');
-            let found = null;
-            for (const key in users) {
-                const u = users[key];
-                if (u.username === identifier || u.email === identifier || u.phone === identifier) {
-                    if (u.password === password) {
-                        found = u;
-                        break;
-                    }
-                }
-            }
-            if (found) {
-                currentUser = found;
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                closeAuth();
-                updateUserUI();
-                alert('Login successful!');
-            } else {
-                alert('Invalid credentials');
-            }
-        }
-
-        function openForgotModal() {
-            lockScroll();
-            closeAuth();
-            document.getElementById('forgotModal').classList.add('active');
-            document.getElementById('forgotStep1').style.display = 'block';
-            document.getElementById('forgotStep2').style.display = 'none';
-        }
-        function closeForgot() {
-            document.getElementById('forgotModal').classList.remove('active');
-            unlockScroll();
-        }
-        function sendOTP() {
-            const identifier = document.getElementById('forgotIdentifier').value.trim();
-            if (!identifier) return alert('Enter identifier');
-            const users = JSON.parse(localStorage.getItem('users') || '{}');
-            let found = null;
-            for (const key in users) {
-                const u = users[key];
-                if (u.username === identifier || u.email === identifier || u.phone === identifier) {
-                    found = u;
-                    break;
-                }
-            }
-            if (!found) return alert('Account not found');
-            const otp = Math.floor(100000 + Math.random() * 900000).toString();
-            alert('Your OTP: ' + otp);
-            window.tempUser = found;
-            window.tempOTP = otp;
-            document.getElementById('forgotStep1').style.display = 'none';
-            document.getElementById('forgotStep2').style.display = 'block';
-        }
-        function resetPassword() {
-            const otp = document.getElementById('otpInput').value.trim();
-            const newPass = document.getElementById('newPassword').value;
-            if (otp !== window.tempOTP) return alert('Invalid OTP');
-            if (newPass.length < 4) return alert('Password too short');
-            const users = JSON.parse(localStorage.getItem('users') || '{}');
-            users[window.tempUser.username].password = newPass;
-            localStorage.setItem('users', JSON.stringify(users));
-            closeForgot();
-            alert('Password reset successful!');
-        }
-
-        // Event listeners
-        document.getElementById('langToggle').addEventListener('click', function() {
+        // ===== Language Toggle =====
+        const langToggle = document.getElementById('langToggle');
+        langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
+        langToggle.addEventListener('click', function() {
             currentLang = currentLang === 'en' ? 'my' : 'en';
             localStorage.setItem('lang', currentLang);
-            this.textContent = currentLang === 'en' ? 'MM' : 'EN';
+            langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
             applyLanguage();
         });
-        document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
 
-        document.getElementById('loginBtn').addEventListener('click', openAuth);
-        document.getElementById('userArea').addEventListener('click', () => {
-            if (currentUser) {
-                alert('Profile page coming soon');
-            } else {
-                openAuth();
-            }
-        });
-        document.getElementById('notiBtn').addEventListener('click', () => alert('Notifications'));
-
-        document.querySelectorAll('.auth-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                switchAuthTab(this.dataset.tab);
+        // ===== Select/Deselect for Service Cards =====
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                } else {
+                    serviceCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                }
             });
         });
 
-        document.getElementById('authModal').addEventListener('click', function(e) {
-            if (e.target === this) closeAuth();
-        });
-        document.getElementById('forgotModal').addEventListener('click', function(e) {
-            if (e.target === this) closeForgot();
-        });
-
-        // Init
+        // ===== Init =====
         document.addEventListener('DOMContentLoaded', () => {
             applyLanguage();
-            updateShopStatus();
-            updateUserUI();
             setInterval(updateShopStatus, 60000);
         });
     </script>
