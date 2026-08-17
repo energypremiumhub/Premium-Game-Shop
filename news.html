@@ -17,7 +17,7 @@
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
             --radius-md: 20px;
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -26,14 +26,24 @@
             color: var(--text-primary);
             min-height: 100vh;
             padding: 16px 16px 110px;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-user-select: none;
         }
         .container { max-width: 520px; margin: 0 auto; }
+
+        /* ===== Header ===== */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease 0.05s forwards;
         }
+        .header-left { display: flex; align-items: center; gap: 8px; }
         .profile-avatar {
             width: 38px;
             height: 38px;
@@ -45,11 +55,9 @@
             color: #fff;
             font-size: 15px;
             text-decoration: none;
+            box-shadow: var(--shadow-sm);
         }
-        .header-title {
-            font-size: 1rem;
-            font-weight: 800;
-        }
+        .header-title { font-size: 1rem; font-weight: 800; }
         .header-actions { display: flex; gap: 6px; }
         .header-btn {
             background: var(--bg-card);
@@ -63,8 +71,19 @@
             cursor: pointer;
             font-size: 14px;
             color: var(--text-secondary);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
+        .header-btn:active { transform: scale(0.94); }
         .lang-btn { font-weight: 700; font-size: 11px; }
+
+        /* ===== Page Title ===== */
+        .page-title {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease 0.1s forwards;
+        }
         .page-title h1 {
             font-size: 28px;
             font-weight: 900;
@@ -73,21 +92,71 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 4px;
         }
-        .page-title p { color: var(--text-secondary); font-size: 12px; margin-bottom: 20px; }
-        .news-grid { display: flex; flex-direction: column; gap: 16px; }
+        .page-title p { color: var(--text-secondary); font-size: 12px; }
+
+        /* ===== News Grid ===== */
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.2s forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== News Card ===== */
         .news-card {
             background: var(--bg-card);
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes cardSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Stagger delay for cards */
+        .news-card:nth-child(1) { animation-delay: 0.25s; }
+        .news-card:nth-child(2) { animation-delay: 0.35s; }
+        .news-card:nth-child(3) { animation-delay: 0.45s; }
+        .news-card:nth-child(4) { animation-delay: 0.55s; }
+        .news-card:nth-child(5) { animation-delay: 0.65s; }
+        .news-card:nth-child(6) { animation-delay: 0.75s; }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .news-image-wrap {
+            width: 100%;
+            height: 170px;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
         .news-image {
             width: 100%;
-            height: 170px;
+            height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-drag: none;
         }
+        .news-image-wrap:active .news-image {
+            transform: scale(1.06);
+        }
+
         .news-body { padding: 16px; }
         .news-category {
             display: inline-block;
@@ -97,11 +166,12 @@
             border-radius: 30px;
             font-size: 10px;
             font-weight: 700;
+            margin-bottom: 8px;
         }
         .news-title {
             font-size: 18px;
             font-weight: 800;
-            margin: 8px 0 6px;
+            margin-bottom: 6px;
         }
         .news-desc {
             color: var(--text-secondary);
@@ -113,23 +183,35 @@
             color: var(--text-secondary);
             font-size: 10px;
         }
+
+        /* ===== Bottom Navigation (Fade + Slide Up) ===== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
             left: 50%;
-            transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 520px;
             background: rgba(240, 240, 245, 0.85);
             backdrop-filter: blur(25px);
-            border-radius: 32px;
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 32px;
             display: flex;
+            align-items: center;
             justify-content: space-evenly;
             padding: 6px 4px;
             z-index: 100;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50%) translateY(80px);
+            animation: navFadeSlideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+        }
+        @keyframes navFadeSlideUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(80px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         .nav-item {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -138,17 +220,25 @@
             text-decoration: none;
             font-size: 10px;
             padding: 8px 0;
-            flex: 1;
+            border-radius: 20px;
+            transition: var(--transition);
         }
         .nav-item i { font-size: 18px; }
         .nav-item.active { color: #1a1a1a; font-weight: 700; }
         .nav-item.active i { color: var(--accent); }
+
+        /* Desktop */
+        @media (min-width: 768px) {
+            .container { max-width: 720px; }
+            .bottom-nav { max-width: 720px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header class="header">
-            <div style="display:flex; align-items:center; gap:8px;">
+            <div class="header-left">
                 <a href="profile.html" class="profile-avatar"><i class="fa-solid fa-user"></i></a>
                 <span class="header-title">News</span>
             </div>
@@ -158,18 +248,19 @@
             </div>
         </header>
 
+        <!-- Page Title -->
         <div class="page-title">
             <h1>Latest News</h1>
             <p>နောက်ဆုံးရ သတင်းများနှင့် ကြော်ငြာများ</p>
         </div>
 
-        <!-- ======================================== -->
-        <!-- သတင်းအသစ်ထည့်ရန် ဒီနေရာတွင် Card တစ်ခုချင်းစီ ထည့်ပါ -->
-        <!-- ======================================== -->
+        <!-- News Grid -->
         <div class="news-grid">
             <!-- သတင်း ၁ -->
             <div class="news-card">
-                <img src="https://files.catbox.moe/jy76co.jpg" alt="Kagura" class="news-image">
+                <div class="news-image-wrap">
+                    <img src="https://files.catbox.moe/jy76co.jpg" alt="Kagura" class="news-image" draggable="false">
+                </div>
                 <div class="news-body">
                     <span class="news-category">🎮 Kagura</span>
                     <h3 class="news-title">Radiant kits for Kagura Legend</h3>
@@ -180,7 +271,9 @@
 
             <!-- သတင်း ၂ -->
             <div class="news-card">
-                <img src="https://files.catbox.moe/4317os.jpg" alt="Telegram" class="news-image">
+                <div class="news-image-wrap">
+                    <img src="https://files.catbox.moe/4317os.jpg" alt="Telegram" class="news-image" draggable="false">
+                </div>
                 <div class="news-body">
                     <span class="news-category">🔥 Promotion</span>
                     <h3 class="news-title">Telegram Premium - 20% Off</h3>
@@ -209,5 +302,16 @@
         <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span>Payment</span></a>
         <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
     </nav>
+
+    <script>
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = localStorage.getItem('lang') || 'en';
+        langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
+        langToggle.addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'my' : 'en';
+            localStorage.setItem('lang', currentLang);
+            langToggle.textContent = currentLang === 'en' ? 'MM' : 'EN';
+        });
+    </script>
 </body>
 </html>
