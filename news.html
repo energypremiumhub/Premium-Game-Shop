@@ -55,7 +55,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== Header ===== */
+        /* ===== Header (Profile on LEFT) ===== */
         .header {
             display: flex;
             align-items: center;
@@ -63,6 +63,31 @@
             gap: 8px;
             margin-bottom: 20px;
         }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 0;
+        }
+        .profile-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c5cff, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+        .profile-avatar:hover { box-shadow: var(--shadow-md); }
+        .profile-avatar:active { transform: scale(0.94); }
         .header-title {
             font-size: 1rem;
             font-weight: 800;
@@ -70,7 +95,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            flex: 1;
         }
         .header-actions {
             display: flex;
@@ -115,25 +139,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        /* Profile avatar (ပုံပဲ) */
-        .profile-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7c5cff, #4f46e5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 15px;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-        .profile-avatar:hover { box-shadow: var(--shadow-md); }
-        .profile-avatar:active { transform: scale(0.94); }
-
         /* ===== Page Title ===== */
         .page-title { margin-bottom: 20px; }
         .page-title h1 {
@@ -148,7 +153,7 @@
         }
         .page-title p {
             color: var(--text-secondary);
-            font-size: 12px; /* မြန်မာစာအတွက် အနည်းငယ်သေး */
+            font-size: 12px;
         }
 
         /* ===== News Grid ===== */
@@ -159,24 +164,23 @@
             margin-bottom: 24px;
         }
 
-        /* ===== News Card (Home page လို shadow) ===== */
+        /* ===== News Card (no select system) ===== */
         .news-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
-        }
-        .news-card:hover {
-            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
         }
         .news-image-wrap {
             width: 100%;
             height: 170px;
             overflow: hidden;
-            cursor: pointer; /* ပုံပေါ်တွင် cursor pointer */
-            -webkit-touch-callout: none; /* iOS long press callout ပိတ် */
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
         .news-image {
             width: 100%;
@@ -186,10 +190,9 @@
             background: var(--bg-card-hover);
             transition: transform 0.3s ease;
             will-change: transform;
-            pointer-events: none; /* ပုံပေါ်တွင် download မပေါ်အောင် */
-            -webkit-user-drag: none; /* drag မရအောင် */
-            user-select: none;
-            -webkit-user-select: none;
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-drag: none;
         }
         /* ပုံကိုသာ ဖိနှိပ်လျှင် ကြီးလာမည် */
         .news-image-wrap:active .news-image {
@@ -198,7 +201,6 @@
 
         .news-body {
             padding: 16px;
-            cursor: default;
         }
         .news-meta {
             display: flex;
@@ -225,28 +227,19 @@
         .news-category.event { background: rgba(230, 73, 128, 0.1); color: #e64980; }
         .news-category.advertisement { background: rgba(255, 146, 43, 0.1); color: #ff922b; }
 
-        .pinned-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(255, 215, 0, 0.15);
-            color: #ffd700;
-            padding: 5px 10px;
-            border-radius: 30px;
-            font-size: 9px;
-            font-weight: 700;
-        }
+        .pinned-badge,
         .featured-badge {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: rgba(255, 77, 109, 0.15);
-            color: #ff4d6d;
             padding: 5px 10px;
             border-radius: 30px;
             font-size: 9px;
             font-weight: 700;
         }
+        .pinned-badge { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
+        .featured-badge { background: rgba(255, 77, 109, 0.15); color: #ff4d6d; }
+
         .news-title {
             font-size: 17px;
             font-weight: 800;
@@ -256,7 +249,7 @@
         }
         .news-desc {
             color: var(--text-secondary);
-            font-size: 11px; /* မြန်မာစာအတွက် သေးငယ် */
+            font-size: 11px;
             line-height: 1.6;
             margin-bottom: 12px;
             display: -webkit-box;
@@ -271,40 +264,29 @@
         }
         .news-date {
             color: var(--text-secondary);
-            font-size: 10px; /* သေးငယ် */
+            font-size: 10px;
             font-weight: 500;
         }
-        .read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 11px;
-            transition: var(--transition);
-        }
-        .news-card:hover .read-more i {
-            transform: translateX(4px);
-        }
-        .read-more i {
-            font-size: 9px;
-            transition: transform 0.3s ease;
-        }
-
-        /* Shop CTA Button */
+        .read-more,
         .shop-cta {
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            font-weight: 700;
+            font-size: 11px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .read-more { color: var(--accent); background: transparent; }
+        .read-more i { font-size: 9px; transition: transform 0.3s ease; }
+        .news-card:hover .read-more i { transform: translateX(4px); }
+
+        .shop-cta {
             background: var(--accent);
             color: #fff;
             padding: 10px 18px;
             border-radius: 30px;
-            font-size: 10px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: var(--transition);
-            pointer-events: auto;
         }
         .shop-cta:hover { box-shadow: 0 4px 15px var(--accent-glow); }
         .shop-cta:active { transform: scale(0.96); }
@@ -327,7 +309,6 @@
             padding: 6px 4px;
             z-index: 100;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            /* Fade + slide up from bottom */
             opacity: 0;
             transform: translateX(-50%) translateY(80px);
             animation: navFadeSlideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
@@ -374,15 +355,15 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- Header (Profile on LEFT) -->
         <header class="header">
-            <span class="header-title" id="newsHeaderTitle">News</span>
+            <div class="header-left">
+                <a href="profile.html" class="profile-avatar"><i class="fa-solid fa-user"></i></a>
+                <span class="header-title" id="newsHeaderTitle">News</span>
+            </div>
             <div class="header-actions">
                 <button class="header-btn lang-btn" id="langToggle">MM</button>
                 <button class="header-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
-                <div class="profile-avatar" onclick="location.href='profile.html'">
-                    <i class="fa-solid fa-user"></i>
-                </div>
             </div>
         </header>
 
