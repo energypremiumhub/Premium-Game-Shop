@@ -10,21 +10,14 @@
         :root {
             --bg-primary: #f8f8fa;
             --bg-card: #ffffff;
-            --bg-card-hover: #f5f5f7;
             --text-primary: #1a1a1a;
             --text-secondary: #666666;
             --accent: #7c5cff;
-            --accent-glow: rgba(124, 92, 255, 0.3);
-            --success: #2ecc71;
-            --danger: #e74c3c;
             --border-color: rgba(0, 0, 0, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.14);
-            --radius-sm: 12px;
             --radius-md: 20px;
-            --radius-lg: 28px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s ease;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -32,43 +25,14 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
-            padding-bottom: 110px;
-            -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            user-select: none;
-            -webkit-user-select: none;
+            padding: 16px 16px 110px;
         }
-        .container { max-width: 520px; margin: 0 auto; padding: 16px 16px 0; }
-
-        /* ===== Page Transition Animations ===== */
-        .header, .page-title, .news-grid {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        .header { animation-delay: 0.05s; }
-        .page-title { animation-delay: 0.1s; }
-        .news-grid { animation-delay: 0.2s; }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== Header (Profile on LEFT) ===== */
+        .container { max-width: 520px; margin: 0 auto; }
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
             margin-bottom: 20px;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-            min-width: 0;
         }
         .profile-avatar {
             width: 38px;
@@ -80,28 +44,13 @@
             justify-content: center;
             color: #fff;
             font-size: 15px;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: var(--transition);
-            flex-shrink: 0;
             text-decoration: none;
         }
-        .profile-avatar:hover { box-shadow: var(--shadow-md); }
-        .profile-avatar:active { transform: scale(0.94); }
         .header-title {
             font-size: 1rem;
             font-weight: 800;
-            letter-spacing: -0.3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-        }
+        .header-actions { display: flex; gap: 6px; }
         .header-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -111,415 +60,154 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
             font-size: 14px;
             color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            outline: none;
-            box-shadow: var(--shadow-sm);
-            text-decoration: none;
         }
-        .header-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
-        .header-btn:active { transform: scale(0.94); }
         .lang-btn { font-weight: 700; font-size: 11px; }
-        .badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: var(--danger);
-            color: #fff;
-            font-size: 9px;
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        /* ===== Page Title ===== */
-        .page-title { margin-bottom: 20px; }
         .page-title h1 {
             font-size: 28px;
             font-weight: 900;
-            letter-spacing: -1px;
             background: linear-gradient(135deg, #7c5cff, #4f46e5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 4px;
         }
-        .page-title p {
-            color: var(--text-secondary);
-            font-size: 12px;
-        }
-
-        /* ===== News Grid ===== */
-        .news-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        /* ===== News Card (no select system) ===== */
+        .page-title p { color: var(--text-secondary); font-size: 12px; margin-bottom: 20px; }
+        .news-grid { display: flex; flex-direction: column; gap: 16px; }
         .news-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.3s ease;
-        }
-        .news-image-wrap {
-            width: 100%;
-            height: 170px;
-            overflow: hidden;
-            cursor: pointer;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
+            transition: var(--transition);
         }
         .news-image {
             width: 100%;
-            height: 100%;
+            height: 170px;
             object-fit: cover;
             display: block;
-            background: var(--bg-card-hover);
-            transition: transform 0.3s ease;
-            will-change: transform;
-            pointer-events: none;
-            -webkit-user-drag: none;
-            user-drag: none;
         }
-        /* ပုံကိုသာ ဖိနှိပ်လျှင် ကြီးလာမည် */
-        .news-image-wrap:active .news-image {
-            transform: scale(1.06);
-        }
-
-        .news-body {
-            padding: 16px;
-        }
-        .news-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
+        .news-body { padding: 16px; }
         .news-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
             padding: 5px 12px;
             border-radius: 30px;
             font-size: 10px;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
-        .news-category.promotion { background: rgba(255, 77, 109, 0.1); color: #ff4d6d; }
-        .news-category.announcement { background: rgba(124, 92, 255, 0.1); color: #7c5cff; }
-        .news-category.game { background: rgba(77, 171, 247, 0.1); color: #4dabf7; }
-        .news-category.mlbb { background: rgba(247, 103, 7, 0.1); color: #f76707; }
-        .news-category.shop { background: rgba(46, 204, 113, 0.1); color: #2ecc71; }
-        .news-category.event { background: rgba(230, 73, 128, 0.1); color: #e64980; }
-        .news-category.advertisement { background: rgba(255, 146, 43, 0.1); color: #ff922b; }
-
-        .pinned-badge,
-        .featured-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 30px;
-            font-size: 9px;
-            font-weight: 700;
-        }
-        .pinned-badge { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
-        .featured-badge { background: rgba(255, 77, 109, 0.15); color: #ff4d6d; }
-
         .news-title {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 800;
-            letter-spacing: -0.3px;
-            margin-bottom: 6px;
-            line-height: 1.3;
+            margin: 8px 0 6px;
         }
         .news-desc {
             color: var(--text-secondary);
-            font-size: 11px;
+            font-size: 12px;
             line-height: 1.6;
-            margin-bottom: 12px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .news-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            margin-bottom: 10px;
         }
         .news-date {
             color: var(--text-secondary);
             font-size: 10px;
-            font-weight: 500;
         }
-        .read-more,
-        .shop-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 700;
-            font-size: 11px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .read-more { color: var(--accent); background: transparent; }
-        .read-more i { font-size: 9px; transition: transform 0.3s ease; }
-        .news-card:hover .read-more i { transform: translateX(4px); }
-
-        .shop-cta {
-            background: var(--accent);
-            color: #fff;
-            padding: 10px 18px;
-            border-radius: 30px;
-        }
-        .shop-cta:hover { box-shadow: 0 4px 15px var(--accent-glow); }
-        .shop-cta:active { transform: scale(0.96); }
-
-        /* ===== Bottom Navigation (Fade + Slide Up) ===== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
             left: 50%;
+            transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 520px;
-            background: rgba(240, 240, 245, 0.75);
+            background: rgba(240, 240, 245, 0.85);
             backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(0, 0, 0, 0.15);
             border-radius: 32px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             display: flex;
-            align-items: center;
             justify-content: space-evenly;
             padding: 6px 4px;
             z-index: 100;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateX(-50%) translateY(80px);
-            animation: navFadeSlideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
-        }
-        @keyframes navFadeSlideUp {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
         }
         .nav-item {
-            flex: 1 1 0;
-            min-width: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: 4px;
             color: #888;
             text-decoration: none;
-            padding: 8px 0;
-            border-radius: 20px;
-            transition: var(--transition);
             font-size: 10px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            position: relative;
+            padding: 8px 0;
+            flex: 1;
         }
         .nav-item i { font-size: 18px; }
         .nav-item.active { color: #1a1a1a; font-weight: 700; }
         .nav-item.active i { color: var(--accent); }
-
-        /* Desktop */
-        @media (min-width: 768px) {
-            .container { max-width: 720px; }
-            .bottom-nav { max-width: 720px; }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header (Profile on LEFT) -->
         <header class="header">
-            <div class="header-left">
+            <div style="display:flex; align-items:center; gap:8px;">
                 <a href="profile.html" class="profile-avatar"><i class="fa-solid fa-user"></i></a>
-                <span class="header-title" id="newsHeaderTitle">News</span>
+                <span class="header-title">News</span>
             </div>
             <div class="header-actions">
                 <button class="header-btn lang-btn" id="langToggle">MM</button>
-                <button class="header-btn" id="notiBtn"><i class="fa-regular fa-bell"></i><span class="badge">3</span></button>
+                <button class="header-btn"><i class="fa-regular fa-bell"></i></button>
             </div>
         </header>
 
-        <!-- Page Title -->
         <div class="page-title">
-            <h1 id="pageTitle">Latest News</h1>
-            <p id="pageSubtitle">နောက်ဆုံးရ သတင်းများ၊ ပရိုမိုးရှင်းများနှင့် ကြော်ငြာများ</p>
+            <h1>Latest News</h1>
+            <p>နောက်ဆုံးရ သတင်းများနှင့် ကြော်ငြာများ</p>
         </div>
 
-        <!-- News Grid -->
-        <div class="news-grid" id="newsGrid"></div>
+        <!-- ======================================== -->
+        <!-- သတင်းအသစ်ထည့်ရန် ဒီနေရာတွင် Card တစ်ခုချင်းစီ ထည့်ပါ -->
+        <!-- ======================================== -->
+        <div class="news-grid">
+            <!-- သတင်း ၁ -->
+            <div class="news-card">
+                <img src="https://files.catbox.moe/jy76co.jpg" alt="Kagura" class="news-image">
+                <div class="news-body">
+                    <span class="news-category">🎮 Kagura</span>
+                    <h3 class="news-title">Radiant kits for Kagura Legend</h3>
+                    <p class="news-desc"></p>
+                    <p class="news-date">Aug 17, 2026</p>
+                </div>
+            </div>
+
+            <!-- သတင်း ၂ -->
+            <div class="news-card">
+                <img src="https://files.catbox.moe/4317os.jpg" alt="Telegram" class="news-image">
+                <div class="news-body">
+                    <span class="news-category">🔥 Promotion</span>
+                    <h3 class="news-title">Telegram Premium - 20% Off</h3>
+                    <p class="news-desc">Get Telegram Premium subscription at 20% discount.</p>
+                    <p class="news-date">Aug 16, 2026</p>
+                </div>
+            </div>
+
+            <!-- သတင်း ၃ -->
+            <div class="news-card">
+                <div class="news-body">
+                    <span class="news-category">📢 Announcement</span>
+                    <h3 class="news-title">Shop Hours Update</h3>
+                    <p class="news-desc">Our shop is now open from 9 AM to 9 PM daily.</p>
+                    <p class="news-date">Aug 15, 2026</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span id="navHome">Home</span></a>
-        <a href="news.html" class="nav-item active"><i class="fa-solid fa-newspaper"></i><span id="navNews">News</span></a>
-        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span id="navShop">Shop</span></a>
-        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span id="navPayment">Payment</span></a>
-        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span id="navProfile">Profile</span></a>
+        <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="news.html" class="nav-item active"><i class="fa-solid fa-newspaper"></i><span>News</span></a>
+        <a href="shop.html" class="nav-item"><i class="fa-solid fa-bag-shopping"></i><span>Shop</span></a>
+        <a href="payment.html" class="nav-item"><i class="fa-solid fa-credit-card"></i><span>Payment</span></a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
     </nav>
-
-    <script>
-        const I18N = {
-            en: {
-                newsHeaderTitle: "News",
-                pageTitle: "Latest News",
-                pageSubtitle: "Latest updates, promotions and announcements",
-                navHome: "Home",
-                navNews: "News",
-                navShop: "Shop",
-                navPayment: "Payment",
-                navProfile: "Profile",
-                readMore: "Read More",
-                shopNow: "Shop Now",
-                pinned: "Pinned",
-                featured: "Featured"
-            },
-            my: {
-                newsHeaderTitle: "သတင်းများ",
-                pageTitle: "နောက်ဆုံးရ သတင်းများ",
-                pageSubtitle: "နောက်ဆုံးရ သတင်းများ၊ ပရိုမိုးရှင်းများနှင့် ကြော်ငြာများ",
-                navHome: "ပင်မ",
-                navNews: "သတင်းများ",
-                navShop: "ဆိုင်",
-                navPayment: "ငွေပေးချေ",
-                navProfile: "ပရိုဖိုင်",
-                readMore: "ဆက်ဖတ်မည်",
-                shopNow: "ယခုဝယ်မည်",
-                pinned: "ထိပ်တင်ထားသည်",
-                featured: "အထူးသတင်း"
-            }
-        };
-
-        const NEWS_DATA = [
-            {
-                id: 1,
-                category: "Kagura",
-                categoryIcon: "🔥",
-                categoryName: { en: "Kagura", my: "Kagura" },
-                isPinned: true,
-                isFeatured: true,
-                title: { en: "Radiant kits for Kagura Legend", my: "Kagura Legend အတွက် Radiant kits" },
-                desc: { en: "", my: "" },
-                date: "Aug 17, 2026",
-                image: "https://files.catbox.moe/jy76co.jpg",
-                ctaText: null,
-                ctaUrl: null
-            },
-            {
-                id: 2,
-                category: "promotion",
-                categoryIcon: "🔥",
-                categoryName: { en: "Promotion", my: "ပရိုမိုးရှင်း" },
-                isPinned: false,
-                isFeatured: false,
-                title: { en: "Telegram Premium - 20% Off", my: "Telegram Premium - ၂၀% လျှော့စျေး" },
-                desc: { en: "Get Telegram Premium subscription at 20% discount. Offer ends soon!", my: "Telegram Premium ကို ၂၀% လျှော့စျေးဖြင့် ရယူလိုက်ပါ။" },
-                date: "Aug 16, 2026",
-                image: "https://files.catbox.moe/4317os.jpg",
-                ctaText: { en: "Shop Now", my: "ယခုဝယ်မည်" },
-                ctaUrl: "shop.html"
-            },
-            {
-                id: 3,
-                category: "announcement",
-                categoryIcon: "📢",
-                categoryName: { en: "Announcement", my: "ကြေငြာချက်" },
-                isPinned: false,
-                isFeatured: false,
-                title: { en: "Shop Hours Update", my: "ဆိုင်ဖွင့်ချိန် အပ်ဒိတ်" },
-                desc: { en: "Our shop is now open from 9 AM to 9 PM daily.", my: "ကျွန်ုပ်တို့၏ ဆိုင်သည် နေ့စဉ် မနက် ၉ နာရီမှ ည ၉ နာရီအထိ ဖွင့်လှစ်ပါသည်။" },
-                date: "Aug 15, 2026",
-                image: "",
-                ctaText: null,
-                ctaUrl: null
-            }
-        ];
-
-        let currentLang = localStorage.getItem('lang') || 'en';
-
-        function applyLanguage() {
-            document.querySelectorAll('[id]').forEach(el => {
-                const key = el.id;
-                if (I18N[currentLang][key]) {
-                    el.textContent = I18N[currentLang][key];
-                }
-            });
-            renderNews();
-        }
-
-        function renderNews() {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = NEWS_DATA.map((news, index) => `
-                <div class="news-card" style="animation-delay: ${index * 0.08}s">
-                    ${news.image ? `
-                    <div class="news-image-wrap">
-                        <img src="${news.image}" alt="${news.title[currentLang]}" class="news-image" loading="lazy" draggable="false">
-                    </div>` : ''}
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-category ${news.category}">${news.categoryIcon} ${news.categoryName[currentLang]}</span>
-                            ${news.isPinned ? `<span class="pinned-badge">📌 ${I18N[currentLang].pinned}</span>` : ''}
-                            ${news.isFeatured ? `<span class="featured-badge">⭐ ${I18N[currentLang].featured}</span>` : ''}
-                        </div>
-                        <h3 class="news-title">${news.title[currentLang]}</h3>
-                        <p class="news-desc">${news.desc[currentLang]}</p>
-                        <div class="news-footer">
-                            <span class="news-date">${news.date}</span>
-                            ${news.ctaText && news.ctaUrl ? `
-                                <a href="${news.ctaUrl}" class="shop-cta">
-                                    ${news.ctaText[currentLang]} <i class="fa-solid fa-arrow-right"></i>
-                                </a>` : `
-                                <span class="read-more">${I18N[currentLang].readMore} <i class="fa-solid fa-arrow-right"></i></span>
-                            `}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        document.getElementById('langToggle').addEventListener('click', function() {
-            currentLang = currentLang === 'en' ? 'my' : 'en';
-            localStorage.setItem('lang', currentLang);
-            this.textContent = currentLang === 'en' ? 'MM' : 'EN';
-            applyLanguage();
-        });
-
-        document.getElementById('notiBtn').addEventListener('click', () => {
-            alert('Notifications');
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('langToggle').textContent = currentLang === 'en' ? 'MM' : 'EN';
-            applyLanguage();
-        });
-    </script>
 </body>
 </html>
